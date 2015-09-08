@@ -1,0 +1,39 @@
+CS Project Prospectus
+
+Brett Raible
+Maike Keune
+Maren Sandner
+Nicholas Paquette
+
+Description of the project idea:
+Our general idea is a single player RPG in the style of old Final Fantasy games. 
+The game revolves around a few heroes (2-4) entering dungeons, fulfilling quests, defeating monsters in a round-based combat system, and saving the world. 
+The player controls one hero exploring the world and all party members in combat.
+
+RPGs have been an ever-growing part of the gaming community for many years. 
+These games allow the player to take control of a character (or characters) in a fictional setting and play through that character’s story. 
+From humble beginnings, several RPG franchises have become huge names in gaming, including Nintendo’s Pokemon, Bethesda’s Fallout and The Elder Scrolls, and Square Enix’s Final Fantasy series. 
+
+Product backlog:
+This RPG will feature similar mechanics to that of the old Final Fantasy games, including health, experience and leveling, usable items, 
+shops for buying said items, file saving, magic, dungeons, randomly encountered enemies, bosses, 2-D graphics, and money.
+
+Technical innovation:
+One of the two areas of technical innovation we are going to use on this project is Java Spring. 
+No member of the group has any experience with this framework. 
+The central feature of the Spring framework is the inversion of the control-container (ioc), which means that the controller classes can define which fields they need instead of receiving them as parameters. 
+This sort of problem is usually solved via unsafe patterns (eg.: singleton pattern). The Spring framework is helping to structure the application context, while staying thread-safe.
+
+The other area of innovation is randomly-generated worlds. 
+Our group will have to produce an algorithm for creating a world randomly every time a new game or level starts without inhibiting the player from finishing the game.
+
+
+Principles from the Code of Ethics:
+1.01. Accept full responsibility for their own work.
+2.04. Ensure that any document upon which they rely has been approved, when required, by someone authorized to approve it.
+3.01. Strive for high quality, acceptable cost and a reasonable schedule, ensuring significant tradeoffs are clear to and accepted by the employer and the client, and are available for consideration by the user and the public.
+4.05. Disclose to all concerned parties those conflicts of interest that cannot reasonably be avoided or escaped.
+7.03. Credit fully the work of others and refrain from taking undue credit.
+7.08. In situations outside of their own areas of competence, call upon the opinions of other professionals who have competence in that area.
+8.01. Further their knowledge of developments in the analysis, specification, design, development, maintenance and testing of software and related documents, together with the management of the development process.
+8.03. Improve their ability to produce accurate, informative, and well-written documentation.
