@@ -1,8 +1,6 @@
 package org.csproject.controller;
 
-import org.csproject.model.actors.Actor;
-import org.csproject.model.actors.Knight;
-import org.csproject.model.actors.Npc;
+import org.csproject.model.actors.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +12,8 @@ public class ActorFactory {
     // constants for the actors
     public static final String NPC = "npc";
     public static final String KNIGHT = "knight";
+    public static final String MAGE = "mage";
+    public static final String THIEF = "thief";
 
     public Actor createActor(String name, String type) {
         switch (type) {
@@ -22,6 +22,18 @@ public class ActorFactory {
             }
             case KNIGHT: {
                 return new Knight(name);
+            }
+            case MAGE: {
+                return new Mage(name);
+            }
+            case THIEF: {
+                return new Thief(name);
+            }
+            case NPC: {
+                return new Npc(name);
+            }
+            case MONSTER: {
+                return new Monster(name);
             }
             default:{
                 return null;
