@@ -1,6 +1,8 @@
 package org.csproject.controller;
 
 import org.csproject.model.actors.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,12 +30,6 @@ public class ActorFactory {
             }
             case THIEF: {
                 return new Thief(name);
-            }
-            case NPC: {
-                return new Npc(name);
-            }
-            case MONSTER: {
-                return new Monster(name);
             }
             default:{
                 return null;

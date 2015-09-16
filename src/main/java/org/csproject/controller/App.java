@@ -15,6 +15,7 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Start the spring application context
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 
         // example to proof the application context
@@ -25,3 +26,5 @@ public class App {
         LOG.info(harry.getMessage());
     }
 }
+
+/*main class*/

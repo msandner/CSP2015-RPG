@@ -32,6 +32,7 @@ public abstract class BattleActors extends Actor{
         return level;
     }
 
+    /**calculates maxHp of battleActor with given level*/
     public abstract int calcHp(int level);
 
 
