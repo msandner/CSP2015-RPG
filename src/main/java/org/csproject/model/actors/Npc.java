@@ -5,6 +5,7 @@ import org.csproject.controller.ActorFactory;
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  */
+/**Npc is just a random actor, with random sentences. For example an arms dealer*/
 public class Npc extends Actor {
 
     private String message;
@@ -24,4 +25,3 @@ public class Npc extends Actor {
     }
 }
 
-/*Npc is just a random actor, with random sentences. For example an arms dealer*/
