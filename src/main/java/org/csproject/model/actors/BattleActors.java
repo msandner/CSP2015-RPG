@@ -7,6 +7,7 @@ public abstract class BattleActors extends Actor{
     protected int level;
     protected int maxHp;
     protected int currentHp;
+
     // todo more stats
 
     public BattleActors(String name, String type, int level) {
@@ -32,4 +33,6 @@ public abstract class BattleActors extends Actor{
     }
 
     public abstract int calcHp(int level);
+
+
 }

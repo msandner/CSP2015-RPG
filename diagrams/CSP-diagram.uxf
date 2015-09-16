@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>0</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>/Actor/
+--
+#name:String
+#type:String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>50</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>180</y>
+      <w>140</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>/BattleActors/
+--
+#level:int
+#maxHp:int
+#currentHp:int
+
+--
++int:calcHp(int level)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>390</y>
+      <w>140</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/PlayerActors/
+--
+#currentMp:int
+#maxHp:int
+--
++int:calcMp(int level)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>300</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>570</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Knight
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>230</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>/Monster/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>10</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Npc
+--
+-message:String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>570</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Thief
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>570</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Mage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>570</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Swordsman</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>450</y>
+      <w>160</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>230</x>
+      <y>470</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>470</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>450</y>
+      <w>160</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>240</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>10</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>940</x>
+      <y>280</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>ActorFactory
+--
+_+NPC:String = "npc"_
+_+KNIGHT:String = "knight"_
+_+MAGE:String = "mage"_
+_+Thief:String = "thief"_
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>10</y>
+      <w>100</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>App
+--
+_-logger:LOG_
+
+--
++main:void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>150</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+WorldService</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>280</y>
+      <w>290</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>WorldServiceImpl
+--
+-actorFactory:ActorFactory
+
+--
++Actor:createActor(name:String, type:String)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>310</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>190</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>

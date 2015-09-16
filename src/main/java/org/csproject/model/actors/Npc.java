@@ -23,3 +23,5 @@ public class Npc extends Actor {
         this.message = message;
     }
 }
+
+/*Npc is just a random actor, with random sentences. For example an arms dealer*/
