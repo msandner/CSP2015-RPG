@@ -1,8 +1,12 @@
 Brett Raible
 CIS 467
 
-9/6: Group Meeting over Skype: 2:00 to 4:15 - 2 hours 26 mins
-9/7: Group Meeting over Skype: 2:00 to 2:46 - 0 hours 46 mins
-9/9: Meeting with Nicholas:    1:00 to 1:45 - 0 hours 45 mins
+9/6: Group Meeting over Skype:  2:00 to 4:15 - 2 hours 26 mins
+9/7: Group Meeting over Skype:  2:00 to 2:46 - 0 hours 46 mins
+9/9: Meeting with Nicholas:     1:00 to 1:45 - 0 hours 45 mins
+9/16: Group Meeting over Skype: 1:00 to 2:50 - 1 hours 50 mins
+9/17: Group Meeting over Skype: 3:00 to 3:40 - 0 hours 40 mins
+9/17: Learning JavaFX:          4:00 to 8:00 - 4 hours 00 mins
+9/20: Group meeting over Skype: 1:00 to 1:50 - 0 hours 50 mins
 ----------------------------------------------------------------------------
-Total:                                        3 hours 57 mins
+Total:                                        11 hours 17 mins
