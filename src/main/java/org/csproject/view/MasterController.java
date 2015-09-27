@@ -9,8 +9,10 @@ import javafx.stage.Stage;
 
 public class MasterController extends Application {
 
-    public static String startMenuID = "startMenu";
-    public static String startMenuFile = "StartMenu.fxml";
+    public static final String startMenuID = "startMenu";
+    public static final String startMenuFile = "StartMenu.fxml";
+    public static final String newGameID = "newGame";
+    public static final String newGameFile = "NewGame.fxml";
 
     ScreensController container;
     Group root;
@@ -24,5 +26,14 @@ public class MasterController extends Application {
     public void start(Stage primaryStage) {
         container = new ScreensController();
         container.loadScreen(startMenuID, startMenuFile);
+        container.loadScreen(newGameID, newGameFile);
+
+        container.setScreen(MasterController.startMenuID);
+
+        root = new Group();
+        root.getChildren().addAll(container);
+        scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

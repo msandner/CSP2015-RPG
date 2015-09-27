@@ -5,5 +5,5 @@ package org.csproject.view;
  */
 public interface ControlledScreen {
 
-    public void setScreenParent(ScreensController screenParent);
+    void setScreenParent(ScreensController screenParent);
 }

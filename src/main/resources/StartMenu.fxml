@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="startMenuPane" alignment="CENTER" disable="false" gridLinesVisible="false" prefHeight="650.0" prefWidth="1200.0" scaleX="1.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.StartMenuController">
+  <children>
+    <Pane id="default.css" prefHeight="650.0" prefWidth="1200.0" style="" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="302.0" prefHeight="46.0" prefWidth="367.0" text="Final Fantasy Clone" textAlignment="CENTER" underline="false">
+          <font>
+            <Font size="24.0" />
+          </font>
+        </Label>
+        <Button fx:id="loadGameButton" contentDisplay="CENTER" defaultButton="true" layoutX="678.0" layoutY="290.0" mnemonicParsing="false" onAction="#loadSavedGame" prefHeight="70.0" prefWidth="169.0" text="Load Game" textAlignment="CENTER" />
+        <Button fx:id="newGameButton" contentDisplay="CENTER" defaultButton="true" layoutX="678.0" layoutY="166.0" mnemonicParsing="false" onAction="#startNewGame" prefHeight="70.0" prefWidth="169.0" text="New Game" textAlignment="CENTER" />
+        <Button fx:id="exitGameButton" cancelButton="true" layoutX="678.0" layoutY="426.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="70.0" prefWidth="169.0" text="Exit Game" />
+      </children>
+    </Pane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
