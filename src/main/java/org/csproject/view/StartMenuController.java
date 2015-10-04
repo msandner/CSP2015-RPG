@@ -2,13 +2,14 @@ package org.csproject.view;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import org.csproject.service.ScreensController;
 
 /**
  * Created by Brett on 9/21/2015.
  */
 public class StartMenuController implements ControlledScreen {
 
-    ScreensController screenController;
+    private ScreensController screenController;
 
     public StartMenuController() {
 
@@ -20,7 +21,7 @@ public class StartMenuController implements ControlledScreen {
     }
 
     public void startNewGame(ActionEvent actionEvent) {
-        screenController.setScreen(MasterController.newGameID);
+        screenController.setScreen(MasterController.NEW_GAME_ID);
     }
 
     public void loadSavedGame(ActionEvent actionEvent) {

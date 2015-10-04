@@ -1,11 +1,11 @@
 package org.csproject.model.actors;
 
-import org.csproject.controller.ActorFactory;
+import org.csproject.service.ActorFactory;
 
 /**
  * Created by Twigglon on 16.09.2015.
  */
-public class Thief extends PlayerActors {
+public class Thief extends PlayerActor {
     public Thief(String name) {
         super(name, ActorFactory.THIEF, 1);
     }

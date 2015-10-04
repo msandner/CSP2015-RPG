@@ -1,11 +1,11 @@
 package org.csproject.model.actors;
 
-import org.csproject.controller.ActorFactory;
+import org.csproject.service.ActorFactory;
 
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  */
-public class Knight extends PlayerActors {
+public class Knight extends PlayerActor {
     public Knight(String name) {
         super(name, ActorFactory.KNIGHT, 1);
     }

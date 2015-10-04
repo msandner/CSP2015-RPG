@@ -1,11 +1,11 @@
 package org.csproject.model.actors;
 
-import org.csproject.controller.ActorFactory;
+import org.csproject.service.ActorFactory;
 
 /**
  * Created by Twigglon on 16.09.2015.
  */
-public class Mage extends PlayerActors {
+public class Mage extends PlayerActor {
     public Mage(String name) {
         super(name, ActorFactory.MAGE, 1);
     }

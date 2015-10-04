@@ -1,6 +1,6 @@
 package org.csproject.model.actors;
 
-import org.csproject.controller.ActorFactory;
+import org.csproject.service.ActorFactory;
 
 /**
  * @author Maike Keune-Staab on 12.09.2015.
