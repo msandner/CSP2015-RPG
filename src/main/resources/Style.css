@@ -1,0 +1,13 @@
+.background{
+    -fx-background-color: cyan
+}
+
+.menuBox {
+    -fx-background-color: darkblue;
+    -fx-border-radius: 50;
+    -fx-border-color: white
+}
+
+.titleText {
+    -fx-text-fill: black
+}
