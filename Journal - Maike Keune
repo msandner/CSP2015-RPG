@@ -15,4 +15,7 @@
 28.9.2015 19:40 - 20:23 MESZ: Begin of implementation of EventHandler.
 4.10.2015 10:40 - 13:30 MESZ: Implementation EventHandler for moving an object. Refactoring existing code.
 4.10.2015 16:50 - 18:29 MESZ: KeyEvents implementation
-Total time yet: 25 hours 27 minutes
+6.10.2015 16:00 - 16:40 MESZ: Meeting with Maren 
+10.10.2015 13:00 - 14:00 MESZ: Research for integrating sprite animations
+10.10.2015 23:35 - 00:02 MESZ: implemented methods to load and safe PlayerActors, so Thief etc classes are no longer necessary 
+Total time yet: 27 hours 44 minutes
