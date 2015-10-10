@@ -1,5 +1,6 @@
 package org.csproject.view;
 
+import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,9 +19,13 @@ public class CharacterImage extends ImageView {
     private Image actorImage;
     private int animPhase; // 0, 1 or 2
     private Direction faceDirection;
+    private Thread animationThread;
+    private boolean walking;
 
     public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
         super();
+
+        walking = false;
 
         this.posX = posX;
         this.posY = posY;
@@ -35,9 +40,29 @@ public class CharacterImage extends ImageView {
         setImage(actorImage);
 
         updateAnimation();
+
+        animationThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        if(walking) {
+                            setAnimationPhase(0);
+                            Thread.sleep((long) (Constants.WALK_TIME_PER_TILE * 1000 / 2));
+                            setAnimationPhase(2);
+                        }
+                        Thread.sleep((long) (Constants.WALK_TIME_PER_TILE * 1000 / 2));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        animationThread.setDaemon(true);
+        animationThread.start();
     }
 
-    private void updateAnimation() {
+    public void updateAnimation() {
         setViewport(new Rectangle2D(
                 actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
                 actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
@@ -65,5 +90,17 @@ public class CharacterImage extends ImageView {
 
     public void setPosY(double posY) {
         this.posY = posY;
+    }
+
+    public void setAnimationPhase(int animationPhase) {
+        this.animPhase = animationPhase;
+        updateAnimation();
+    }
+
+    public void setWalking(boolean walking) {
+        this.walking = walking;
+        if(!walking) {
+            setAnimationPhase(1);
+        }
     }
 }

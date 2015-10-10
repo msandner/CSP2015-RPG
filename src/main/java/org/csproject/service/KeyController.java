@@ -46,6 +46,11 @@ public class KeyController {
             LOG.debug("test-released: " + event.getCode());
             pressedMovementKeys.remove(event.getCode());
         }
+
+        if(pressedMovementKeys.isEmpty())
+        {
+            fieldScreen.stopAvatarAnimation();
+        }
     }
 
     private void move() {
@@ -66,7 +71,7 @@ public class KeyController {
             Task transitionTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
-                    fieldScreen.move(finalDirection, new EventHandler<ActionEvent>() {
+                    fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             move();
@@ -75,7 +80,9 @@ public class KeyController {
                     return null;
                 }
             };
-            new Thread(transitionTask).start();
+            Thread moveThread = new Thread(transitionTask);
+            moveThread.setDaemon(true);
+            moveThread.start();
         }
     }
 }

@@ -86,7 +86,7 @@ public class FieldScreen extends Pane {
      * @param direction The direction
      * @param finished  Callback function what to do after moving one field
      */
-    public void move(Direction direction, final EventHandler<ActionEvent> finished) {
+    public void moveAvatar(Direction direction, final EventHandler<ActionEvent> finished) {
         if (!moving) {
             moving = true;
 
@@ -140,11 +140,16 @@ public class FieldScreen extends Pane {
                         finished.handle(event);
                     }
                 });
+                getAvatar().setWalking(true);
             }
         }
     }
 
     private CharacterImage getAvatar() {
         return this.avatar;
+    }
+
+    public void stopAvatarAnimation() {
+        getAvatar().setWalking(false);
     }
 }
