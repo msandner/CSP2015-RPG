@@ -1,10 +1,14 @@
 package org.csproject.view;
 
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
+import javafx.util.Duration;
+import org.csproject.model.Constants;
+import org.csproject.model.bean.Direction;
 import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
@@ -29,9 +33,14 @@ public class FieldScreen extends Pane {
     @Autowired
     private ScreenFactory screenFactory;
 
-    private Node avatar;
+    private boolean moving;
+
+    private CharacterImage avatar;
+
+    private TranslateTransition transition;
 
     public FieldScreen() {
+        this.moving = false;
         setUpControlls();
     }
 
@@ -50,10 +59,10 @@ public class FieldScreen extends Pane {
         // TODO create an avatar using the data from the player actor
         // meanwhile as placeholder, we use a circle shape
 //        avatar = new Circle(50.0);
-//        getAvatarCircle().setCenterX(start.getX());
-//        getAvatarCircle().setCenterY(start.getY());
+//        getAvatar().setCenterX(start.getX());
+//        getAvatar().setCenterY(start.getY());
 
-        avatar = new  CharacterImage();
+        avatar = new CharacterImage();
         getChildren().add(avatar);
     }
 
@@ -74,28 +83,65 @@ public class FieldScreen extends Pane {
         });
     }
 
-    //TODO:  add sprite animations, maybe later transition animation instead of jumping 10 pixels
-    public void moveUp() {
-        getAvatarCircle().setCenterY(getAvatarCircle().getCenterY() - 10);
-    }
-
-    public void moveLeft() {
-        getAvatarCircle().setCenterX(getAvatarCircle().getCenterX() - 10);
-    }
-
-    public void moveDown() {
-        getAvatarCircle().setCenterY(getAvatarCircle().getCenterY() + 10);
-    }
-
-    public void moveRight() {
-        getAvatarCircle().setCenterX(getAvatarCircle().getCenterX() + 10);
-    }
-
     /**
-     * TODO: Remove this method as soon as the avatar is no circle anymore
-     * @return
+     * Moves the avatar.
+     *
+     * @param direction The direction
+     * @param finished  Callback function what to do after moving one field
      */
-    private Circle getAvatarCircle() {
-        return (Circle) this.avatar;
+    public void move(Direction direction, final EventHandler<ActionEvent> finished) {
+        if (!moving) {
+            moving = true;
+
+            getAvatar().face(direction);
+
+            double x = getAvatar().getPosX();
+            double y = getAvatar().getPosY();
+
+            switch (direction) {
+                case UP: {
+                    y -= Constants.TILE_SIZE;
+                    break;
+                }
+                case DOWN: {
+                    y += Constants.TILE_SIZE;
+                    break;
+                }
+                case LEFT: {
+                    x -= Constants.TILE_SIZE;
+                    break;
+                }
+                case RIGHT: {
+                    x += Constants.TILE_SIZE;
+                    break;
+                }
+            }
+
+            if (transition == null) {
+                transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
+            }
+            transition.setFromX(getAvatar().getPosX());
+            transition.setToX(x);
+            transition.setFromY(getAvatar().getPosY());
+            transition.setToY(y);
+
+            transition.playFromStart();
+            transition.setInterpolator(Interpolator.LINEAR);
+            final double finalX = x;
+            final double finalY = y;
+            transition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    moving = false;
+                    getAvatar().setPosX(finalX);
+                    getAvatar().setPosY(finalY);
+                    finished.handle(event);
+                }
+            });
+        }
+    }
+
+    private CharacterImage getAvatar() {
+        return this.avatar;
     }
 }

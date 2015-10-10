@@ -1,37 +1,69 @@
 package org.csproject.view;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.PGNode;
-import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.csproject.model.Constants;
+import org.csproject.model.bean.Direction;
 
 /**
  * Created by Brett on 10/8/2015.
  */
 public class CharacterImage extends ImageView {
+    private static final int BLOCK_SIZE_X = Constants.TILE_SIZE * 3;
+    private static final int BLOCK_SIZE_Y = Constants.TILE_SIZE * 4;
 
-    Image actorImage;
-    ImageView charView;
-    Rectangle2D viewPortRect;
-    double xPosition, yPosition;
+    private double posX, posY;
+    private int actorImageBlockX, actorImageBlockY;
+    private Image actorImage;
+    private int animPhase; // 0, 1 or 2
+    private Direction faceDirection;
 
     public CharacterImage() {
         super();
 
+        posX = 0.0;
+        posY = 0.0;
+
+        faceDirection = Direction.DOWN;
+
+        actorImageBlockX = 1;
+        actorImageBlockY = 0;
+
         actorImage = new Image("images/Actor1.png");
-        charView = new ImageView(actorImage);
 
-        viewPortRect = new Rectangle2D(0, 0, 33, 31);
+        setImage(actorImage);
 
-        charView.setViewport(viewPortRect);
+        updateAnimation();
+    }
 
-        xPosition = 20.0; //Position of the image on screen
-        yPosition = -20.0;
+    private void updateAnimation() {
+        setViewport(new Rectangle2D(
+                actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
+                actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
+                Constants.TILE_SIZE,
+                Constants.TILE_SIZE));
+    }
+
+    public void face(Direction direction)
+    {
+        faceDirection = direction;
+        updateAnimation();
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
     }
 }
