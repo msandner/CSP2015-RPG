@@ -17,5 +17,6 @@
 4.10.2015 16:50 - 18:29 MESZ: KeyEvents implementation
 6.10.2015 16:00 - 16:40 MESZ: Meeting with Maren 
 10.10.2015 13:00 - 14:00 MESZ: Research for integrating sprite animations
-10.10.2015 23:35 - 00:02 MESZ: implemented methods to load and safe PlayerActors, so Thief etc classes are no longer necessary 
-Total time yet: 27 hours 44 minutes
+10.10.2015 23:35 - 00:02 MESZ: implemented methods to load and safe PlayerActors, so Thief etc classes are no longer necessary
+10.10.2015 19:35 - 23:00 MESZ: implemented movement transition, added walking animation
+Total time yet: 31 hours 09 minutes
