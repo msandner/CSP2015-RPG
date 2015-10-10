@@ -49,10 +49,11 @@ public class FieldScreen extends Pane {
 
         // TODO create an avatar using the data from the player actor
         // meanwhile as placeholder, we use a circle shape
-        avatar = new Circle(50.0);
-        getAvatarCircle().setCenterX(start.getX());
-        getAvatarCircle().setCenterY(start.getY());
+//        avatar = new Circle(50.0);
+//        getAvatarCircle().setCenterX(start.getX());
+//        getAvatarCircle().setCenterY(start.getY());
 
+        avatar = new  CharacterImage();
         getChildren().add(avatar);
     }
 
