@@ -1,0 +1,47 @@
+[
+  {
+    "currentMp": 1,
+    "maxMp": 1,
+    "mpMultiplier": 1.5,
+    "hpMultiplier": 8.0,
+    "level": 1,
+    "maxHp": 100,
+    "currentHp": 100,
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "name": "",
+    "type": "knight"
+  },
+  {
+    "currentMp": 4,
+    "maxMp": 4,
+    "mpMultiplier": 4.0,
+    "hpMultiplier": 4.0,
+    "level": 1,
+    "maxHp": 100,
+    "currentHp": 100,
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "name": "",
+    "type": "mage"
+  },
+  {
+    "currentMp": 2,
+    "maxMp": 2,
+    "mpMultiplier": 2.0,
+    "hpMultiplier": 6.0,
+    "level": 1,
+    "maxHp": 100,
+    "currentHp": 100,
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "name": "",
+    "type": "thief"
+  }
+]

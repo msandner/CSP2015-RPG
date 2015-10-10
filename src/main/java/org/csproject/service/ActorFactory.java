@@ -21,13 +21,13 @@ public class ActorFactory {
                 return new Npc(name);
             }
             case KNIGHT: {
-                return new Knight(name);
+                return new Npc(name); //todo
             }
             case MAGE: {
-                return new Mage(name);
+                return new Npc(name); //todo
             }
             case THIEF: {
-                return new Thief(name);
+                return new Npc(name); //todo
             }
             default:{
                 return null;
