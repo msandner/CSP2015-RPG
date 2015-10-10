@@ -39,6 +39,8 @@ public class FieldScreen extends Pane {
 
     private TranslateTransition transition;
 
+    private Field field;
+
     public FieldScreen() {
         this.moving = false;
         setUpControlls();
@@ -50,19 +52,14 @@ public class FieldScreen extends Pane {
 
     public void setScene(Field field, String startPoint) {
 
-        NavigationPoint start = field.getStart(startPoint);
+        this.field = field;
+        NavigationPoint start = this.field.getStart(startPoint);
         getChildren().clear();
         getChildren().add(screenFactory.buildNode(field));
 
         PlayerActor playerActor = screensController.getPlayerActor();
 
-        // TODO create an avatar using the data from the player actor
-        // meanwhile as placeholder, we use a circle shape
-//        avatar = new Circle(50.0);
-//        getAvatar().setCenterX(start.getX());
-//        getAvatar().setCenterY(start.getY());
-
-        avatar = new CharacterImage();
+        avatar = new CharacterImage(1, 1, 0.0, 0.0, "images/Actor1.png");
         getChildren().add(avatar);
     }
 
@@ -116,28 +113,34 @@ public class FieldScreen extends Pane {
                     break;
                 }
             }
-
-            if (transition == null) {
-                transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
-            }
-            transition.setFromX(getAvatar().getPosX());
-            transition.setToX(x);
-            transition.setFromY(getAvatar().getPosY());
-            transition.setToY(y);
-
-            transition.playFromStart();
-            transition.setInterpolator(Interpolator.LINEAR);
             final double finalX = x;
             final double finalY = y;
-            transition.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    moving = false;
-                    getAvatar().setPosX(finalX);
-                    getAvatar().setPosY(finalY);
-                    finished.handle(event);
+
+            // TODO for maren: check the tile on position x/TILE_SIZE, y/TILE_SIZE (from field variable), if walkable
+
+            if(true) // if walkable
+            {
+                if (transition == null) {
+                    transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
                 }
-            });
+                transition.setFromX(getAvatar().getPosX());
+                transition.setToX(finalX);
+                transition.setFromY(getAvatar().getPosY());
+                transition.setToY(finalY);
+
+                transition.playFromStart();
+                transition.setInterpolator(Interpolator.LINEAR);
+
+                transition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        moving = false;
+                        getAvatar().setPosX(finalX);
+                        getAvatar().setPosY(finalY);
+                        finished.handle(event);
+                    }
+                });
+            }
         }
     }
 

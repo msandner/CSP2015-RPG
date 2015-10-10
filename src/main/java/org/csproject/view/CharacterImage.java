@@ -19,18 +19,18 @@ public class CharacterImage extends ImageView {
     private int animPhase; // 0, 1 or 2
     private Direction faceDirection;
 
-    public CharacterImage() {
+    public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
         super();
 
-        posX = 0.0;
-        posY = 0.0;
+        this.posX = posX;
+        this.posY = posY;
 
         faceDirection = Direction.DOWN;
 
-        actorImageBlockX = 1;
-        actorImageBlockY = 0;
+        actorImageBlockX = blockX;
+        actorImageBlockY = blockY;
 
-        actorImage = new Image("images/Actor1.png");
+        actorImage = new Image(imageUrl);
 
         setImage(actorImage);
 
