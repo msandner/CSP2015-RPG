@@ -2,11 +2,16 @@ package org.csproject.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.actors.Actor;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.bean.Tile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -37,10 +42,24 @@ public class WorldServiceImpl implements WorldService {
     }
 
     @Override
+    //creates a static Field
     public Field getNewWorld() {
         Field field = new Field();
 
         field.setStartPoint(new NavigationPoint(100, 100));
+        Tile[][] matrix = new Tile[20][40];
+        for(int i = 0; i < 20; ++i){
+            for(int j = 0; j < 40; ++j){
+                matrix[i][j] = new Tile(0,3);
+            }
+        }
+        for(int i = 0; i < 20; ++i){
+            matrix[i][0] = new Tile(0,1);
+        }
+        for(int i = 0; i < 20; ++i){
+            matrix[i][1] = new Tile(13,6);
+        }
+        field.setTiles(matrix);
 
         return field; // todo create the map (for example: from random world generator)
     }
@@ -69,6 +88,28 @@ public class WorldServiceImpl implements WorldService {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(playerActors.toArray(new PlayerActor[playerActors.size()]));
         saveFile(CHARACTERS_JSON, json);
+    }
+
+    @Override
+    public Group getNode(Tile[][] matrix) {
+        Group root = new Group();
+        Image image = new Image("image/Outside.png");
+        for(int rowIndex = 0; rowIndex < matrix.length ; rowIndex++) //vertikal durchs bild
+        {
+            Tile[] row = matrix[rowIndex];
+            for(int colIndex = 0; colIndex < row.length; colIndex++) //horizontal durchs bild
+            {
+                Tile currentTile = row[colIndex];
+                ImageView imageView = new ImageView(image);
+                Rectangle2D viewPort = new Rectangle2D(currentTile.getX()* Tile.TILE_SIZE, currentTile.getY()*Tile.TILE_SIZE,Tile.TILE_SIZE, Tile.TILE_SIZE);
+                imageView.setViewport(viewPort);
+                imageView.setTranslateX(colIndex * Tile.TILE_SIZE);
+                imageView.setTranslateY(rowIndex*Tile.TILE_SIZE);
+                root.getChildren().add(imageView);
+
+            }
+        }
+        return root;
     }
 
     private void saveFile(String fileName, String json) throws FileNotFoundException {
