@@ -5,11 +5,9 @@ package org.csproject.model.actors;
  */
 public class BossMonster extends Monster {
 
-    //temporary, for compiling - Brett
     public BossMonster() {
         super("name", "name2", 12);
     }
-    //End changes - Brett
 
     @Override
     public int calcHp(int level) {

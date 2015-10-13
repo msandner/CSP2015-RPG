@@ -100,7 +100,7 @@ public class WorldServiceImpl implements WorldService {
     @Override
     public Group getNode(Tile[][] matrix) {
         Group root = new Group();
-        Image image = new Image("image/Outside.png");
+        Image image = new Image("image/tiles/Outside.png");
         for(int rowIndex = 0; rowIndex < matrix.length ; rowIndex++) //vertikal durchs bild
         {
             Tile[] row = matrix[rowIndex];

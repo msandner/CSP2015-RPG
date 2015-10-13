@@ -22,7 +22,7 @@ public class ScreenFactory {
     public Node buildNode(Field field) {
         Tile[][] matrix = field.getTiles();
         Group root = new Group();
-        Image image = new Image("images/Outside.png");
+        Image image = new Image("images/tiles/Outside.png");
         for(int rowIndex = 0; rowIndex < matrix.length ; rowIndex++) //vertikal durchs bild
         {
             Tile[] row = matrix[rowIndex];

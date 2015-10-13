@@ -60,7 +60,7 @@ public class FieldScreen extends Pane {
 
         PlayerActor playerActor = screensController.getPlayerActor();
 
-        avatar = new CharacterImage(3, 1, 0.0, 0.0, "images/Actor2.png");
+        avatar = new CharacterImage(0, 1, 0.0, 0.0, "images/actors/Evil.png");
 
         getChildren().add(avatar);
     }
