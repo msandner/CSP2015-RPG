@@ -27,5 +27,5 @@ public interface WorldService {
     void setAvailableClasses(List<PlayerActor> playerActors) throws FileNotFoundException;
 
     // diese methode muss nun für jedes tile ein imageview zur gruppe an der richtigen stelle hinzufügen
-    public Group getNode(Tile[][] matrix);
+    Group getNode(Tile[][] matrix);
 }

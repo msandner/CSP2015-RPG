@@ -56,7 +56,7 @@ public class WorldServiceImpl implements WorldService {
         for(int i = 0; i < 20; ++i){
             matrix[i][0] = new Tile(0,1, true);
         }
-        for(int i = 0; i < 20; ++i){
+        for(int i = 0; i < 10; ++i){
             matrix[i][1] = new Tile(13,6, false);
         }
         //setFieldBorders(matrix);
