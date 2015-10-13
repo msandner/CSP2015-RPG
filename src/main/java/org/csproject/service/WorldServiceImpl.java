@@ -50,18 +50,25 @@ public class WorldServiceImpl implements WorldService {
         Tile[][] matrix = new Tile[20][40];
         for(int i = 0; i < 20; ++i){
             for(int j = 0; j < 40; ++j){
-                matrix[i][j] = new Tile(0,3);
+                matrix[i][j] = new Tile(0,3, true);
             }
         }
         for(int i = 0; i < 20; ++i){
-            matrix[i][0] = new Tile(0,1);
+            matrix[i][0] = new Tile(0,1, true);
         }
         for(int i = 0; i < 20; ++i){
-            matrix[i][1] = new Tile(13,6);
+            matrix[i][1] = new Tile(13,6, false);
         }
+        //setFieldBorders(matrix);
         field.setTiles(matrix);
 
         return field; // todo create the map (for example: from random world generator)
+    }
+
+    private void setFieldBorders(Tile[][] matrix) {
+        for(int j = 0; j<40; ++j) {
+            matrix[0][j] = new Tile( 11, 7, false);
+        }
     }
 
     /**

@@ -12,7 +12,6 @@ public class Field {
     private Map<String, NavigationPoint> startPoints;
     private Tile[][] tiles;
 
-//    private Tile[][] tiles; // TODO for maren: create class Tile which represents one tile on the field (with an image and a boolean like "walkable")
 
     public Field() {
         this.startPoints = new HashMap<>();

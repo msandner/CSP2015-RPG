@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
 import org.csproject.model.bean.Direction;
+import org.csproject.model.bean.Tile;
 import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
@@ -60,6 +61,7 @@ public class FieldScreen extends Pane {
         PlayerActor playerActor = screensController.getPlayerActor();
 
         avatar = new CharacterImage(3, 1, 0.0, 0.0, "images/Actor2.png");
+
         getChildren().add(avatar);
     }
 
@@ -117,8 +119,16 @@ public class FieldScreen extends Pane {
             final double finalY = y;
 
             // TODO for maren: check the tile on position x/TILE_SIZE, y/TILE_SIZE (from field variable), if walkable
-
-            if(true) // if walkable
+            int column = (int)(x/Tile.TILE_SIZE);
+            int row = (int)(y/Tile.TILE_SIZE);
+            Tile t = null;
+            try {
+                t = field.getTiles()[row][column];
+            } catch (Exception e){
+                // arrayoutofbounds
+            }
+            //System.out.println("Tile t: x=" + column + " y=" + row + " | walkable: " + t.isWalkable());
+            if(t != null && t.isWalkable() ) // if walkable
             {
                 if (transition == null) {
                     transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
@@ -141,6 +151,8 @@ public class FieldScreen extends Pane {
                     }
                 });
                 getAvatar().setWalking(true);
+            } else {
+                moving = false;
             }
         }
     }

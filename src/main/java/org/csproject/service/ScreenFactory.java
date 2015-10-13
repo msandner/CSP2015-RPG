@@ -13,8 +13,6 @@ import org.csproject.model.bean.Field;
 import org.csproject.model.bean.Tile;
 import org.springframework.stereotype.Component;
 
-
-
 /**
  * @author Maike Keune-Staab on 04.10.2015.
  */
