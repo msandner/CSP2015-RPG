@@ -8,5 +8,9 @@ CIS 467
 9/17: Group Meeting over Skype: 3:00 to 3:40 - 0 hours 40 mins
 9/17: Learning JavaFX:          4:00 to 8:00 - 4 hours 00 mins
 9/20: Group meeting over Skype: 1:00 to 1:50 - 0 hours 50 mins
+9/23: Impl of ScreenController: 6:00 to 9:30 - 3 hours 30 mins
+9/27: Upload of gitignore:      9:00 to 9:30 - 0 hours 30 mins
+10/5: Add images & update GUI:  6:00 to 7:30 - 1 hours 30 mins
+10/10: Change avatar to a image 7:00 to 8:00 - 1 hours 00 mins
 ----------------------------------------------------------------------------
-Total:                                        11 hours 17 mins
+Total:                                        17 hours 47 mins

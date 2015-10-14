@@ -8,4 +8,19 @@
 16.9.2015 20:50 - 21:15 MESZ: Skype conference with Maren about burndownchart and our division of labor.
 17.9.2015 12:00 - 13:00 MESZ: Research for JavaFX and editing the Feasibility Study.
 17.9.2015 21:00 - 21:45 MESZ: Skype video meeting and editing the Feasibility Study, planning the next Skype meeting.
-Total time yet: 15 hours 55 minutes
+20.9.2015 19:00 - 19:50 MESZ: Skype meeting about Feasibility Study
+24.9.2015 20:00 - 20:30 MESZ: Skype meeting preparing for Feasibility presentation.
+25.9.2015 15:00 - 15:30 MESZ: Feasibility presentation on hangouts.
+27.9.2015 17:30 - 20:00 MESZ: Trying to implement Event Handler, but problems with the View classes occurred.
+28.9.2015 19:40 - 20:23 MESZ: Begin of implementation of EventHandler.
+4.10.2015 10:40 - 13:30 MESZ: Implementation EventHandler for moving an object. Refactoring existing code.
+4.10.2015 16:50 - 18:29 MESZ: KeyEvents implementation
+6.10.2015 16:00 - 16:40 MESZ: Meeting with Maren 
+10.10.2015 13:00 - 14:00 MESZ: Research for integrating sprite animations
+10.10.2015 23:35 - 00:02 MESZ: implemented methods to load and safe PlayerActors, so Thief etc classes are no longer necessary
+10.10.2015 19:35 - 23:00 MESZ: implemented movement transition, added walking animation
+13.10.2015 09:45 - 10:30 MESZ: working on Sprint 1 report
+13.10.2015 10:30 - 15:31 MESZ: working on static map, and integrating it to the project.
+13.10.2015 16:30 - 18:00 MESZ: working on Sprint report, talked to Brett and Maren about future Sprints and how to get the communication in the team better.
+13.10.2015 21:30 - 22:15 MESZ: Skype meeting 
+Total time yet: 39 hours 10 minutes
