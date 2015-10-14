@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/configuration/SpringConfiguration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/Actor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/BattleActor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/BossMonster.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/Monster.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/Npc.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/actors/PlayerActor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/bean/Field.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/model/bean/NavigationPoint.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/ActorFactory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/KeyController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/ScreenFactory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/ScreensController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/WorldService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/service/WorldServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/view/ControlledScreen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/view/FieldScreen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/view/MasterController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/view/NewGameController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/csproject/view/StartMenuController.java" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Maven: com.sun.jdmk:jmxtools:1.2.1">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
