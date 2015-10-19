@@ -48,7 +48,7 @@ public class FieldScreen extends Pane {
     }
 
     public void setScene(Field field) {
-        setScene(field, null);
+        setScene(field, "characterStart");
     }
 
     public void setScene(Field field, String startPoint) {
@@ -60,7 +60,10 @@ public class FieldScreen extends Pane {
 
         PlayerActor playerActor = screensController.getPlayerActor();
 
-        avatar = new CharacterImage(0, 1, 0.0, 0.0, "images/actors/Evil.png");
+        double charStartX = field.getStart(startPoint).getX();
+        double charStartY = field.getStart(startPoint).getY();
+
+        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
         getChildren().add(avatar);
     }
@@ -147,6 +150,9 @@ public class FieldScreen extends Pane {
                         moving = false;
                         getAvatar().setPosX(finalX);
                         getAvatar().setPosY(finalY);
+
+                        setTranslateX(finalX * -1);     //Remove these lines to
+                        setTranslateY(finalY * -1);     //stop the screen from moving
                         finished.handle(event);
                     }
                 });
