@@ -12,5 +12,6 @@ CIS 467
 9/27: Upload of gitignore:      9:00 to 9:30 - 0 hours 30 mins
 10/5: Add images & update GUI:  6:00 to 7:30 - 1 hours 30 mins
 10/10: Change avatar to a image 7:00 to 8:00 - 1 hours 00 mins
+10.18: Attempted work on camera 6:00 to 9:00 - 3 hours 00 mins
 ----------------------------------------------------------------------------
-Total:                                        17 hours 47 mins
+Total:                                        20 hours 47 mins
