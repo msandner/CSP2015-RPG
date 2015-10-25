@@ -6,19 +6,21 @@ package org.csproject.model.actors;
 public class PlayerActor extends BattleActor {
     protected int currentMp;
     protected int maxMp;
+    protected int money;
 
     private double mpMultiplier;
     private double hpMultiplier;
     //todo more stats
 
-    public PlayerActor(String name, String type, int level, double hpMultiplier, double mpMultiplier) {
+    public PlayerActor(String name, String type, int level, double hpMultiplier, double mpMultiplier, int money) {
         super(name, type, level);
         this.hpMultiplier = hpMultiplier;
         this.mpMultiplier = mpMultiplier;
 
         int mp = calcMp(level);
         this.currentMp = mp;
-        this.maxMp= mp;
+        this.maxMp = mp;
+        this.money = money;
     }
 
     public int getCurrentMp() {
@@ -27,6 +29,18 @@ public class PlayerActor extends BattleActor {
 
     public int getMaxMp() {
         return maxMp;
+    }
+
+    public int getMoney() { return money; }
+
+    public void addMoney(int m) {
+        money += m;
+        return;
+    }
+
+    public void subMoney(int m) {
+        money -= m;
+        return;
     }
 
     public int calcMp(int level) {
