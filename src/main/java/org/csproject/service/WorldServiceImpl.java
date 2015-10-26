@@ -34,6 +34,7 @@ import java.util.Scanner;
 public class WorldServiceImpl implements WorldService {
 
     Field field;
+    String fieldTileImage;
 
     public static final String CHARACTERS_JSON = "/characters.json";
     @Autowired
@@ -47,6 +48,7 @@ public class WorldServiceImpl implements WorldService {
     @Override
     //creates a static Field
     public Field getNewWorld() {
+        fieldTileImage = "images/tiles/Outside.png";
         field = new Field();
 
         field.setStartPoint("tileStart", new NavigationPoint(0, 0));
@@ -54,14 +56,14 @@ public class WorldServiceImpl implements WorldService {
 
         for(int i = 0; i < 20; ++i){
             for(int j = 0; j < 40; ++j){
-                matrix[i][j] = new Tile(0,1, true);
+                matrix[i][j] = new Tile(0,1, true, fieldTileImage);
             }
         }
         for(int i = 0; i < 20; ++i){
-            matrix[i][0] = new Tile(0,3, true);
+            matrix[i][0] = new Tile(0,3, true, fieldTileImage);
         }
         for(int i = 0; i < 10; ++i){
-            matrix[i][1] = new Tile(13,6, false);
+            matrix[i][1] = new Tile(13,6, false, fieldTileImage);
         }
         //setFieldBorders(matrix);
         field.setTiles(matrix);
@@ -74,7 +76,7 @@ public class WorldServiceImpl implements WorldService {
 
     private void setFieldBorders(Tile[][] matrix) {
         for(int j = 0; j<40; ++j) {
-            matrix[0][j] = new Tile( 11, 7, false);
+            matrix[0][j] = new Tile( 11, 7, false, fieldTileImage);
         }
     }
 
