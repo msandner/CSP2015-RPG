@@ -118,7 +118,6 @@ public class FieldScreen extends Pane {
             final double finalX = x;
             final double finalY = y;
 
-            // TODO for maren: check the tile on position x/TILE_SIZE, y/TILE_SIZE (from field variable), if walkable
             int column = (int)(x/Tile.TILE_SIZE);
             int row = (int)(y/Tile.TILE_SIZE);
             Tile t = null;

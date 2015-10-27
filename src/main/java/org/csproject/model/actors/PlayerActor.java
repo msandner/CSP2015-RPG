@@ -4,6 +4,7 @@ package org.csproject.model.actors;
  * @author Maike Keune-Staab on 12.09.2015.
  */
 public class PlayerActor extends BattleActor {
+    //sets the actor as a general player
     protected int currentMp;
     protected int maxMp;
 

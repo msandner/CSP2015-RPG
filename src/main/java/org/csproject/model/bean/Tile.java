@@ -1,6 +1,5 @@
 package org.csproject.model.bean;
 
-import javax.swing.text.html.ImageView;
 
 /**
  * @author Maike Keune-Staab on 13.10.2015.
