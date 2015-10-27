@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.csproject.configuration.SpringConfiguration;
+import org.csproject.model.Constants;
 import org.csproject.model.actors.Actor;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
@@ -32,6 +33,9 @@ import java.util.Scanner;
 @Component
 public class WorldServiceImpl implements WorldService {
 
+    Field field;
+    String fieldTileImage;
+
     public static final String CHARACTERS_JSON = "/characters.json";
     @Autowired
     private ActorFactory actorFactory;
@@ -44,30 +48,35 @@ public class WorldServiceImpl implements WorldService {
     @Override
     //creates a static Field
     public Field getNewWorld() {
-        Field field = new Field();
+        fieldTileImage = "images/tiles/Outside.png";
+        field = new Field();
 
-        field.setStartPoint(new NavigationPoint(100, 100));
+        field.setStartPoint("tileStart", new NavigationPoint(0, 0));
         Tile[][] matrix = new Tile[20][40];
+
         for(int i = 0; i < 20; ++i){
             for(int j = 0; j < 40; ++j){
-                matrix[i][j] = new Tile(0,3, true);
+                matrix[i][j] = new Tile(0,1, true, fieldTileImage);
             }
         }
         for(int i = 0; i < 20; ++i){
-            matrix[i][0] = new Tile(0,1, true);
+            matrix[i][0] = new Tile(0,3, true, fieldTileImage);
         }
         for(int i = 0; i < 10; ++i){
-            matrix[i][1] = new Tile(13,6, false);
+            matrix[i][1] = new Tile(13,6, false, fieldTileImage);
         }
         //setFieldBorders(matrix);
         field.setTiles(matrix);
 
+        field.setStartPoint("characterStart",
+                new NavigationPoint(((field.getTiles()[0].length -1)/2) * Constants.TILE_SIZE,
+                        ((field.getTiles().length - 1 ) / 2) * Constants.TILE_SIZE));
         return field; // todo create the map (for example: from random world generator)
     }
 
     private void setFieldBorders(Tile[][] matrix) {
         for(int j = 0; j<40; ++j) {
-            matrix[0][j] = new Tile( 11, 7, false);
+            matrix[0][j] = new Tile( 11, 7, false, fieldTileImage);
         }
     }
 
@@ -78,7 +87,8 @@ public class WorldServiceImpl implements WorldService {
     @Override
     public PlayerActor getPlayerActor() {
         // todo
-        return new PlayerActor("Test player", ActorFactory.KNIGHT, 1, 5, 8);
+        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8, 100);
+        return playerActor;
     }
 
     public List<PlayerActor> getAvailableClasses() {

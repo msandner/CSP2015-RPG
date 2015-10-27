@@ -21,15 +21,16 @@ public class NewGameController implements ControlledScreen {
     }
 
     public void confirmCharacters(ActionEvent actionEvent) {
+        if(char1Class.getValue() != null && char2Class.getValue() != null && char3Class.getValue() != null && !char1Name.getText().isEmpty() && !char2Name.getText().isEmpty() && !char3Name.getText().isEmpty()) {
+            // display new game on field
+            screenController.setUpNewGame();
 
-        // display new game on field
-        screenController.setUpNewGame();
+            // add field as game screen
+            screenController.addScreen(MasterController.GAME_SCREEN, screenController.getFieldScreen());
 
-        // add field as game screen
-        screenController.addScreen(MasterController.GAME_SCREEN, screenController.getFieldScreen());
-
-        // switch screen to game screen
-        screenController.setScreen(MasterController.GAME_SCREEN);
+            // switch screen to game screen
+            screenController.setScreen(MasterController.GAME_SCREEN);
+        }
     }
 
     public void cancelNewGame(ActionEvent actionEvent) {

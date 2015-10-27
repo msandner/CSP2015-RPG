@@ -11,14 +11,22 @@ public class Tile {
     private final int y;
     public static final double TILE_SIZE = 32;
     private boolean walkable;
+    private String tileImage;
 
 
-
-    public Tile(int x, int y, boolean walkable) {
+    /**
+     * Creates the tile object.
+     *
+     * @param x - x location of the tile desired on the image given
+     * @param y - y location of the tile desired on the image given
+     * @param walkable - can the character walk on the tile?
+     * @param tileImage - source image of the tile - used in ScreenFactory
+     */
+    public Tile(int x, int y, boolean walkable, String tileImage) {
         this.x = x;
         this.y = y;
         this.walkable = walkable;
-
+        this.tileImage = tileImage;
     }
 
     public int getX() {
@@ -36,5 +44,9 @@ public class Tile {
 
     public void setWalkable(boolean walkable) {
         this.walkable = walkable;
+    }
+
+    public String getTileImage() {
+        return tileImage;
     }
 }
