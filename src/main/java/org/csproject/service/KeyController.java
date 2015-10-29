@@ -8,6 +8,8 @@ import javafx.scene.input.KeyEvent;
 import org.apache.log4j.Logger;
 import org.csproject.model.bean.Direction;
 import org.csproject.view.FieldScreen;
+import org.csproject.view.MasterController;
+import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,8 +27,13 @@ public class KeyController {
 
     final Set<KeyCode> pressedMovementKeys = new HashSet<>();
 
+    ScreensController screenController;
+
     @Autowired
     private FieldScreen fieldScreen;
+
+    @Autowired
+    private TownScreen townScreen;
 
     public void onKeyPressed(KeyEvent event) {
         if (Arrays.asList(MOVEMENT_KEYS).contains(event.getCode())) {
@@ -77,6 +84,24 @@ public class KeyController {
                             move();
                         }
                     });
+
+                    //Something like this for movement in different screens? - DOES NOT WORK (yet)
+/*                    if(screenController.getCurrentScreen().equals(MasterController.GAME_SCREEN)) {
+                        fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                move();
+                            }
+                        });
+                    } else if (screenController.getCurrentScreen().equals(MasterController.TOWN_SCREEN)) {
+                        townScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                move();
+                            }
+                        });
+                    }
+                    */
                     return null;
                 }
             };

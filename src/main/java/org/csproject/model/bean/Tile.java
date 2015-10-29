@@ -13,6 +13,7 @@ public class Tile {
     public static final double TILE_SIZE = 32;
     private boolean walkable;
     private String tileImage;
+    private boolean townTile;
 
 
     /**
@@ -49,5 +50,16 @@ public class Tile {
 
     public String getTileImage() {
         return tileImage;
+    }
+
+    public void setTownTile() {
+        townTile = true;
+    }
+
+    public boolean isTownTile() {
+        if (townTile)
+            return true;
+        else
+            return false;
     }
 }

@@ -45,4 +45,15 @@ public class Field {
     public Tile[][] getTiles() {
         return tiles;
     }
+
+    public NavigationPoint getTownTile() {
+        for(int y = 0; y < tiles.length; y++) {
+            for(int x = 0; x < tiles[y].length; x++) {
+                if (tiles[y][x].isTownTile()) {
+                    return new NavigationPoint(x, y);
+                }
+            }
+        }
+        return null;
+    }
 }

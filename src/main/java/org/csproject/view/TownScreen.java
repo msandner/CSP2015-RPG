@@ -8,22 +8,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.Direction;
-import org.csproject.model.bean.Tile;
-import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Field;
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.bean.*;
 import org.csproject.service.KeyController;
+import org.csproject.service.ScreenFactory;
 import org.csproject.service.ScreensController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Maike Keune-Staab on 04.10.2015.
+ * Created by Brett on 10/26/2015.
  */
 @Component
-public class FieldScreen extends Pane {
+public class TownScreen extends Pane {
 
     @Autowired
     private ScreensController screensController;
@@ -34,34 +31,35 @@ public class FieldScreen extends Pane {
     @Autowired
     private ScreenFactory screenFactory;
 
+    private Town town;
+
     private boolean moving;
 
     private CharacterImage avatar;
 
     private TranslateTransition transition;
 
-    private Field field;
 
-    public FieldScreen() {
+    public TownScreen() {
         this.moving = false;
         setUpControlls();
     }
 
-    public void setScene(Field field) {
-        setScene(field, "characterStart");
+    public void setScene(Town town) {
+        setScene(town, null);
     }
 
-    public void setScene(Field field, String startPoint) {
+    public void setScene(Town town, String startPoint) {
 
-        this.field = field;
-        NavigationPoint start = this.field.getStart(startPoint);
+        this.town = town;
+        NavigationPoint start = this.town.getTownEntrance();
         getChildren().clear();
-        getChildren().add(screenFactory.buildNode(field));
+        getChildren().add(screenFactory.buildNode(town));
 
         PlayerActor playerActor = screensController.getPlayerActor();
 
-        double charStartX = field.getStart(startPoint).getX();
-        double charStartY = field.getStart(startPoint).getY();
+        double charStartX = start.getX();
+        double charStartY = start.getY();
 
         avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
@@ -85,11 +83,12 @@ public class FieldScreen extends Pane {
         });
     }
 
+
     /**
      * Moves the avatar.
      *
      * @param direction The direction
-     * @param finished  Callback function what to do after moving one field
+     * @param finished  Callback function what to do after moving one town
      */
     public void moveAvatar(Direction direction, final EventHandler<ActionEvent> finished) {
         if (!moving) {
@@ -121,12 +120,11 @@ public class FieldScreen extends Pane {
             final double finalX = x;
             final double finalY = y;
 
-            // TODO for maren: check the tile on position x/TILE_SIZE, y/TILE_SIZE (from field variable), if walkable
-            int column = (int)(x/Tile.TILE_SIZE);
+            int column = (int)(x/ Tile.TILE_SIZE);
             int row = (int)(y/Tile.TILE_SIZE);
             Tile t = null;
             try {
-                t = field.getTiles()[row][column];
+                t = town.getTiles()[row][column];
             } catch (Exception e){
                 // arrayoutofbounds
             }
@@ -151,9 +149,8 @@ public class FieldScreen extends Pane {
                         getAvatar().setPosX(finalX);
                         getAvatar().setPosY(finalY);
 
-//                        setTranslateX(finalX * -1);     //Remove these lines to
-//                        setTranslateY(finalY * -1);     //stop the screen from moving
-                        enterTown();
+                        setTranslateX(finalX * -1);     //Remove these lines to
+                        setTranslateY(finalY * -1);     //stop the screen from moving
                         finished.handle(event);
                     }
                 });
@@ -170,14 +167,5 @@ public class FieldScreen extends Pane {
 
     public void stopAvatarAnimation() {
         getAvatar().setWalking(false);
-    }
-
-    public void enterTown() {
-        NavigationPoint town = field.getTownTile();
-        int column = (int)(getAvatar().getPosX()/Tile.TILE_SIZE);
-        int row = (int)(getAvatar().getPosY()/Tile.TILE_SIZE);
-        if (town.getX() == column && town.getY() == row) {
-            screensController.setScreen(MasterController.TOWN_SCREEN);
-        }
     }
 }
