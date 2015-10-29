@@ -13,6 +13,7 @@ import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
 import org.csproject.model.bean.Tile;
+import org.csproject.model.bean.TileChunks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -50,6 +51,7 @@ public class WorldServiceImpl implements WorldService {
     public Field getNewWorld() {
         fieldTileImage = "images/tiles/Outside.png";
         field = new Field();
+        TileChunks treechunk = new TileChunks();
 
         field.setStartPoint("tileStart", new NavigationPoint(0, 0));
         Tile[][] matrix = new Tile[20][40];
@@ -65,6 +67,13 @@ public class WorldServiceImpl implements WorldService {
         for(int i = 0; i < 10; ++i){
             matrix[i][1] = new Tile(13,6, false, fieldTileImage);
         }
+
+        Tile[][] chunkmatrix = treechunk.Trees4x4(field);
+        matrix[5][4] = chunkmatrix[1][0];
+        matrix[5][5] = chunkmatrix[1][1];
+        matrix[4][4] = chunkmatrix[0][0];
+        matrix[4][5] = chunkmatrix[0][1];
+
         //setFieldBorders(matrix);
         field.setTiles(matrix);
 
@@ -74,6 +83,8 @@ public class WorldServiceImpl implements WorldService {
         return field; // todo create the map (for example: from random world generator)
     }
 
+
+    //TO DO: Create field borders so that th character can't escape the plane
     private void setFieldBorders(Tile[][] matrix) {
         for(int j = 0; j<40; ++j) {
             matrix[0][j] = new Tile( 11, 7, false, fieldTileImage);

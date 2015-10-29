@@ -42,6 +42,21 @@ public class Field {
         this.tiles = tiles;
     }
 
+
+/*
+    public void overritePartOfTiles(Tile[][] x, Tile[][] y) {
+        int i, j;
+
+        for(i = 0; i < ; i++) {
+            for(j = 0; i< ; j++) {
+                    x[i][] = y[i][0];
+
+                }
+            }
+        }
+
+    }*/
+
     public Tile[][] getTiles() {
         return tiles;
     }
