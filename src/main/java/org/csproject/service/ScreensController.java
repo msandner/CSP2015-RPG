@@ -13,8 +13,10 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.bean.Town;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
+import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,9 +39,17 @@ public class ScreensController{
     @Autowired
     private FieldScreen fieldScreen;
 
+    @Autowired
+    private TownService townService;
+
+    @Autowired
+    private TownScreen townScreen;
+
     private HashMap<String, Node> screens;
 
     private StackPane root;
+
+    private String currentScreen;
 
     public ScreensController() {
         super();
@@ -92,6 +102,7 @@ public class ScreensController{
                 root.setOpacity(0.0);
                 fadeScreenIn(name, opacity);
             }
+            currentScreen = name;
             return true;
         } else {
             LOG.error("The screen hasn't been loaded!");
@@ -123,13 +134,20 @@ public class ScreensController{
 
     public void setUpNewGame() {
         fieldScreen.setScene(worldService.getNewWorld());
+        townScreen.setScene(townService.getNewTown());
     }
 
     public FieldScreen getFieldScreen() {
         return fieldScreen;
     }
 
+    public TownScreen getTownScreen() { return townScreen; }
+
     public PlayerActor getPlayerActor() {
         return worldService.getPlayerActor();
+    }
+
+    public String getCurrentScreen() {
+        return currentScreen;
     }
 }

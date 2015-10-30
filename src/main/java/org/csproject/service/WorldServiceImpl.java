@@ -35,7 +35,7 @@ import java.util.Scanner;
 public class WorldServiceImpl implements WorldService {
 
     Field field;
-    String fieldTileImage;
+    String outside, world;
 
     public static final String CHARACTERS_JSON = "/characters.json";
     @Autowired
@@ -49,7 +49,8 @@ public class WorldServiceImpl implements WorldService {
     @Override
     //creates a static Field
     public Field getNewWorld() {
-        fieldTileImage = "images/tiles/Outside.png";
+        outside = "outside";
+        world = "world";
         field = new Field();
         TileChunks treechunk = new TileChunks();
 
@@ -58,22 +59,18 @@ public class WorldServiceImpl implements WorldService {
 
         for(int i = 0; i < 20; ++i){
             for(int j = 0; j < 40; ++j){
-                matrix[i][j] = new Tile(0,1, true, fieldTileImage);
+                matrix[i][j] = new Tile(0,1, true, outside);
             }
         }
         for(int i = 0; i < 20; ++i){
-            matrix[i][0] = new Tile(0,3, true, fieldTileImage);
+            matrix[i][0] = new Tile(0,3, true, outside);
         }
         for(int i = 0; i < 10; ++i){
-            matrix[i][1] = new Tile(13,6, false, fieldTileImage);
+            matrix[i][1] = new Tile(13,6, false, outside);
         }
 
-        Tile[][] chunkmatrix = treechunk.Trees4x4(field);
-        matrix[5][4] = chunkmatrix[1][0];
-        matrix[5][5] = chunkmatrix[1][1];
-        matrix[4][4] = chunkmatrix[0][0];
-        matrix[4][5] = chunkmatrix[0][1];
-
+        matrix[7][7] = new Tile(7, 7, true, world);
+        matrix[7][7].setTownTile();
         //setFieldBorders(matrix);
         field.setTiles(matrix);
 
@@ -87,7 +84,7 @@ public class WorldServiceImpl implements WorldService {
     //TO DO: Create field borders so that th character can't escape the plane
     private void setFieldBorders(Tile[][] matrix) {
         for(int j = 0; j<40; ++j) {
-            matrix[0][j] = new Tile( 11, 7, false, fieldTileImage);
+            matrix[0][j] = new Tile( 11, 7, false, outside);
         }
     }
 
@@ -98,7 +95,7 @@ public class WorldServiceImpl implements WorldService {
     @Override
     public PlayerActor getPlayerActor() {
         // todo
-        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8, 100);
+        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8);
         return playerActor;
     }
 

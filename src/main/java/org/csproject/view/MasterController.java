@@ -17,6 +17,7 @@ public class MasterController extends Application {
     public static final String NEW_GAME_ID = "newGame";
     public static final String NEW_GAME_FILE = "NewGame.fxml";
     public static final String GAME_SCREEN = "gameScreen";
+    public static final String TOWN_SCREEN = "townScreen";
 
     private static AnnotationConfigApplicationContext context;
 

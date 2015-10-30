@@ -11,9 +11,9 @@
   <children>
     <Pane id="default.css" prefHeight="650.0" prefWidth="1200.0" style="" styleClass="default" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <ImageView id="titleScreenBG.jpg" fitHeight="650.0" fitWidth="1199.999977929685" layoutX="0.0" layoutY="0.0">
+        <ImageView id="Book.png" fitHeight="650.0" fitWidth="1199.999977929685" layoutX="0.0" layoutY="0.0">
           <image>
-            <Image url="@images/titleScreenBG.jpg" preserveRatio="true" smooth="true" />
+            <Image url="@images/titlescreens/Book.png" preserveRatio="true" smooth="true" />
           </image>
         </ImageView>
         <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="843.0" layoutY="46.0" prefHeight="46.0" prefWidth="357.0" styleClass="titleText" text="Final Fantasy Clone" textAlignment="CENTER" underline="false">
