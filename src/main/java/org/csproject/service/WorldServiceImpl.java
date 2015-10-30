@@ -91,7 +91,7 @@ public class WorldServiceImpl implements WorldService {
     @Override
     public PlayerActor getPlayerActor() {
         // todo
-        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8, 100);
+        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8);
         return playerActor;
     }
 
