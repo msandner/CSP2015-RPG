@@ -23,10 +23,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author Maike Keune-Staab on 12.09.2015.
@@ -35,7 +32,8 @@ import java.util.Scanner;
 public class WorldServiceImpl implements WorldService {
 
     Field field;
-    String outside, world;
+    String outside, outside3, world;
+    TileChunks tchunk = new TileChunks();
 
     public static final String CHARACTERS_JSON = "/characters.json";
     @Autowired
@@ -51,9 +49,9 @@ public class WorldServiceImpl implements WorldService {
     public Field getNewWorld() {
         outside = "outside";
         world = "world";
+        outside3 = "outside3";
         field = new Field();
-        TileChunks treechunk = new TileChunks();
-
+        
         field.setStartPoint("tileStart", new NavigationPoint(0, 0));
         Tile[][] matrix = new Tile[20][40];
 
@@ -71,7 +69,14 @@ public class WorldServiceImpl implements WorldService {
 
         matrix[7][7] = new Tile(7, 7, true, world);
         matrix[7][7].setTownTile();
-        //setFieldBorders(matrix);
+
+
+        /*testing purposes*/
+        tchunk.setTree4x4Random(matrix, 20, 40);
+        tchunk.setTree4x4Random(matrix, 20, 40);
+
+
+
         field.setTiles(matrix);
 
         field.setStartPoint("characterStart",

@@ -11,7 +11,6 @@ import org.csproject.model.bean.Town;
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
-
 /**
  * @author Maike Keune-Staab on 04.10.2015.
  */
@@ -26,6 +25,7 @@ public class ScreenFactory {
         HashMap<String, Image> imageMap = new HashMap<>();
         imageMap.put("world", new Image("images/tiles/World.png"));
         imageMap.put("outside", new Image("images/tiles/Outside.png"));
+        imageMap.put("outside3", new Image("images/tiles/Outside3.png"));
         for(int rowIndex = 0; rowIndex < matrix.length ; rowIndex++) //vertikal durchs bild
         {
             Tile[] row = matrix[rowIndex];
@@ -54,6 +54,7 @@ public class ScreenFactory {
         HashMap<String, Image> imageMap = new HashMap<>();
         imageMap.put("outside", new Image("images/tiles/Outside.png"));
         imageMap.put("outside2", new Image("images/tiles/Outside2.png"));
+        imageMap.put("outside3", new Image("images/tiles/Outside3.png"));
         imageMap.put("inside", new Image("images/tiles/Inside.png"));
         imageMap.put("inside2", new Image("images/tiles/Inside2.png"));
         imageMap.put("house", new Image("images/tiles/HouseTiles.png"));

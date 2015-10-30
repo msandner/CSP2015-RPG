@@ -15,8 +15,8 @@ public class TownServiceImpl implements TownService {
 
     Town town;
     Tile[][] matrix;
-
-    String inside, inside2, outside, outside2, house;
+    
+    String inside, inside2, outside, outside2, outside3, house;
     //Static Town
     @Override
     public Town getNewTown() {

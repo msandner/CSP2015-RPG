@@ -3,7 +3,6 @@ package org.csproject.model.bean;
 import javax.swing.text.html.ImageView;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * @author Maike Keune-Staab on 13.10.2015.
@@ -17,9 +16,6 @@ public class Tile {
     private boolean walkable;
     private String tileImage;
     private boolean townTile;
-
-    Image image;
-    ImageView iview = new ImageView();
 
     /**
      * Creates the tile object.
@@ -37,11 +33,11 @@ public class Tile {
     }
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 
 
@@ -54,17 +50,22 @@ public class Tile {
     }
 
     public String getTileImage() {
-        return tileImage;
+        return this.tileImage;
     }
 
     public void setTownTile() {
-        townTile = true;
+        this.townTile = true;
     }
 
     public boolean isTownTile() {
-        if (townTile)
+        if (this.townTile)
             return true;
         else
             return false;
     }
+
+    public void setTileImage(String tileImage) {
+        this.tileImage = tileImage;
+    }
+
 }
