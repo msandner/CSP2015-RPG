@@ -7,10 +7,16 @@ import java.util.Map;
  * @author Maike Keune-Staab on 04.10.2015 - 13.10.2015
  */
 public class Field {
+
+    private String groundImage;
+    private String decoImage;
+
     private NavigationPoint defaultStart;
 
+    private Tile[][] groundTiles;
+    private Tile[][] decoTiles;
+
     private Map<String, NavigationPoint> startPoints;
-    private Tile[][] tiles;
 
 
     public Field() {
@@ -38,8 +44,8 @@ public class Field {
     }
 
 
-    public void setTiles(Tile[][] tiles) {
-        this.tiles = tiles;
+    public void setGroundTiles(Tile[][] tiles) {
+        this.groundTiles = tiles;
     }
 
 
@@ -57,18 +63,42 @@ public class Field {
 
     }*/
 
-    public Tile[][] getTiles() {
-        return tiles;
+    public Tile[][] getGroundTiles() {
+        return groundTiles;
     }
 
     public NavigationPoint getTownTile() {
-        for(int y = 0; y < tiles.length; y++) {
-            for(int x = 0; x < tiles[y].length; x++) {
-                if (tiles[y][x].isTownTile()) {
+        for(int y = 0; y < groundTiles.length; y++) {
+            for(int x = 0; x < groundTiles[y].length; x++) {
+                if (groundTiles[y][x].isTownTile()) {
                     return new NavigationPoint(x, y);
                 }
             }
         }
         return null;
+    }
+
+    public String getGroundImage() {
+        return groundImage;
+    }
+
+    public void setGroundImage(String groundImage) {
+        this.groundImage = groundImage;
+    }
+
+    public String getDecoImage() {
+        return decoImage;
+    }
+
+    public void setDecoImage(String decoImage) {
+        this.decoImage = decoImage;
+    }
+
+    public void setDecoTiles(Tile[][] decoTiles) {
+        this.decoTiles = decoTiles;
+    }
+
+    public Tile[][] getDecoTiles() {
+        return decoTiles;
     }
 }

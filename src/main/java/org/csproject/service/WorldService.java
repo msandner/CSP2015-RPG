@@ -18,14 +18,19 @@ import java.util.List;
 public interface WorldService {
     Actor createActor(String name, String type);
 
-    Field getNewWorld();
-
     PlayerActor getPlayerActor();
 
     List<PlayerActor> getAvailableClasses();
 
     void setAvailableClasses(List<PlayerActor> playerActors) throws FileNotFoundException;
 
-    // diese methode muss nun für jedes tile ein imageview zur gruppe an der richtigen stelle hinzufügen
-    Group getNode(Tile[][] matrix);
+    Field getWorldMap();
+
+    void setWorldMap(Field worldMap) throws FileNotFoundException;
+
+    void setField(Field field, String name) throws FileNotFoundException;
+
+    Field getField(String fieldName);
+
+    Field generateDungeon(String groundImage, String decoImage, int colNum, int rowNum);
 }

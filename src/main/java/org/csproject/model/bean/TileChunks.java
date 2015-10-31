@@ -15,7 +15,7 @@ public class TileChunks {
     //creating 4x4x tile matrix, which should look like a bunch of trees out of outside3.png
     public Tile[][] Trees4x4() {
 
-        String strimage = "outside3";
+        String strimage = "images/tiles/Outside3.png";
         Tile[][] treetiles = new Tile[4][4];
 
         //middle up left int the picture of the middle trees

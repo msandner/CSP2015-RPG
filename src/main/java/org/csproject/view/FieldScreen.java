@@ -54,14 +54,14 @@ public class FieldScreen extends Pane {
     public void setScene(Field field, String startPoint) {
 
         this.field = field;
-        NavigationPoint start = this.field.getStart(startPoint);
         getChildren().clear();
         getChildren().add(screenFactory.buildNode(field));
 
         PlayerActor playerActor = screensController.getPlayerActor();
 
-        double charStartX = field.getStart(startPoint).getX();
-        double charStartY = field.getStart(startPoint).getY();
+        NavigationPoint start1 = field.getStart(startPoint);
+        double charStartX = start1==null?0:start1.getX();
+        double charStartY = start1==null?0:start1.getY();
 
         avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
@@ -121,11 +121,11 @@ public class FieldScreen extends Pane {
             final double finalX = x;
             final double finalY = y;
 
-            int column = (int)(x/Tile.TILE_SIZE);
-            int row = (int)(y/Tile.TILE_SIZE);
+            int column = (int)(x/ Constants.TILE_SIZE);
+            int row = (int)(y/ Constants.TILE_SIZE);
             Tile t = null;
             try {
-                t = field.getTiles()[row][column];
+                t = field.getGroundTiles()[row][column];
             } catch (Exception e){
                 // arrayoutofbounds
             }
@@ -172,11 +172,14 @@ public class FieldScreen extends Pane {
     }
 
     public void enterTown() {
-        NavigationPoint town = field.getTownTile();
-        int column = (int)(getAvatar().getPosX()/Tile.TILE_SIZE);
-        int row = (int)(getAvatar().getPosY()/Tile.TILE_SIZE);
-        if (town.getX() == column && town.getY() == row) {
-            screensController.setScreen(MasterController.TOWN_SCREEN);
+        NavigationPoint townTile = field.getTownTile();
+        if (townTile != null) {
+            NavigationPoint town = townTile;
+            int column = (int)(getAvatar().getPosX()/ Constants.TILE_SIZE);
+            int row = (int)(getAvatar().getPosY()/ Constants.TILE_SIZE);
+            if (town.getX() == column && town.getY() == row) {
+                screensController.setScreen(MasterController.TOWN_SCREEN);
+            }
         }
     }
 }

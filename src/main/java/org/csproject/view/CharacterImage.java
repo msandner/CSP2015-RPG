@@ -10,8 +10,8 @@ import org.csproject.model.bean.Direction;
  * Created by Brett on 10/8/2015.
  */
 public class CharacterImage extends ImageView {
-    private static final int BLOCK_SIZE_X = Constants.TILE_SIZE * 3;
-    private static final int BLOCK_SIZE_Y = Constants.TILE_SIZE * 4;
+    private static final int BLOCK_SIZE_X = (int) Constants.TILE_SIZE * 3;
+    private static final int BLOCK_SIZE_Y = (int) Constants.TILE_SIZE * 4;
 
     private double posX, posY;
     private int actorImageBlockX, actorImageBlockY;

@@ -4,6 +4,9 @@ package org.csproject.model;
  * @author Maike Keune-Staab on 10.10.2015.
  */
 public class Constants {
-    public static final int TILE_SIZE = 32;
+    public static final double TILE_SIZE = 32;
     public static final double WALK_TIME_PER_TILE = 0.25;
+    public static final String CHARACTERS = "characters";
+    public static final String WORLD_MAP = "worldMap";
+    public static final String TOWN_1 = "town1"; // todo think about a fancy town name
 }

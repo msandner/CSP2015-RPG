@@ -12,8 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
+import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Town;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
 import org.csproject.view.TownScreen;
@@ -133,7 +133,8 @@ public class ScreensController{
     }
 
     public void setUpNewGame() {
-        fieldScreen.setScene(worldService.getNewWorld());
+//        fieldScreen.setScene(worldService.generateDungeon("images/tiles/Outside.png", "images/tiles/World.png", 40, 30));
+        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
         townScreen.setScene(townService.getNewTown());
     }
 

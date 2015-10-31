@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by Brett on 10/26/2015.
+ *
+ * TODO Redundant: A town is a field.
  */
 @Component
 public class TownScreen extends Pane {
@@ -120,8 +122,8 @@ public class TownScreen extends Pane {
             final double finalX = x;
             final double finalY = y;
 
-            int column = (int)(x/ Tile.TILE_SIZE);
-            int row = (int)(y/Tile.TILE_SIZE);
+            int column = (int)(x/ Constants.TILE_SIZE);
+            int row = (int)(y/ Constants.TILE_SIZE);
             Tile t = null;
             try {
                 t = town.getTiles()[row][column];

@@ -1,9 +1,5 @@
 package org.csproject.model.bean;
 
-import javax.swing.text.html.ImageView;
-
-import javafx.scene.image.Image;
-
 /**
  * @author Maike Keune-Staab on 13.10.2015.
  */
@@ -12,18 +8,17 @@ public class Tile {
     //x and y describe the position in the spritesheet
     private final int x;
     private final int y;
-    public static final double TILE_SIZE = 32;
     private boolean walkable;
-    private String tileImage;
     private boolean townTile;
+    private String tileImage;
 
     /**
      * Creates the tile object.
      *
-     * @param x - x location of the tile desired on the image given
-     * @param y - y location of the tile desired on the image given
-     * @param walkable - can the character walk on the tile?
-     * @param tileImage - source image of the tile - used in ScreenFactory
+     * @param x         x location of the tile desired on the image given
+     * @param y         y location of the tile desired on the image given
+     * @param walkable  can the character walk on the tile?
+     * @param tileImage special image loaded just for this tile
      */
     public Tile(int x, int y, boolean walkable, String tileImage) {
         this.x = x;
@@ -40,6 +35,9 @@ public class Tile {
         return this.y;
     }
 
+    public Tile(int x, int y, boolean walkable) {
+        this(x, y, walkable, null);
+    }
 
     public boolean isWalkable() {
         return walkable;
