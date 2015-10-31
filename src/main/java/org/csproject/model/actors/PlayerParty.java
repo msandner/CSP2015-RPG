@@ -1,5 +1,7 @@
 package org.csproject.model.actors;
 
+import java.util.Hashtable;
+
 /**
  * Created by Nick on 10/29/2015.
  */
