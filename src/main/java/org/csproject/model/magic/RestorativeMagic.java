@@ -1,16 +1,16 @@
-package org.csproject.model.items;
+package org.csproject.model.magic;
 
 /**
  * Created by Nick on 10/31/2015.
  */
-public class RestorativeItem extends Item {
+public class RestorativeMagic extends Magic{
     protected boolean hasTargetPlayer;
     protected boolean hasTargetTeam;
 
     protected String attributeEffected;
     protected int value;
 
-    public RestorativeItem(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v){
+    public RestorativeMagic(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v){
         super(name, "Restorative");
         this.hasTargetPlayer = targetPlayer;
         this.hasTargetTeam = targetTeam;
