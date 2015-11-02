@@ -1,5 +1,6 @@
 package org.csproject.view;
 
+import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,11 +63,16 @@ public class CharacterImage extends ImageView {
     }
 
     public void updateAnimation() {
-        setViewport(new Rectangle2D(
-                actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
-                actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
-                Constants.TILE_SIZE,
-                Constants.TILE_SIZE));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                setViewport(new Rectangle2D(
+                        actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
+                        actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
+                        Constants.TILE_SIZE,
+                        Constants.TILE_SIZE));
+            }
+        });
     }
 
     public void face(Direction direction)
