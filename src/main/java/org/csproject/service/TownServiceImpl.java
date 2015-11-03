@@ -187,7 +187,8 @@ public class TownServiceImpl implements TownService {
         //Outside2.png
         matrix[13][15] = new Tile(0, 7, true, outside2);
         matrix[13][16] = new Tile(5, 7, true, outside2);
-        matrix[13][17] = new Tile(6, 7, true, outside2);
+        matrix[13][17] = new Tile(5, 7, true, outside2);
+        matrix[13][18] = new Tile(6, 7, true, outside2);
     }
 
     /**

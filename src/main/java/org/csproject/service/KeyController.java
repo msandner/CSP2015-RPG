@@ -27,20 +27,20 @@ public class KeyController {
 
     final Set<KeyCode> pressedMovementKeys = new HashSet<>();
 
-    ScreensController screenController;
-
     @Autowired
     private FieldScreen fieldScreen;
 
     @Autowired
     private TownScreen townScreen;
 
-    public void onKeyPressed(KeyEvent event) {
+    String screenToMove;
+
+    public void onKeyPressed(KeyEvent event, String screen) {
         if (Arrays.asList(MOVEMENT_KEYS).contains(event.getCode())) {
             if (!pressedMovementKeys.contains(event.getCode())) {
                 LOG.debug("test-pressed: " + event.getCode());
                 pressedMovementKeys.add(event.getCode());
-                move();
+                move(screen);
             }
         } else {
             // todo other key events here
@@ -60,8 +60,9 @@ public class KeyController {
         }
     }
 
-    private void move() {
+    private void move(String screen) {
         Direction direction = null;
+        screenToMove = screen;
         if (pressedMovementKeys.contains(KeyCode.W)) {
             direction = Direction.UP;
         } else if (pressedMovementKeys.contains(KeyCode.A)) {
@@ -78,30 +79,22 @@ public class KeyController {
             Task transitionTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
-                    fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            move();
-                        }
-                    });
-
-                    //Something like this for movement in different screens? - DOES NOT WORK (yet)
-/*                    if(screenController.getCurrentScreen().equals(MasterController.GAME_SCREEN)) {
+                    if (screenToMove.equals(MasterController.GAME_SCREEN)) {
                         fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                move();
+                                move(screenToMove);
                             }
                         });
-                    } else if (screenController.getCurrentScreen().equals(MasterController.TOWN_SCREEN)) {
+                    } else if (screenToMove.equals(MasterController.TOWN_SCREEN)) {
                         townScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                move();
+                                move(screenToMove);
                             }
                         });
                     }
-                    */
+                    
                     return null;
                 }
             };

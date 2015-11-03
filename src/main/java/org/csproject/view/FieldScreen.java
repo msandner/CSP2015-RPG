@@ -4,6 +4,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -74,7 +75,7 @@ public class FieldScreen extends Pane {
         setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                keyController.onKeyPressed(event);
+                keyController.onKeyPressed(event, MasterController.GAME_SCREEN);
             }
         });
         setOnKeyReleased(new EventHandler<KeyEvent>() {
