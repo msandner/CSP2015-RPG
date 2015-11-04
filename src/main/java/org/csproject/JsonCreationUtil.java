@@ -1,5 +1,10 @@
 package org.csproject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+import com.google.gson.Gson;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
@@ -9,15 +14,23 @@ import org.csproject.service.WorldService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.FileNotFoundException;
-
-import static org.csproject.model.Constants.TILE_SIZE;
+import static org.csproject.model.Constants.*;
 
 /**
  * @author Maike Keune-Staab on 30.10.2015.
  */
-public class Test {
-    public static Field getTestField() {
+public class JsonCreationUtil
+{
+  /**
+   * TODO insert your stuff here. Doesn't matter which class, or whether it's from a tool with a fancy GUI, or simply hardcoded here. Just create it and this
+   * util will save it as a json with your desired name
+   * @return
+   */
+    public static Object getStuff() {
+
+    // TODO delete this code and add your own here!
+
+    // as an example, I created the worldmap here:
     Field field = new Field();
     field.setGroundImage("images/tiles/Outside.png");
     field.setDecoImage("images/tiles/World.png");
@@ -56,7 +69,7 @@ public class Test {
             new NavigationPoint(((field.getGroundTiles()[0].length -1)/2) * (int) TILE_SIZE,
                     ((field.getGroundTiles().length - 1 ) / 2) * (int) TILE_SIZE));
 
-    return field; // todo create the map (for example: from random world generator)
+    return field;
 }
 
 
@@ -65,14 +78,20 @@ public class Test {
         // Start the spring application context
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 
-        // example to proof the application context
+        // application context
         WorldService world = context.getBean(WorldService.class);
+        Gson gson = context.getBean(Gson.class);
 
-//        for (PlayerActor playerActor : world.getAvailableClasses()) {
-//            System.out.println(playerActor);
-//        }
+        Object stuff = getStuff();
+        String stuffAsJson = gson.toJson(stuff);
 
-        Field newWorld = getTestField();
-        world.setWorldMap(newWorld);
+        saveFile(stuffAsJson, JSON_DIR + "filename" + JSON_POST_FIX); // todo: insert your json file name here without the extension
     }
+
+  private static void saveFile(String fileName, String json) throws FileNotFoundException {
+    PrintWriter writer = new PrintWriter(new File(JsonCreationUtil.class.getResource(fileName).getPath()));
+    writer.print(json);
+    writer.close();
+    System.exit(0);
+  }
 }

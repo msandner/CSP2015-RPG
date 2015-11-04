@@ -9,4 +9,7 @@ public class Constants {
     public static final String CHARACTERS = "characters";
     public static final String WORLD_MAP = "worldMap";
     public static final String TOWN_1 = "town1"; // todo think about a fancy town name
+
+    public static final String JSON_DIR = "/";
+    public static final String JSON_POST_FIX = ".json";
 }
