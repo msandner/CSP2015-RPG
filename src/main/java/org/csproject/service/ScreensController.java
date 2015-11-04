@@ -147,8 +147,4 @@ public class ScreensController{
     public PlayerActor getPlayerActor() {
         return worldService.getPlayerActor();
     }
-
-    public String getCurrentScreen() {
-        return currentScreen;
-    }
 }

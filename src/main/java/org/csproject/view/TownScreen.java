@@ -74,7 +74,7 @@ public class TownScreen extends Pane {
         setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                keyController.onKeyPressed(event);
+                keyController.onKeyPressed(event, MasterController.TOWN_SCREEN);
             }
         });
         setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -151,8 +151,9 @@ public class TownScreen extends Pane {
                         getAvatar().setPosX(finalX);
                         getAvatar().setPosY(finalY);
 
-                        setTranslateX(finalX * -1);     //Remove these lines to
-                        setTranslateY(finalY * -1);     //stop the screen from moving
+//                        setTranslateX(finalX * -1);     //Remove these lines to
+//                        setTranslateY(finalY * -1);     //stop the screen from moving
+                        exitTown();
                         finished.handle(event);
                     }
                 });
@@ -169,5 +170,13 @@ public class TownScreen extends Pane {
 
     public void stopAvatarAnimation() {
         getAvatar().setWalking(false);
+    }
+
+    public void exitTown() {
+        int column = (int)(getAvatar().getPosX()/ Constants.TILE_SIZE);
+        int row = (int)(getAvatar().getPosY()/ Constants.TILE_SIZE);
+        if (row < 1 || row > 18 || column < 1 || column > 38) {
+            screensController.setScreen(MasterController.GAME_SCREEN);
+        }
     }
 }
