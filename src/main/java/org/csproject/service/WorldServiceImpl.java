@@ -1,16 +1,5 @@
 package org.csproject.service;
 
-import com.google.gson.Gson;
-import org.csproject.model.Constants;
-import org.csproject.model.actors.Actor;
-import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Field;
-import org.csproject.model.bean.NavigationPoint;
-import org.csproject.model.bean.Tile;
-import org.csproject.model.bean.TileChunks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,6 +7,13 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import org.csproject.model.actors.Actor;
+import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.bean.Field;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static org.csproject.model.Constants.*;
 
@@ -27,9 +23,7 @@ import static org.csproject.model.Constants.*;
 @Component
 public class WorldServiceImpl implements WorldService {
 
-    private static final String JSON_POST_FIX = ".json";
-
-    @Autowired
+  @Autowired
     private ActorFactory actorFactory;
 
     @Autowired
@@ -82,12 +76,12 @@ public class WorldServiceImpl implements WorldService {
     public void setField(Field field, String name) throws FileNotFoundException {
 
         String json = gson.toJson(field);
-        saveFile("/" + name + JSON_POST_FIX, json);
+        saveFile(JSON_DIR + name + JSON_POST_FIX, json);
     }
 
     @Override
     public Field getField(String fieldName) {
-        String json = getFile("/" + fieldName + JSON_POST_FIX);
+        String json = getFile(JSON_DIR + fieldName + JSON_POST_FIX);
         Field field = gson.fromJson(json, Field.class);
         return field;
     }
