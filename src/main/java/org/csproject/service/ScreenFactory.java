@@ -1,17 +1,19 @@
 package org.csproject.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import org.csproject.model.Constants;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.Tile;
 import org.csproject.model.bean.Town;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Component;
 
 
@@ -20,6 +22,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ScreenFactory {
+    public interface TileClickCallback{
+
+      void onClick(Tile tile, ImageView tileImageView);
+    }
+
     public Node buildNode(Field field) {
         Tile[][] groundMatrix = field.getGroundTiles();
         Tile[][] decoTiles = field.getDecoTiles();
@@ -27,8 +34,8 @@ public class ScreenFactory {
         String groundImage = field.getGroundImage();
         String decoImage = field.getDecoImage();
 
-        Group ground = convert(groundMatrix, groundImage);
-        Group deco = convert(decoTiles, decoImage);
+        Group ground = convert(groundMatrix, groundImage, null);
+        Group deco = convert(decoTiles, decoImage, null);
 
         ground.getChildren().add(deco);
 
@@ -36,13 +43,19 @@ public class ScreenFactory {
         return ground;
     }
 
-    private Group convert(Tile[][] matrix, String imageUrl) {
+    public Group convert(Tile[][] matrix, String imageUrl, final TileClickCallback tileClickCallback) {
         Group root = new Group();
         if(matrix == null){
             return root;
         }
         Map<String, Image> images = new HashMap<>();
         images.put(imageUrl, new Image(imageUrl));
+        String editorTileURL = null;
+        if(tileClickCallback != null)
+        {
+          editorTileURL = Constants.CS_DIR + Constants.EDITOR_DECO_TILE + Constants.CS_POST_FIX;
+          images.put(editorTileURL, new Image(getClass().getResourceAsStream(editorTileURL)));
+        }
 
         HashMap<String, Image> imageMap = new HashMap<>();
         imageMap.put(imageUrl, new Image(imageUrl));
@@ -51,7 +64,7 @@ public class ScreenFactory {
             Tile[] row = matrix[rowIndex];
             for(int colIndex = 0; colIndex < row.length; colIndex++) //horizontal durchs bild
             {
-                Tile currentTile = row[colIndex];
+                final Tile currentTile = row[colIndex];
                 if (currentTile != null) {
                     Image currentImage;
                     if (currentTile.getTileImage() != null) {
@@ -63,11 +76,28 @@ public class ScreenFactory {
                     } else {
                         currentImage = images.get(imageUrl);
                     }
-                    ImageView imageView = new ImageView(currentImage);
+                    final ImageView imageView = new ImageView(currentImage);
                     Rectangle2D viewPort = new Rectangle2D(currentTile.getX() * Constants.TILE_SIZE, currentTile.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                     imageView.setViewport(viewPort);
                     imageView.setTranslateX(colIndex * Constants.TILE_SIZE);
                     imageView.setTranslateY(rowIndex * Constants.TILE_SIZE);
+                    if(tileClickCallback != null) {
+                      EventHandler<MouseEvent> onMouseClicked = new EventHandler<MouseEvent>()
+                      {
+                        @Override
+                        public void handle(MouseEvent mouseEvent)
+                        {
+                          tileClickCallback.onClick(currentTile, imageView);
+                        }
+                      };
+                      imageView.setOnMouseClicked(onMouseClicked);
+
+                      ImageView editorView = new ImageView(images.get(editorTileURL));
+                      editorView.setOnMouseClicked(onMouseClicked);
+                      editorView.setTranslateX(colIndex * Constants.TILE_SIZE);
+                      editorView.setTranslateY(rowIndex * Constants.TILE_SIZE);
+                      root.getChildren().add(editorView);
+                    }
                     root.getChildren().add(imageView);
                 }
             }

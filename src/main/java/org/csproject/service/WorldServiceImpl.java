@@ -2,16 +2,15 @@ package org.csproject.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import com.google.gson.Gson;
 import org.csproject.model.actors.Actor;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
+import org.csproject.util.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,7 +51,7 @@ public class WorldServiceImpl implements WorldService {
     //returns a list of available classes
     public List<PlayerActor> getAvailableClasses() {
 
-        String json = getFile(CHARACTERS);
+        String json = Utilities.getFile(CHARACTERS);
         PlayerActor[] playerActors = gson.fromJson(json, PlayerActor[].class);
         return Arrays.asList(playerActors);
     }
@@ -84,9 +83,8 @@ public class WorldServiceImpl implements WorldService {
 
     @Override
     public Field getField(String fieldName) {
-        String json = getFile(JSON_DIR + fieldName + JSON_POST_FIX);
-        Field field = gson.fromJson(json, Field.class);
-        return field;
+        String json = Utilities.getFile(JSON_DIR + fieldName + JSON_POST_FIX);
+        return gson.fromJson(json, Field.class);
     }
 
     @Override
@@ -105,27 +103,5 @@ public class WorldServiceImpl implements WorldService {
         writer.print(json);
         writer.close();
         System.exit(0);
-    }
-
-    private String getFile(String fileName) {
-        StringBuilder result = new StringBuilder("");
-
-        //Get file from resources folder
-        File file = new File(this.getClass().getResource(fileName).getFile());
-
-        try (Scanner scanner = new Scanner(file)) {
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                result.append(line).append("\n");
-            }
-
-            scanner.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return result.toString();
     }
 }

@@ -43,25 +43,9 @@ public class Field {
         defaultStart = startPoint;
     }
 
-
     public void setGroundTiles(Tile[][] tiles) {
         this.groundTiles = tiles;
     }
-
-
-/*
-    public void overritePartOfTiles(Tile[][] x, Tile[][] y) {
-        int i, j;
-
-        for(i = 0; i < ; i++) {
-            for(j = 0; i< ; j++) {
-                    x[i][] = y[i][0];
-
-                }
-            }
-        }
-
-    }*/
 
     public Tile[][] getGroundTiles() {
         return groundTiles;

@@ -5,11 +5,13 @@ package org.csproject.model.bean;
  */
 public class Tile {
 
-    //x and y describe the position in the spritesheet
-    private final int x;
-    private final int y;
     private boolean walkable;
     private boolean townTile;
+
+    //x and y describe the position in the spritesheet
+    private int x;
+    private int y;
+
     private String tileImage;
 
     /**
@@ -55,7 +57,17 @@ public class Tile {
         this.townTile = true;
     }
 
-    public boolean isTownTile() {
+    public void setX(int x)
+    {
+      this.x = x;
+    }
+
+    public void setY(int y)
+    {
+      this.y = y;
+    }
+
+  public boolean isTownTile() {
         if (this.townTile)
             return true;
         else
