@@ -22,5 +22,6 @@ CIS 467
 10/28: Worked on Town classes:           11:15 to 11:45 - 0 hours 30 mins
 11/03: Movement & exiting in Town:       11:10 to 12:10 - 1 hour  00 mins
 11/04: Made townMap json:                 5:45 to  6:15 - 0 hours 30 mins
+11/05: Implemented Zennestria.json:      12:15 to  1:00 - 0 hours 45 mins
 ----------------------------------------------------------------------------
-Total:                                                   35 hours 17 mins
+Total:                                                   36 hours 02 mins
