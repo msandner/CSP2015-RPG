@@ -5,13 +5,17 @@ package org.csproject.model.items;
  */
 public class ArmorItem extends Item {
     protected String armorPiece;
+    protected String classRestrictions;
     protected int value;
 
-    public ArmorItem(String name, String piece, int v){
+    public ArmorItem(String name, String restrictions, String piece, int v){
         super(name, "armor");
+        this.classRestrictions = restrictions;
         this.armorPiece = piece;
         this.value = v;
     }
+
+    public String getClassRestrictions() { return classRestrictions; }
 
     public String getPiece(){
         return armorPiece;
