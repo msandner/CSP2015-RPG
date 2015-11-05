@@ -135,7 +135,7 @@ public class ScreensController{
     public void setUpNewGame() {
 //        fieldScreen.setScene(worldService.generateDungeon("images/tiles/Outside.png", "images/tiles/World.png", 40, 30));
         fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
-        townScreen.setScene(townService.getNewTown());
+        townScreen.setScene(townService.getTown(Constants.TOWN_1));
     }
 
     public FieldScreen getFieldScreen() {
