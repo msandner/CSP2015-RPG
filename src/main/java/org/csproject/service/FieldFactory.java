@@ -36,8 +36,8 @@ public class FieldFactory {
         this.bsp = getEmptyBsp();
         this.bsp = createFullBsp(bsp, 4);
 
-        Tile[][] groundTiles = createFieldGround(bsp, GRASS);
-        Tile[][] decoTiles = createFieldDeco(bsp, TREE);
+        Tile[][] groundTiles = createGround(bsp, GRASS);
+        Tile[][] decoTiles = createDeco(bsp, TREE);
 
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
@@ -55,8 +55,8 @@ public class FieldFactory {
         this.bsp = getEmptyBsp();
         this.bsp = createFullBsp(bsp, 4);
 
-        Tile[][] groundTiles = createFieldGround(bsp, STONEFLOOR);
-        Tile[][] decoTiles = createFieldDeco(bsp, ROCK);
+        Tile[][] groundTiles = createGround(bsp, STONEFLOOR);
+        Tile[][] decoTiles = createDeco(bsp, ROCK);
 
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
@@ -64,7 +64,7 @@ public class FieldFactory {
         return field;
     }
 
-    private Tile[][] createFieldGround(Boolean[][] bsp, Tile a) {
+    private Tile[][] createGround(Boolean[][] bsp, Tile a) {
         int width = bsp[0].length;
         int height = bsp.length;
         Tile[][] tiles = new Tile[height][width];
@@ -79,7 +79,7 @@ public class FieldFactory {
         return tiles;
     }
 
-    private Tile[][] createFieldDeco(Boolean[][] bsp, Tile a) {
+    private Tile[][] createDeco(Boolean[][] bsp, Tile a) {
         int width = bsp[0].length;
         int height = bsp.length;
         Tile[][] tiles = new Tile[height][width];
