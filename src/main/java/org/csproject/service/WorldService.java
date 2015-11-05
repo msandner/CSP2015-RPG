@@ -18,6 +18,8 @@ import java.util.List;
 public interface WorldService {
     Actor createActor(String name, String type);
 
+    void setPlayerActor();
+
     PlayerActor getPlayerActor();
 
     List<PlayerActor> getAvailableClasses();
@@ -32,5 +34,7 @@ public interface WorldService {
 
     Field getField(String fieldName);
 
-    Field generateDungeon(String groundImage, String decoImage, int colNum, int rowNum);
+    Field generateField(String groundImage, String decoImage);
+
+    Field generateDungeon(String groundImage, String decoImage);
 }

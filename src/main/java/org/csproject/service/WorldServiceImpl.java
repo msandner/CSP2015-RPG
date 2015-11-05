@@ -29,24 +29,27 @@ public class WorldServiceImpl implements WorldService {
     @Autowired
     private FieldFactory fieldFactory;
 
+    private PlayerActor playerActor;
+
     @Autowired
     private Gson gson;
 
     public Actor createActor(String name, String type) {
-
         return actorFactory.createActor(name, type);
     }
 
-    /**
-     * TODO
-     * @return The current player actor
-     */
+   //creates and returns the walkable Character
     @Override
-    public PlayerActor getPlayerActor() {
-        PlayerActor playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8);
-        return playerActor;
+    public void setPlayerActor() {
+        this.playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8);
     }
 
+    @Override
+    public PlayerActor getPlayerActor() {
+        return this.playerActor;
+    }
+
+    //returns a list of available classes
     public List<PlayerActor> getAvailableClasses() {
 
         String json = getFile(CHARACTERS);
@@ -54,27 +57,27 @@ public class WorldServiceImpl implements WorldService {
         return Arrays.asList(playerActors);
     }
 
+    //sets a list of available classes
     @Override
     public void setAvailableClasses(List<PlayerActor> playerActors) throws FileNotFoundException {
-
         String json = gson.toJson(playerActors.toArray(new PlayerActor[playerActors.size()]));
         saveFile(CHARACTERS, json);
     }
 
+    //returns the field of the worldmap
     @Override
     public Field getWorldMap() {
-
         return getField(WORLD_MAP);
     }
 
+    //creates the field of the worldmap
     public void setWorldMap(Field worldMap) throws FileNotFoundException {
-
         setField(worldMap, WORLD_MAP);
     }
 
+
     @Override
     public void setField(Field field, String name) throws FileNotFoundException {
-
         String json = gson.toJson(field);
         saveFile(JSON_DIR + name + JSON_POST_FIX, json);
     }
@@ -87,8 +90,14 @@ public class WorldServiceImpl implements WorldService {
     }
 
     @Override
-    public Field generateDungeon(String groundImage, String decoImage, int colNum, int rowNum){
-        return fieldFactory.generateDungeon(groundImage, decoImage, colNum, rowNum);
+    public Field generateField(String groundImage, String decoImage){
+
+        return fieldFactory.generateField(groundImage, decoImage);
+    }
+
+    @Override
+    public Field generateDungeon(String groundImage, String decoImage) {
+        return fieldFactory.generateDungeon(groundImage, decoImage);
     }
 
     private void saveFile(String fileName, String json) throws FileNotFoundException {
@@ -99,7 +108,6 @@ public class WorldServiceImpl implements WorldService {
     }
 
     private String getFile(String fileName) {
-
         StringBuilder result = new StringBuilder("");
 
         //Get file from resources folder

@@ -64,6 +64,7 @@ public class FieldScreen extends Pane {
         double charStartX = start1==null?0:start1.getX();
         double charStartY = start1==null?0:start1.getY();
 
+
         avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
         getChildren().add(avatar);

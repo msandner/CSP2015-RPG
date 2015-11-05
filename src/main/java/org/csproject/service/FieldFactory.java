@@ -1,11 +1,10 @@
 package org.csproject.service;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.csproject.model.Constants;
 import org.csproject.model.bean.Field;
+import org.csproject.model.bean.NavigationPoint;
 import org.csproject.model.bean.Tile;
 import org.springframework.stereotype.Component;
-
-import java.util.Random;
 
 /**
  * Fieldfactory is for randomly generating fields such as dungeons and future random fields
@@ -20,49 +19,92 @@ public class FieldFactory {
     public static final double DEAD_ZONE = 0.2;
 
     public static final Tile GRASS = new Tile(0,0, true);
-    public static final Tile HOLE = new Tile(10,11, false);
+    public static final Tile TREE = new Tile(6, 12, false);
+    public static final Tile ROCK = new Tile(7, 12, false);
+    public static final Tile STONEFLOOR = new Tile(0, 3,true);
 
-    public Field generateDungeon(String groundImage, String decoImage, int colNum, int rowNum) {
+    Boolean[][] bsp;
+
+    //generates a Dungeon with a tiled image for the groundtiles and a tiled image for the decorations
+    public Field generateField(String groundImage, String decoImage) {
         Field field = new Field();
+
         field.setGroundImage(groundImage);
         field.setDecoImage(decoImage);
 
         // Binary Space Partitioning
-        Boolean[][] bsp = new Boolean[rowNum][colNum];
-        for (int row = 0; row < bsp.length; row++) {
-            bsp[row] = new Boolean[colNum];
-            for (int col = 0; col < bsp[row].length; col++) {
-                bsp[row][col] = false;
+        this.bsp = getEmptyBsp();
+        this.bsp = createFullBsp(bsp, 4);
 
-            }
-        }
-        bsp = createBsp(bsp, 4);
-
-        Tile[][] groundTiles = createGround(bsp);
+        Tile[][] groundTiles = createFieldGround(bsp, GRASS);
+        Tile[][] decoTiles = createFieldDeco(bsp, TREE);
 
         field.setGroundTiles(groundTiles);
+        field.setDecoTiles(decoTiles);
 
-        //ToDo  deco tiles & start points
         return field;
     }
 
-    private Tile[][] createGround(Boolean[][] bsp) {
+    public Field generateDungeon(String groundImage, String decoImage) {
+        Field field = new Field();
+
+        field.setGroundImage(groundImage);
+        field.setDecoImage(decoImage);
+
+        // Binary Space Partitioning
+        this.bsp = getEmptyBsp();
+        this.bsp = createFullBsp(bsp, 4);
+
+        Tile[][] groundTiles = createFieldGround(bsp, STONEFLOOR);
+        Tile[][] decoTiles = createFieldDeco(bsp, ROCK);
+
+        field.setGroundTiles(groundTiles);
+        field.setDecoTiles(decoTiles);
+
+        return field;
+    }
+
+    private Tile[][] createFieldGround(Boolean[][] bsp, Tile a) {
         int width = bsp[0].length;
         int height = bsp.length;
         Tile[][] tiles = new Tile[height][width];
-        for (int i = 0; i < tiles.length; i++) {
+        for (int i = 0; i < height; i++) {
             tiles[i] = new Tile[width];
         }
-        for (int row = 0; row < bsp.length; row++) {
-            for (int col = 0; col < bsp[row].length; col++) {
-                tiles[row][col] = (bsp[row][col]== null || !bsp[row][col])? HOLE:GRASS;
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                tiles[row][col] = a;
             }
         }
         return tiles;
     }
 
-    private Boolean[][] createBsp(Boolean[][] bsp, int count) {
+    private Tile[][] createFieldDeco(Boolean[][] bsp, Tile a) {
+        int width = bsp[0].length;
+        int height = bsp.length;
+        Tile[][] tiles = new Tile[height][width];
+        for (int row = 0; row < bsp.length; row++) {
+            for (int col = 0; col < bsp[0].length; col++) {
+                if(bsp[row][col] == null)
+                tiles[row][col] = a;
+            }
+        }
+        return tiles;
+    }
 
+    public Boolean[][] getEmptyBsp() {
+        Boolean[][] bsp = new Boolean[Constants.ROW][Constants.COLUMN];
+        for (int row = 0; row < bsp.length; row++) {
+            //switched the row and column accidentaly, still works
+            bsp[row] = new Boolean[Constants.COLUMN];
+            for (int col = 0; col < bsp[row].length; col++) {
+                bsp[row][col] = false;
+            }
+        }
+        return bsp;
+    }
+
+    private Boolean[][] createFullBsp(Boolean[][] bsp, int count) {
         if(count == 0){
             return bsp; // todo raum rein schneiden
         }
@@ -76,7 +118,7 @@ public class FieldFactory {
 //            return bsp;
 //        }
 
-        boolean splitHorizontally = width >= height;
+        boolean splitHorizontally = (width >= height);
 
         Boolean[][] block1;
         Boolean[][] block2;
@@ -107,8 +149,8 @@ public class FieldFactory {
             block2 = new Boolean[height - split][width];
         }
 
-        block1 = createBsp(block1, count-1);
-        block2 = createBsp(block2, count-1);
+        block1 = createFullBsp(block1, count - 1);
+        block2 = createFullBsp(block2, count - 1);
 
         if(splitHorizontally){
             for(int row = 0; row < height; ++row){
@@ -154,4 +196,28 @@ public class FieldFactory {
         }
         return bsp;
     }
+
+    public NavigationPoint setCharacterStartpositionInDungeon() {
+        NavigationPoint pos = new NavigationPoint(0, 0);
+        Boolean[][] matrix = this.bsp;
+        //i runs along the rowcount
+        for (int i = 0; i < matrix.length; i++) {
+            if (matrix[i][0] != null) {
+                pos.setX(i);
+                pos.setY(0);
+                break;
+            }
+            //j runs along the column count
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[0][j] != null) {
+                    pos.setX(0);
+                    pos.setY(j);
+                    break;
+                }
+            }
+        }
+        return pos;
+    }
+
 }
+

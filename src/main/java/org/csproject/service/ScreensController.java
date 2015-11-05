@@ -133,7 +133,11 @@ public class ScreensController{
     }
 
     public void setUpNewGame() {
-//        fieldScreen.setScene(worldService.generateDungeon("images/tiles/Outside.png", "images/tiles/World.png", 40, 30));
+        /*starts the field*/
+        //fieldScreen.setScene(worldService.generateField("images/tiles/Outside.png", "images/tiles/Outside3.png"));
+        /*starts a dungeon*/
+        //fieldScreen.setScene(worldService.generateDungeon("images/tiles/Dungeon.png", "images/tiles/Outside3.png"));
+        /*starts the static map*/
         fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
         townScreen.setScene(townService.getNewTown());
     }

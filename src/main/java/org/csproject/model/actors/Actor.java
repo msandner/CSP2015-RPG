@@ -29,6 +29,7 @@ public abstract class Actor {
     public NavigationPoint getPosition() {
         return position;
     }
+
     public void setPosition(NavigationPoint position) {
         this.position = position;
     }
