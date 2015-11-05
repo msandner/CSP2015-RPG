@@ -1,11 +1,22 @@
 package org.csproject.service;
 
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+import com.google.gson.Gson;
 import org.csproject.model.actors.Actor;
+import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Tile;
 import org.csproject.model.bean.Town;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import static org.csproject.model.Constants.*;
 
 /**
  * Created by Brett on 10/19/2015.
@@ -13,6 +24,79 @@ import org.springframework.stereotype.Component;
 @Component
 public class TownServiceImpl implements TownService {
 
+    @Autowired
+    private ActorFactory actorFactory;
+
+    @Autowired
+    private Gson gson;
+
+    @Override
+    public Actor createActor(String name, String type) {
+        return actorFactory.createActor(name, type);
+    }
+
+    @Override
+    public PlayerActor getPlayerActor() {
+        PlayerActor playerActor = new PlayerActor("Character Name", ActorFactory.KNIGHT, 1, 17, 18);
+        return playerActor;
+    }
+
+    @Override
+    public Town getTownMap() {
+        return getTown(TOWN_1);
+    }
+
+    @Override
+    public void setTownMap(Town townMap) throws FileNotFoundException {
+        setTown(townMap, TOWN_1);
+    }
+
+    @Override
+    public void setTown(Town town, String name) throws FileNotFoundException {
+        String json = gson.toJson(town);
+        saveFile(JSON_DIR + name + JSON_POST_FIX, json);
+    }
+
+    @Override
+    public Town getTown(String townName) {
+        String json = getFile(JSON_DIR + townName + JSON_POST_FIX);
+        Town town = gson.fromJson(json, Town.class);
+        return town;
+    }
+
+    private void saveFile(String fileName, String json) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(new File(this.getClass().getResource(fileName).getPath()));
+        writer.print(json);
+        writer.close();
+        System.exit(0);
+    }
+
+    private String getFile(String fileName) {
+
+        StringBuilder result = new StringBuilder("");
+
+        //Get file from resources folder
+        File file = new File(this.getClass().getResource(fileName).getFile());
+
+        try (Scanner scanner = new Scanner(file)) {
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                result.append(line).append("\n");
+            }
+
+            scanner.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result.toString();
+    }
+
+
+    /**
+     * Previous Contents
     Town town;
     Tile[][] matrix;
     
@@ -194,7 +278,7 @@ public class TownServiceImpl implements TownService {
     /**
      * House tiles are twice the size of the normal tiles for the rest of the
      * images. Use of the modulo operator was used to accommodate for this.
-     */
+     *
     private void createHouseTiles() {
         //House Line 1
         for (int y = 9; y < 13; y++) {
@@ -364,4 +448,5 @@ public class TownServiceImpl implements TownService {
         matrix[12][11] = new Tile(11, 11, true, outside);
         matrix[12][22] = new Tile(11, 11, true, outside);
     }
+    */
 }

@@ -139,7 +139,7 @@ public class ScreensController{
         //fieldScreen.setScene(worldService.generateDungeon("images/tiles/Dungeon.png", "images/tiles/Outside3.png"));
         /*starts the static map*/
         fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
-        townScreen.setScene(townService.getNewTown());
+        townScreen.setScene(townService.getTown(Constants.TOWN_1));
     }
 
     public FieldScreen getFieldScreen() {
