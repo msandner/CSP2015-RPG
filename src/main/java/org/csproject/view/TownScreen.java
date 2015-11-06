@@ -66,6 +66,18 @@ public class TownScreen extends Pane {
         avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
         getChildren().add(avatar);
+
+        if (transition == null) {
+            transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
+        }
+
+        avatar.face(Direction.UP);
+        transition.setFromX(avatar.getPosX());
+        transition.setFromY(avatar.getPosY());
+        transition.setToX(avatar.getPosX());
+        transition.setToY(avatar.getPosY());
+
+        transition.playFromStart();
     }
 
     private void setUpControlls() {
@@ -154,6 +166,7 @@ public class TownScreen extends Pane {
 //                        setTranslateX(finalX * -1);     //Remove these lines to
 //                        setTranslateY(finalY * -1);     //stop the screen from moving
                         exitTown();
+                        stopAvatarAnimation();
                         finished.handle(event);
                     }
                 });

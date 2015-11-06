@@ -9,12 +9,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.Direction;
-import org.csproject.model.bean.Tile;
+import org.csproject.model.bean.*;
 import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Field;
-import org.csproject.model.bean.NavigationPoint;
 import org.csproject.service.KeyController;
 import org.csproject.service.ScreensController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +65,15 @@ public class FieldScreen extends Pane {
         avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
 
         getChildren().add(avatar);
+        if (transition == null) {
+            transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
+        }
+        transition.setFromX(avatar.getPosX());
+        transition.setFromY(avatar.getPosY());
+        transition.setToX(avatar.getPosX());
+        transition.setToY(avatar.getPosY());
+
+        transition.playFromStart();
     }
 
     private void setUpControlls() {
