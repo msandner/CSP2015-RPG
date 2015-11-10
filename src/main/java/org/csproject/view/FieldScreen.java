@@ -46,10 +46,10 @@ public class FieldScreen extends Pane {
     }
 
     public void setScene(Field field) {
-        setScene(field, "characterStart");
+        setScene(field, "characterStart", new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1.0, 1.0));
     }
 
-    public void setScene(Field field, String startPoint) {
+    public void setScene(Field field, String startPoint, PlayerActor player) {
 
         this.field = field;
         getChildren().clear();
@@ -61,8 +61,10 @@ public class FieldScreen extends Pane {
         double charStartX = start1==null?0:start1.getX();
         double charStartY = start1==null?0:start1.getY();
 
+        String type = player.getType();
+        String avatarImage = updateCharacterImage(type);
 
-        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
+        avatar = new CharacterImage(0, 1, charStartX, charStartY, avatarImage);
 
         getChildren().add(avatar);
         if (transition == null) {
@@ -74,6 +76,19 @@ public class FieldScreen extends Pane {
         transition.setToY(avatar.getPosY());
 
         transition.playFromStart();
+    }
+
+    private String updateCharacterImage(String type) {
+        String avatarImage;
+        if(type.equals(Constants.CLASS_SWORDSMAN))
+            avatarImage = Constants.IMAGE_SWORDSMAN;
+        else if(type.equals(Constants.CLASS_KNIGHT))
+            avatarImage = Constants.IMAGE_KNIGHT;
+        else if(type.equals(Constants.CLASS_THIEF))
+            avatarImage = Constants.IMAGE_THIEF;
+        else avatarImage = Constants.IMAGE_MAGE;
+
+        return avatarImage;
     }
 
     private void setUpControlls() {
@@ -140,9 +155,6 @@ public class FieldScreen extends Pane {
             //System.out.println("Tile t: x=" + column + " y=" + row + " | walkable: " + t.isWalkable());
             if(t != null && t.isWalkable() ) // if walkable
             {
-                if (transition == null) {
-                    transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
-                }
                 transition.setFromX(getAvatar().getPosX());
                 transition.setToX(finalX);
                 transition.setFromY(getAvatar().getPosY());
