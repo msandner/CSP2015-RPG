@@ -32,4 +32,8 @@
 9.11.2015  19:25 - 23:28 MESZ: working on editor so you can make special tiles walkable or not, working on an editor function to set startPoints, transportPoints, navigationPoints on the map
                                (for example to place a npc and give it some text or that if you enter a special tile you will be teleported to a dungeon). Fixed eventHandler and added a "camera" so
                                the field moves with the character, so you have to walk with the caracter to explore the whole map.
-Total time yet: 58 hours 21 minutes
+10.11.2015 18:47 - 21:12 MESZ: added collections for startPoints and teleporters to the field class. TeleportPoint has now a destination where to teleport, Utilities.java has now a method 
+                               to create and save new files (wip) -> for json files at the moment. refeactored a bit in general
+                               in the FieldScreen.java: added  camera movement so it will move with the character till the end of the visible field.
+                               made a worldMap1.json and a town example (town1.json) to test teleporting, but the teleporting is still work in progress and will mess up the character movement
+Total time yet: 60 hours 46 minutes
