@@ -16,7 +16,6 @@ import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
-import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,12 +37,6 @@ public class ScreensController{
 
     @Autowired
     private FieldScreen fieldScreen;
-
-    @Autowired
-    private TownService townService;
-
-    @Autowired
-    private TownScreen townScreen;
 
     private HashMap<String, Node> screens;
 
@@ -138,15 +131,12 @@ public class ScreensController{
         /*starts a dungeon*/
         //fieldScreen.setScene(worldService.generateDungeon("images/tiles/Dungeon.png", "images/tiles/Outside3.png"));
         /*starts the static map*/
-        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
-        townScreen.setScene(townService.getTown(Constants.TOWN_1));
+        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
     }
 
     public FieldScreen getFieldScreen() {
         return fieldScreen;
     }
-
-    public TownScreen getTownScreen() { return townScreen; }
 
     public PlayerActor getPlayerActor() {
         return worldService.getPlayerActor();

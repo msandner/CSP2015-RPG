@@ -8,12 +8,12 @@ import javafx.scene.input.KeyEvent;
 import org.apache.log4j.Logger;
 import org.csproject.model.bean.Direction;
 import org.csproject.view.FieldScreen;
-import org.csproject.view.MasterController;
-import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015.
@@ -29,9 +29,6 @@ public class KeyController {
 
     @Autowired
     private FieldScreen fieldScreen;
-
-    @Autowired
-    private TownScreen townScreen;
 
     String screenToMove;
 
@@ -79,21 +76,12 @@ public class KeyController {
             Task transitionTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
-                    if (screenToMove.equals(MasterController.GAME_SCREEN)) {
-                        fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                move(screenToMove);
-                            }
-                        });
-                    } else if (screenToMove.equals(MasterController.TOWN_SCREEN)) {
-                        townScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                move(screenToMove);
-                            }
-                        });
-                    }
+                    fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            move(screenToMove);
+                        }
+                    });
                     
                     return null;
                 }

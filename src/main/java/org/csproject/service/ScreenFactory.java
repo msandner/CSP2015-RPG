@@ -3,6 +3,7 @@ package org.csproject.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -34,11 +35,10 @@ public class ScreenFactory {
         String groundImage = field.getGroundImage();
         String decoImage = field.getDecoImage();
 
-        Group ground = convert(groundMatrix, groundImage, null);
-        Group deco = convert(decoTiles, decoImage, null);
+        Group ground = convert(groundMatrix, Constants.CS_DIR + groundImage + Constants.CS_POST_FIX, null);
+        Group deco = convert(decoTiles, Constants.CS_DIR + decoImage + Constants.CS_POST_FIX, null);
 
         ground.getChildren().add(deco);
-
 
         return ground;
     }
@@ -70,7 +70,8 @@ public class ScreenFactory {
                     if (currentTile.getTileImage() != null) {
                         currentImage = imageMap.get(currentTile.getTileImage());
                         if (currentImage == null) {
-                            currentImage = new Image(currentTile.getTileImage());
+                            currentImage = new Image(Constants.CS_DIR + currentTile.getTileImage()
+                                    + Constants.CS_POST_FIX);
                             images.put(currentTile.getTileImage(), currentImage);
                         }
                     } else {
@@ -82,7 +83,7 @@ public class ScreenFactory {
                     imageView.setTranslateX(colIndex * Constants.TILE_SIZE);
                     imageView.setTranslateY(rowIndex * Constants.TILE_SIZE);
                     if(tileClickCallback != null) {
-                      EventHandler<MouseEvent> onMouseClicked = new EventHandler<MouseEvent>()
+                        EventHandler<MouseEvent> onMouseClicked = new EventHandler<MouseEvent>()
                       {
                         @Override
                         public void handle(MouseEvent mouseEvent)

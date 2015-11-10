@@ -1,5 +1,9 @@
 package org.csproject.model.bean;
 
+import org.csproject.model.Constants;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,36 +15,36 @@ public class Field {
     private String groundImage;
     private String decoImage;
 
-    private NavigationPoint defaultStart;
-
     private Tile[][] groundTiles;
     private Tile[][] decoTiles;
 
-    private Map<String, NavigationPoint> startPoints;
-
+    private Collection<StartPoint> startPoints;
+    private Collection<TeleportPoint> teleportPoints;
 
     public Field() {
-        this.startPoints = new HashMap<>();
+        this.startPoints = new ArrayList<>();
+        this.teleportPoints = new ArrayList<>();
     }
 
     public NavigationPoint getStart(String startName) {
-        NavigationPoint startPoint = startPoints.get(startName);
-        if (startPoint == null) {
-            startPoint = defaultStart;
-        }
-        return startPoint;
-    }
 
-    public void setStartPoint(String name, NavigationPoint startPoint) {
-        if(defaultStart == null)
-        {
-            defaultStart = startPoint;
-        }
-        startPoints.put(name, startPoint);
-    }
+        Map<String, NavigationPoint> startPointMap = new HashMap<>();
+        NavigationPoint defaultStartPoint = null;
 
-    public void setStartPoint(NavigationPoint startPoint) {
-        defaultStart = startPoint;
+        for (StartPoint startPoint : startPoints) {
+            {
+                if(defaultStartPoint == null){
+                    defaultStartPoint = startPoint;
+                }
+                startPointMap.put(startPoint.getName(), startPoint);
+            }
+        }
+
+        if(startPointMap.get(startName) != null) {
+            return startPointMap.get(startName);
+        }
+
+        return defaultStartPoint;
     }
 
     public void setGroundTiles(Tile[][] tiles) {
@@ -49,17 +53,6 @@ public class Field {
 
     public Tile[][] getGroundTiles() {
         return groundTiles;
-    }
-
-    public NavigationPoint getTownTile() {
-        for(int y = 0; y < groundTiles.length; y++) {
-            for(int x = 0; x < groundTiles[y].length; x++) {
-                if (groundTiles[y][x].isTownTile()) {
-                    return new NavigationPoint(x, y);
-                }
-            }
-        }
-        return null;
     }
 
     public String getGroundImage() {
@@ -84,5 +77,27 @@ public class Field {
 
     public Tile[][] getDecoTiles() {
         return decoTiles;
+    }
+
+    public double getWidth() {
+        if(groundTiles == null || groundTiles.length == 0 || groundTiles[0].length == 0) {
+            return 0.0;
+        }
+        return groundTiles[0].length * Constants.TILE_SIZE;
+    }
+
+    public double getHeight() {
+        if(groundTiles == null || groundTiles.length == 0) {
+            return 0.0;
+        }
+        return groundTiles.length * Constants.TILE_SIZE;
+    }
+
+    public Collection<StartPoint> getStartPoints() {
+        return startPoints;
+    }
+
+    public Collection<TeleportPoint> getTeleportPoints() {
+        return teleportPoints;
     }
 }

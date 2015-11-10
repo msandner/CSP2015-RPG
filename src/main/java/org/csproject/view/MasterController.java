@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.csproject.configuration.SpringConfiguration;
+import org.csproject.model.Constants;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -30,6 +31,9 @@ public class MasterController extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        primaryStage.setWidth(Constants.SCREEN_WIDTH);
+        primaryStage.setHeight(Constants.SCREEN_HEIGHT);
 
         ScreensController screensController;
 

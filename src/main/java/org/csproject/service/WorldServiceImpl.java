@@ -51,7 +51,7 @@ public class WorldServiceImpl implements WorldService {
     //returns a list of available classes
     public List<PlayerActor> getAvailableClasses() {
 
-        String json = Utilities.getFile(CHARACTERS);
+        String json = Utilities.getResource(CHARACTERS);
         PlayerActor[] playerActors = gson.fromJson(json, PlayerActor[].class);
         return Arrays.asList(playerActors);
     }
@@ -83,7 +83,7 @@ public class WorldServiceImpl implements WorldService {
 
     @Override
     public Field getField(String fieldName) {
-        String json = Utilities.getFile(JSON_DIR + fieldName + JSON_POST_FIX);
+        String json = Utilities.getResource(JSON_DIR + fieldName + JSON_POST_FIX);
         return gson.fromJson(json, Field.class);
     }
 
