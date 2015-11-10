@@ -24,6 +24,7 @@ CIS 467
 11/04: Made townMap json:                 5:45 to  6:15 - 0 hours 30 mins
 11/05: Implemented Zennestria.json:      12:15 to  1:00 - 0 hours 45 mins
 11/05: Character start & began game menu: 9:15 to 11:45 - 2 hours 30 mins
-11/09: Began event model, added (etc)   : 8:00 to 10:00 - 2 hours 00 mins
+11/09: Began event model, added (etc):    8:00 to 10:00 - 2 hours 00 mins
+11/10: Attempted debugging of movement:   3:30 to  4:30 - 1 hour  00 mins
 ----------------------------------------------------------------------------
-Total:                                                   40 hours 32 mins
+Total:                                                   41 hours 32 mins
