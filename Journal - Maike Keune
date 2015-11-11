@@ -38,4 +38,5 @@
                                made a worldMap1.json and a town example (town1.json) to test teleporting, but the teleporting is still work in progress and will mess up the character movement
  11.11.2015 15:00 - 15:30 MESZ: Working on Sprint report 2
  11.11.2015 16:15 - 17:13 MESZ: working on tutorial for map editor
-Total time yet: 62 hours 14 minutes
+ 11.11.2015 20:30 - 21:12 MESZ: fixed some little bugs, refactored
+Total time yet: 62 hours 56 minutes
