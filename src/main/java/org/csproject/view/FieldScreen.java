@@ -70,6 +70,23 @@ public class FieldScreen extends Pane {
         getChildren().add(avatar);
     }
 
+    public void setScene(Field field, double x, double y){
+
+        this.field = field;
+        getChildren().clear();
+        getChildren().add(screenFactory.buildNode(field));
+
+        PlayerActor playerActor = screensController.getPlayerActor();
+
+        NavigationPoint start1 = new NavigationPoint((int) x, (int) y);
+        double charStartX = start1==null?0:start1.getX();
+        double charStartY = start1==null?0:start1.getY();
+
+        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
+
+        getChildren().add(avatar);
+    }
+
     private void setUpControlls() {
         setFocusTraversable(true);
         requestFocus();
@@ -165,7 +182,7 @@ public class FieldScreen extends Pane {
         }
     }
 
-    private CharacterImage getAvatar() {
+    public CharacterImage getAvatar() {
         return this.avatar;
     }
 

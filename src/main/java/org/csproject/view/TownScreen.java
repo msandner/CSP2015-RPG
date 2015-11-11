@@ -68,6 +68,21 @@ public class TownScreen extends Pane {
         getChildren().add(avatar);
     }
 
+    public void setScene(Town town, double x, double y) {
+        this.town = town;
+        getChildren().clear();
+        getChildren().add(screenFactory.buildNode(town));
+
+        PlayerActor playerActor = screensController.getPlayerActor();
+
+        double charStartX = x;
+        double charStartY = y;
+
+        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
+
+        getChildren().add(avatar);
+    }
+
     private void setUpControlls() {
         setFocusTraversable(true);
         requestFocus();
@@ -164,7 +179,7 @@ public class TownScreen extends Pane {
         }
     }
 
-    private CharacterImage getAvatar() {
+    public CharacterImage getAvatar() {
         return this.avatar;
     }
 

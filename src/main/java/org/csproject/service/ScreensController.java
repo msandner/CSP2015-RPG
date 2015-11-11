@@ -16,6 +16,7 @@ import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
+import org.csproject.view.MasterController;
 import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -140,6 +141,18 @@ public class ScreensController{
         /*starts the static map*/
         fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
         townScreen.setScene(townService.getTown(Constants.TOWN_1));
+    }
+
+    public void setUpLoadGame(String screen, double x, double y){
+        if(screen.equals(MasterController.GAME_SCREEN)){
+            fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP), x, y);
+            townScreen.setScene(townService.getTown(Constants.TOWN_1));
+        } else if(screen.equals(MasterController.TOWN_SCREEN)){
+            fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
+            townScreen.setScene(townService.getTown(Constants.TOWN_1), x, y);
+        } else {
+            //Dungeon?
+        }
     }
 
     public FieldScreen getFieldScreen() {

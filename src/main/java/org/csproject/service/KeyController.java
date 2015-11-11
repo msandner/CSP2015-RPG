@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015.
@@ -42,7 +43,15 @@ public class KeyController {
                 pressedMovementKeys.add(event.getCode());
                 move(screen);
             }
-        } else {
+        } else if (event.getCode() == KeyCode.C){
+            try {
+                saveGame(screen);
+            } catch(IOException e){
+                System.out.println("Could not save.");
+                e.printStackTrace();
+            }
+        }
+        else {
             // todo other key events here
         }
     }
@@ -102,5 +111,38 @@ public class KeyController {
             moveThread.setDaemon(true);
             moveThread.start();
         }
+    }
+
+    private void saveGame(String screen) throws IOException{
+        double x = 0, y = 0;
+        if(screen.equals(MasterController.GAME_SCREEN)) {
+            x = fieldScreen.getAvatar().getPosX();
+            y = fieldScreen.getAvatar().getPosY();
+        } else if(screen.equals(MasterController.TOWN_SCREEN)) {
+            x = townScreen.getAvatar().getPosX();
+            y = fieldScreen.getAvatar().getPosY();
+        } else{
+            //Dungeon?
+        }
+
+        //Here we get the player party
+
+        String data = screen + " " + x + " " + y;
+        String path = System.getProperty("user.home") + "\\Documents\\FFC_Saves";
+
+        File saveLocation = new File(path);
+        if(!saveLocation.exists()){
+            try{
+                saveLocation.mkdir();
+            } catch (SecurityException s) {
+                System.out.println("Save folder could not be created.");
+            }
+        }
+
+        FileOutputStream fos = new FileOutputStream(saveLocation + "/saves.txt");
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        bw.write(data);
+        bw.close();
+        fos.close();
     }
 }
