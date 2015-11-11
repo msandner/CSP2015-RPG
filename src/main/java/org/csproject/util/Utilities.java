@@ -41,12 +41,35 @@ public class Utilities
       writer.close();
   }
 
-  public static String getFile(String fileName) {
+  public static String getResource(String fileName) {
 
     StringBuilder result = new StringBuilder("");
 
     //Get file from resources folder
     File file = new File(Utilities.class.getResource(fileName).getFile());
+
+    try (Scanner scanner = new Scanner(file)) {
+
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        result.append(line).append("\n");
+      }
+
+      scanner.close();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    return result.toString();
+  }
+
+  public static String getFile(String fileName) {
+
+    StringBuilder result = new StringBuilder("");
+
+    //Get file from resources folder
+    File file = new File(fileName);
 
     try (Scanner scanner = new Scanner(file)) {
 

@@ -4,21 +4,20 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.Direction;
-import org.csproject.model.bean.Tile;
+import org.csproject.model.bean.*;
 import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Field;
-import org.csproject.model.bean.NavigationPoint;
 import org.csproject.service.KeyController;
 import org.csproject.service.ScreensController;
+import org.csproject.service.WorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static org.csproject.model.Constants.*;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015.
@@ -26,6 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FieldScreen extends Pane {
 
+    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1.0, 1.0);
     @Autowired
     private ScreensController screensController;
 
@@ -35,24 +35,31 @@ public class FieldScreen extends Pane {
     @Autowired
     private ScreenFactory screenFactory;
 
+    @Autowired
+    private WorldService worldService;
+
     private boolean moving;
 
     private CharacterImage avatar;
 
     private TranslateTransition transition;
-
+    private TranslateTransition screenTransition;
+    
     private Field field;
 
     public FieldScreen() {
         this.moving = false;
         setUpControlls();
+
+        setScaleX(SCALE);
+        setScaleY(SCALE);
     }
 
     public void setScene(Field field) {
-        setScene(field, "characterStart");
+        setScene(field, "characterStart", TEST_PLAYER);
     }
 
-    public void setScene(Field field, String startPoint) {
+    public void setScene(Field field, String startPoint, PlayerActor player) {
 
         this.field = field;
         getChildren().clear();
@@ -61,30 +68,28 @@ public class FieldScreen extends Pane {
         PlayerActor playerActor = screensController.getPlayerActor();
 
         NavigationPoint start1 = field.getStart(startPoint);
-        double charStartX = start1==null?0:start1.getX();
-        double charStartY = start1==null?0:start1.getY();
+        double charStartX = start1 == null ? 0 : start1.getX() * TILE_SIZE;
+        double charStartY = start1 == null ? 0 : start1.getY() * TILE_SIZE;
 
+        String type = player.getType();
+        String avatarImage = updateCharacterImage(type);
 
-        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
+        avatar = new CharacterImage(0, 1, charStartX, charStartY, avatarImage);
 
         getChildren().add(avatar);
     }
 
-    public void setScene(Field field, double x, double y){
+    private String updateCharacterImage(String type) {
+        String avatarImage;
+        if(type.equals(Constants.CLASS_SWORDSMAN))
+            avatarImage = Constants.IMAGE_SWORDSMAN;
+        else if(type.equals(Constants.CLASS_KNIGHT))
+            avatarImage = Constants.IMAGE_KNIGHT;
+        else if(type.equals(Constants.CLASS_THIEF))
+            avatarImage = Constants.IMAGE_THIEF;
+        else avatarImage = Constants.IMAGE_MAGE;
 
-        this.field = field;
-        getChildren().clear();
-        getChildren().add(screenFactory.buildNode(field));
-
-        PlayerActor playerActor = screensController.getPlayerActor();
-
-        NavigationPoint start1 = new NavigationPoint((int) x, (int) y);
-        double charStartX = start1==null?0:start1.getX();
-        double charStartY = start1==null?0:start1.getY();
-
-        avatar = new CharacterImage(0, 1, charStartX, charStartY, "images/actors/Evil.png");
-
-        getChildren().add(avatar);
+        return avatarImage;
     }
 
     private void setUpControlls() {
@@ -116,47 +121,49 @@ public class FieldScreen extends Pane {
 
             getAvatar().face(direction);
 
-            double x = getAvatar().getPosX();
-            double y = getAvatar().getPosY();
+            double x = 0;
+            double y = 0;
 
             switch (direction) {
                 case UP: {
-                    y -= Constants.TILE_SIZE;
+                    y -= TILE_SIZE;
                     break;
                 }
                 case DOWN: {
-                    y += Constants.TILE_SIZE;
+                    y += TILE_SIZE;
                     break;
                 }
                 case LEFT: {
-                    x -= Constants.TILE_SIZE;
+                    x -= TILE_SIZE;
                     break;
                 }
                 case RIGHT: {
-                    x += Constants.TILE_SIZE;
+                    x += TILE_SIZE;
                     break;
                 }
             }
             final double finalX = x;
             final double finalY = y;
 
-            int column = (int)(x/ Constants.TILE_SIZE);
-            int row = (int)(y/ Constants.TILE_SIZE);
-            Tile t = null;
+            int column = (int) ((avatar.getX() + x) / TILE_SIZE);
+            int row = (int) ((avatar.getY() + y) / TILE_SIZE);
+            Tile groundTile = null;
+            Tile decoTile = null;
             try {
-                t = field.getGroundTiles()[row][column];
-            } catch (Exception e){
+                groundTile = field.getGroundTiles()[row][column];
+                decoTile = field.getDecoTiles()[row][column];
+            } catch (Exception e) {
                 // arrayoutofbounds
             }
-            //System.out.println("Tile t: x=" + column + " y=" + row + " | walkable: " + t.isWalkable());
-            if(t != null && t.isWalkable() ) // if walkable
+            //System.out.println("Tile groundTile: x=" + column + " y=" + row + " | walkable: " + groundTile.isWalkable());
+            if (groundTile != null && groundTile.isWalkable() && decoTile != null && decoTile.isWalkable()) // if walkable
             {
                 if (transition == null) {
                     transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
                 }
-                transition.setFromX(getAvatar().getPosX());
+                transition.setFromX(0);
                 transition.setToX(finalX);
-                transition.setFromY(getAvatar().getPosY());
+                transition.setFromY(0);
                 transition.setToY(finalY);
 
                 transition.playFromStart();
@@ -166,15 +173,40 @@ public class FieldScreen extends Pane {
                     @Override
                     public void handle(ActionEvent event) {
                         moving = false;
-                        getAvatar().setPosX(finalX);
-                        getAvatar().setPosY(finalY);
-
-//                        setTranslateX(finalX * -1);     //Remove these lines to
-//                        setTranslateY(finalY * -1);     //stop the screen from moving
-                        enterTown();
-                        finished.handle(event);
+                        avatar.setX(avatar.getX() + finalX);
+                        avatar.setY(avatar.getY() + finalY);
+                        avatar.setTranslateX(0);
+                        avatar.setTranslateY(0);
+                        if(handleNavigationPoints((int)((avatar.getX()) / TILE_SIZE),
+                                (int)((avatar.getY()) / TILE_SIZE))){
+                            finished.handle(event);
+                        }
                     }
                 });
+
+                if (screenTransition == null) {
+                    screenTransition = new TranslateTransition(Duration.seconds(WALK_TIME_PER_TILE), this);
+                }
+                double currentTransX = (avatar.getX() * -1) + SCREEN_WIDTH / 2;
+                double currentTransY = (avatar.getY() * -1) + SCREEN_HEIGHT / 2;
+
+                double transToX = currentTransX - finalX * SCALE;
+                screenTransition.setFromX(getTranslateX());
+                screenTransition.setToX(getTranslateX());
+                if (transToX <= 0 && transToX + field.getWidth() > SCREEN_WIDTH) {
+                    screenTransition.setToX(transToX);
+                }
+
+                screenTransition.setFromY(getTranslateY());
+                screenTransition.setToY(getTranslateY());
+                double transToY = currentTransY - finalY * SCALE;
+                if (transToY <= 0 && transToY + field.getHeight() > SCREEN_HEIGHT) {
+                    screenTransition.setToY(transToY);
+                }
+
+                screenTransition.playFromStart();
+                screenTransition.setInterpolator(Interpolator.LINEAR);
+
                 getAvatar().setWalking(true);
             } else {
                 moving = false;
@@ -182,7 +214,7 @@ public class FieldScreen extends Pane {
         }
     }
 
-    public CharacterImage getAvatar() {
+    private CharacterImage getAvatar() {
         return this.avatar;
     }
 
@@ -190,15 +222,17 @@ public class FieldScreen extends Pane {
         getAvatar().setWalking(false);
     }
 
-    public void enterTown() {
-        NavigationPoint townTile = field.getTownTile();
-        if (townTile != null) {
-            NavigationPoint town = townTile;
-            int column = (int)(getAvatar().getPosX()/ Constants.TILE_SIZE);
-            int row = (int)(getAvatar().getPosY()/ Constants.TILE_SIZE);
-            if (town.getX() == column && town.getY() == row) {
-                screensController.setScreen(MasterController.TOWN_SCREEN);
+    public boolean handleNavigationPoints(int x, int y) {
+
+        for (TeleportPoint teleportPoint : field.getTeleportPoints()) {
+            if(teleportPoint.getX() == x && teleportPoint.getY() == y){
+
+                setScene(worldService.getField(teleportPoint.getTargetField()), teleportPoint.getTargetPoint(),
+                        TEST_PLAYER);
+
+                return false;
             }
         }
+        return true;
     }
 }

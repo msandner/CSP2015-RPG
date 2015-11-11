@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.GameMenuController">
+  <children>
+    <VBox alignment="TOP_CENTER" layoutX="986.0" layoutY="14.0" prefHeight="350.0" prefWidth="200.0" spacing="20.0">
+      <children>
+        <Button id="itemButton" fx:id="partyButton" mnemonicParsing="false" prefWidth="100.0" text="Party" />
+        <Button fx:id="itemButton" mnemonicParsing="false" prefWidth="100.0" text="Items" />
+        <Button fx:id="equipmentButton" mnemonicParsing="false" prefWidth="100.0" text="Equipment" />
+        <Button fx:id="magicButton" mnemonicParsing="false" prefWidth="100.0" text="Magic" />
+        <Button fx:id="questButton" mnemonicParsing="false" prefWidth="100.0" text="Quests" />
+        <Button fx:id="saveButton" mnemonicParsing="false" prefWidth="100.0" text="Save" />
+        <Button fx:id="loadButton" mnemonicParsing="false" prefWidth="100.0" text="Load" />
+      </children>
+      <padding>
+        <Insets bottom="20.0" top="20.0" />
+      </padding>
+    </VBox>
+    <VBox alignment="TOP_LEFT" layoutX="986.0" layoutY="385.0" prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <HBox prefHeight="50.0" prefWidth="200.0">
+          <children>
+            <Label alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="37.0" prefWidth="64.0" text="Money:" textAlignment="CENTER">
+              <font>
+                <Font size="18.0" fx:id="x1" />
+              </font>
+            </Label>
+            <Label fx:id="moneyLabel" alignment="CENTER_RIGHT" contentDisplay="LEFT" font="$x1" prefHeight="37.0" prefWidth="136.0" text="moneyLabel" textAlignment="CENTER" />
+          </children>
+        </HBox>
+        <HBox prefHeight="50.0" prefWidth="200.0">
+          <children>
+            <Label alignment="CENTER_LEFT" contentDisplay="LEFT" font="$x1" prefHeight="37.0" prefWidth="64.0" text="Time:" textAlignment="CENTER" />
+            <Label id="moneyLabel" fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="LEFT" font="$x1" prefHeight="37.0" prefWidth="136.0" text="timeLabel" textAlignment="CENTER" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+    <Pane fx:id="partyPane" layoutX="0.0" layoutY="0.0" prefHeight="650.0" prefWidth="986.0" visible="true">
+      <children>
+        <VBox layoutX="0.0" layoutY="0.0" prefHeight="650.0" prefWidth="986.0">
+          <children>
+            <HBox id="char1Hbox" alignment="CENTER_LEFT" prefHeight="216.66666666666666" prefWidth="986.0">
+              <children>
+                <ImageView id="char1ImageView" fx:id="char1FaceImage" fitHeight="98.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
+                <VBox alignment="CENTER_LEFT" prefHeight="217.0" prefWidth="326.0" HBox.margin="$x4">
+                  <children>
+                    <Label fx:id="char1Name" text="Char 1 Name">
+                      <font>
+                        <Font size="24.0" fx:id="x2" />
+                      </font>
+                    </Label>
+                    <HBox prefHeight="37.0" prefWidth="306.0" spacing="10.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="Level:" />
+                        <Label fx:id="char1Level" alignment="CENTER_RIGHT" font="$x2" prefWidth="219.0" text="Char 1 Level">
+                          <HBox.margin>
+                            <Insets fx:id="x5" />
+                          </HBox.margin>
+                        </Label>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="HP:">
+                          <HBox.margin>
+                            <Insets top="12.0" fx:id="x3" />
+                          </HBox.margin>
+                        </Label>
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char1HPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current HP / MaxHP" />
+                            <ProgressBar fx:id="char1HPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="MP:" HBox.margin="$x3" />
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char1MPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current MP / MaxMP" />
+                            <ProgressBar fx:id="char1MPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets left="20.0" fx:id="x4" />
+                  </padding>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="217.0" prefWidth="492.0" HBox.margin="$x5">
+                  <children>
+                    <Label font="$x2" prefWidth="77.0" text="EXP:">
+                      <HBox.margin>
+                        <Insets left="20.0" top="18.0" />
+                      </HBox.margin>
+                    </Label>
+                    <VBox alignment="CENTER" prefHeight="217.0" prefWidth="415.0">
+                      <children>
+                        <Label fx:id="char1EXPString" alignment="CENTER" font="$x2" prefWidth="415.0" text="current EXP / EXPTONEXTLEVEL" />
+                        <ProgressBar fx:id="char1EXPBar" prefHeight="21.0" prefWidth="386.0" progress="0.0" />
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+              <padding>
+                <Insets left="50.0" />
+              </padding>
+            </HBox>
+            <HBox id="char1Hbox" alignment="CENTER_LEFT" prefHeight="216.66666666666666" prefWidth="986.0">
+              <children>
+                <ImageView id="char1ImageView" fx:id="char2FaceImage" fitHeight="98.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
+                <VBox alignment="CENTER_LEFT" prefHeight="217.0" prefWidth="326.0" HBox.margin="$x4">
+                  <children>
+                    <Label fx:id="char2Name" font="$x2" text="Char 2 Name" />
+                    <HBox prefHeight="37.0" prefWidth="306.0" spacing="10.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="Level:" />
+                        <Label fx:id="char2Level" alignment="CENTER_RIGHT" font="$x2" prefWidth="219.0" text="Char 2 Level">
+                          <HBox.margin>
+                            <Insets fx:id="x5" />
+                          </HBox.margin>
+                        </Label>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="HP:">
+                          <HBox.margin>
+                            <Insets top="12.0" fx:id="x3" />
+                          </HBox.margin>
+                        </Label>
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char2HPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current HP / MaxHP" />
+                            <ProgressBar fx:id="char2HPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="MP:" HBox.margin="$x3" />
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char2MPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current MP / MaxMP" />
+                            <ProgressBar fx:id="char2MPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets left="20.0" fx:id="x4" />
+                  </padding>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="217.0" prefWidth="492.0" HBox.margin="$x5">
+                  <children>
+                    <Label font="$x2" prefWidth="77.0" text="EXP:">
+                      <HBox.margin>
+                        <Insets left="20.0" top="18.0" />
+                      </HBox.margin>
+                    </Label>
+                    <VBox alignment="CENTER" prefHeight="217.0" prefWidth="415.0">
+                      <children>
+                        <Label fx:id="char2EXPString" alignment="CENTER" font="$x2" prefWidth="415.0" text="current EXP / EXPTONEXTLEVEL" />
+                        <ProgressBar fx:id="char2EXPBar" prefHeight="21.0" prefWidth="386.0" progress="0.0" />
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+              <padding>
+                <Insets left="50.0" />
+              </padding>
+            </HBox>
+            <HBox id="char1Hbox" alignment="CENTER_LEFT" prefHeight="216.66666666666666" prefWidth="986.0">
+              <children>
+                <ImageView id="char1ImageView" fx:id="char3FaceImage" fitHeight="98.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
+                <VBox alignment="CENTER_LEFT" prefHeight="217.0" prefWidth="326.0" HBox.margin="$x4">
+                  <children>
+                    <Label fx:id="char3Name" font="$x2" text="Char 3 Name" />
+                    <HBox prefHeight="37.0" prefWidth="306.0" spacing="10.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="Level:" />
+                        <Label fx:id="char3Level" alignment="CENTER_RIGHT" font="$x2" prefWidth="219.0" text="Char 3 Level">
+                          <HBox.margin>
+                            <Insets fx:id="x5" />
+                          </HBox.margin>
+                        </Label>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="HP:">
+                          <HBox.margin>
+                            <Insets top="12.0" fx:id="x3" />
+                          </HBox.margin>
+                        </Label>
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char3HPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current HP / MaxHP" />
+                            <ProgressBar fx:id="char3HPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="50.0" prefWidth="306.0">
+                      <children>
+                        <Label font="$x2" prefWidth="77.0" text="MP:" HBox.margin="$x3" />
+                        <VBox prefHeight="99.99990000000253" prefWidth="229.0">
+                          <children>
+                            <Label fx:id="char3MPString" alignment="CENTER" font="$x2" prefWidth="229.0" text="current MP / MaxMP" />
+                            <ProgressBar fx:id="char3MPBar" prefWidth="229.0" progress="0.0" />
+                          </children>
+                        </VBox>
+                      </children>
+                    </HBox>
+                  </children>
+                  <padding>
+                    <Insets left="20.0" fx:id="x4" />
+                  </padding>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="217.0" prefWidth="492.0" HBox.margin="$x5">
+                  <children>
+                    <Label font="$x2" prefWidth="77.0" text="EXP:">
+                      <HBox.margin>
+                        <Insets left="20.0" top="18.0" />
+                      </HBox.margin>
+                    </Label>
+                    <VBox alignment="CENTER" prefHeight="217.0" prefWidth="415.0">
+                      <children>
+                        <Label fx:id="char3EXPString" alignment="CENTER" font="$x2" prefWidth="415.0" text="current EXP / EXPTONEXTLEVEL" />
+                        <ProgressBar id="char3EXPBAR" fx:id="char3EXPBar" prefHeight="21.0" prefWidth="386.0" progress="0.0" />
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+              <padding>
+                <Insets left="50.0" />
+              </padding>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

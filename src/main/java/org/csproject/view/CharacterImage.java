@@ -14,7 +14,6 @@ public class CharacterImage extends ImageView {
     private static final int BLOCK_SIZE_X = (int) Constants.TILE_SIZE * 3;
     private static final int BLOCK_SIZE_Y = (int) Constants.TILE_SIZE * 4;
 
-    private double posX, posY;
     private int actorImageBlockX, actorImageBlockY;
     private Image actorImage;
     private int animPhase; // 0, 1 or 2
@@ -27,8 +26,8 @@ public class CharacterImage extends ImageView {
 
         walking = false;
 
-        this.posX = posX;
-        this.posY = posY;
+        setX(posX);
+        setY(posY);
 
         faceDirection = Direction.DOWN;
 
@@ -79,22 +78,6 @@ public class CharacterImage extends ImageView {
     {
         faceDirection = direction;
         updateAnimation();
-    }
-
-    public double getPosX() {
-        return posX;
-    }
-
-    public void setPosX(double posX) {
-        this.posX = posX;
-    }
-
-    public double getPosY() {
-        return posY;
-    }
-
-    public void setPosY(double posY) {
-        this.posY = posY;
     }
 
     public void setAnimationPhase(int animationPhase) {

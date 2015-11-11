@@ -8,13 +8,12 @@ import javafx.scene.input.KeyEvent;
 import org.apache.log4j.Logger;
 import org.csproject.model.bean.Direction;
 import org.csproject.view.FieldScreen;
-import org.csproject.view.MasterController;
-import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
-import java.io.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015.
@@ -31,9 +30,6 @@ public class KeyController {
     @Autowired
     private FieldScreen fieldScreen;
 
-    @Autowired
-    private TownScreen townScreen;
-
     String screenToMove;
 
     public void onKeyPressed(KeyEvent event, String screen) {
@@ -43,15 +39,7 @@ public class KeyController {
                 pressedMovementKeys.add(event.getCode());
                 move(screen);
             }
-        } else if (event.getCode() == KeyCode.C){
-            try {
-                saveGame(screen);
-            } catch(IOException e){
-                System.out.println("Could not save.");
-                e.printStackTrace();
-            }
-        }
-        else {
+        } else {
             // todo other key events here
         }
     }
@@ -88,21 +76,12 @@ public class KeyController {
             Task transitionTask = new Task() {
                 @Override
                 protected Object call() throws Exception {
-                    if (screenToMove.equals(MasterController.GAME_SCREEN)) {
-                        fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                move(screenToMove);
-                            }
-                        });
-                    } else if (screenToMove.equals(MasterController.TOWN_SCREEN)) {
-                        townScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                move(screenToMove);
-                            }
-                        });
-                    }
+                    fieldScreen.moveAvatar(finalDirection, new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            move(screenToMove);
+                        }
+                    });
                     
                     return null;
                 }
@@ -111,38 +90,5 @@ public class KeyController {
             moveThread.setDaemon(true);
             moveThread.start();
         }
-    }
-
-    private void saveGame(String screen) throws IOException{
-        double x = 0, y = 0;
-        if(screen.equals(MasterController.GAME_SCREEN)) {
-            x = fieldScreen.getAvatar().getPosX();
-            y = fieldScreen.getAvatar().getPosY();
-        } else if(screen.equals(MasterController.TOWN_SCREEN)) {
-            x = townScreen.getAvatar().getPosX();
-            y = fieldScreen.getAvatar().getPosY();
-        } else{
-            //Dungeon?
-        }
-
-        //Here we get the player party
-
-        String data = screen + " " + x + " " + y;
-        String path = System.getProperty("user.home") + "\\Documents\\FFC_Saves";
-
-        File saveLocation = new File(path);
-        if(!saveLocation.exists()){
-            try{
-                saveLocation.mkdir();
-            } catch (SecurityException s) {
-                System.out.println("Save folder could not be created.");
-            }
-        }
-
-        FileOutputStream fos = new FileOutputStream(saveLocation + "/saves.txt");
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-        bw.write(data);
-        bw.close();
-        fos.close();
     }
 }

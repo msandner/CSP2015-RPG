@@ -16,8 +16,6 @@ import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
-import org.csproject.view.MasterController;
-import org.csproject.view.TownScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,12 +37,6 @@ public class ScreensController{
 
     @Autowired
     private FieldScreen fieldScreen;
-
-    @Autowired
-    private TownService townService;
-
-    @Autowired
-    private TownScreen townScreen;
 
     private HashMap<String, Node> screens;
 
@@ -139,27 +131,12 @@ public class ScreensController{
         /*starts a dungeon*/
         //fieldScreen.setScene(worldService.generateDungeon("images/tiles/Dungeon.png", "images/tiles/Outside3.png"));
         /*starts the static map*/
-        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
-        townScreen.setScene(townService.getTown(Constants.TOWN_1));
-    }
-
-    public void setUpLoadGame(String screen, double x, double y){
-        if(screen.equals(MasterController.GAME_SCREEN)){
-            fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP), x, y);
-            townScreen.setScene(townService.getTown(Constants.TOWN_1));
-        } else if(screen.equals(MasterController.TOWN_SCREEN)){
-            fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP));
-            townScreen.setScene(townService.getTown(Constants.TOWN_1), x, y);
-        } else {
-            //Dungeon?
-        }
+        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
     }
 
     public FieldScreen getFieldScreen() {
         return fieldScreen;
     }
-
-    public TownScreen getTownScreen() { return townScreen; }
 
     public PlayerActor getPlayerActor() {
         return worldService.getPlayerActor();
