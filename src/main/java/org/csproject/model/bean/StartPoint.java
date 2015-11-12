@@ -8,8 +8,9 @@ import org.csproject.model.bean.NavigationPoint;
 public class StartPoint extends NavigationPoint {
     private final String name;
 
-    public StartPoint(int x, int y, String name) {
-        super(x, y);
+
+    public StartPoint(int a, int b, String name) {
+        super(a, b);
         this.name = name;
     }
 
