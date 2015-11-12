@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
-import org.csproject.model.actors.Actor;
+import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Field;
 import org.csproject.util.Utilities;
@@ -22,25 +22,18 @@ import static org.csproject.model.Constants.*;
 @Component
 public class WorldServiceImpl implements WorldService {
 
-  @Autowired
-    private ActorFactory actorFactory;
-
     @Autowired
     private FieldFactory fieldFactory;
 
-    private PlayerActor playerActor;
+    private PlayerActor playerActor = new PlayerActor("Test Player", Constants.CLASS_SWORDSMAN, 1, 5, 8); // todo let this do the menu
 
     @Autowired
     private Gson gson;
 
-    public Actor createActor(String name, String type) {
-        return actorFactory.createActor(name, type);
-    }
-
    //creates and returns the walkable Character
     @Override
-    public void setPlayerActor() {
-        this.playerActor = new PlayerActor("Test Player", ActorFactory.KNIGHT,1, 5, 8);
+    public void setPlayerActor(PlayerActor playerActor) {
+        this.playerActor = playerActor;
     }
 
     @Override

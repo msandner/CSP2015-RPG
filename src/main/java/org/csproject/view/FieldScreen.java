@@ -2,16 +2,21 @@ package org.csproject.view;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.*;
-import org.csproject.service.ScreenFactory;
 import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.bean.Direction;
+import org.csproject.model.bean.Field;
+import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.bean.TeleportPoint;
+import org.csproject.model.bean.Tile;
 import org.csproject.service.KeyController;
+import org.csproject.service.ScreenFactory;
 import org.csproject.service.ScreensController;
 import org.csproject.service.WorldService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +30,6 @@ import static org.csproject.model.Constants.*;
 @Component
 public class FieldScreen extends Pane {
 
-    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1.0, 1.0);
     @Autowired
     private ScreensController screensController;
 
@@ -56,10 +60,10 @@ public class FieldScreen extends Pane {
     }
 
     public void setScene(Field field) {
-        setScene(field, "characterStart", TEST_PLAYER);
+        setScene(field, "characterStart");
     }
 
-    public void setScene(Field field, String startPoint, PlayerActor player) {
+    public void setScene(Field field, String startPoint) {
 
         this.field = field;
         getChildren().clear();
@@ -68,15 +72,23 @@ public class FieldScreen extends Pane {
         PlayerActor playerActor = screensController.getPlayerActor();
 
         NavigationPoint start1 = field.getStart(startPoint);
-        double charStartX = start1 == null ? 0 : start1.getX() * TILE_SIZE;
-        double charStartY = start1 == null ? 0 : start1.getY() * TILE_SIZE;
+        final double charStartX = start1 == null ? 0 : start1.getX() * TILE_SIZE;
+        final double charStartY = start1 == null ? 0 : start1.getY() * TILE_SIZE;
 
-        String type = player.getType();
-        String avatarImage = updateCharacterImage(type);
+        String type = playerActor.getType();
+        final String avatarImage = updateCharacterImage(type);
 
         avatar = new CharacterImage(0, 1, charStartX, charStartY, avatarImage);
 
-        getChildren().add(avatar);
+        Platform.runLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                getChildren().add(avatar);
+                moveScreen(avatar.getX(), avatar.getY(), 0, 0, 0);
+            }
+        });
     }
 
     private String updateCharacterImage(String type) {
@@ -156,7 +168,7 @@ public class FieldScreen extends Pane {
                 // arrayoutofbounds
             }
             //System.out.println("Tile groundTile: x=" + column + " y=" + row + " | walkable: " + groundTile.isWalkable());
-            if (groundTile != null && groundTile.isWalkable() && decoTile != null && decoTile.isWalkable()) // if walkable
+            if (groundTile != null && groundTile.isWalkable() && (decoTile == null || decoTile.isWalkable())) // if walkable
             {
                 if (transition == null) {
                     transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
@@ -184,28 +196,7 @@ public class FieldScreen extends Pane {
                     }
                 });
 
-                if (screenTransition == null) {
-                    screenTransition = new TranslateTransition(Duration.seconds(WALK_TIME_PER_TILE), this);
-                }
-                double currentTransX = (avatar.getX() * -1) + SCREEN_WIDTH / 2;
-                double currentTransY = (avatar.getY() * -1) + SCREEN_HEIGHT / 2;
-
-                double transToX = currentTransX - finalX * SCALE;
-                screenTransition.setFromX(getTranslateX());
-                screenTransition.setToX(getTranslateX());
-                if (transToX <= 0 && transToX + field.getWidth() > SCREEN_WIDTH) {
-                    screenTransition.setToX(transToX);
-                }
-
-                screenTransition.setFromY(getTranslateY());
-                screenTransition.setToY(getTranslateY());
-                double transToY = currentTransY - finalY * SCALE;
-                if (transToY <= 0 && transToY + field.getHeight() > SCREEN_HEIGHT) {
-                    screenTransition.setToY(transToY);
-                }
-
-                screenTransition.playFromStart();
-                screenTransition.setInterpolator(Interpolator.LINEAR);
+                moveScreen(avatar.getX(), avatar.getY(), finalX, finalY, WALK_TIME_PER_TILE);
 
                 getAvatar().setWalking(true);
             } else {
@@ -214,7 +205,56 @@ public class FieldScreen extends Pane {
         }
     }
 
-    private CharacterImage getAvatar() {
+  private void moveScreen(double startX, double startY, double moveX, double moveY, double duration)
+  {
+    if (screenTransition == null) {
+        screenTransition = new TranslateTransition(Duration.seconds(duration), this);
+    }
+    screenTransition.setDuration(Duration.seconds(duration));
+
+    double currentTransX = (startX * -1) + SCREEN_WIDTH / 2;
+    double currentTransY = (startY * -1) + SCREEN_HEIGHT / 2;
+
+    double transToX = currentTransX - moveX * SCALE;
+    screenTransition.setFromX(getTranslateX());
+    screenTransition.setToX(getTranslateX());
+    if (transToX > 0) {
+      screenTransition.setToX(0);
+    }
+    else if(transToX <= SCREEN_WIDTH - field.getWidth()) {
+      screenTransition.setToX(SCREEN_WIDTH - field.getWidth());
+    }
+    else {
+        screenTransition.setToX(transToX);
+    }
+
+    screenTransition.setFromY(getTranslateY());
+    screenTransition.setToY(getTranslateY());
+    double transToY = currentTransY - moveY * SCALE;
+    if (transToY > 0){
+      screenTransition.setToY(0);
+    }
+    else if(transToY <= SCREEN_HEIGHT - field.getHeight()) {
+      screenTransition.setToY(SCREEN_HEIGHT - field.getHeight());
+    }
+    else {
+        screenTransition.setToY(transToY);
+    }
+
+    screenTransition.setInterpolator(Interpolator.LINEAR);
+
+    if(duration > 0)
+    {
+      screenTransition.playFromStart();
+    }
+    else
+    {
+      setTranslateX(screenTransition.getToX());
+      setTranslateY(screenTransition.getToY());
+    }
+  }
+
+  private CharacterImage getAvatar() {
         return this.avatar;
     }
 
@@ -227,8 +267,9 @@ public class FieldScreen extends Pane {
         for (TeleportPoint teleportPoint : field.getTeleportPoints()) {
             if(teleportPoint.getX() == x && teleportPoint.getY() == y){
 
-                setScene(worldService.getField(teleportPoint.getTargetField()), teleportPoint.getTargetPoint(),
-                        TEST_PLAYER);
+                transition = null;
+                screenTransition = null;
+                setScene(worldService.getField(teleportPoint.getTargetField()), teleportPoint.getTargetPoint());
 
                 return false;
             }

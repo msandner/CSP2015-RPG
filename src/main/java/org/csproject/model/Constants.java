@@ -19,9 +19,6 @@ public class Constants {
     public static final String WORLD_MAP_1 = "worldMap1";
     public static final String TOWN_1 = "Zennestria";
 
-    public static final int ROW = 20;
-    public static final int COLUMN = 38;
-
     public static final String JSON_DIR = "/";
     public static final String JSON_POST_FIX = ".json";
 

@@ -30210,6 +30210,11 @@
       "name": "test",
       "x": 7,
       "y": 7
+    },
+    {
+      "name": "townStart1",
+      "x": 14,
+      "y": 10
     }
   ],
   "teleportPoints": [

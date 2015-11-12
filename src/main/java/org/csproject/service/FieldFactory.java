@@ -3,6 +3,7 @@ package org.csproject.service;
 import org.csproject.model.Constants;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.bean.StartPoint;
 import org.csproject.model.bean.Tile;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +34,7 @@ public class FieldFactory {
         field.setDecoImage(decoImage);
 
         // Binary Space Partitioning
-        this.bsp = getEmptyBsp();
+        this.bsp = getEmptyBsp(50, 50);
         this.bsp = createFullBsp(bsp, 4);
 
         Tile[][] groundTiles = createGround(bsp, GRASS);
@@ -52,7 +53,7 @@ public class FieldFactory {
         field.setDecoImage(decoImage);
 
         // Binary Space Partitioning
-        this.bsp = getEmptyBsp();
+        this.bsp = getEmptyBsp(50, 50);
         this.bsp = createFullBsp(bsp, 4);
 
         Tile[][] groundTiles = createGround(bsp, STONEFLOOR);
@@ -60,6 +61,8 @@ public class FieldFactory {
 
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
+
+        field.getStartPoints().add(new StartPoint(5, 5, "todo:deleteMe"));
 
         return field;
     }
@@ -92,11 +95,11 @@ public class FieldFactory {
         return tiles;
     }
 
-    public Boolean[][] getEmptyBsp() {
-        Boolean[][] bsp = new Boolean[Constants.ROW][Constants.COLUMN];
+    public Boolean[][] getEmptyBsp(int rowNum, int colNum) {
+        Boolean[][] bsp = new Boolean[rowNum][colNum];
         for (int row = 0; row < bsp.length; row++) {
             //switched the row and column accidentaly, still works
-            bsp[row] = new Boolean[Constants.COLUMN];
+            bsp[row] = new Boolean[colNum];
             for (int col = 0; col < bsp[row].length; col++) {
                 bsp[row][col] = false;
             }

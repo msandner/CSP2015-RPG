@@ -52,13 +52,10 @@ public class StartMenuController implements ControlledScreen {
         double y = Double.parseDouble(tokens[2]);
 
         // display new game on field
-        screenController.setUpLoadGame(screen, x, y);
+//        screenController.setUpLoadGame(screen, x, y);
 
         // add field as game screen
         screenController.addScreen(MasterController.GAME_SCREEN, screenController.getFieldScreen());
-
-        //add town as town screen
-        screenController.addScreen(MasterController.TOWN_SCREEN, screenController.getTownScreen());
 
         // switch screen to game screen or town screen
         if(screen.equals(MasterController.GAME_SCREEN)) {
