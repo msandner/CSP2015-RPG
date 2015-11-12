@@ -81,15 +81,10 @@ public class WorldServiceImpl implements WorldService {
     }
 
     @Override
-    public Field generateField(String groundImage, String decoImage){
-
-        return fieldFactory.generateField(groundImage, decoImage);
+    public Field generateField(String type){
+        return fieldFactory.generateNewField(type);
     }
 
-    @Override
-    public Field generateDungeon(String groundImage, String decoImage) {
-        return fieldFactory.generateDungeon(groundImage, decoImage);
-    }
 
     private void saveFile(String fileName, String json) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(this.getClass().getResource(fileName).getPath()));

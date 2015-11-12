@@ -26,7 +26,6 @@ public interface WorldService {
 
     Field getField(String fieldName);
 
-    Field generateField(String groundImage, String decoImage);
+    Field generateField(String type);
 
-    Field generateDungeon(String groundImage, String decoImage);
 }

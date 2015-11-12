@@ -35,6 +35,7 @@ public class ScreenFactory {
         String groundImage = field.getGroundImage();
         String decoImage = field.getDecoImage();
 
+
         Group ground = convert(groundMatrix, Constants.CS_DIR + groundImage + Constants.CS_POST_FIX, null);
         Group deco = convert(decoTiles, Constants.CS_DIR + decoImage + Constants.CS_POST_FIX, null);
 

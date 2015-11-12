@@ -126,12 +126,12 @@ public class ScreensController{
     }
 
     public void setUpNewGame() {
-        /*starts the a map*/
-       // fieldScreen.setScene(worldService.generateField("Outside", "Outside3"));
+        /*starts a overworld*/
+        fieldScreen.setScene(worldService.generateField("overworld"));
         /*starts a dungeon*/
-       // fieldScreen.setScene(worldService.generateDungeon("Dungeon", "Outside3"));
+        //fieldScreen.setScene(worldService.generateField("dungeon"));
         /*starts the static map*/
-       fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
+        //fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
     }
 
     public FieldScreen getFieldScreen() {

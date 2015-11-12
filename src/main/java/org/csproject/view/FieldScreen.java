@@ -30,6 +30,7 @@ import static org.csproject.model.Constants.*;
 @Component
 public class FieldScreen extends Pane {
 
+    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1.0, 1.0);
     @Autowired
     private ScreensController screensController;
 
@@ -80,11 +81,9 @@ public class FieldScreen extends Pane {
 
         avatar = new CharacterImage(0, 1, charStartX, charStartY, avatarImage);
 
-        Platform.runLater(new Runnable()
-        {
+        Platform.runLater(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 getChildren().add(avatar);
                 moveScreen(avatar.getX(), avatar.getY(), 0, 0, 0);
             }

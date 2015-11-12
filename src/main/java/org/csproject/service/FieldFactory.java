@@ -26,8 +26,21 @@ public class FieldFactory {
 
     Boolean[][] bsp;
 
-    //generates a Dungeon with a tiled image for the groundtiles and a tiled image for the decorations
-    public Field generateField(String groundImage, String decoImage) {
+    //generates a field with a tiled image for the groundtiles and a tiled image for the decorations
+
+    public Field generateNewField(String type) {
+        if (type.equals("overworld")) {
+            return generateField("Outside", "Outside3", GRASS, TREE);
+        } else if (type.equals("dungeon")) {
+            return generateField("Dungeon", "Outside3", STONEFLOOR, ROCK);
+        } else {
+            System.out.println("wrong type");
+            return null;
+        }
+    }
+
+
+    private Field generateField(String groundImage, String decoImage, Tile tileground, Tile tiledeco) {
         Field field = new Field();
 
         field.setGroundImage(groundImage);
@@ -35,36 +48,33 @@ public class FieldFactory {
 
         // Binary Space Partitioning
         this.bsp = getEmptyBsp(50, 50);
-        this.bsp = createFullBsp(bsp, 4);
+        this.bsp = createFullBsp(bsp, 5);
 
-        Tile[][] groundTiles = createGround(bsp, GRASS);
-        Tile[][] decoTiles = createDeco(bsp, TREE);
+        Tile[][] groundTiles = createGround(bsp, tileground);
+        Tile[][] decoTiles = createDeco(bsp, tiledeco);
 
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
+
 
         return field;
     }
 
-    public Field generateDungeon(String groundImage, String decoImage) {
-        Field field = new Field();
+    private NavigationPoint setNewStartPoint(Tile[][] ground) {
+        NavigationPoint start = new StartPoint(0,0, "start");
 
-        field.setGroundImage(groundImage);
-        field.setDecoImage(decoImage);
-
-        // Binary Space Partitioning
-        this.bsp = getEmptyBsp(50, 50);
-        this.bsp = createFullBsp(bsp, 4);
-
-        Tile[][] groundTiles = createGround(bsp, STONEFLOOR);
-        Tile[][] decoTiles = createDeco(bsp, ROCK);
-
-        field.setGroundTiles(groundTiles);
-        field.setDecoTiles(decoTiles);
-
-        field.getStartPoints().add(new StartPoint(5, 5, "todo:deleteMe"));
-
-        return field;
+        outerloop:
+        for(int i = 0; i < ground[0].length; i++) {
+            for(int j = 0; j < ground.length; j++) {
+                if(ground[i][j].isWalkable()) {
+                    start.setX(j);
+                    start.setY(i);
+                    System.out.println("x = "+ i + ", y = " + j);
+                    break outerloop;
+                }
+            }
+        }
+        return start;
     }
 
     private Tile[][] createGround(Boolean[][] bsp, Tile a) {
@@ -82,38 +92,40 @@ public class FieldFactory {
         return tiles;
     }
 
-    private Tile[][] createDeco(Boolean[][] bsp, Tile a) {
+    public Tile[][] createDeco(Boolean[][] bsp, Tile a) {
         int width = bsp[0].length;
         int height = bsp.length;
         Tile[][] tiles = new Tile[height][width];
         for (int row = 0; row < bsp.length; row++) {
             for (int col = 0; col < bsp[0].length; col++) {
-                if(bsp[row][col] == null)
-                tiles[row][col] = a;
+                if(bsp[row][col] == null) {
+                    tiles[row][col] = a;
+                    System.out.println(tiles[row][col].isWalkable());
+                }
             }
         }
         return tiles;
     }
 
-    public Boolean[][] getEmptyBsp(int rowNum, int colNum) {
-        Boolean[][] bsp = new Boolean[rowNum][colNum];
-        for (int row = 0; row < bsp.length; row++) {
+    public Boolean[][] getEmptyBsp(int row, int col) {
+        Boolean[][] bsp = new Boolean[row][col];
+        for (int i_row = 0; row < bsp.length; i_row++) {
             //switched the row and column accidentaly, still works
-            bsp[row] = new Boolean[colNum];
-            for (int col = 0; col < bsp[row].length; col++) {
-                bsp[row][col] = false;
+            bsp[row] = new Boolean[col];
+            for (int i_col = 0; col < bsp[i_row].length; i_col++) {
+                bsp[i_row][i_col] = false;
             }
         }
         return bsp;
     }
 
-    private Boolean[][] createFullBsp(Boolean[][] bsp, int count) {
+    public Boolean[][] createFullBsp(Boolean[][] bsp, int count) {
         if(count == 0){
-            return bsp; // todo raum rein schneiden
+            return bsp;
         }
 
-        int width = bsp[0].length;
         int height = bsp.length;
+        int width = bsp[0].length;
 
         // todo
 //        if( width < DEAD_ZONE * 2 + 1 || height < DEAD_ZONE * 2 + 1)
@@ -129,7 +141,6 @@ public class FieldFactory {
         // calc the random factor
         double rndSum = 0.0;
         for (int i = 0; i < NORM_FACTOR; i++) {
-
             rndSum += Math.random();
         }
         double rnd = rndSum / NORM_FACTOR;
@@ -137,7 +148,7 @@ public class FieldFactory {
         {
             rnd = DEAD_ZONE;
         }
-        else if(rnd >= 1.0 - DEAD_ZONE)
+        else if(rnd >= (1.0 - DEAD_ZONE))
         {
             rnd = 1.0 - DEAD_ZONE;
         }
