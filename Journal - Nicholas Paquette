@@ -8,3 +8,14 @@ Journal - Nicholas Paquette
 10/6, 12:00 - 1:30: Exported more images from RPGM-VXA, continued to try to set character to exported image, realised Brett had exported images himself and committed.
 10/14, 10:00 - 12:00: Worked on Sprint 1 Report.
 10/14, 3:30 - 4:30: Group call with team to discuss sprint 1 presentation.
+10/25, 2:00 - 3:00: Worked on creating currency system.
+10/29, 12:00 - 1:00: Created party class, began working on items.
+10/31, 12:00 - 1:00: Continued working on items and created basis for magic.
+11/1, 4:00 - 5:00: Worked on spreadsheet containing individual item values
+11/2, 2:00 - 3:00: Continued working on items spreadsheet.
+11/3, 1:00 - 3:00: Began researching how to save and load files.
+11/4, 2:00 - 3:00: Researched how to save using serializable.
+11/5, 4:00 - 5:00: Began creating spreadsheet for monsters.
+11/6, 2:00 - 4:00: Continued working on spreadsheets and trying to implement serializable.
+11/10, 5:00 - 6:00: Gave up trying to use serializable for saving, resorted to writing saves to text files in appdata.
+11/11, 12:00 - 1:00: Couldn't commit changes. Had to redo file saving to work with updated project. (No more town field)
