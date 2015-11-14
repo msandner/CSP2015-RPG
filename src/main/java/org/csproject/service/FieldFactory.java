@@ -1,6 +1,5 @@
 package org.csproject.service;
 
-import org.csproject.model.Constants;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
 import org.csproject.model.bean.StartPoint;
@@ -18,11 +17,14 @@ public class FieldFactory {
     public static final int NORM_FACTOR = 2;
     public static final int PATH_WIDTH = 2;
     public static final double DEAD_ZONE = 0.2;
+    public static final int ENEMY_ENCOUNTER_PERCENTAGE = 10;
 
     public static final Tile GRASS = new Tile(0,0, true);
     public static final Tile TREE = new Tile(6, 12, false);
     public static final Tile ROCK = new Tile(7, 12, false);
     public static final Tile STONEFLOOR = new Tile(0, 3,true);
+
+    boolean enemyencounter = false;
 
     Boolean[][] bsp;
 
@@ -56,20 +58,21 @@ public class FieldFactory {
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
 
+        field.getStartPoints().add((StartPoint) setNewStartPoint(decoTiles, groundTiles));
 
         return field;
     }
 
-    private NavigationPoint setNewStartPoint(Tile[][] ground) {
+
+    private NavigationPoint setNewStartPoint(Tile[][] deco, Tile[][] ground) {
         NavigationPoint start = new StartPoint(0,0, "start");
 
         outerloop:
-        for(int i = 0; i < ground[0].length; i++) {
-            for(int j = 0; j < ground.length; j++) {
-                if(ground[i][j].isWalkable()) {
-                    start.setX(j);
-                    start.setY(i);
-                    System.out.println("x = "+ i + ", y = " + j);
+        for(int i = 0; i < deco.length; i++) {
+            for(int j = 0; j < deco[0].length; j++) {
+                if(deco[i][j] == null && ground[i][j] != null) {
+                    start = new StartPoint(j, i, "start");
+                    System.out.println("x = "+ start.getX() + ", y = " + start.getY());
                     break outerloop;
                 }
             }
@@ -100,7 +103,6 @@ public class FieldFactory {
             for (int col = 0; col < bsp[0].length; col++) {
                 if(bsp[row][col] == null) {
                     tiles[row][col] = a;
-                    System.out.println(tiles[row][col].isWalkable());
                 }
             }
         }
@@ -126,12 +128,6 @@ public class FieldFactory {
 
         int height = bsp.length;
         int width = bsp[0].length;
-
-        // todo
-//        if( width < DEAD_ZONE * 2 + 1 || height < DEAD_ZONE * 2 + 1)
-//        {
-//            return bsp;
-//        }
 
         boolean splitHorizontally = (width >= height);
 
@@ -186,8 +182,7 @@ public class FieldFactory {
                     }
                 }
             }
-        }
-        else{
+        } else{
             for(int row = 0; row < height; ++row){
                 for(int col = 0; col <width; ++col){
                     //if the current coordinate lies on the path between the first and the second block, its walkable (bsp =true)
