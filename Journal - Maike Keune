@@ -42,4 +42,5 @@
  12.11.2015 10:00 - 14:00 MESZ: planning/researching for random map generation
  12.11.2015 20:00 - 21:10 MESZ: skype chat meeting about task sheet
  18.11.2015 17:28 - 19:30 MESZ: working on generateDungeon method.
-Total time yet: 69 hours 08 minutes
+ 20.11.2015 21:45 - 23:34 MESZ: generateDungeon method now generates marks where rooms will be placed in the future. Bug fixing on dungeonGenerator.
+Total time yet: 70 hours 57 minutes
