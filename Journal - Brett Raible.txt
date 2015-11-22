@@ -27,5 +27,6 @@ CIS 467
 11/09: Began event model, added (etc):    8:00 to 10:00 - 2 hours 00 mins
 11/10: Attempted debugging of movement:   3:30 to  4:30 - 1 hour  00 mins
 11/13: Game starts faster, less screens:  2:00 to  2:20 - 0 hours 20 mins
+11/22: Began battle screen:               3:30 to  5:00 - 1 hour  30 mins
 ----------------------------------------------------------------------------
-Total:                                                   41 hours 52 mins
+Total:                                                   43 hours 22 mins
