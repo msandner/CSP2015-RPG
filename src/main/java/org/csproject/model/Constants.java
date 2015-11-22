@@ -31,7 +31,7 @@ public class Constants {
     public static final String CS_HOUSE_TILES = "HouseTiles";
 
     public static final String CLASS_SWORDSMAN = "swordsman";
-    public static final String CLASS_KNIGHT = "thief";
+    public static final String CLASS_KNIGHT = "knight";
     public static final String CLASS_MAGE = "mage";
     public static final String CLASS_THIEF = "thief";
 
