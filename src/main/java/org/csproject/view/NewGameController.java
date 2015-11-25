@@ -37,9 +37,6 @@ public class NewGameController implements ControlledScreen {
         // add field as game screen
         screenController.addScreen(MasterController.GAME_SCREEN, screenController.getFieldScreen());
 
-        //add town as town screen
-//        screenController.addScreen(MasterController.TOWN_SCREEN, screenController.getTownScreen());
-
         // switch screen to game screen
         screenController.setScreen(MasterController.GAME_SCREEN);
 //        }

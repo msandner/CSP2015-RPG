@@ -9,9 +9,9 @@
 
 <GridPane fx:id="startMenuPane" alignment="CENTER" disable="false" gridLinesVisible="false" prefHeight="650.0" prefWidth="1200.0" scaleX="1.0" styleClass="default" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.StartMenuController">
   <children>
-    <Pane id="default.css" prefHeight="650.0" prefWidth="1200.0" style="" styleClass="default" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <Pane id="default.css" prefHeight="720.0" prefWidth="1280.0" style="" styleClass="default" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <ImageView id="Book.png" fitHeight="650.0" fitWidth="1199.999977929685" layoutX="0.0" layoutY="0.0">
+        <ImageView id="Book.png" fitHeight="720.0" fitWidth="1280.0" layoutX="0.0" layoutY="0.0">
           <image>
             <Image url="@images/titlescreens/Book.png" preserveRatio="true" smooth="true" />
           </image>

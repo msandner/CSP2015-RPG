@@ -65,29 +65,29 @@ public class TileChunks {
         Random rn = new Random();
         int i = rn.nextInt(boundx-3); //'-3' because I have to add +3 when calculating the position
         int j = rn.nextInt(boundy-3);
-        Tile[][] treetest = Trees4x4();
+        Tile[][] tree = Trees4x4();
 
-        if(matrix[i][j] != treetest[0][0]) {
+        if(matrix[i][j] != tree[0][0]) {
             //calculating the position
-            matrix[i][j] = treetest[0][0];
-            matrix[i][j + 1] = treetest[0][1];
-            matrix[i][j + 2] = treetest[0][2];
-            matrix[i][j + 3] = treetest[0][3];
+            matrix[i][j] = tree[0][0];
+            matrix[i][j + 1] = tree[0][1];
+            matrix[i][j + 2] = tree[0][2];
+            matrix[i][j + 3] = tree[0][3];
 
-            matrix[i + 1][j] = treetest[1][0];
-            matrix[i + 1][j + 1] = treetest[1][1];
-            matrix[i + 1][j + 2] = treetest[1][2];
-            matrix[i + 1][j + 3] = treetest[1][3];
+            matrix[i + 1][j] = tree[1][0];
+            matrix[i + 1][j + 1] = tree[1][1];
+            matrix[i + 1][j + 2] = tree[1][2];
+            matrix[i + 1][j + 3] = tree[1][3];
 
-            matrix[i + 2][j] = treetest[2][0];
-            matrix[i + 2][j + 1] = treetest[2][1];
-            matrix[i + 2][j + 2] = treetest[2][2];
-            matrix[i + 2][j + 3] = treetest[2][3];
+            matrix[i + 2][j] = tree[2][0];
+            matrix[i + 2][j + 1] = tree[2][1];
+            matrix[i + 2][j + 2] = tree[2][2];
+            matrix[i + 2][j + 3] = tree[2][3];
 
-            matrix[i + 3][j] = treetest[3][0];
-            matrix[i + 3][j + 1] = treetest[3][1];
-            matrix[i + 3][j + 2] = treetest[3][2];
-            matrix[i + 3][j + 3] = treetest[3][3];
+            matrix[i + 3][j] = tree[3][0];
+            matrix[i + 3][j + 1] = tree[3][1];
+            matrix[i + 3][j + 2] = tree[3][2];
+            matrix[i + 3][j + 3] = tree[3][3];
         } else {
             i = rn.nextInt(boundx);
             j = rn.nextInt(boundy);
@@ -97,4 +97,46 @@ public class TileChunks {
         return matrix;
     }
 
+    public Tile[][] Hole2x2() {
+
+        String strimage = "images/tiles/Outside.png";
+
+        Tile uple = new Tile(10, 7, false, strimage);
+        Tile upri = new Tile(11, 7, false, strimage);
+        Tile dole = new Tile(10, 8, false, strimage);
+        Tile dori = new Tile(11,8, false, strimage);
+
+        Tile[][] holetiles = new Tile[2][2];
+
+        holetiles[0][0] = uple;
+        holetiles[0][1] = upri;
+        holetiles[1][0] = dole;
+        holetiles[1][1] = dori;
+
+        return holetiles;
+
     }
+
+    public Tile[][] waterhole2x2() {
+
+        String strimage = "images/tiles/Outside.png";
+
+        Tile[][] waterholetiles = new Tile[2][2];
+
+        Tile uple = new Tile(14, 9, false, strimage);
+        Tile upri = new Tile(15, 9, false, strimage);
+        Tile dole = new Tile(14, 10, false, strimage);
+        Tile dori = new Tile(15, 10, false, strimage);
+
+        waterholetiles[0][0] = uple;
+        waterholetiles[0][1] = upri;
+        waterholetiles[1][0] = dole;
+        waterholetiles[1][1] = dori;
+
+        return waterholetiles;
+
+    }
+
+
+
+}

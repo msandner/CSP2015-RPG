@@ -20,6 +20,10 @@ public class MasterController extends Application {
     public static final String GAME_SCREEN = "gameScreen";
     public static final String TOWN_SCREEN = "townScreen";
 
+    //Switch these two statements to start the game faster/slower
+    public static final boolean fastStart = true;
+//    public static final boolean fastStart = false;
+
     private static AnnotationConfigApplicationContext context;
 
     public static void main(String[] args) {
@@ -39,13 +43,28 @@ public class MasterController extends Application {
 
         screensController = context.getBean(ScreensController.class);
 
-        screensController.loadScreen(START_MENU_ID, START_MENU_FILE);
-        screensController.loadScreen(NEW_GAME_ID, NEW_GAME_FILE);
-        screensController.setScreen(START_MENU_ID);
+        if (!fastStart) {
+            screensController.loadScreen(START_MENU_ID, START_MENU_FILE);
+            screensController.loadScreen(NEW_GAME_ID, NEW_GAME_FILE);
+            screensController.setScreen(START_MENU_ID);
 
-        Group root = new Group();
-        root.getChildren().addAll(screensController.getRoot());
-        primaryStage.setScene(new Scene(root));
+
+            Group root = new Group();
+            root.getChildren().addAll(screensController.getRoot());
+            primaryStage.setScene(new Scene(root));
+        } else {
+            /*Skip the beginning scenes and start the game right away.
+             * Change the values in the ScreensController class (setUpNewGame() function)
+             * to view different scenes like the static map, dungeon, forest, etc
+             */
+            screensController.setUpNewGame();
+            screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
+            screensController.setScreen(GAME_SCREEN);
+            Group root = new Group();
+            root.getChildren().addAll(screensController.getRoot());
+            primaryStage.setScene(new Scene(root));
+        }
+
         primaryStage.show();
     }
 }

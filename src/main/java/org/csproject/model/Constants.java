@@ -19,9 +19,6 @@ public class Constants {
     public static final String WORLD_MAP_1 = "worldMap1";
     public static final String TOWN_1 = "Zennestria";
 
-    public static final int ROW = 20;
-    public static final int COLUMN = 38;
-
     public static final String JSON_DIR = "/";
     public static final String JSON_POST_FIX = ".json";
 
@@ -34,7 +31,7 @@ public class Constants {
     public static final String CS_HOUSE_TILES = "HouseTiles";
 
     public static final String CLASS_SWORDSMAN = "swordsman";
-    public static final String CLASS_KNIGHT = "thief";
+    public static final String CLASS_KNIGHT = "knight";
     public static final String CLASS_MAGE = "mage";
     public static final String CLASS_THIEF = "thief";
 

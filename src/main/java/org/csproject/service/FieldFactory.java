@@ -1,8 +1,8 @@
 package org.csproject.service;
 
-import org.csproject.model.Constants;
 import org.csproject.model.bean.Field;
 import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.bean.StartPoint;
 import org.csproject.model.bean.Tile;
 import org.springframework.stereotype.Component;
 
@@ -17,51 +17,67 @@ public class FieldFactory {
     public static final int NORM_FACTOR = 2;
     public static final int PATH_WIDTH = 2;
     public static final double DEAD_ZONE = 0.2;
+    public static final int ENEMY_ENCOUNTER_PERCENTAGE = 10;
 
     public static final Tile GRASS = new Tile(0,0, true);
     public static final Tile TREE = new Tile(6, 12, false);
     public static final Tile ROCK = new Tile(7, 12, false);
     public static final Tile STONEFLOOR = new Tile(0, 3,true);
 
+    boolean enemyencounter = false;
+
     Boolean[][] bsp;
 
-    //generates a Dungeon with a tiled image for the groundtiles and a tiled image for the decorations
-    public Field generateField(String groundImage, String decoImage) {
+    //generates a field with a tiled image for the groundtiles and a tiled image for the decorations
+
+    public Field generateNewField(String type) {
+        if (type.equals("overworld")) {
+            return generateField("Outside", "Outside3", GRASS, TREE);
+        } else if (type.equals("dungeon")) {
+            return generateField("Dungeon", "Outside3", STONEFLOOR, ROCK);
+        } else {
+            System.out.println("wrong type");
+            return null;
+        }
+    }
+
+
+    private Field generateField(String groundImage, String decoImage, Tile tileground, Tile tiledeco) {
         Field field = new Field();
 
         field.setGroundImage(groundImage);
         field.setDecoImage(decoImage);
 
         // Binary Space Partitioning
-        this.bsp = getEmptyBsp();
-        this.bsp = createFullBsp(bsp, 4);
+        this.bsp = getEmptyBsp(50, 50);
+        this.bsp = createFullBsp(bsp, 5);
 
-        Tile[][] groundTiles = createGround(bsp, GRASS);
-        Tile[][] decoTiles = createDeco(bsp, TREE);
+        Tile[][] groundTiles = createGround(bsp, tileground);
+        Tile[][] decoTiles = createDeco(bsp, tiledeco);
 
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
+
+        field.getStartPoints().add((StartPoint) setNewStartPoint(decoTiles, groundTiles));
 
         return field;
     }
 
-    public Field generateDungeon(String groundImage, String decoImage) {
-        Field field = new Field();
 
-        field.setGroundImage(groundImage);
-        field.setDecoImage(decoImage);
+    private NavigationPoint setNewStartPoint(Tile[][] deco, Tile[][] ground) {
+        NavigationPoint start = new StartPoint(0,0, "start");
 
-        // Binary Space Partitioning
-        this.bsp = getEmptyBsp();
-        this.bsp = createFullBsp(bsp, 4);
-
-        Tile[][] groundTiles = createGround(bsp, STONEFLOOR);
-        Tile[][] decoTiles = createDeco(bsp, ROCK);
-
-        field.setGroundTiles(groundTiles);
-        field.setDecoTiles(decoTiles);
-
-        return field;
+        outerloop:
+        for(int i = 0; i < deco.length; i++) {
+            for(int j = 0; j < deco[0].length; j++) {
+                if(deco[i][j] == null && ground[i][j] != null) {
+                    start = new StartPoint(j, i, "start");
+                    System.out.println("x = "+ start.getX() + ", y = " + start.getY());
+                    break outerloop;
+                }
+            }
+        }
+        return start;
     }
 
     private Tile[][] createGround(Boolean[][] bsp, Tile a) {
@@ -79,44 +95,39 @@ public class FieldFactory {
         return tiles;
     }
 
-    private Tile[][] createDeco(Boolean[][] bsp, Tile a) {
+    public Tile[][] createDeco(Boolean[][] bsp, Tile a) {
         int width = bsp[0].length;
         int height = bsp.length;
         Tile[][] tiles = new Tile[height][width];
         for (int row = 0; row < bsp.length; row++) {
             for (int col = 0; col < bsp[0].length; col++) {
-                if(bsp[row][col] == null)
-                tiles[row][col] = a;
+                if(bsp[row][col] == null) {
+                    tiles[row][col] = a;
+                }
             }
         }
         return tiles;
     }
 
-    public Boolean[][] getEmptyBsp() {
-        Boolean[][] bsp = new Boolean[Constants.ROW][Constants.COLUMN];
-        for (int row = 0; row < bsp.length; row++) {
+    public Boolean[][] getEmptyBsp(int row, int col) {
+        Boolean[][] bsp = new Boolean[row][col];
+        for (int i_row = 0; row < bsp.length; i_row++) {
             //switched the row and column accidentaly, still works
-            bsp[row] = new Boolean[Constants.COLUMN];
-            for (int col = 0; col < bsp[row].length; col++) {
-                bsp[row][col] = false;
+            bsp[row] = new Boolean[col];
+            for (int i_col = 0; col < bsp[i_row].length; i_col++) {
+                bsp[i_row][i_col] = false;
             }
         }
         return bsp;
     }
 
-    private Boolean[][] createFullBsp(Boolean[][] bsp, int count) {
+    public Boolean[][] createFullBsp(Boolean[][] bsp, int count) {
         if(count == 0){
-            return bsp; // todo raum rein schneiden
+            return bsp;
         }
 
-        int width = bsp[0].length;
         int height = bsp.length;
-
-        // todo
-//        if( width < DEAD_ZONE * 2 + 1 || height < DEAD_ZONE * 2 + 1)
-//        {
-//            return bsp;
-//        }
+        int width = bsp[0].length;
 
         boolean splitHorizontally = (width >= height);
 
@@ -126,7 +137,6 @@ public class FieldFactory {
         // calc the random factor
         double rndSum = 0.0;
         for (int i = 0; i < NORM_FACTOR; i++) {
-
             rndSum += Math.random();
         }
         double rnd = rndSum / NORM_FACTOR;
@@ -134,7 +144,7 @@ public class FieldFactory {
         {
             rnd = DEAD_ZONE;
         }
-        else if(rnd >= 1.0 - DEAD_ZONE)
+        else if(rnd >= (1.0 - DEAD_ZONE))
         {
             rnd = 1.0 - DEAD_ZONE;
         }
@@ -172,8 +182,7 @@ public class FieldFactory {
                     }
                 }
             }
-        }
-        else{
+        } else{
             for(int row = 0; row < height; ++row){
                 for(int col = 0; col <width; ++col){
                     //if the current coordinate lies on the path between the first and the second block, its walkable (bsp =true)

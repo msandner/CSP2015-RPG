@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.BattleScreen">
+  <children>
+    <ImageView fx:id="battleScreenBGTop" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+    <ImageView id="battleScreenBGTop" fx:id="battleScreenBGBottom" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+    <HBox layoutX="0.0" layoutY="538.0" prefHeight="182.0" prefWidth="1280.0">
+      <children>
+        <HBox fx:id="enemyNames" prefHeight="182.0" prefWidth="388.9998779296875">
+          <children>
+            <VBox prefHeight="182.0" prefWidth="191.0" />
+            <VBox prefHeight="182.0" prefWidth="159.0" />
+          </children>
+        </HBox>
+        <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
+          <children>
+            <Label alignment="CENTER" prefHeight="47.0" prefWidth="177.0" text="Attack">
+              <font>
+                <Font name="System Bold Italic" size="18.0" fx:id="x1" />
+              </font>
+            </Label>
+            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Magic" />
+            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Items" />
+            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Run" />
+          </children>
+        </VBox>
+        <HBox prefHeight="182.0" prefWidth="714.0">
+          <children>
+            <VBox fx:id="playerNames" prefHeight="182.0" prefWidth="131.0">
+              <children>
+                <Label fx:id="player1Name" alignment="CENTER" prefHeight="62.0" prefWidth="176.0" text="player1Name" />
+                <Label fx:id="player2Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="176.0" text="player2Name" />
+                <Label fx:id="player3Name" alignment="CENTER" prefHeight="62.0" prefWidth="176.0" text="player3Name" />
+              </children>
+            </VBox>
+            <VBox fx:id="playerHP" prefHeight="182.0" prefWidth="270.0">
+              <children>
+                <Label fx:id="player1HPText" prefWidth="269.0" text="player1HPText" />
+                <ProgressBar fx:id="player1HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                  <VBox.margin>
+                    <Insets bottom="13.0" />
+                  </VBox.margin>
+                </ProgressBar>
+                <Label fx:id="player2HPText" prefWidth="269.0" text="player2HPText" />
+                <ProgressBar fx:id="player2HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                  <VBox.margin>
+                    <Insets bottom="15.0" />
+                  </VBox.margin>
+                </ProgressBar>
+                <Label fx:id="player3HPText" prefWidth="269.0" text="player3HPText" />
+                <ProgressBar id="player3Bar" fx:id="player3HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" />
+              </children>
+              <padding>
+                <Insets top="5.0" />
+              </padding>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </VBox>
+            <VBox id="playerHP" prefHeight="182.0" prefWidth="270.0">
+              <children>
+                <Label id="player1HPText" fx:id="player1MPText" prefWidth="269.0" text="player1MPText" />
+                <ProgressBar id="player1HPBar" fx:id="player1MPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                  <VBox.margin>
+                    <Insets bottom="13.0" />
+                  </VBox.margin>
+                </ProgressBar>
+                <Label id="player2HPText" fx:id="player2MPText" prefWidth="269.0" text="player2MPText" />
+                <ProgressBar id="player2HPBar" fx:id="player2MPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                  <VBox.margin>
+                    <Insets bottom="15.0" />
+                  </VBox.margin>
+                </ProgressBar>
+                <Label id="player3HPText" fx:id="player3MPText" prefWidth="269.0" text="player3MPText" />
+                <ProgressBar id="player3Bar" fx:id="player3MPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" />
+              </children>
+              <padding>
+                <Insets top="5.0" />
+              </padding>
+              <HBox.margin>
+                <Insets left="20.0" />
+              </HBox.margin>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+    </HBox>
+    <VBox fx:id="characterBox" layoutX="895.0" layoutY="258.0" prefHeight="280.0" prefWidth="251.0" />
+  </children>
+</AnchorPane>
