@@ -1,41 +1,62 @@
 package org.csproject.view;
 
+import javafx.animation.TranslateTransition;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Brett on 11/22/2015.
  */
-public class BattleScreen {
+public class BattleScreen extends Pane {
 
     public ImageView battleScreenBGTop;
     public ImageView battleScreenBGBottom;
     public HBox enemyNames;
-    public VBox commandBox, playerNames, playerHP, characterBox;
+    public VBox commandBox, playerNames, playerHP;
     public Label player1Name, player2Name, player3Name;
     public Label player1HPText, player2HPText, player3HPText;
     public Label player1MPText, player2MPText, player3MPText;
     public ProgressBar player1HPBar, player2HPBar, player3HPBar;
     public ProgressBar player1MPBar, player2MPBar, player3MPBar;
+    public ImageView enemyImage1, enemyImage2, enemyImage3, enemyImage4, enemyImage5, enemyImage6;
+    public ImageView charImage1, charImage2, charImage3;
+    public Button attackButton, magicButton, itemsButton, runButton;
 
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
+    ImageView[] enemyImages;
+    TranslateTransition moveChar;
 
     public BattleScreen() {
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
+        enemyImages = new ImageView[6];
+        enemyImages[0] = (enemyImage1);
+        enemyImages[1] = (enemyImage2);
+        enemyImages[2] = (enemyImage3);
+        enemyImages[3] = (enemyImage4);
+        enemyImages[4] = (enemyImage5);
+        enemyImages[5] = (enemyImage6);
+        moveChar = new TranslateTransition(Duration.seconds(.25));
+        moveChar.setFromX(0);
+        moveChar.setToX(-25);
     }
 
     public void startNewBattle(PlayerActor[] players, List enemyActors) {
-        clearEnemyNames();
+        setEnemies(enemyActors);
         setPlayers(players[0], players[1], players[2]);
     }
 
@@ -82,8 +103,61 @@ public class BattleScreen {
 
         clearPlayerImages();
 
-        characterBox.getChildren().add(getCharacterImage(char1.getType()));
-        //TODO MORE THINGS HERE
+        charImage1 = getCharacterImage(char1.getType());
+        charImage2 = getCharacterImage(char2.getType());
+        charImage3 = getCharacterImage(char3.getType());
+    }
+
+    public void setPlayerHealth(int character, int health) {
+        switch(character) {
+            case 0:
+                player1HPText.setText(Integer.toString(health) + "/" + Integer.toString(char1MaxHP));
+                player1HPBar.setProgress(health/char1MaxHP);
+            case 1:
+                player2HPText.setText(Integer.toString(health) + "/" + Integer.toString(char2MaxHP));
+                player2HPBar.setProgress(health/char2MaxHP);
+            case 2:
+                player3HPText.setText(Integer.toString(health) + "/" + Integer.toString(char3MaxHP));
+                player3HPBar.setProgress(health/char3MaxHP);
+            default:
+                //???
+        }
+    }
+
+    public void attackEnemy(int character, int enemy) {
+        if(character == 0) {
+            moveChar.setNode(charImage1);
+            moveChar.playFromStart();
+        } else if (character == 1) {
+            moveChar.setNode(charImage1);
+            moveChar.playFromStart();
+        } else if (character == 2) {
+            moveChar.setNode(charImage1);
+            moveChar.playFromStart();
+        }
+
+        //TODO stack an attack animation over an enemy image
+    }
+
+    public void removeEnemy(int enemy) {
+        enemyImages[enemy].setImage(null);
+        updateEnemyImages();
+    }
+
+    private void setEnemies(List<Monster> enemyList) {
+        clearEnemyNames();
+        clearEnemyImages();
+
+        int boxToUse = 0;
+
+        for (int i = 0; i < enemyList.size(); i++) {
+            if(i > 2) {
+                boxToUse = 1;
+            }
+            ((VBox)enemyNames.getChildren().get(boxToUse)).getChildren().add(new Label(enemyList.get(i).getName()));
+            //TODO set enemy images to their images
+        }
+        updateEnemyImages();
     }
 
     private void clearEnemyNames() {
@@ -95,9 +169,16 @@ public class BattleScreen {
     }
 
     private void clearPlayerImages() {
-        while(characterBox.getChildren().get(0) != null) {
-            characterBox.getChildren().remove(0);
+        charImage1 = getCharacterImage(null);
+        charImage2 = getCharacterImage(null);
+        charImage3 = getCharacterImage(null);
+    }
+
+    private void clearEnemyImages() {
+        for (int i = 0; i < enemyImages.length; i++) {
+            enemyImages[i].setImage(null);
         }
+        updateEnemyImages();
     }
 
     private CharacterImage getCharacterImage(String type) {
@@ -113,5 +194,14 @@ public class BattleScreen {
             default:
                 return new CharacterImage(0, 1, 1, 1, Constants.IMAGE_SWORDSMAN);
         }
+    }
+
+    private void updateEnemyImages() {
+        enemyImage1 = enemyImages[0];
+        enemyImage2 = enemyImages[1];
+        enemyImage3 = enemyImages[2];
+        enemyImage4 = enemyImages[3];
+        enemyImage5 = enemyImages[4];
+        enemyImage6 = enemyImages[5];
     }
 }

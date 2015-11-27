@@ -23,14 +23,14 @@
         </HBox>
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
           <children>
-            <Label alignment="CENTER" prefHeight="47.0" prefWidth="177.0" text="Attack">
+            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true">
               <font>
-                <Font name="System Bold Italic" size="18.0" fx:id="x1" />
+                <Font size="18.0" fx:id="x1" />
               </font>
-            </Label>
-            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Magic" />
-            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Items" />
-            <Label alignment="CENTER" font="$x1" prefHeight="47.0" prefWidth="177.0" text="Run" />
+            </Button>
+            <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Magic" />
+            <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Items" />
+            <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />
           </children>
         </VBox>
         <HBox prefHeight="182.0" prefWidth="714.0">
@@ -94,6 +94,14 @@
         </HBox>
       </children>
     </HBox>
-    <VBox fx:id="characterBox" layoutX="895.0" layoutY="258.0" prefHeight="280.0" prefWidth="251.0" />
+    <ImageView fx:id="enemyImage1" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="enemyImage2" fitHeight="150.0" fitWidth="200.0" layoutX="144.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="enemyImage3" fitHeight="150.0" fitWidth="200.0" layoutX="266.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="enemyImage4" fitHeight="150.0" fitWidth="200.0" layoutX="366.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="enemyImage5" fitHeight="150.0" fitWidth="200.0" layoutX="478.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="enemyImage6" fitHeight="150.0" fitWidth="200.0" layoutX="578.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage1" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage2" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage3" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
   </children>
 </AnchorPane>
