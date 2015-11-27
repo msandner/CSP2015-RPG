@@ -19,6 +19,8 @@ public class MasterController extends Application {
     public static final String NEW_GAME_FILE = "NewGame.fxml";
     public static final String GAME_SCREEN = "gameScreen";
     public static final String TOWN_SCREEN = "townScreen";
+    public static final String BATTLE_SCREEN_ID = "battleScreen";
+    public static final String BATTLE_SCREEN_FILE = "BattleScreen.fxml";
 
     //Switch these two statements to start the game faster/slower
     public static final boolean fastStart = true;
@@ -60,6 +62,8 @@ public class MasterController extends Application {
             screensController.setUpNewGame();
             screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
             screensController.setScreen(GAME_SCREEN);
+//            screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+//            screensController.setScreen(BATTLE_SCREEN_ID);
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));

@@ -9,16 +9,28 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.BattleScreen">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.BattleScreenController">
   <children>
-    <ImageView fx:id="battleScreenBGTop" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
     <ImageView id="battleScreenBGTop" fx:id="battleScreenBGBottom" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+    <ImageView fx:id="battleScreenBGTop" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
     <HBox layoutX="0.0" layoutY="538.0" prefHeight="182.0" prefWidth="1280.0">
       <children>
         <HBox fx:id="enemyNames" prefHeight="182.0" prefWidth="388.9998779296875">
           <children>
-            <VBox prefHeight="182.0" prefWidth="191.0" />
-            <VBox prefHeight="182.0" prefWidth="159.0" />
+            <VBox prefHeight="182.0" prefWidth="191.0">
+              <children>
+                <Label fx:id="enemyLabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+              </children>
+            </VBox>
+            <VBox prefHeight="182.0" prefWidth="191.0">
+              <children>
+                <Label fx:id="enemyLabel4" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel5" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel6" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+              </children>
+            </VBox>
           </children>
         </HBox>
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
@@ -103,5 +115,31 @@
     <ImageView fx:id="charImage1" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="charImage2" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="charImage3" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+    <HBox fx:id="chooseBox" layoutX="266.0" layoutY="14.0" prefHeight="100.0" prefWidth="735.0" visible="false">
+      <children>
+        <VBox prefHeight="100.0" prefWidth="418.0" visible="true">
+          <children>
+            <Button fx:id="enemyButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+        <VBox prefHeight="100.0" prefWidth="417.0">
+          <children>
+            <Button fx:id="enemyButton4" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton5" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton6" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+        <VBox prefHeight="100.0" prefWidth="417.0">
+          <children>
+            <Button fx:id="playerButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="playerButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="playerButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+    <Button fx:id="myButton" layoutX="450.0" layoutY="180.0" mnemonicParsing="false" onAction="#startNewBattle" text="Button" />
   </children>
 </AnchorPane>
