@@ -29,5 +29,6 @@ CIS 467
 11/13: Game starts faster, less screens:  2:00 to  2:20 - 0 hours 20 mins
 11/22: Began battle screen:               3:30 to  5:00 - 1 hour  30 mins
 11/23: Continued battle screen:           5:30 to  6:45 - 1 hour  15 mins
+11/26: Continued Battle Screen:          10:15 to 11:45 - 1 hour  30 mins
 ----------------------------------------------------------------------------
-Total:                                                   44 hours 37 mins
+Total:                                                   46 hours 07 mins
