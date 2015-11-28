@@ -10,6 +10,7 @@ public class PlayerActor extends BattleActor {
 
     private double mpMultiplier;
     private double hpMultiplier;
+
     //todo more stats
 
     public PlayerActor(String name, String type, int level, double hpMultiplier, double mpMultiplier) {
@@ -20,10 +21,16 @@ public class PlayerActor extends BattleActor {
         int mp = calcMp(level);
         this.currentMp = mp;
         this.maxMp = mp;
+
     }
+
 
     public int getCurrentMp() {
         return currentMp;
+    }
+
+    public void setCurrentMp(int mp) {
+        this.currentMp = mp;
     }
 
     public int getMaxMp() {

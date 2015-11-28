@@ -12,4 +12,22 @@ public class OffensiveMagic extends Magic {
         this.element = element;
         this.value = v;
     }
+
+    public String getElement() {
+        return element;
+    }
+
+    public void setElement(String element) {
+        this.element = element;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+
 }

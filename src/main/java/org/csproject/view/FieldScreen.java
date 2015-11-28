@@ -205,52 +205,45 @@ public class FieldScreen extends Pane {
     }
 
   private void moveScreen(double startX, double startY, double moveX, double moveY, double duration)
-  {
-    if (screenTransition == null) {
-        screenTransition = new TranslateTransition(Duration.seconds(duration), this);
-    }
-    screenTransition.setDuration(Duration.seconds(duration));
+      {
+        if (screenTransition == null) {
+            screenTransition = new TranslateTransition(Duration.seconds(duration), this);
+        }
+        screenTransition.setDuration(Duration.seconds(duration));
 
-    double currentTransX = (startX * -1) + SCREEN_WIDTH / 2;
-    double currentTransY = (startY * -1) + SCREEN_HEIGHT / 2;
+        double currentTransX = (startX * -1) + SCREEN_WIDTH / 2;
+        double currentTransY = (startY * -1) + SCREEN_HEIGHT / 2;
 
-    double transToX = currentTransX - moveX * SCALE;
-    screenTransition.setFromX(getTranslateX());
-    screenTransition.setToX(getTranslateX());
-    if (transToX > 0) {
-      screenTransition.setToX(0);
-    }
-    else if(transToX <= SCREEN_WIDTH - field.getWidth()) {
-      screenTransition.setToX(SCREEN_WIDTH - field.getWidth());
-    }
-    else {
-        screenTransition.setToX(transToX);
-    }
+        double transToX = currentTransX - moveX * SCALE;
+        screenTransition.setFromX(getTranslateX());
+        screenTransition.setToX(getTranslateX());
+        if (transToX > 0) {
+            screenTransition.setToX(0);
+        } else if(transToX <= SCREEN_WIDTH - field.getWidth()) {
+            screenTransition.setToX(SCREEN_WIDTH - field.getWidth());
+        } else {
+            screenTransition.setToX(transToX);
+        }
 
-    screenTransition.setFromY(getTranslateY());
-    screenTransition.setToY(getTranslateY());
-    double transToY = currentTransY - moveY * SCALE;
-    if (transToY > 0){
-      screenTransition.setToY(0);
-    }
-    else if(transToY <= SCREEN_HEIGHT - field.getHeight()) {
-      screenTransition.setToY(SCREEN_HEIGHT - field.getHeight());
-    }
-    else {
-        screenTransition.setToY(transToY);
-    }
+            screenTransition.setFromY(getTranslateY());
+            screenTransition.setToY(getTranslateY());
+        double transToY = currentTransY - moveY * SCALE;
+        if (transToY > 0){
+            screenTransition.setToY(0);
+        } else if(transToY <= SCREEN_HEIGHT - field.getHeight()) {
+            screenTransition.setToY(SCREEN_HEIGHT - field.getHeight());
+        } else {
+            screenTransition.setToY(transToY);
+        }
 
-    screenTransition.setInterpolator(Interpolator.LINEAR);
+        screenTransition.setInterpolator(Interpolator.LINEAR);
 
-    if(duration > 0)
-    {
-      screenTransition.playFromStart();
-    }
-    else
-    {
-      setTranslateX(screenTransition.getToX());
-      setTranslateY(screenTransition.getToY());
-    }
+        if(duration > 0) {
+            screenTransition.playFromStart();
+        } else {
+            setTranslateX(screenTransition.getToX());
+            setTranslateY(screenTransition.getToY());
+        }
   }
 
   private CharacterImage getAvatar() {

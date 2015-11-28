@@ -19,12 +19,13 @@ public class FieldFactory {
     public static final double DEAD_ZONE = 0.2;
     public static final int ENEMY_ENCOUNTER_PERCENTAGE = 10;
 
+    public static int BSP_WIDTH = 50;
+    public static int BSP_HEIGHT = 50;
+
     public static final Tile GRASS = new Tile(0,0, true);
     public static final Tile TREE = new Tile(6, 12, false);
-    public static final Tile ROCK = new Tile(7, 12, false);
-    public static final Tile STONEFLOOR = new Tile(0, 3,true);
-
-    boolean enemyencounter = false;
+    public static final Tile ROCK = new Tile(7, 11, false);
+    public static final Tile STONEFLOOR = new Tile(0, 0,true);
 
     Boolean[][] bsp;
 
@@ -34,7 +35,7 @@ public class FieldFactory {
         if (type.equals("overworld")) {
             return generateField("Outside", "Outside3", GRASS, TREE);
         } else if (type.equals("dungeon")) {
-            return generateField("Dungeon", "Outside3", STONEFLOOR, ROCK);
+            return generateField("Outside2", "Outside3", STONEFLOOR, ROCK);
         } else {
             System.out.println("wrong type");
             return null;
@@ -49,8 +50,8 @@ public class FieldFactory {
         field.setDecoImage(decoImage);
 
         // Binary Space Partitioning
-        this.bsp = getEmptyBsp(50, 50);
-        this.bsp = createFullBsp(bsp, 5);
+        this.bsp = getEmptyBsp(BSP_WIDTH, BSP_HEIGHT);
+        this.bsp = createFullBsp(bsp, 6);
 
         Tile[][] groundTiles = createGround(bsp, tileground);
         Tile[][] decoTiles = createDeco(bsp, tiledeco);
@@ -72,7 +73,6 @@ public class FieldFactory {
             for(int j = 0; j < deco[0].length; j++) {
                 if(deco[i][j] == null && ground[i][j] != null) {
                     start = new StartPoint(j, i, "start");
-                    System.out.println("x = "+ start.getX() + ", y = " + start.getY());
                     break outerloop;
                 }
             }
@@ -111,10 +111,10 @@ public class FieldFactory {
 
     public Boolean[][] getEmptyBsp(int row, int col) {
         Boolean[][] bsp = new Boolean[row][col];
-        for (int i_row = 0; row < bsp.length; i_row++) {
+        for (int i_row = 0; i_row < bsp.length; i_row++) {
             //switched the row and column accidentaly, still works
-            bsp[row] = new Boolean[col];
-            for (int i_col = 0; col < bsp[i_row].length; i_col++) {
+            bsp[i_row] = new Boolean[col];
+            for (int i_col = 0; i_col < bsp[i_row].length; i_col++) {
                 bsp[i_row][i_col] = false;
             }
         }
@@ -139,13 +139,11 @@ public class FieldFactory {
         for (int i = 0; i < NORM_FACTOR; i++) {
             rndSum += Math.random();
         }
+
         double rnd = rndSum / NORM_FACTOR;
-        if(rnd < DEAD_ZONE)
-        {
+        if(rnd < DEAD_ZONE) {
             rnd = DEAD_ZONE;
-        }
-        else if(rnd >= (1.0 - DEAD_ZONE))
-        {
+        } else if(rnd >= (1.0 - DEAD_ZONE)) {
             rnd = 1.0 - DEAD_ZONE;
         }
 
@@ -164,7 +162,7 @@ public class FieldFactory {
 
         if(splitHorizontally){
             for(int row = 0; row < height; ++row){
-                for(int col = 0; col <width; ++col){
+                for(int col = 0; col < width; ++col){
                     //if the current coordinate lies on the path between the first and the second block, its walkable (bsp =true)
                     boolean notAbovePath = row >= (height/2) - PATH_WIDTH / 2;
                     boolean notBelowPath = row < (height/2) + PATH_WIDTH / 2;
@@ -172,17 +170,22 @@ public class FieldFactory {
                     boolean rightOfPath = col >= width - (width - split) / 2;
 
                     if(notAbovePath && notBelowPath && !leftOfPath && !rightOfPath) {
+                       // System.out.println("if -> first if: " + row + " " + col + " split: " + split);
                         bsp[row][col]=true;
+
                     }
                     else if (col < split){
+                       // System.out.println("if -> second if: " + row + " "  + col + " split: " + split);
                         bsp[row][col]= block1[row][col];
+
                     }
                     else{
+                        //System.out.println("if -> else: " + row + " " + col + " split: " + split);
                         bsp[row][col]= block2[row][col-split];
                     }
                 }
             }
-        } else{
+        } else {
             for(int row = 0; row < height; ++row){
                 for(int col = 0; col <width; ++col){
                     //if the current coordinate lies on the path between the first and the second block, its walkable (bsp =true)
@@ -192,13 +195,17 @@ public class FieldFactory {
                     boolean belowPath = row >= height - (height - split) / 2;
 
                     if(notLeftOfPath && notRightOfPath && !abovePath && !belowPath) {
+                        //System.out.println("else -> first if: " + row + " " + col + " split: " + split);
                         bsp[row][col]=true;
                     }
                     else if (row < split){
+                        //System.out.println("else -> second if: " + row + " "  + col + " split: " + split);
                         bsp[row][col]= block1[row][col];
-                    }
-                    else{
+
+                    } else{
+                       // System.out.println("else -> else: " + row + " " + col + " split: " + split);
                         bsp[row][col]= block2[row-split][col];
+
                     }
                 }
             }

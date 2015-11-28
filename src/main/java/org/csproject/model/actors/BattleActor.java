@@ -11,6 +11,9 @@ public abstract class BattleActor extends Actor{
     protected int maxHp;
     protected int currentHp;
 
+    //a boolean to check if the character already used one attack and is no longer allowed to attack
+    private boolean hasAttacked;
+
     // todo more stats
 
     public BattleActor(String name, String type, int level) {
@@ -21,6 +24,7 @@ public abstract class BattleActor extends Actor{
         int hp = calcHp(level);
         this.maxHp = hp;
         this.currentHp = hp;
+        this.hasAttacked = false;
     }
 
     public int getMaxHp() {
@@ -49,6 +53,22 @@ public abstract class BattleActor extends Actor{
 
     /**calculates maxHp of battleActor with given level*/
     public abstract int calcHp(int level);
+
+    public boolean is_dead() {
+        if(getCurrentHp() >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean playerHasAttacked() {
+        return hasAttacked;
+    }
+
+    public void setHasAttacked(boolean attacked) {
+        this.hasAttacked = attacked;
+    }
 
 
 }

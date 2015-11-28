@@ -127,9 +127,9 @@ public class ScreensController{
 
     public void setUpNewGame() {
         /*starts a overworld*/
-        fieldScreen.setScene(worldService.generateField("overworld"));
+        //fieldScreen.setScene(worldService.generateField("overworld"));
         /*starts a dungeon*/
-        //fieldScreen.setScene(worldService.generateField("dungeon"));
+        fieldScreen.setScene(worldService.generateField("dungeon"));
         /*starts the static map*/
         //fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
     }

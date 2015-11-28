@@ -7,7 +7,7 @@ public class RestorativeItem extends Item {
     protected boolean hasTargetPlayer;
     protected boolean hasTargetTeam;
 
-    protected String attributeEffected;
+    protected String attributeEffected; //either "Health" or "Mana"
     protected int value;
 
     public RestorativeItem(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v){

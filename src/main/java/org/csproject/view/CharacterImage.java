@@ -83,7 +83,7 @@ public class CharacterImage extends ImageView {
 
                 //test for enemyencounter every time walking a step
                 setEnemyEncounter();
-                if(getEnemyEncounter()) { //need to ask if it is townmap, so you can't encounter enemys in the safe town
+                if(getEnemyEncounter()) { //todo: need to ask if it is townmap, so you can't encounter enemys in the safe town
                     battlefactory.startBattle();
                 }
             }
