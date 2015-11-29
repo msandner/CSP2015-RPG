@@ -10,7 +10,7 @@ public abstract class Actor {
 
     protected NavigationPoint position;
     protected String name;
-    protected String type;
+    protected String type; //mage, knight or thief
 
     public Actor(String name, String type) {
         this.name = name;

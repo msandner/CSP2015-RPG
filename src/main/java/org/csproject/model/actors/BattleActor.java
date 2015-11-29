@@ -1,5 +1,10 @@
 package org.csproject.model.actors;
 
+import org.csproject.model.magic.Magic;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  */
@@ -11,6 +16,7 @@ public abstract class BattleActor extends Actor{
     protected int maxHp;
     protected int currentHp;
 
+    protected List<Magic> spells = new ArrayList<>();
     //a boolean to check if the character already used one attack and is no longer allowed to attack
     private boolean hasAttacked;
 
@@ -56,7 +62,7 @@ public abstract class BattleActor extends Actor{
     }
 
     public void calcCurrentHp(int currentHp) {
-        if(currentHp > this.maxHp) {
+        if((this.currentHp + currentHp) > this.maxHp) {
             this.currentHp = this.maxHp;
         } else {
             this.currentHp += currentHp;
@@ -81,6 +87,7 @@ public abstract class BattleActor extends Actor{
     public void setHasAttacked(boolean attacked) {
         this.hasAttacked = attacked;
     }
+
 
 
 }

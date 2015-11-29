@@ -20,7 +20,7 @@ public class BattleFactory {
 
     //following methods should be implemented when pressing a button to use magic
 
-    public void attackCharacterWithMagic(BattleActor attacker, BattleActor victim, OffensiveMagic magic) {
+    public void attackCharacterWithMagic(PlayerActor attacker, BattleActor victim, OffensiveMagic magic) {
         if(!attacker.playerHasAttacked()) {
             Random rand = new Random();
             int critfactor = rand.nextInt(100);
@@ -32,15 +32,16 @@ public class BattleFactory {
                 victim.calcCurrentHp(magic.getValue() * 2);
                 System.out.println("Attacked character with critical hit");
             }
-
             if (victim.is_dead()) {
                 //character image has to be deleted from the battlescreen
             }
+            //at end decreasing mana and setting the hasAttacked boolean true, so the character can't attack in this round anymore
+            attacker.calcCurrentMp(magic.getMp());
             attacker.setHasAttacked(true);
         }
     }
 
-    public void healCharactersWithMagic(BattleActor attacker, BattleActor victim, PlayerParty party, RestorativeMagic magic) {
+    public void healCharactersWithMagic(PlayerActor attacker, BattleActor victim, PlayerParty party, RestorativeMagic magic) {
         if (!attacker.playerHasAttacked()) {
             if (magic.getTarget().equals("Player")) {
                 victim.calcCurrentHp(magic.getValue());
@@ -52,11 +53,12 @@ public class BattleFactory {
                     System.out.println("Healed party");
                 }
             }
+            attacker.calcCurrentMp(magic.getMp());
             attacker.setHasAttacked(true);
         }
     }
 
-    public void healCharacterWithPotion(BattleActor attacker, PlayerActor victim, RestorativeItem potion) {
+    public void healCharacterWithPotion(PlayerActor attacker, PlayerActor victim, RestorativeItem potion) {
         if(!attacker.playerHasAttacked()) {
             if (potion.getAttribute().equals("Health")) {
                 victim.calcCurrentHp(potion.getValue());
@@ -69,10 +71,15 @@ public class BattleFactory {
         }
     }
 
-    public void enemyAttackAI(BattleActor attacker, BattleActor victim, PlayerParty party, OffensiveMagic magic) {
+    public void enemyAttackAI(BattleActor attacker, PlayerParty party, OffensiveMagic magic) {
         Random rand = new Random();
         int chance = rand.nextInt(100);
 
+        //randomly choosing a victim
+        int choose = rand.nextInt(3);
+        PlayerActor victim = party.getParty().get(choose);
+
+        //todo: implement a hit and miss chance
         if(!attacker.playerHasAttacked()) {
             //the enemy has stronger attacks depending on the character with the highest level
             if (chance < 20) {
@@ -91,5 +98,12 @@ public class BattleFactory {
             attacker.setHasAttacked(true);
         }
     }
+
+
+
+
+
+
+
 
 }

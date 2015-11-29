@@ -8,14 +8,12 @@ public class RestorativeMagic extends Magic{
     protected boolean hasTargetTeam;
 
     protected String attributeEffected;
-    protected int value;
 
-    public RestorativeMagic(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v){
-        super(name, "Restorative");
+    public RestorativeMagic(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v, int mp){
+        super(name, "Restorative", v, mp);
         this.hasTargetPlayer = targetPlayer;
         this.hasTargetTeam = targetTeam;
         this.attributeEffected = attribute;
-        this.value = v;
     }
 
     public String getTarget(){
@@ -28,7 +26,4 @@ public class RestorativeMagic extends Magic{
         return attributeEffected;
     }
 
-    public int getValue(){
-        return value;
-    }
 }

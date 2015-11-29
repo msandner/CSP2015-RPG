@@ -5,12 +5,11 @@ package org.csproject.model.magic;
  */
 public class OffensiveMagic extends Magic {
     protected String element;
-    protected int value; //has to be negative so it calculates the damage correct
 
-    public OffensiveMagic(String name, String element, int v){
-        super(name, "Offensive");
+    //value has to be negative!
+    public OffensiveMagic(String name, String element, int v, int mp){
+        super(name, "Offensive", v, mp);
         this.element = element;
-        this.value = v;
     }
 
     public String getElement() {
@@ -19,14 +18,6 @@ public class OffensiveMagic extends Magic {
 
     public void setElement(String element) {
         this.element = element;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
 
