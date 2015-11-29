@@ -18,7 +18,14 @@ public class BattleFactory {
        System.out.println("Start Battle");
     }
 
-    //following methods should be implemented when pressing a button to use magic
+    public boolean isEveryPlayerDead(PlayerParty party) {
+        for (PlayerActor p : party.getParty()) {
+            if (!p.is_dead()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void attackCharacterWithMagic(PlayerActor attacker, BattleActor victim, OffensiveMagic magic) {
         if(!attacker.playerHasAttacked()) {

@@ -9,8 +9,8 @@ public class RestorativeMagic extends Magic{
 
     protected String attributeEffected;
 
-    public RestorativeMagic(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v, int mp){
-        super(name, "Restorative", v, mp);
+    public RestorativeMagic(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v, int mp, int levelres){
+        super(name, "Restorative", v, mp, levelres);
         this.hasTargetPlayer = targetPlayer;
         this.hasTargetTeam = targetTeam;
         this.attributeEffected = attribute;

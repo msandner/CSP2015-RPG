@@ -8,13 +8,15 @@ public abstract class Magic {
     protected String magicType;
     protected int value;
     protected int mp;
+    protected int levelRestriction;
 
     //mp has to be negative!
-    public Magic(String name, String type, int value, int mp){
+    public Magic(String name, String type, int value, int mp, int levelRes){
         this.magicName = name;
         this.magicType = type;
         this.value = value;
         this.mp = mp;
+        this.levelRestriction = levelRes;
     }
 
     public String getName(){
@@ -40,4 +42,9 @@ public abstract class Magic {
     public void setMp(int mp) {
         this.mp = mp;
     }
+
+    public int getLevelRestriction() {
+        return levelRestriction;
+    }
+
 }

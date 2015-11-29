@@ -6,8 +6,8 @@ package org.csproject.model.actors;
 public class BossMonster extends Monster {
     //creates the enemy in an battle
 
-    public BossMonster() {
-        super("name", "name2", 12);
+    public BossMonster(int level, int xp) {
+        super("name", "name2", level, xp);
     }
 
     @Override

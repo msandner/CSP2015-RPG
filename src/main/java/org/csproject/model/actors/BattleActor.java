@@ -16,7 +16,7 @@ public abstract class BattleActor extends Actor{
     protected int maxHp;
     protected int currentHp;
 
-    protected List<Magic> spells = new ArrayList<>();
+    protected List<Magic> allSpells = new ArrayList<>();
     //a boolean to check if the character already used one attack and is no longer allowed to attack
     private boolean hasAttacked;
 
@@ -73,7 +73,7 @@ public abstract class BattleActor extends Actor{
     public abstract int calcHp(int level);
 
     public boolean is_dead() {
-        if(getCurrentHp() >= 0) {
+        if(getCurrentHp() > 0) {
             return true;
         } else {
             return false;

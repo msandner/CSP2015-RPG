@@ -15,6 +15,8 @@ public class PlayerActor extends BattleActor {
     protected int currentMp;
     protected int maxMp;
 
+    protected int currentXp;
+
     private double mpMultiplier;
     private double hpMultiplier;
 
@@ -35,27 +37,27 @@ public class PlayerActor extends BattleActor {
     public void addSpells(String type) {
         switch(type) {
             case Constants.CLASS_KNIGHT:
-                spells.add(new OffensiveMagic("Shield Bash", "", -15, -10));        //shield attack, %chance to stun the enemy
-                spells.add(new OffensiveMagic("Whirlwind", "", -20, -15));          //dmg on 2 targets
-                spells.add(new OffensiveMagic("Berserk", "", -25, -20));            //more dmg when actor under %xx hp
-                spells.add(new OffensiveMagic("Massive Sword Slash", "", -30, -30));//more mana, therefore more dmg
+                allSpells.add(new OffensiveMagic("Shield Bash", "", -15, -10, 2));        //shield attack, %chance to stun the enemy
+                allSpells.add(new OffensiveMagic("Whirlwind", "", -20, -15, 4));          //dmg on 2 targets
+                allSpells.add(new OffensiveMagic("Berserk", "", -25, -20, 7));            //more dmg when actor under %xx hp
+                allSpells.add(new OffensiveMagic("Massive Sword Slash", "", -30, -30, 11));//more mana, therefore more dmg
                 break;
             case Constants.CLASS_MAGE:
-                spells.add(new OffensiveMagic("Fireball", "", -10, -5));            //dmg on 1 target
-                spells.add(new OffensiveMagic("Chain Lightning", "", -10, -15));    //dmg on multiple targets
-                spells.add(new RestorativeMagic("Heal", true, false, "", 20, 10));  //healing in the first levels one actor, later multiple
-                spells.add(new OffensiveMagic("Frostbite", "", 0, -25));            //disable enemy for one round
+                allSpells.add(new OffensiveMagic("Fireball", "", -10, -5, 2));            //dmg on 1 target
+                allSpells.add(new OffensiveMagic("Chain Lightning", "", -10, -15, 4));    //dmg on multiple targets
+                allSpells.add(new RestorativeMagic("Heal", true, false, "", 20, 10, 7));  //healing in the first levels one actor, later multiple
+                allSpells.add(new OffensiveMagic("Frostbite", "", 0, -25, 11));            //disable enemy for one round
                 break;
             case Constants.CLASS_THIEF:
-                spells.add(new OffensiveMagic("Ambush", "", -10, -10));             //more %crit chance
-                spells.add(new OffensiveMagic("Mutilate", "", -10, -20));           //double bladed attack
-                spells.add(new OffensiveMagic("Execute", "", -25, -30));            //more dmg under targets %xx hp
-                spells.add(new OffensiveMagic("Frostbite", "", -10, -25));          //low dmg on all targets
+                allSpells.add(new OffensiveMagic("Ambush", "", -10, -10, 2));             //more %crit chance
+                allSpells.add(new OffensiveMagic("Mutilate", "", -10, -20, 4));           //double bladed attack
+                allSpells.add(new OffensiveMagic("Execute", "", -25, -30, 7));            //more dmg under targets %xx hp
+                allSpells.add(new OffensiveMagic("Frostbite", "", -10, -25, 11));          //low dmg on all targets
         }
     }
 
     public List<Magic> getSpells() {
-        return spells;
+        return allSpells;
     }
 
     public int getCurrentMp() {
@@ -90,5 +92,16 @@ public class PlayerActor extends BattleActor {
     @Override
     public String toString() {
         return name + (type) + "|HP: " + currentHp + "/" + maxHp + "|MP: " + currentMp + "/" + maxMp;
+    }
+
+    public void addXP(int value) {
+        this.currentXp += value;
+        if(this.currentXp > (Constants.LEVEL_POINTS_CALCULATE*(this.level^2))) {
+            levelUp();
+        }
+    }
+
+    public void levelUp() {
+    //todo:level up
     }
 }
