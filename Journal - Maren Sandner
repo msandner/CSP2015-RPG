@@ -37,6 +37,6 @@ _unfinished_
 25.11.2015 19:00 - 22:00 MESZ: working on the methods for healing and attacking, researching how to start the battlescreen -> 3:00 hours
 28.11.2015 11:00 - 12:40 MESZ: finishing the methods for healing and attacking, also trying to fix one exception -> 1:40 hours
 29.11.2015 11:00 - 15:30 MESZ: working out the spells for the characters + working on the battle logic -> 4:30 hours
-
+29.11.2015 16:30 - 21:00 MESZ: spells + some refactoring + getting ideas for implementing the round based system ->  4:30 hours
 --------------------------------------------------------------------------------------------------------------------------
-total: 76:00 hours
+total: 80:30 hours
