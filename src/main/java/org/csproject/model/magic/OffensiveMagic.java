@@ -5,7 +5,7 @@ package org.csproject.model.magic;
  */
 public class OffensiveMagic extends Magic {
     protected String element;
-    protected int value;
+    protected int value; //has to be negative so it calculates the damage correct
 
     public OffensiveMagic(String name, String element, int v){
         super(name, "Offensive");

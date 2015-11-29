@@ -48,7 +48,19 @@ public abstract class BattleActor extends Actor{
     }
 
     public void setCurrentHp(int currentHp) {
-        this.currentHp = currentHp;
+        if(currentHp > this.maxHp) {
+            this.currentHp = this.maxHp;
+        } else {
+            this.currentHp = currentHp;
+        }
+    }
+
+    public void calcCurrentHp(int currentHp) {
+        if(currentHp > this.maxHp) {
+            this.currentHp = this.maxHp;
+        } else {
+            this.currentHp += currentHp;
+        }
     }
 
     /**calculates maxHp of battleActor with given level*/
