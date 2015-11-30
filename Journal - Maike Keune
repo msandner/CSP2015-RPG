@@ -43,4 +43,9 @@
  12.11.2015 20:00 - 21:10 MESZ: skype chat meeting about task sheet
  18.11.2015 17:28 - 19:30 MESZ: working on generateDungeon method.
  20.11.2015 21:45 - 23:34 MESZ: generateDungeon method now generates marks where rooms will be placed in the future. Bug fixing on dungeonGenerator.
-Total time yet: 70 hours 57 minutes
+ 25.11.2015 15:00 - 18:00 MESZ: working on editor feature: clean transition between different grounds(like gras and sand)
+ 26.11.2015 11:00 - 14:30 MESZ: working on editor feature 
+ 27.11.2015 12:15 - 16:00 MESZ: bug fixing on editor, added image so teleportpoints are now shown when added to a map (just visible in editor),
+                                working on generateDungeon method.
+ 30.11.2015 13:12 - 14:19 MESZ: working on method to generate random map out of premade maps.
+Total time yet: 82 hours 19 minutes
