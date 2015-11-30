@@ -4,8 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.csproject.model.bean.StartPoint;
 import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.field.StartPoint;
 
 /**
  * @author Maike Keune-Staab on 09.11.2015.

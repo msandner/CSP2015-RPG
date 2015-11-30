@@ -1,11 +1,11 @@
-package org.csproject.model.bean;
-
-import org.csproject.model.Constants;
+package org.csproject.model.field;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.csproject.model.bean.NavigationPoint;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015 - 13.10.2015
@@ -22,14 +22,20 @@ public class Field {
     private Collection<TeleportPoint> teleportPoints;
 
     public Field() {
-        this.startPoints = new ArrayList<>();
-        this.teleportPoints = new ArrayList<>();
+        this(null, null);
     }
 
-    public NavigationPoint getStart(String startName) {
+    public Field(Tile[][] groundTiles, Tile[][] decoTiles) {
+        this.startPoints = new ArrayList<>();
+        this.teleportPoints = new ArrayList<>();
 
-        Map<String, NavigationPoint> startPointMap = new HashMap<>();
-        NavigationPoint defaultStartPoint = null;
+        this.groundTiles = groundTiles;
+        this.decoTiles = decoTiles;
+    }
+
+    public StartPoint getStart(String startName) {
+        Map<String, StartPoint> startPointMap = new HashMap<>();
+        StartPoint defaultStartPoint = null;
 
         for (StartPoint startPoint : startPoints) {
             {
@@ -45,6 +51,26 @@ public class Field {
         }
 
         return defaultStartPoint;
+    }
+
+    public TeleportPoint getTeleporter(String teleportName) {
+        Map<String, TeleportPoint> startPointMap = new HashMap<>();
+        TeleportPoint defaultTeleportPoint = null;
+
+        for (TeleportPoint teleportPoint : teleportPoints) {
+            {
+                if(defaultTeleportPoint == null){
+                    defaultTeleportPoint = teleportPoint;
+                }
+                startPointMap.put(teleportPoint.getName(), teleportPoint);
+            }
+        }
+
+        if(startPointMap.get(teleportName) != null) {
+            return startPointMap.get(teleportName);
+        }
+
+        return defaultTeleportPoint;
     }
 
     public void setGroundTiles(Tile[][] tiles) {
@@ -80,17 +106,29 @@ public class Field {
     }
 
     public double getWidth() {
-        if(groundTiles == null || groundTiles.length == 0 || groundTiles[0].length == 0) {
-            return 0.0;
+        if(groundTiles != null && decoTiles != null) {
+            return Math.max(groundTiles[0].length, decoTiles[0].length);
         }
-        return groundTiles[0].length * Constants.TILE_SIZE;
+        else if(groundTiles != null) {
+            return groundTiles[0].length;
+        }
+        else if(decoTiles != null) {
+            return decoTiles[0].length;
+        }
+        return 0;
     }
 
     public double getHeight() {
-        if(groundTiles == null || groundTiles.length == 0) {
-            return 0.0;
+        if(groundTiles != null && decoTiles != null) {
+            return Math.max(groundTiles.length, decoTiles.length);
         }
-        return groundTiles.length * Constants.TILE_SIZE;
+        else if(groundTiles != null) {
+            return groundTiles.length;
+        }
+        else if(decoTiles != null) {
+            return decoTiles.length;
+        }
+        return 0;
     }
 
     public Collection<StartPoint> getStartPoints() {

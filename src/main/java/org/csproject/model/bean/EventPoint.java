@@ -1,7 +1,5 @@
 package org.csproject.model.bean;
 
-import org.csproject.model.actors.Actor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +13,8 @@ public class EventPoint extends NavigationPoint {
 
     List<ChatPair> chatEvent;
 
-    public EventPoint(int x, int y, List<ChatPair> chat) {
-        super(x, y);
+    public EventPoint(int x, int y, String name, List<ChatPair> chat) {
+        super(x, y, name);
         chatEvent = new ArrayList<ChatPair>();
         for (int i = 0; i < chat.size(); i++) {
             chatEvent.add(chat.get(i));

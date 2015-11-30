@@ -1,5 +1,9 @@
 package org.csproject.service;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -19,16 +23,13 @@ import org.csproject.view.FieldScreen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 /**
  * Created by Brett on 9/21/2015.
- *
+ * <p>
  * Holds the screens to be displayed
  */
 @Component
-public class ScreensController{
+public class ScreensController {
 
     private final static Logger LOG = Logger.getLogger(ScreensController.class);
 
@@ -74,13 +75,13 @@ public class ScreensController{
 
     public boolean setScreen(final String name) {
 
-        if(screens.get(name) != null) { //screen loaded
+        if (screens.get(name) != null) { //screen loaded
             final DoubleProperty opacity = root.opacityProperty();
 
             //Is there is more than one screen
-            if(!root.getChildren().isEmpty()){
+            if (!root.getChildren().isEmpty()) {
                 Timeline fade = new Timeline(
-                        new KeyFrame(Duration.ZERO, new KeyValue(opacity,1.0)),
+                        new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
                         new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
@@ -88,7 +89,8 @@ public class ScreensController{
                                 root.getChildren().remove(0);
                                 //add new screen
                                 fadeScreenIn(name, opacity);
-                            }}, new KeyValue(opacity, 0.0)));
+                            }
+                        }, new KeyValue(opacity, 0.0)));
                 fade.play();
             } else {
                 //no one else been displayed, then just show
@@ -112,7 +114,7 @@ public class ScreensController{
         fadeIn.play();
     }
 
-    public boolean unloadScreen (String name) {
+    public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
             LOG.warn("Screen did not exist!");
             return false;
@@ -127,11 +129,11 @@ public class ScreensController{
 
     public void setUpNewGame() {
         /*starts a overworld*/
-        //fieldScreen.setScene(worldService.generateField("overworld"));
+//        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
         /*starts a dungeon*/
-        fieldScreen.setScene(worldService.generateField("dungeon"));
-        /*starts the static map*/
-        //fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
+//        fieldScreen.setScene(worldService.generateDungeon(DungeonHelper.Type.TEST, 70, 70, 2, Constants.WORLD_MAP_1,
+//                "dungeon_1_2", Constants.WORLD_MAP_1, "dungeon_1_1"));
+        fieldScreen.setScene(worldService.getWorldMap(), Constants.TOWN_1);
     }
 
     public FieldScreen getFieldScreen() {

@@ -1,11 +1,8 @@
 package org.csproject.model.bean;
 
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.util.List;
 import java.util.Random;
+
+import org.csproject.model.field.Tile;
 
 /**
  * Created by Maren on 24.10.2015.

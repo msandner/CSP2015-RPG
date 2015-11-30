@@ -1,37 +1,47 @@
 package org.csproject.editor;
 
-import com.google.gson.Gson;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.csproject.configuration.SpringConfiguration;
-import org.csproject.model.Constants;
-import org.csproject.model.bean.StartPoint;
-import org.csproject.model.bean.Field;
-import org.csproject.model.bean.NavigationPoint;
-import org.csproject.model.bean.TeleportPoint;
-import org.csproject.model.bean.Tile;
-import org.csproject.service.ScreenFactory;
-import org.csproject.util.Utilities;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import org.csproject.configuration.SpringConfiguration;
+import org.csproject.model.Constants;
+import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.field.Field;
+import org.csproject.model.field.StartPoint;
+import org.csproject.model.field.TeleportPoint;
+import org.csproject.model.field.Tile;
+import org.csproject.service.ScreenFactory;
+import org.csproject.util.Utilities;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.csproject.model.Constants.*;
 
@@ -41,31 +51,35 @@ import static org.csproject.model.Constants.*;
 public class TileEditor
         extends Application {
     // todo example tiles for deco and ground layer. add more!
-    private static final String[] CS_GROUND_SELECTION = {CS_OUTSIDE_1, CS_INSIDE_1};
-    private static final String[] CS_DECO_SELECTION = {CS_OUTSIDE_2, CS_WORLD, CS_HOUSE_TILES};
+    private static final String[] CS_COMPLEX_SELECTION = {CS_OUTSIDE_1, CS_INSIDE_1, CS_DUNGEON_1, CS_WORLD_2,
+            CS_WORLD_3};
+    private static final String[] CS_NORMAL_SELECTION = {CS_CHEST, CS_Door_1, CS_Door_2, CS_Door_3, CS_FLAME,
+            CS_GATE_1, CS_HOUSE_TILES, CS_INSIDE_2, CS_OTHER_2, CS_OUTSIDE_2, CS_OUTSIDE_3, CS_SWITCH_1, CS_WORLD_1};
 
     private static ApplicationContext context;
 
     private ScreenFactory screenFactory = context.getBean(ScreenFactory.class);
 
     private boolean showDecoLayer;
+    private boolean showPointsOfInterest;
 
     private int rowNum;
     private int colNum;
 
-    private String groundCS;
-    private String decoCS;
+    private String complexCS;
+    private String normalCS;
 
     private Tile selectedTile;
 
     private ScrollPane scrollPane;
-    private ScrollPane tileSelectionScroller;
+    private ScrollPane complexSelectionScroller;
+    private ScrollPane normalSelectionScroller;
 
     private Tile[][] groundTiles;
     private Tile[][] decoTiles;
-    private Tile[][] tilesSelection;
 
     private CheckBox blockingTileCB;
+
     private ChoiceBox<NavPointSelection> navPointSelection;
 
     private Collection<StartPoint> startPoints;
@@ -83,40 +97,43 @@ public class TileEditor
     @Override
     public void start(Stage editorStage)
             throws Exception {
-        this.rowNum = 50;
-        this.colNum = 50;
+        this.rowNum = 20;
+        this.colNum = 20;
         this.showDecoLayer = true;
+        this.showPointsOfInterest = true;
         this.startPoints = new ArrayList<>();
         this.teleportPoints = new ArrayList<>();
         this.images = new HashMap<>();
 
         editorStage.setTitle("Field editor");
-        Stage toolStage = new Stage();
-        toolStage.setTitle("Preferences");
         Stage tileSelectionStage = new Stage();
         tileSelectionStage.setTitle("Tiles");
 
-        tileSelectionStage.setScene(getTileSelectionScene());
         editorStage.setScene(getEditorScene());
-        toolStage.setScene(getToolScene());
+        tileSelectionStage.setScene(getTileSelectionScene());
 
         editorStage.show();
-        toolStage.show();
         tileSelectionStage.show();
 
-        setup();
         this.selectedTile = getEmptyTile();
+
+        setup();
     }
 
     private Tile getEmptyTile() {
-        return new Tile(0, 0, !blockingTileCB.isSelected(), Constants.EDITOR_EMPTY_TILE);
+        return new Tile(0, 0, true, Constants.EDITOR_EMPTY_TILE);
     }
 
     private Scene getTileSelectionScene() {
-        tileSelectionScroller = new ScrollPane();
-        tileSelectionScroller.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        tileSelectionScroller.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        tileSelectionScroller.setPrefSize(200, 400);
+        complexSelectionScroller = new ScrollPane();
+        complexSelectionScroller.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        complexSelectionScroller.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        complexSelectionScroller.setPrefSize(400, 300);
+
+        normalSelectionScroller = new ScrollPane();
+        normalSelectionScroller.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        normalSelectionScroller.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        normalSelectionScroller.setPrefSize(400, 300);
 
         VBox vBox = new VBox();
 
@@ -139,80 +156,107 @@ public class TileEditor
 
         navPointSelectionPanel.getChildren().add(navPointSelection);
 
-        Button deleteButtopn = new Button("Delte tiles");
-        deleteButtopn.setOnAction(new EventHandler<ActionEvent>() {
+        Button deleteButton = new Button("Delete tiles");
+        deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 selectedTile = getEmptyTile();
             }
         });
-        vBox.getChildren().add(deleteButtopn);
 
+        Label complexCSSelectionLabel = new Label("Complex: ");
+        ChoiceBox<String> complexCSSelection = new ChoiceBox<>();
+        complexCSSelection.getItems().addAll(CS_COMPLEX_SELECTION);
+        complexCSSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String value, String newValue) {
+                complexCS = newValue;
+                setupTileSelectionPanel(complexCS, complexSelectionScroller, true);
+            }
+        });
+        complexCSSelection.getSelectionModel().selectFirst();
+
+        Label normalCSSelectionLabel = new Label("Normal: ");
+        ChoiceBox<String> normalCSSelection = new ChoiceBox<>();
+        normalCSSelection.getItems().addAll(CS_NORMAL_SELECTION);
+        normalCSSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String value, String newValue) {
+                normalCS = newValue;
+                setupTileSelectionPanel(normalCS, normalSelectionScroller, false);
+            }
+        });
+        normalCSSelection.getSelectionModel().selectFirst();
+
+        vBox.getChildren().add(deleteButton);
         vBox.getChildren().add(navPointSelectionPanel);
-        vBox.getChildren().add(tileSelectionScroller);
+
+        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(complexCSSelectionLabel);
+        vBox.getChildren().add(complexCSSelection);
+        vBox.getChildren().add(complexSelectionScroller);
+
+        vBox.getChildren().add(new Separator());
+        vBox.getChildren().add(normalCSSelectionLabel);
+        vBox.getChildren().add(normalCSSelection);
+        vBox.getChildren().add(normalSelectionScroller);
 
         return new Scene(vBox);
     }
 
     private Scene getEditorScene() {
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(getToolScene());
+
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setPrefSize(500, 500);
-        return new Scene(scrollPane);
+        scrollPane.setPrefSize(800, 600);
+
+        borderPane.setCenter(scrollPane);
+        return new Scene(borderPane);
     }
 
-    private Scene getToolScene() {
-        VBox vBox = new VBox();
-
-        Label groundCSSelectionLabel = new Label("Ground: ");
-        ChoiceBox<String> groundCSSelection = new ChoiceBox<>();
-        groundCSSelection.getItems().addAll(CS_GROUND_SELECTION);
-        groundCSSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String value, String newValue) {
-                groundCS = newValue;
-                images.put(groundCS, new Image(CS_DIR + groundCS + CS_POST_FIX));
-                setup();
-            }
-        });
-        groundCSSelection.getSelectionModel().selectFirst();
-
-        Label decoCSSelectionLabel = new Label("Deco: ");
-        ChoiceBox<String> decoCSSelection = new ChoiceBox<>();
-        decoCSSelection.getItems().addAll(CS_DECO_SELECTION);
-        decoCSSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String value, String newValue) {
-                decoCS = newValue;
-                images.put(decoCS, new Image(CS_DIR + decoCS + CS_POST_FIX));
-                setup();
-            }
-        });
-        decoCSSelection.getSelectionModel().selectFirst();
+    private Pane getToolScene() {
+        HBox hBox = new HBox();
 
         CheckBox showDecoLayerCB = new CheckBox("Show deco layer");
-        blockingTileCB = new CheckBox("Set as blocking");
         showDecoLayerCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean value, Boolean newValue) {
                 showDecoLayer = newValue;
-                blockingTileCB.setSelected(showDecoLayer);
+                if(blockingTileCB != null)
+                {
+                    blockingTileCB.setSelected(showDecoLayer);
+                }
                 setup();
             }
         });
         showDecoLayerCB.setSelected(showDecoLayer);
 
+        blockingTileCB = new CheckBox("Set as blocking");
         blockingTileCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean value, Boolean newValue) {
-                selectedTile.setWalkable(!newValue);
+                if(selectedTile != null) {
+                  selectedTile.setWalkable(!newValue);
+                }
             }
         });
         blockingTileCB.setSelected(showDecoLayer);
 
-        Label fielNameLabel = new Label("Field name: ");
-        final TextField fielNameField = new TextField("example");
+        CheckBox showPointsOfInterestCB = new CheckBox("Show points of interest");
+        showPointsOfInterestCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean value, Boolean newValue) {
+                showPointsOfInterest = newValue;
+                setup();
+            }
+        });
+        showPointsOfInterestCB.setSelected(showPointsOfInterest);
+
+        Label fieldNameLabel = new Label("Field name: ");
+        final TextField fileNameField = new TextField("example");
 
         Button saveButton = new Button("Save");
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -221,7 +265,7 @@ public class TileEditor
                 Gson gson = context.getBean(Gson.class);
                 String json = gson.toJson(createField());
                 try {
-                    Utilities.saveFile(fielNameField.getText(), json);
+                    Utilities.saveFile(fileNameField.getText(), json);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -234,45 +278,75 @@ public class TileEditor
             public void handle(ActionEvent actionEvent) {
                 Gson gson = context.getBean(Gson.class);
                 String loaded = Utilities.getFile("C:" + File.separator + "fields" + File.separator
-                        + fielNameField.getText() + Constants.JSON_POST_FIX);
+                        + fileNameField.getText() + Constants.JSON_POST_FIX);
 
                 Field field = gson.fromJson(loaded, Field.class);
-                groundCS = field.getGroundImage();
-                decoCS = field.getDecoImage();
+                complexCS = field.getGroundImage();
+                normalCS = field.getDecoImage();
                 groundTiles = field.getGroundTiles();
                 decoTiles = field.getDecoTiles();
                 startPoints = field.getStartPoints();
                 teleportPoints = field.getTeleportPoints();
+                colNum = (int) field.getWidth();
+                rowNum = (int) field.getHeight();
 
-                images.put(groundCS, new Image(CS_DIR + groundCS + CS_POST_FIX));
-                images.put(decoCS, new Image(CS_DIR + decoCS + CS_POST_FIX));
+                if (complexCS != null && !complexCS.isEmpty()) {
+                    images.put(complexCS, new Image(CS_DIR + complexCS + CS_POST_FIX));
+                }
+                if (normalCS != null && !normalCS.isEmpty()) {
+                    images.put(normalCS, new Image(CS_DIR + normalCS + CS_POST_FIX));
+                }
 
                 setup();
             }
         });
 
-        vBox.getChildren().add(fielNameLabel);
-        vBox.getChildren().add(fielNameField);
-        vBox.getChildren().add(saveButton);
-        vBox.getChildren().add(loadButton);
+        Button newButton = new Button("New");
+        newButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                final Stage newDialog = new Stage();
+                VBox vBox = new VBox();
+                vBox.getChildren().add(new Label("Columns:"));
+                final TextField colsTextField = new NumberTextField();
+                vBox.getChildren().add(colsTextField);
+                vBox.getChildren().add(new Label("Rows:"));
+                final TextField rowsTextField = new NumberTextField();
+                vBox.getChildren().add(rowsTextField);
+                Button okButton = new Button("Ok");
+                okButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        rowNum = Integer.parseInt(rowsTextField.getText());
+                        colNum = Integer.parseInt(colsTextField.getText());
+                        setup();
+                        newDialog.hide();
+                    }
+                });
+                vBox.getChildren().add(okButton);
 
-        vBox.getChildren().add(groundCSSelectionLabel);
-        vBox.getChildren().add(groundCSSelection);
+                newDialog.setScene(new Scene(vBox));
+                newDialog.show();
+            }
+        });
+        hBox.getChildren().add(newButton);
 
-        vBox.getChildren().add(decoCSSelectionLabel);
-        vBox.getChildren().add(decoCSSelection);
+        hBox.getChildren().add(fieldNameLabel);
+        hBox.getChildren().add(fileNameField);
+        hBox.getChildren().add(saveButton);
+        hBox.getChildren().add(loadButton);
 
-        vBox.getChildren().add(showDecoLayerCB);
-        vBox.getChildren().add(blockingTileCB);
+        hBox.getChildren().add(showDecoLayerCB);
+        hBox.getChildren().add(blockingTileCB);
+        hBox.getChildren().add(showPointsOfInterestCB);
 
-        vBox.setPrefSize(200, 500);
-        return new Scene(vBox);
+        return hBox;
     }
 
     private Field createField() {
         Field field = new Field();
-        field.setGroundImage(groundCS);
-        field.setDecoImage(decoCS);
+        field.setGroundImage(complexCS);
+        field.setDecoImage(normalCS);
         field.setGroundTiles(groundTiles);
         field.setDecoTiles(decoTiles);
         field.getStartPoints().addAll(startPoints);
@@ -284,111 +358,192 @@ public class TileEditor
     }
 
     private void setup() {
-        if (groundCS == null || groundCS.isEmpty() || decoCS == null || decoCS.isEmpty()) {
+        if (complexCS == null || complexCS.isEmpty() || normalCS == null || normalCS.isEmpty()) {
             return;
         }
 
         setupEditorPanel();
-        setupTileSelectionPanel();
     }
 
     private void setupEditorPanel() {
-        final String groundImageUrl = CS_DIR + groundCS + CS_POST_FIX;
-        final String decoImageUrl = CS_DIR + decoCS + CS_POST_FIX;
+        final String groundImageUrl = CS_DIR + complexCS + CS_POST_FIX;
+        final String decoImageUrl = CS_DIR + normalCS + CS_POST_FIX;
 
         if (groundTiles == null || groundTiles.length != rowNum || (groundTiles.length > 0 && groundTiles[0].length != colNum)) {
-            groundTiles = newTileMatrix(0, 0, rowNum, colNum, null);
+            groundTiles = newTileMatrix(0, 0, rowNum, colNum, complexCS, false);
         }
         if (decoTiles == null || decoTiles.length != rowNum || (decoTiles.length > 0 && decoTiles[0].length != colNum)) {
-            decoTiles = newTileMatrix(0, 0, rowNum, colNum, EDITOR_EMPTY_TILE);
+            decoTiles = newTileMatrix(0, 0, rowNum, colNum, EDITOR_EMPTY_TILE, false);
         }
 
         ScreenFactory.TileClickCallback tileClickCallback = new ScreenFactory.TileClickCallback() {
             @Override
-            public void onClick(Tile tile, ImageView tileImageView) {
-                if(selectedTile != null) {
-                    tile.setX(selectedTile.getX());
-                    tile.setY(selectedTile.getY());
-                    tile.setWalkable(selectedTile.isWalkable());
-                    tile.setTileImage(selectedTile.getTileImage());
-                    Rectangle2D rectangle2D = new Rectangle2D(tile.getX() * TILE_SIZE, tile.getY() * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-                    tileImageView.setViewport(rectangle2D);
-                    if(selectedTile.getTileImage() == null){
-                        tileImageView.setImage(showDecoLayer ? images.get(decoCS) : images.get(groundCS));
-                    }
-                    else{
-                        Image image = images.get(selectedTile.getTileImage());
-                        if (image == null) {
-                            image = new Image(CS_DIR + selectedTile.getTileImage() + CS_POST_FIX);
-                            images.put(selectedTile.getTileImage(), image);
+            public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
+                if(controlDown) {
+                    setSelectedTile(tile);
+                } else if (shiftDown) {
+                    Tile[][] allTiles = showDecoLayer ? decoTiles : groundTiles;
+                    for (int currentRow = 0; currentRow < rowNum; currentRow++) {
+                        for (int currentCol = 0; currentCol < colNum; currentCol++) {
+                            if (selectedTile != null) {
+                                allTiles[currentRow][currentCol].setX(selectedTile.getX());
+                                allTiles[currentRow][currentCol].setY(selectedTile.getY());
+                                allTiles[currentRow][currentCol].setWalkable(selectedTile.isWalkable());
+                                allTiles[currentRow][currentCol].setTileImage(selectedTile.getTileImage());
+                                allTiles[currentRow][currentCol].setComplex(selectedTile.isComplex());
+                            } else {
+                                allTiles[currentRow][currentCol] = null;
+                            }
                         }
-                        tileImageView.setImage(image);
+                        setup();
                     }
-
-                    // todo neighbours
-                }
-                else
-                {
-                    NavigationPoint navigationPoint = navPointSelection.getSelectionModel().getSelectedItem()
-                            .getNavigationPoint((int)(tileImageView.getTranslateX()/TILE_SIZE), (int)(tileImageView.getTranslateY()/TILE_SIZE));
-                    if(navigationPoint instanceof StartPoint){
-                        startPoints.add((StartPoint) navigationPoint);
+                } else {
+                    if(selectedTile != null)
+                    {
+                      tile.setX(selectedTile.getX());
+                      tile.setY(selectedTile.getY());
+                      tile.setWalkable(selectedTile.isWalkable());
+                      tile.setTileImage(selectedTile.getTileImage());
+                      tile.setComplex(selectedTile.isComplex());
                     }
-                    else if (navigationPoint instanceof TeleportPoint) {
-                        teleportPoints.add((TeleportPoint) navigationPoint);
+                    else
+                    {
+                        NavigationPoint navigationPoint = navPointSelection.getSelectionModel().getSelectedItem().getNavigationPoint(col, row);
+                        if(navigationPoint instanceof StartPoint)
+                        {
+                          startPoints.add((StartPoint) navigationPoint);
+                        }
+                        else if(navigationPoint instanceof TeleportPoint)
+                        {
+                          teleportPoints.add((TeleportPoint) navigationPoint);
+                        }
+                        setup();
                     }
-                    // todo add some graphic for this nav point on editor
                 }
             }
         };
         Group all = new Group();
 
-        Group groundGroup = screenFactory.convert(groundTiles, groundImageUrl, tileClickCallback);
-        Group decoGroup = screenFactory.convert(decoTiles, decoImageUrl, tileClickCallback);
+        Pane groundGroup = screenFactory.convert(groundTiles, groundImageUrl, Color.BLACK, tileClickCallback);
+        Pane decoGroup = screenFactory.convert(decoTiles, decoImageUrl, null, showDecoLayer ? tileClickCallback : null);
 
         all.getChildren().add(groundGroup);
         if (showDecoLayer) {
             all.getChildren().add(decoGroup);
         }
+        if(showPointsOfInterest) {
+            if(images.get(EDITOR_START_TILE) == null) {
+                images.put(EDITOR_START_TILE, new Image(CS_DIR + EDITOR_START_TILE + CS_POST_FIX));
+            }
+            if(images.get(EDITOR_TELEPORT_TILE) == null) {
+              images.put(EDITOR_TELEPORT_TILE, new Image(CS_DIR + EDITOR_TELEPORT_TILE + CS_POST_FIX));
+            }
+            Group pointsOfInterestIcons = new Group();
+            for(final StartPoint startPoint : startPoints)
+            //noinspection Duplicates
+            {
+                ImageView startIconView = new ImageView(images.get(EDITOR_START_TILE));
+                startIconView.setTranslateX(startPoint.getX() * TILE_SIZE);
+                startIconView.setTranslateY(startPoint.getY() * TILE_SIZE);
+                pointsOfInterestIcons.getChildren().add(startIconView);
+
+                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>()
+                {
+                  @Override
+                  public void handle(MouseEvent mouseEvent)
+                  {
+                    Prompt.getPrompt("Delete Start Point", "Are you sure, you want to delete this start point?", new Prompt.Callback()
+                    {
+                      @Override
+                      public void onYes()
+                      {
+                        startPoints.remove(startPoint);
+                        setup();
+                      }
+                    });
+                  }
+                });
+            }
+            for(final TeleportPoint teleportPoint : teleportPoints)
+            //noinspection Duplicates
+            {
+                final ImageView teleportIconView = new ImageView(images.get(EDITOR_TELEPORT_TILE));
+                teleportIconView.setTranslateX(teleportPoint.getX() * TILE_SIZE);
+                teleportIconView.setTranslateY(teleportPoint.getY() * TILE_SIZE);
+                pointsOfInterestIcons.getChildren().add(teleportIconView);
+
+              pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>()
+              {
+                @Override
+                public void handle(MouseEvent mouseEvent)
+                {
+                  Prompt.getPrompt("Delete Teleporter", "Are you sure, you want to delete this teleporter?", new Prompt.Callback()
+                  {
+                    @Override
+                    public void onYes()
+                    {
+                      teleportPoints.remove(teleportPoint);
+                      setup();
+                    }
+                  });
+                }
+              });
+            }
+            all.getChildren().add(pointsOfInterestIcons);
+        }
 
         scrollPane.setContent(all);
     }
 
-    private void setupTileSelectionPanel() {
-        String imageUrl = showDecoLayer ? CS_DIR + decoCS + CS_POST_FIX : CS_DIR + groundCS + CS_POST_FIX;
+    private void setupTileSelectionPanel(String csImage, ScrollPane selectionScroller, boolean complex) {
+        String imageUrl = CS_DIR + csImage + CS_POST_FIX;
 
-        Image image = new Image(imageUrl);
+        Image image = images.get(csImage);
+        if (image == null) {
+            image = new Image(imageUrl);
+            images.put(csImage, image);
+        }
         int cols = (int) (image.getWidth() / TILE_SIZE);
         int rows = (int) (image.getHeight() / TILE_SIZE);
 
-        tilesSelection = newTileMatrix(-1, -1, rows, cols, null);
+        Tile[][] tilesSelection = newTileMatrix(-1, -1, rows, cols, csImage, complex);
 
-        final Group selection = screenFactory.convert(tilesSelection, imageUrl, new ScreenFactory.TileClickCallback() {
+        final Pane selection = screenFactory.convert(tilesSelection, imageUrl, Color.BLACK, new ScreenFactory.TileClickCallback() {
             @Override
-            public void onClick(Tile tile, ImageView tileImageView) {
-                selectedTile = tile; // select the clicked tile
-                selectedTile.setWalkable(!blockingTileCB.isSelected());
+            public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
+              setSelectedTile(tile);
                 // todo 1: add a little icon or something here to show the selection (imageView.someFancyMethodThatWillMarkIt())
-                // todo 3: add some way to mark half tiles (auf deutsch: eine 32x32 tile zwischen zwei tiles/siehe tilesets!)
             }
         });
-        tileSelectionScroller.setContent(selection);
+        selectionScroller.setContent(selection);
     }
 
-    private Tile[][] newTileMatrix(int defaultX, int defaultY, int rowNum, int colNum, String defaultImage) {
-        Tile[][] tiles = new Tile[rowNum][colNum];
+  private void setSelectedTile(Tile tile)
+  {
+    selectedTile = new Tile(tile.getX(), tile.getY(), !blockingTileCB.isSelected(), tile.getTileImage()); // select the clicked tile
+    selectedTile.setComplex(tile.isComplex());
+  }
 
-        for (int row = 0; row < rowNum; row++) {
-            for (int col = 0; col < colNum; col++) {
+  private Tile[][] newTileMatrix(int defaultX, int defaultY, int rowNum, int colNum, String tileImage,
+                                   boolean complex) {
+        Tile[][] tiles = new Tile
+                [complex ? (int) (rowNum / TILE_BLOCK_HEIGHT) : rowNum]
+                [complex ? (int) (colNum / TILE_BLOCK_WIDTH) : colNum];
+
+        for (int row = 0; row < (complex ? rowNum / TILE_BLOCK_HEIGHT : rowNum); row++) {
+            for (int col = 0; col < (complex ? colNum / TILE_BLOCK_WIDTH : colNum) ; col++) {
                 int x = defaultX >= 0 ? defaultX : col;
                 int y = defaultY >= 0 ? defaultY : row;
                 Tile tile = new Tile(x, y, true);
-                if (defaultImage != null) {
-                    tile.setTileImage(defaultImage);
+                tile.setComplex(complex);
+                if (tileImage != null) {
+                    tile.setTileImage(tileImage);
                 }
                 tiles[row][col] = tile;
             }
         }
+
         return tiles;
     }
+
 }
