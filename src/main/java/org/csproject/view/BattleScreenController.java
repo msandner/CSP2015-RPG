@@ -1,6 +1,7 @@
 package org.csproject.view;
 
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -185,6 +186,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
+    int attack, enemyAttacked;
     Image[] enemyImages;
     TranslateTransition moveChar, reverseMoveChar;
 
@@ -518,5 +520,14 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
         moveChar.setFromX(0);
         moveChar.setToX(25);
+    }
+
+    public void setAttack(int i) {
+        showEnemyButtons();
+        attack = i;
+    }
+
+    public void showEnemyButtons() {
+        chooseBox.setVisible(true);
     }
 }

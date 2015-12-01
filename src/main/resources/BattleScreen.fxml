@@ -37,7 +37,7 @@
         </HBox>
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
           <children>
-            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
+            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
             <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Magic" />
             <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Items" />
             <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />
