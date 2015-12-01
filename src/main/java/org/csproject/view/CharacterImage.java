@@ -29,6 +29,24 @@ public class CharacterImage extends ImageView {
 
     private BattleFactory battlefactory = new BattleFactory();
 
+    //For the battle GUI - No threads, viewport is vital.
+    public CharacterImage(int blockX, int blockY, String imageURL, Direction direction) {
+        super();
+
+        faceDirection = direction;
+        actorImageBlockX = blockX;
+        actorImageBlockY = blockY;
+
+        actorImage = new Image(imageURL);
+        setImage(actorImage);
+
+        setViewport(new Rectangle2D(
+                actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
+                actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
+                Constants.TILE_SIZE,
+                Constants.TILE_SIZE));
+    }
+
     public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
         super();
 

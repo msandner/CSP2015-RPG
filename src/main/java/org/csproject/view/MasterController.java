@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.PlayerActor;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -55,15 +56,32 @@ public class MasterController extends Application {
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
         } else {
-            /*Skip the beginning scenes and start the game right away.
+            /* Skip the beginning scenes and start the game right away.
              * Change the values in the ScreensController class (setUpNewGame() function)
              * to view different scenes like the static map, dungeon, forest, etc
              */
             screensController.setUpNewGame();
             screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
             screensController.setScreen(GAME_SCREEN);
+
+            /*
+                Example for creating a new battle. Comment out the three lines above and uncomment
+                everything underneath this block comment. You have to call getBattleController from
+                a screensController object to be able to operate any methods to alter the gui.
+                In this example, all of the enemy images are still null, but I am able to start a new
+                battle, put all of the player characters in it, and damage one of them. Note that no
+                Monsters have been created at the time of this implementation.
+             */
 //            screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
 //            screensController.setScreen(BATTLE_SCREEN_ID);
+//            BattleScreenController b = screensController.getBattleController();
+//            PlayerActor[] players = new PlayerActor[3];
+//            players[0] = new PlayerActor("Alice", Constants.CLASS_KNIGHT, 4, 6, 6);
+//            players[1] = new PlayerActor("Bob", Constants.CLASS_MAGE, 4, 6, 6);
+//            players[2] = new PlayerActor("Charlie", Constants.CLASS_THIEF, 4, 6, 6);
+//            b.startNewBattle(players, null);
+//            b.setPlayerHealth(0, 42);
+
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
