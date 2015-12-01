@@ -55,19 +55,19 @@
             <VBox fx:id="playerHP" prefHeight="182.0" prefWidth="270.0">
               <children>
                 <Label fx:id="player1HPText" prefWidth="269.0" text="player1HPText" />
-                <ProgressBar fx:id="player1HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                <ProgressBar fx:id="player1HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;">
                   <VBox.margin>
                     <Insets bottom="13.0" />
                   </VBox.margin>
                 </ProgressBar>
                 <Label fx:id="player2HPText" prefWidth="269.0" text="player2HPText" />
-                <ProgressBar fx:id="player2HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                <ProgressBar fx:id="player2HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;">
                   <VBox.margin>
                     <Insets bottom="15.0" />
                   </VBox.margin>
                 </ProgressBar>
                 <Label fx:id="player3HPText" prefWidth="269.0" text="player3HPText" />
-                <ProgressBar id="player3Bar" fx:id="player3HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" />
+                <ProgressBar id="player3Bar" fx:id="player3HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;" />
               </children>
               <padding>
                 <Insets top="5.0" />
