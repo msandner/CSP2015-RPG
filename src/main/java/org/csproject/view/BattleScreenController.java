@@ -199,11 +199,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /* Start a new battle with the given array of PlayActors and List
         (MAX OF 6) enemies. Their images and names are all added to the correct places.
      */
-    public void startNewBattle(PlayerActor[] players, List enemyActors) {
+    public void startNewBattle(List<PlayerActor> players, List enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
         setEnemies(enemyActors);
-        setPlayers(players[0], players[1], players[2]);
+        setPlayers(players.get(0), players.get(1), players.get(2));
     }
 
     /* Set all of the things related to the PlayerActors to their correct displays */
@@ -354,34 +354,37 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         MonsterImage m;
         if(enemyList != null && enemyList.size() < 7) {
             for (int i = 0; i < enemyList.size(); i++) {
-                m = new MonsterImage(enemyList.get(i).getName());
-                switch (i) {
-                    case 0:
-                        enemyButton1.setText(enemyList.get(i).getName());
-                        enemyLabel1.setText(enemyList.get(i).getName());
-                        break;
-                    case 1:
-                        enemyButton2.setText(enemyList.get(i).getName());
-                        enemyLabel2.setText(enemyList.get(i).getName());
-                        break;
-                    case 2:
-                        enemyButton3.setText(enemyList.get(i).getName());
-                        enemyLabel3.setText(enemyList.get(i).getName());
-                        break;
-                    case 3:
-                        enemyButton4.setText(enemyList.get(i).getName());
-                        enemyLabel4.setText(enemyList.get(i).getName());
-                        break;
-                    case 4:
-                        enemyButton5.setText(enemyList.get(i).getName());
-                        enemyLabel5.setText(enemyList.get(i).getName());
-                        break;
-                    default:
-                        enemyButton6.setText(enemyList.get(i).getName());
-                        enemyLabel6.setText(enemyList.get(i).getName());
-                        break;
+                if(enemyList.get(i) != null) {
+                    System.out.println(enemyList.get(i).getName());
+                    m = new MonsterImage(enemyList.get(i).getName());
+                    switch (i) {
+                        case 0:
+                            enemyButton1.setText(enemyList.get(i).getName());
+                            enemyLabel1.setText(enemyList.get(i).getName());
+                            break;
+                        case 1:
+                            enemyButton2.setText(enemyList.get(i).getName());
+                            enemyLabel2.setText(enemyList.get(i).getName());
+                            break;
+                        case 2:
+                            enemyButton3.setText(enemyList.get(i).getName());
+                            enemyLabel3.setText(enemyList.get(i).getName());
+                            break;
+                        case 3:
+                            enemyButton4.setText(enemyList.get(i).getName());
+                            enemyLabel4.setText(enemyList.get(i).getName());
+                            break;
+                        case 4:
+                            enemyButton5.setText(enemyList.get(i).getName());
+                            enemyLabel5.setText(enemyList.get(i).getName());
+                            break;
+                        default:
+                            enemyButton6.setText(enemyList.get(i).getName());
+                            enemyLabel6.setText(enemyList.get(i).getName());
+                            break;
+                    }
+                    enemyImages[i] = m.getImage();
                 }
-                enemyImages[i] = m.getImage();
             }
         }
         updateEnemyImages();

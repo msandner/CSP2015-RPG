@@ -20,6 +20,7 @@ import java.util.Random;
 public class BattleFactory {
 
     ScreensController screencontroller;
+    BattleScreenController battleController;
 
     public void startBattle() {
         screencontroller = new ScreensController();
@@ -37,9 +38,12 @@ public class BattleFactory {
 
         PlayerParty party = new PlayerParty(knight, thief, mage, 100);
 
-        roundBasedBattle(party, monsterparty);
+//        roundBasedBattle(party, monsterparty);
 
-        System.out.println("Battle startet");
+        battleController = MasterController.getBattleController();
+        battleController.startNewBattle(party.getParty(), monsterparty.getParty());
+
+        System.out.println("Battle started");
     }
 
     public void roundBasedBattle(PlayerParty pparty, MonsterParty mparty) {
