@@ -32,5 +32,6 @@ CIS 467
 11/26: Continued Battle Screen:          10:15 to 11:45 - 1 hour  30 mins
 11/27: Continued Battle Screen:          11:15 to  2:15 - 3 hours 00 mins
 11/30: Skype meeting and fix Char Image:  5:45 to  6:30 - 0 hours 45 mins
+11/30: Attempted linkage of logic & GUI:  9:15 to 11:45 - 2 hours 30 mins
 ----------------------------------------------------------------------------
-Total:                                                   49 hours 52 mins
+Total:                                                   52 hours 22 mins
