@@ -8,9 +8,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MasterController extends Application {
 
@@ -79,7 +83,23 @@ public class MasterController extends Application {
 //            players[0] = new PlayerActor("Alice", Constants.CLASS_KNIGHT, 4, 6, 6);
 //            players[1] = new PlayerActor("Bob", Constants.CLASS_MAGE, 4, 6, 6);
 //            players[2] = new PlayerActor("Charlie", Constants.CLASS_THIEF, 4, 6, 6);
-//            b.startNewBattle(players, null);
+//            List enemyList = new ArrayList<>();
+//            Monster m = new Monster("Bat", "What do you mean TYPE?!", 1, 24) {
+//                @Override
+//                public int calcHp(int level) {
+//                    return level + 42;
+//                }
+//            };
+//            enemyList.add(m);
+//
+//            m = new Monster("Imp", "IDK what type it is.", 1, 25) {
+//                @Override
+//                public int calcHp(int level) {
+//                    return level * 12;
+//                }
+//            };
+//            enemyList.add(m);
+//            b.startNewBattle(players, enemyList);
 //            b.setPlayerHealth(0, 42);
 
             Group root = new Group();

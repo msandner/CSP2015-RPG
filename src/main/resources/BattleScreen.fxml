@@ -17,27 +17,27 @@
           <children>
             <VBox prefHeight="182.0" prefWidth="191.0">
               <children>
-                <Label fx:id="enemyLabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="">
+                  <font>
+                    <Font size="18.0" fx:id="x1" />
+                  </font>
+                </Label>
+                <Label fx:id="enemyLabel2" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel3" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
               </children>
             </VBox>
             <VBox prefHeight="182.0" prefWidth="191.0">
               <children>
-                <Label fx:id="enemyLabel4" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel5" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel6" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel4" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel5" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel6" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
               </children>
             </VBox>
           </children>
         </HBox>
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
           <children>
-            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-            </Button>
+            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
             <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Magic" />
             <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Items" />
             <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />

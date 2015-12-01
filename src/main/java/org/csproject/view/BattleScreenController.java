@@ -349,9 +349,10 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         clearEnemyNames();
         clearEnemyImages();
         clearEnemyButtons();
-        if(enemyList != null) {
+        MonsterImage m;
+        if(enemyList != null && enemyList.size() < 7) {
             for (int i = 0; i < enemyList.size(); i++) {
-                //TODO set enemy images to their images in the array
+                m = new MonsterImage(enemyList.get(i).getName());
                 switch (i) {
                     case 0:
                         enemyButton1.setText(enemyList.get(i).getName());
@@ -378,6 +379,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                         enemyLabel6.setText(enemyList.get(i).getName());
                         break;
                 }
+                enemyImages[i] = m.getImage();
             }
         }
         updateEnemyImages();
