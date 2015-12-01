@@ -31,6 +31,8 @@ public class MasterController extends Application {
     public static final boolean fastStart = true;
 //    public static final boolean fastStart = false;
 
+    public static ScreensController screensController;
+
     private static AnnotationConfigApplicationContext context;
 
     public static void main(String[] args) {
@@ -43,10 +45,9 @@ public class MasterController extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+
         primaryStage.setWidth(Constants.SCREEN_WIDTH);
         primaryStage.setHeight(Constants.SCREEN_HEIGHT);
-
-        ScreensController screensController;
 
         screensController = context.getBean(ScreensController.class);
 
@@ -76,7 +77,9 @@ public class MasterController extends Application {
                 battle, put all of the player characters in it, and damage one of them. Note that no
                 Monsters have been created at the time of this implementation.
              */
-           /* screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+            screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+
+            /*
             screensController.setScreen(BATTLE_SCREEN_ID);
             BattleScreenController b = screensController.getBattleController();
             PlayerActor[] players = new PlayerActor[3];
@@ -108,5 +111,14 @@ public class MasterController extends Application {
         }
 
         primaryStage.show();
+
+    }
+
+    public static void setScreen(String screenName) {
+        screensController.setScreen(screenName);
+    }
+
+    public static BattleScreenController getBattleController() {
+        return screensController.getBattleController();
     }
 }

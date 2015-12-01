@@ -1,9 +1,16 @@
 package org.csproject.service;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import org.csproject.model.Constants;
 import org.csproject.model.actors.*;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
+import org.csproject.view.BattleScreenController;
+import org.csproject.view.MasterController;
 
 import java.util.Random;
 
@@ -12,8 +19,27 @@ import java.util.Random;
  */
 public class BattleFactory {
 
-    public void startBattle() {
+    ScreensController screencontroller;
 
+    public void startBattle() {
+        screencontroller = new ScreensController();
+        MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
+
+        Monster bat1 = new Monster("Bat", "", 1, 10);
+        Monster bat2 = new Monster("Bat", "", 1, 10);
+        Monster bat3 = new Monster("Bat", "", 1, 10);
+
+        MonsterParty monsterparty = new MonsterParty(bat1, bat2, bat3, null, null, null);
+
+        PlayerActor knight = new PlayerActor("Jim the Knight", Constants.CLASS_KNIGHT, 1, 2, 2);
+        PlayerActor thief = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 1, 2, 2);
+        PlayerActor mage = new PlayerActor("Tim", Constants.CLASS_MAGE, 1 , 2 , 2);
+
+        PlayerParty party = new PlayerParty(knight, thief, mage, 100);
+
+        roundBasedBattle(party, monsterparty);
+
+        System.out.println("Battle startet");
     }
 
     public void roundBasedBattle(PlayerParty pparty, MonsterParty mparty) {
@@ -56,6 +82,7 @@ public class BattleFactory {
     public void attackCharacterWithMagic(PlayerActor attacker, BattleActor victim, OffensiveMagic magic, double extra) {
         //extra is for creating more dmg on the victim (normal = 1, double dmg = 2 etc) )
 
+
         if(!attacker.playerHasAttacked()) {
             victim.calcCurrentHp((int)(magic.getValue()*extra));
             System.out.println("Attacked character");
@@ -67,6 +94,10 @@ public class BattleFactory {
             attacker.calcCurrentMp(magic.getMp());
             attacker.setHasAttacked(true);
         }
+    }
+
+    public void basicAttack(PlayerActor attacker, PlayerActor victim) {
+        attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(4), 1);
     }
     //spells for the knight
     public void shieldBash(PlayerActor attacker, BattleActor victim) {
