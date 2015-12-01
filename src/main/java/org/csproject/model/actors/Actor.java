@@ -15,7 +15,7 @@ public abstract class Actor {
     public Actor(String name, String type) {
         this.name = name;
         this.type = type;
-        this.position = new NavigationPoint(0,0);
+        this.position = new NavigationPoint(0,0,"actor");
     }
 
     public String getName() {

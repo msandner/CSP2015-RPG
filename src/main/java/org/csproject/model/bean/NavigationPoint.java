@@ -7,9 +7,12 @@ public class NavigationPoint {
     private int x;
     private int y;
 
-    public NavigationPoint(int x, int y) {
+    private String name;
+
+    public NavigationPoint(int x, int y, String name) {
         this.x = x;
         this.y = y;
+        this.name = name;
     }
 
     public void setX(int x) {
@@ -24,5 +27,13 @@ public class NavigationPoint {
 
     public int getY() {
         return y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
