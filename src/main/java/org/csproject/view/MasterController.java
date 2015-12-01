@@ -76,31 +76,31 @@ public class MasterController extends Application {
                 battle, put all of the player characters in it, and damage one of them. Note that no
                 Monsters have been created at the time of this implementation.
              */
-//            screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
-//            screensController.setScreen(BATTLE_SCREEN_ID);
-//            BattleScreenController b = screensController.getBattleController();
-//            PlayerActor[] players = new PlayerActor[3];
-//            players[0] = new PlayerActor("Alice", Constants.CLASS_KNIGHT, 4, 6, 6);
-//            players[1] = new PlayerActor("Bob", Constants.CLASS_MAGE, 4, 6, 6);
-//            players[2] = new PlayerActor("Charlie", Constants.CLASS_THIEF, 4, 6, 6);
-//            List enemyList = new ArrayList<>();
-//            Monster m = new Monster("Bat", "What do you mean TYPE?!", 1, 24) {
-//                @Override
-//                public int calcHp(int level) {
-//                    return level + 42;
-//                }
-//            };
-//            enemyList.add(m);
-//
-//            m = new Monster("Imp", "IDK what type it is.", 1, 25) {
-//                @Override
-//                public int calcHp(int level) {
-//                    return level * 12;
-//                }
-//            };
-//            enemyList.add(m);
-//            b.startNewBattle(players, enemyList);
-//            b.setPlayerHealth(0, 42);
+           /* screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+            screensController.setScreen(BATTLE_SCREEN_ID);
+            BattleScreenController b = screensController.getBattleController();
+            PlayerActor[] players = new PlayerActor[3];
+            players[0] = new PlayerActor("Alice", Constants.CLASS_KNIGHT, 4, 6, 6);
+            players[1] = new PlayerActor("Bob", Constants.CLASS_MAGE, 4, 6, 6);
+            players[2] = new PlayerActor("Charlie", Constants.CLASS_THIEF, 4, 6, 6);
+            List enemyList = new ArrayList<>();
+            Monster m = new Monster("Bat", "What do you mean TYPE?!", 1, 24) {
+               @Override
+                public int calcHp(int level) {
+                    return level + 42;
+                }
+            };
+            enemyList.add(m);
+
+           m = new Monster("Imp", "IDK what type it is.", 1, 25) {
+                @Override
+               public int calcHp(int level) {
+                   return level * 12;
+               }
+           };
+            enemyList.add(m);
+            b.startNewBattle(players, enemyList);
+           b.setPlayerHealth(0, 42);*/
 
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());

@@ -73,7 +73,7 @@ public abstract class BattleActor extends Actor{
     public abstract int calcHp(int level);
 
     public boolean is_dead() {
-        if(getCurrentHp() > 0) {
+        if(getCurrentHp() == 0) {
             return true;
         } else {
             return false;

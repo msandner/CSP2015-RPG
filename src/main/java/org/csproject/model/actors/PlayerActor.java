@@ -60,6 +60,10 @@ public class PlayerActor extends BattleActor {
         return allSpells;
     }
 
+    public Magic getSpell(int i) {
+        return allSpells.get(i);
+    }
+
     public int getCurrentMp() {
         return currentMp;
     }
@@ -104,4 +108,6 @@ public class PlayerActor extends BattleActor {
     public void levelUp() {
     //todo:level up
     }
+
+
 }
