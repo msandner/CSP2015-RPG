@@ -62,6 +62,7 @@ public class TileEditor
 
     private boolean showDecoLayer;
     private boolean showPointsOfInterest;
+    private boolean hasChunkSelected = false;
 
     private int rowNum;
     private int colNum;
@@ -188,6 +189,33 @@ public class TileEditor
         });
         normalCSSelection.getSelectionModel().selectFirst();
 
+        Label chunkCSSelectionLabel = new Label("Chunks: ");
+        Button trees = new Button("4x4 Trees");
+        Button hole = new Button("2x2 Hole");
+        Button waterHole = new Button("2x2 Water Hole");
+
+        trees.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                setSelectedTile(new Tile(0, 14, false, "Outside3"));
+                hasChunkSelected = true;
+            }
+        });
+        hole.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                setSelectedTile(new Tile(10, 7, false, "Outside"));
+                hasChunkSelected = true;
+            }
+        });
+        waterHole.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                setSelectedTile(new Tile(14, 9, false, "Outside"));
+                hasChunkSelected = true;
+            }
+        });
+
         vBox.getChildren().add(deleteButton);
         vBox.getChildren().add(navPointSelectionPanel);
 
@@ -200,6 +228,11 @@ public class TileEditor
         vBox.getChildren().add(normalCSSelectionLabel);
         vBox.getChildren().add(normalCSSelection);
         vBox.getChildren().add(normalSelectionScroller);
+
+        vBox.getChildren().add(chunkCSSelectionLabel);
+        vBox.getChildren().add(trees);
+        vBox.getChildren().add(hole);
+        vBox.getChildren().add(waterHole);
 
         return new Scene(vBox);
     }
@@ -381,6 +414,7 @@ public class TileEditor
             public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
                 if(controlDown) {
                     setSelectedTile(tile);
+                    hasChunkSelected = false;
                 } else if (shiftDown) {
                     Tile[][] allTiles = showDecoLayer ? decoTiles : groundTiles;
                     for (int currentRow = 0; currentRow < rowNum; currentRow++) {
@@ -398,13 +432,182 @@ public class TileEditor
                         setup();
                     }
                 } else {
-                    if(selectedTile != null)
+                    if(selectedTile != null && !hasChunkSelected)
                     {
                       tile.setX(selectedTile.getX());
                       tile.setY(selectedTile.getY());
                       tile.setWalkable(selectedTile.isWalkable());
                       tile.setTileImage(selectedTile.getTileImage());
                       tile.setComplex(selectedTile.isComplex());
+                    }
+                    else if(selectedTile != null && hasChunkSelected)
+                    {
+                        Tile[][] allTiles = showDecoLayer ? decoTiles : groundTiles;
+                        int x = row;
+                        int y = col;
+                        if(selectedTile.getTileImage() == "Outside3"){
+                            allTiles[x][y].setX(0);
+                            allTiles[x][y].setY(14);
+                            allTiles[x][y].setWalkable(false);
+                            allTiles[x][y].setTileImage("Outside3");
+                            allTiles[x][y].setComplex(false);
+
+                            allTiles[x][y + 1].setX(1);
+                            allTiles[x][y + 1].setY(14);
+                            allTiles[x][y + 1].setWalkable(false);
+                            allTiles[x][y + 1].setTileImage("Outside3");
+                            allTiles[x][y + 1].setComplex(false);
+
+                            allTiles[x][y + 2].setX(0);
+                            allTiles[x][y + 2].setY(14);
+                            allTiles[x][y + 2].setWalkable(false);
+                            allTiles[x][y + 2].setTileImage("Outside3");
+                            allTiles[x][y + 2].setComplex(false);
+
+                            allTiles[x][y + 3].setX(1);
+                            allTiles[x][y + 3].setY(14);
+                            allTiles[x][y + 3].setWalkable(false);
+                            allTiles[x][y + 3].setTileImage("Outside3");
+                            allTiles[x][y + 3].setComplex(false);
+
+                            allTiles[x + 1][y].setX(0);
+                            allTiles[x + 1][y].setY(15);
+                            allTiles[x + 1][y].setWalkable(false);
+                            allTiles[x + 1][y].setTileImage("Outside3");
+                            allTiles[x + 1][y].setComplex(false);
+
+                            allTiles[x + 1][y + 1].setX(2);
+                            allTiles[x + 1][y + 1].setY(15);
+                            allTiles[x + 1][y + 1].setWalkable(false);
+                            allTiles[x + 1][y + 1].setTileImage("Outside3");
+                            allTiles[x + 1][y + 1].setComplex(false);
+
+                            allTiles[x + 1][y + 2].setX(3);
+                            allTiles[x + 1][y + 2].setY(15);
+                            allTiles[x + 1][y + 2].setWalkable(false);
+                            allTiles[x + 1][y + 2].setTileImage("Outside3");
+                            allTiles[x + 1][y + 2].setComplex(false);
+
+                            allTiles[x + 1][y + 3].setX(1);
+                            allTiles[x + 1][y + 3].setY(15);
+                            allTiles[x + 1][y + 3].setWalkable(false);
+                            allTiles[x + 1][y + 3].setTileImage("Outside3");
+                            allTiles[x + 1][y + 3].setComplex(false);
+
+                            allTiles[x + 2][y].setX(0);
+                            allTiles[x + 2][y].setY(14);
+                            allTiles[x + 2][y].setWalkable(false);
+                            allTiles[x + 2][y].setTileImage("Outside3");
+                            allTiles[x + 2][y].setComplex(false);
+
+                            allTiles[x + 2][y + 1].setX(2);
+                            allTiles[x + 2][y + 1].setY(14);
+                            allTiles[x + 2][y + 1].setWalkable(false);
+                            allTiles[x + 2][y + 1].setTileImage("Outside3");
+                            allTiles[x + 2][y + 1].setComplex(false);
+
+                            allTiles[x + 2][y + 2].setX(3);
+                            allTiles[x + 2][y + 2].setY(14);
+                            allTiles[x + 2][y + 2].setWalkable(false);
+                            allTiles[x + 2][y + 2].setTileImage("Outside3");
+                            allTiles[x + 2][y + 2].setComplex(false);
+
+                            allTiles[x + 2][y + 3].setX(1);
+                            allTiles[x + 2][y + 3].setY(14);
+                            allTiles[x + 2][y + 3].setWalkable(false);
+                            allTiles[x + 2][y + 3].setTileImage("Outside3");
+                            allTiles[x + 2][y + 3].setComplex(false);
+
+                            allTiles[x + 3][y].setX(0);
+                            allTiles[x + 3][y].setY(15);
+                            allTiles[x + 3][y].setWalkable(false);
+                            allTiles[x + 3][y].setTileImage("Outside3");
+                            allTiles[x + 3][y].setComplex(false);
+
+                            allTiles[x + 3][y].setX(0);
+                            allTiles[x + 3][y].setY(15);
+                            allTiles[x + 3][y].setWalkable(false);
+                            allTiles[x + 3][y].setTileImage("Outside3");
+                            allTiles[x + 3][y].setComplex(false);
+
+                            allTiles[x + 3][y + 1].setX(1);
+                            allTiles[x + 3][y + 1].setY(15);
+                            allTiles[x + 3][y + 1].setWalkable(false);
+                            allTiles[x + 3][y + 1].setTileImage("Outside3");
+                            allTiles[x + 3][y + 1].setComplex(false);
+
+                            allTiles[x + 3][y + 2].setX(0);
+                            allTiles[x + 3][y + 2].setY(15);
+                            allTiles[x + 3][y + 2].setWalkable(false);
+                            allTiles[x + 3][y + 2].setTileImage("Outside3");
+                            allTiles[x + 3][y + 2].setComplex(false);
+
+                            allTiles[x + 3][y + 3].setX(1);
+                            allTiles[x + 3][y + 3].setY(15);
+                            allTiles[x + 3][y + 3].setWalkable(false);
+                            allTiles[x + 3][y + 3].setTileImage("Outside3");
+                            allTiles[x + 3][y + 3].setComplex(false);
+
+                            setup();
+                        } else if(selectedTile.getTileImage() == "Outside"){
+                            if(selectedTile.getX() == 10 && selectedTile.getY() == 7){
+                                allTiles[x][y].setX(10);
+                                allTiles[x][y].setY(7);
+                                allTiles[x][y].setWalkable(false);
+                                allTiles[x][y].setTileImage("Outside");
+                                allTiles[x][y].setComplex(false);
+
+                                allTiles[x][y + 1].setX(11);
+                                allTiles[x][y + 1].setY(7);
+                                allTiles[x][y + 1].setWalkable(false);
+                                allTiles[x][y + 1].setTileImage("Outside");
+                                allTiles[x][y + 1].setComplex(false);
+
+                                allTiles[x + 1][y].setX(10);
+                                allTiles[x + 1][y].setY(8);
+                                allTiles[x + 1][y].setWalkable(false);
+                                allTiles[x + 1][y].setTileImage("Outside");
+                                allTiles[x + 1][y].setComplex(false);
+
+                                allTiles[x + 1][y + 1].setX(11);
+                                allTiles[x + 1][y + 1].setY(8);
+                                allTiles[x + 1][y + 1].setWalkable(false);
+                                allTiles[x + 1][y + 1].setTileImage("Outside");
+                                allTiles[x + 1][y + 1].setComplex(false);
+
+                                setup();
+                            } else if(selectedTile.getX() == 14 && selectedTile.getY() == 9){
+                                allTiles[x][y].setX(14);
+                                allTiles[x][y].setY(10);
+                                allTiles[x][y].setWalkable(false);
+                                allTiles[x][y].setTileImage("Outside");
+                                allTiles[x][y].setComplex(false);
+
+                                allTiles[x][y + 1].setX(15);
+                                allTiles[x][y + 1].setY(10);
+                                allTiles[x][y + 1].setWalkable(false);
+                                allTiles[x][y + 1].setTileImage("Outside");
+                                allTiles[x][y + 1].setComplex(false);
+
+                                allTiles[x + 1][y].setX(14);
+                                allTiles[x + 1][y].setY(11);
+                                allTiles[x + 1][y].setWalkable(false);
+                                allTiles[x + 1][y].setTileImage("Outside");
+                                allTiles[x + 1][y].setComplex(false);
+
+                                allTiles[x + 1][y + 1].setX(15);
+                                allTiles[x + 1][y + 1].setY(11);
+                                allTiles[x + 1][y + 1].setWalkable(false);
+                                allTiles[x + 1][y + 1].setTileImage("Outside");
+                                allTiles[x + 1][y + 1].setComplex(false);
+
+                                setup();
+                            } else {
+
+                            }
+                        } else {
+
+                        }
                     }
                     else
                     {
@@ -513,6 +716,7 @@ public class TileEditor
             public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
               setSelectedTile(tile);
                 // todo 1: add a little icon or something here to show the selection (imageView.someFancyMethodThatWillMarkIt())
+                hasChunkSelected = false;
             }
         });
         selectionScroller.setContent(selection);
