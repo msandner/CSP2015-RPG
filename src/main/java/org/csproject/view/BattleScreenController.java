@@ -184,6 +184,36 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     @FXML
     private Button runButton;
 
+    @FXML
+    private HBox spellBox;
+
+    @FXML
+    private Button spellButton1;
+
+    @FXML
+    private Button spellButton2;
+
+    @FXML
+    private Button spellButton3;
+
+    @FXML
+    private Button spellButton4;
+
+    @FXML
+    private Button spellButton5;
+
+    @FXML
+    private Button spellButton6;
+
+    @FXML
+    private Button spellButton7;
+
+    @FXML
+    private Button spellButton8;
+
+    @FXML
+    private Button spellButton9;
+
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
     int attack, enemyAttacked;
@@ -333,16 +363,28 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         switch (enemy) {
             case 0:
                 enemyButton1.setText("");
+                enemyButton1.setDisable(true);
+                break;
             case 1:
                 enemyButton2.setText("");
+                enemyButton2.setDisable(true);
+                break;
             case 2:
                 enemyButton3.setText("");
+                enemyButton3.setDisable(true);
+                break;
             case 3:
                 enemyButton4.setText("");
+                enemyButton4.setDisable(true);
+                break;
             case 4:
                 enemyButton5.setText("");
+                enemyButton5.setDisable(true);
+                break;
             default:
                 enemyButton6.setText("");
+                enemyButton6.setDisable(true);
+                break;
         }
     }
 
@@ -355,31 +397,36 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         if(enemyList != null && enemyList.size() < 7) {
             for (int i = 0; i < enemyList.size(); i++) {
                 if(enemyList.get(i) != null) {
-                    System.out.println(enemyList.get(i).getName());
                     m = new MonsterImage(enemyList.get(i).getName());
                     switch (i) {
                         case 0:
                             enemyButton1.setText(enemyList.get(i).getName());
+                            enemyButton1.setDisable(false);
                             enemyLabel1.setText(enemyList.get(i).getName());
                             break;
                         case 1:
                             enemyButton2.setText(enemyList.get(i).getName());
+                            enemyButton2.setDisable(false);
                             enemyLabel2.setText(enemyList.get(i).getName());
                             break;
                         case 2:
                             enemyButton3.setText(enemyList.get(i).getName());
+                            enemyButton3.setDisable(false);
                             enemyLabel3.setText(enemyList.get(i).getName());
                             break;
                         case 3:
                             enemyButton4.setText(enemyList.get(i).getName());
+                            enemyButton4.setDisable(false);
                             enemyLabel4.setText(enemyList.get(i).getName());
                             break;
                         case 4:
                             enemyButton5.setText(enemyList.get(i).getName());
+                            enemyButton5.setDisable(false);
                             enemyLabel5.setText(enemyList.get(i).getName());
                             break;
                         default:
                             enemyButton6.setText(enemyList.get(i).getName());
+                            enemyButton6.setDisable(false);
                             enemyLabel6.setText(enemyList.get(i).getName());
                             break;
                     }
@@ -418,12 +465,17 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /* Same with the buttons, remove all of the text on them. */
     private void clearEnemyButtons() {
         enemyButton1.setText("");
+        enemyButton1.setDisable(true);
         enemyButton2.setText("");
+        enemyButton2.setDisable(true);
         enemyButton3.setText("");
+        enemyButton3.setDisable(true);
         enemyButton4.setText("");
+        enemyButton4.setDisable(true);
         enemyButton5.setText("");
+        enemyButton5.setDisable(true);
         enemyButton6.setText("");
-
+        enemyButton6.setDisable(true);
     }
 
     /**
@@ -514,6 +566,16 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         assert playerHP != null : "fx:id=\"playerHP\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert playerNames != null : "fx:id=\"playerNames\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert runButton != null : "fx:id=\"runButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
+        assert spellBox != null : "fx:id=\"spellBox\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton1 != null : "fx:id=\"spellButton1\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton2 != null : "fx:id=\"spellButton2\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton3 != null : "fx:id=\"spellButton3\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton4 != null : "fx:id=\"spellButton4\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton5 != null : "fx:id=\"spellButton5\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton6 != null : "fx:id=\"spellButton6\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton7 != null : "fx:id=\"spellButton7\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton8 != null : "fx:id=\"spellButton8\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert spellButton9 != null : "fx:id=\"spellButton9\" was not injected: check your FXML file 'BattleScreen.fxml'.";
 
         enemyImages = new Image[6];
         moveChar = new TranslateTransition(Duration.seconds(.25));
@@ -523,11 +585,6 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
         moveChar.setFromX(0);
         moveChar.setToX(25);
-    }
-
-    public void setAttack(int i) {
-        showEnemyButtons();
-        attack = i;
     }
 
     public void showEnemyButtons() {
