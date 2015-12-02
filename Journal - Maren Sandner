@@ -38,5 +38,7 @@ _unfinished_
 28.11.2015 11:00 - 12:40 MESZ: finishing the methods for healing and attacking, also trying to fix one exception -> 1:40 hours
 29.11.2015 11:00 - 15:30 MESZ: working out the spells for the characters + working on the battle logic -> 4:30 hours
 29.11.2015 16:30 - 21:00 MESZ: spells + some refactoring + getting ideas for implementing the round based system ->  4:30 hours
+30.11.2015 23:00 - 00:40 MESZ: working on the spell methods + skyping with Brett, connecting gui with logic -> 1:40 hours 
+01.12.2015 21:00 - 23:00 MESZ: skyping with Brett, conncting gui with logic -> 2:00 hours
 --------------------------------------------------------------------------------------------------------------------------
-total: 80:30 hours
+total: 84:10 hours
