@@ -1,5 +1,6 @@
 package org.csproject.model.actors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class MonsterParty{
     List<Monster> party = new ArrayList<>();
 
     public MonsterParty(List<Monster> monsters) {
-        this.monsters = monsters;
+        this.party = monsters;
     }
 
 
