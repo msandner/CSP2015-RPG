@@ -30,7 +30,7 @@ import static org.csproject.model.Constants.*;
 @Component
 public class FieldScreen extends Pane {
 
-    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1, 1, 1);
+    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1, 1.0, 5);
     @Autowired
     private ScreensController screensController;
 

@@ -54,10 +54,15 @@ public class PlayerActor extends BattleActor {
                 allSpells.add(new OffensiveMagic("Execute", "", -25, -30, 7));            //more dmg under targets %xx hp
                 allSpells.add(new OffensiveMagic("Frostbite", "", -10, -25, 11));          //low dmg on all targets
         }
+        allSpells.add(new OffensiveMagic("Basic", "", -5, 0, 0));
     }
 
     public List<Magic> getSpells() {
         return allSpells;
+    }
+
+    public Magic getSpell(int i) {
+        return allSpells.get(i);
     }
 
     public int getCurrentMp() {
@@ -104,4 +109,6 @@ public class PlayerActor extends BattleActor {
     public void levelUp() {
     //todo:level up
     }
+
+
 }

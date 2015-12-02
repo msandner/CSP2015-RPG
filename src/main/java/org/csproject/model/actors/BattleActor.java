@@ -27,14 +27,18 @@ public abstract class BattleActor extends Actor{
         super(name, type);
 
         this.level = level;
-        this.attack = attack;
 
         int hp = calcHp(level);
         this.maxHp = hp;
         this.currentHp = hp;
         this.hasAttacked = false;
+        this.attack = attack;
     }
 
+
+    public int getAttack() {
+        return this.attack;
+    }
     public int getMaxHp() {
         return maxHp;
     }
@@ -46,8 +50,6 @@ public abstract class BattleActor extends Actor{
     public int getLevel() {
         return level;
     }
-
-    public int getAttack() { return attack; }
 
     public void setLevel(int level) {
         this.level = level;

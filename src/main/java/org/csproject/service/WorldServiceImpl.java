@@ -31,7 +31,7 @@ public class WorldServiceImpl implements WorldService {
     @Autowired
     private Gson gson;
 
-    private PlayerActor playerActor = new PlayerActor("Test Player", Constants.CLASS_SWORDSMAN, 1, 2, 5, 8); // todo let this do the menu
+    private PlayerActor playerActor = new PlayerActor("Test Player", Constants.CLASS_SWORDSMAN, 1, 5, 8, 5); // todo let this do the menu
     private Map<String, Field> tempFields = new HashMap<>();
     private Field worldMap;
 

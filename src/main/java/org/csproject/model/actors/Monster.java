@@ -6,7 +6,7 @@ public class Monster extends BattleActor {
     protected int grantingXP;
     protected int drops;
 
-    public Monster(String name, String type, int level, int attack, int xp, int drops) {
+    public Monster(String name, String type, int level, int xp, int attack, int drops) {
         super(name, type, level, attack);
         this.grantingXP = xp;
         this.drops = drops;
@@ -22,6 +22,8 @@ public class Monster extends BattleActor {
     public int calcHp(int level) {
         return 100 + level;
     }
+
+
 }
 
 

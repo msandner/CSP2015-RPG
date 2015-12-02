@@ -18,6 +18,7 @@ import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Direction;
 import org.csproject.service.ScreensController;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -219,6 +220,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     int attack, enemyAttacked;
     Image[] enemyImages;
     TranslateTransition moveChar, reverseMoveChar;
+    int currentChar;
+    boolean attackIsMagic;
+
+    List<Monster> enemyList;
+    List<PlayerActor> players;
 
     ScreensController screenController;
 
@@ -232,12 +238,17 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     public void startNewBattle(List<PlayerActor> players, List enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
-        setEnemies(enemyActors);
-        setPlayers(players.get(0), players.get(1), players.get(2));
+        this.players = players;
+        this.enemyList = enemyActors;
+        setEnemies();
+        setPlayers();
     }
 
     /* Set all of the things related to the PlayerActors to their correct displays */
-    private void setPlayers(PlayerActor char1, PlayerActor char2, PlayerActor char3) {
+    private void setPlayers() {
+        PlayerActor char1 = players.get(0);
+        PlayerActor char2 = players.get(1);
+        PlayerActor char3 = players.get(2);
         player1Name.setText(char1.getName());
         player2Name.setText(char2.getName());
         player3Name.setText(char3.getName());
@@ -330,24 +341,42 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      * @param enemy - The enemy to be attacked (0, 1, 2, 3, 4, 5)
      */
     public void attackEnemy(int character, int enemy) {
-        if(character == 0) {
-            moveChar.setNode(charImage1);
-            reverseMoveChar.setNode(charImage1);
-            moveChar.playFromStart();
-        } else if (character == 1) {
-            moveChar.setNode(charImage2);
-            reverseMoveChar.setNode(charImage2);
-            moveChar.playFromStart();
+        if(character == 1) {
+            moveCharForward(1);
         } else if (character == 2) {
-            moveChar.setNode(charImage3);
-            reverseMoveChar.setNode(charImage3);
-            moveChar.playFromStart();
+            moveCharForward(2);
+        } else if (character == 3) {
+            moveCharForward(3);
         }
 
         //TODO stack an attack animation over an enemy image
 
 
 
+        reverseMoveChar.playFromStart();
+    }
+
+    /**
+     * Moves the character forward, so as to show whose turn it is.
+     * @param character - which character to move forward, 1, 2, 3
+     */
+    private void moveCharForward(int character) {
+        if(character == 1) {
+            moveChar.setNode(charImage1);
+            reverseMoveChar.setNode(charImage1);
+            moveChar.playFromStart();
+        } else if (character == 2) {
+            moveChar.setNode(charImage2);
+            reverseMoveChar.setNode(charImage2);
+            moveChar.playFromStart();
+        } else if (character == 3) {
+            moveChar.setNode(charImage3);
+            reverseMoveChar.setNode(charImage3);
+            moveChar.playFromStart();
+        }
+    }
+
+    private void moveCharBack() {
         reverseMoveChar.playFromStart();
     }
 
@@ -389,7 +418,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /* Set the enemies on the field, on the buttons for attacking, and in the text box. */
-    private void setEnemies(List<Monster> enemyList) {
+    private void setEnemies() {
         clearEnemyNames();
         clearEnemyImages();
         clearEnemyButtons();
@@ -580,14 +609,69 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         enemyImages = new Image[6];
         moveChar = new TranslateTransition(Duration.seconds(.25));
         moveChar.setFromX(0);
-        moveChar.setToX(-25);
+        moveChar.setToX(-55);
 
         reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
-        moveChar.setFromX(0);
-        moveChar.setToX(25);
+        reverseMoveChar.setFromX(0);
+        reverseMoveChar.setToX(55);
+
+        currentChar = 1;
+        attackIsMagic = false;
+
+        moveCharForward(currentChar);
     }
 
-    public void showEnemyButtons() {
+    public void showEnemyButtons(ActionEvent actionEvent) {
         chooseBox.setVisible(true);
+        if(actionEvent.getSource() == magicButton) {
+            attackIsMagic = true;
+        }
+    }
+
+    public void addEnemy(ActionEvent actionEvent) {
+        chooseBox.setVisible(false);
+
+        if(actionEvent.getSource() == enemyButton1) {
+            System.out.println("Button 1!");
+        } else if (actionEvent.getSource() == enemyButton2) {
+
+        } else if (actionEvent.getSource() == enemyButton3) {
+
+        } else if (actionEvent.getSource() == enemyButton4) {
+
+        } else if (actionEvent.getSource() == enemyButton5) {
+
+        } else if (actionEvent.getSource() == enemyButton6) {
+
+        }
+
+        //TODO: Add the Enemy to a list
+
+        if(attackIsMagic) {
+            spellBox.setVisible(true);
+            attackIsMagic = false;
+        } else {
+            //TODO add the "attack" to the list
+            moveCharBack();
+            nextChar();
+        }
+    }
+
+    public void addSpell(ActionEvent actionEvent) {
+        spellBox.setVisible(false);
+
+        //TODO: Add the Spell to the list
+
+        moveCharBack();
+        nextChar();
+    }
+
+    private void nextChar() {
+        if (currentChar != 3) {
+            currentChar++;
+        } else {
+            currentChar = 1;
+        }
+        moveCharForward(currentChar);
     }
 }
