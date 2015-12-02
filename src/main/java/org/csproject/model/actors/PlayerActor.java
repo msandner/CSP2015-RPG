@@ -22,8 +22,8 @@ public class PlayerActor extends BattleActor {
 
     //todo more stats
 
-    public PlayerActor(String name, String type, int level, double hpMultiplier, double mpMultiplier) {
-        super(name, type, level);
+    public PlayerActor(String name, String type, int level, double hpMultiplier, double mpMultiplier, int attack) {
+        super(name, type, level, attack);
         this.hpMultiplier = hpMultiplier;
         this.mpMultiplier = mpMultiplier;
 

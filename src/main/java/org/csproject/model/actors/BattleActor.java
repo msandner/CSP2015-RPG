@@ -15,6 +15,7 @@ public abstract class BattleActor extends Actor{
     protected int level;
     protected int maxHp;
     protected int currentHp;
+    int attack;
 
     protected List<Magic> allSpells = new ArrayList<>();
     //a boolean to check if the character already used one attack and is no longer allowed to attack
@@ -22,7 +23,7 @@ public abstract class BattleActor extends Actor{
 
     // todo more stats
 
-    public BattleActor(String name, String type, int level) {
+    public BattleActor(String name, String type, int level, int attack) {
         super(name, type);
 
         this.level = level;
@@ -31,8 +32,13 @@ public abstract class BattleActor extends Actor{
         this.maxHp = hp;
         this.currentHp = hp;
         this.hasAttacked = false;
+        this.attack = attack;
     }
 
+
+    public int getAttack() {
+        return this.attack;
+    }
     public int getMaxHp() {
         return maxHp;
     }

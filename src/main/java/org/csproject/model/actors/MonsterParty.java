@@ -11,23 +11,9 @@ public class MonsterParty{
     protected Monster monster1, monster2, monster3, monster4, monster5, monster6;
     List<Monster> party = new ArrayList<>();
 
-    public MonsterParty(Monster m1, Monster m2, Monster m3, Monster m4, Monster m5, Monster m6) {
-        this.monster1 = m1;
-        this.monster2 = m2;
-        this.monster3 = m3;
-        this.monster4 = m4;
-        this.monster5 = m5;
-        this.monster6 = m6;
-        setMonsterParty();
-    }
 
-    public void setMonsterParty(){
-        party.add(monster1);
-        party.add(monster2);
-        party.add(monster3);
-        party.add(monster4);
-        party.add(monster5);
-        party.add(monster6);
+    public MonsterParty(List<Monster> monsters) {
+        this.party = monsters;
     }
 
     public int getMonsterPosition(Monster monster) {
@@ -58,6 +44,22 @@ public class MonsterParty{
             }
         }
         return true;
+    }
+
+    public int getLoot(){
+        int loot = 0;
+        for(Monster m : party){
+            loot += m.getDrops();
+        }
+        return loot;
+    }
+
+    public int getXP(){
+        int xp = 0;
+        for(Monster m : party){
+            xp += m.getGrantingXP();
+        }
+        return xp;
     }
 
 
