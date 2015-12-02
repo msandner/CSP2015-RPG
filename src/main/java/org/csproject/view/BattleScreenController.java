@@ -1,6 +1,7 @@
 package org.csproject.view;
 
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.util.Duration;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.bean.Direction;
 import org.csproject.service.ScreensController;
 
 import java.net.URL;
@@ -34,9 +36,6 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     @FXML
     private Button attackButton;
-
-    @FXML
-    private Button myButton;
 
     @FXML
     private ImageView battleScreenBGBottom;
@@ -187,33 +186,27 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
-    ImageView[] enemyImages;
+    int attack, enemyAttacked;
+    Image[] enemyImages;
     TranslateTransition moveChar, reverseMoveChar;
 
     ScreensController screenController;
 
     public BattleScreenController() {
-        enemyImages = new ImageView[6];
-        moveChar = new TranslateTransition(Duration.seconds(.25));
-        moveChar.setFromX(0);
-        moveChar.setToX(-25);
 
-        reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
-        moveChar.setFromX(0);
-        moveChar.setToX(25);
     }
 
-    public void startNewBattle() {
-        startNewBattle(null, null);
-    }
-
-    public void startNewBattle(PlayerActor[] players, List enemyActors) {
+    /* Start a new battle with the given array of PlayActors and List
+        (MAX OF 6) enemies. Their images and names are all added to the correct places.
+     */
+    public void startNewBattle(List<PlayerActor> players, List enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
         setEnemies(enemyActors);
-        setPlayers(players[0], players[1], players[2]);
+        setPlayers(players.get(0), players.get(1), players.get(2));
     }
 
+    /* Set all of the things related to the PlayerActors to their correct displays */
     private void setPlayers(PlayerActor char1, PlayerActor char2, PlayerActor char3) {
         player1Name.setText(char1.getName());
         player2Name.setText(char2.getName());
@@ -236,8 +229,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         player2HPText.setText(Integer.toString(char2HP) + "/" + Integer.toString(char2MaxHP));
         player3HPText.setText(Integer.toString(char3HP) + "/" + Integer.toString(char3MaxHP));
 
-        player1HPBar.setProgress(char1HP/char1MaxHP);
-        player2HPBar.setProgress(char2HP/char2MaxHP);
+        player1HPBar.setProgress(char1HP / char1MaxHP);
+        player2HPBar.setProgress(char2HP / char2MaxHP);
         player3HPBar.setProgress(char3HP/char3MaxHP);
 
         /* Mana */
@@ -253,35 +246,59 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         player2MPText.setText(Integer.toString(char2MP) + "/" + Integer.toString(char2MaxMP));
         player3MPText.setText(Integer.toString(char3MP) + "/" + Integer.toString(char3MaxMP));
 
-        player1HPBar.setProgress(char1MP/char1MaxMP);
-        player2HPBar.setProgress(char2MP/char2MaxMP);
-        player3HPBar.setProgress(char3MP/char3MaxMP);
+        player1MPBar.setProgress(char1MP / char1MaxMP);
+        player2MPBar.setProgress(char2MP / char2MaxMP);
+        player3MPBar.setProgress(char3MP / char3MaxMP);
 
         /* Images */
 
         clearPlayerImages();
 
-        charImage1.setImage(getCharacterImage(char1.getType()).getImage());
-        charImage2.setImage(getCharacterImage(char2.getType()).getImage());
-        charImage3.setImage(getCharacterImage(char3.getType()).getImage());
+        CharacterImage CI;
+
+        CI = getCharacterImage(char1.getType());
+        charImage1.setImage(CI.getImage());
+        charImage1.setViewport(CI.getViewport());
+
+        CI = getCharacterImage(char2.getType());
+        charImage2.setImage(CI.getImage());
+        charImage2.setViewport(CI.getViewport());
+
+        CI = getCharacterImage(char3.getType());
+        charImage3.setImage(CI.getImage());
+        charImage3.setViewport(CI.getViewport());
     }
 
+    /**
+     * Select a friendly character (0, 1, 2) and set their health (up or down)
+     * @param character - The character whose health needs to be altered.
+     * @param health - The health of the character after the application of healing or damage.
+     */
     public void setPlayerHealth(int character, int health) {
         switch(character) {
             case 0:
                 player1HPText.setText(Integer.toString(health) + "/" + Integer.toString(char1MaxHP));
-                player1HPBar.setProgress(health/char1MaxHP);
+                player1HPBar.setProgress((double)health / (double)char1MaxHP);
+                break;
             case 1:
                 player2HPText.setText(Integer.toString(health) + "/" + Integer.toString(char2MaxHP));
-                player2HPBar.setProgress(health/char2MaxHP);
+                player2HPBar.setProgress((double)health / (double)char2MaxHP);
+                break;
             case 2:
                 player3HPText.setText(Integer.toString(health) + "/" + Integer.toString(char3MaxHP));
-                player3HPBar.setProgress(health/char3MaxHP);
+                player3HPBar.setProgress((double)health / (double)char3MaxHP);
+                break;
             default:
                 //???
         }
     }
 
+    /**
+     * Choose a character and an enemy and display the animation of that
+     * character attacking
+     * @param character - The character that is attacking (0, 1, 2)
+     * @param enemy - The enemy to be attacked (0, 1, 2, 3, 4, 5)
+     */
     public void attackEnemy(int character, int enemy) {
         if(character == 0) {
             moveChar.setNode(charImage1);
@@ -304,8 +321,12 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         reverseMoveChar.playFromStart();
     }
 
+    /**
+     * If an enemy is killed, tell the GUI to eliminate it from the battle
+     * @param enemy - Which enemy to be removed (0, 1, 2, 3, 4, 5)
+     */
     public void removeEnemy(int enemy) {
-        enemyImages[enemy].setImage(null);
+        enemyImages[enemy] = null;
         updateEnemyImages();
 
         //TODO remove enemy name from list at left
@@ -325,39 +346,51 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
+    /* Set the enemies on the field, on the buttons for attacking, and in the text box. */
     private void setEnemies(List<Monster> enemyList) {
         clearEnemyNames();
         clearEnemyImages();
         clearEnemyButtons();
-
-        int boxToUse = 0;
-
-        for (int i = 0; i < enemyList.size(); i++) {
-            //TODO set enemy images to their images in the array
-            switch (i) {
-                case 0:
-                    enemyButton1.setText(enemyList.get(i).getName());
-                    enemyLabel1.setText(enemyList.get(i).getName());
-                case 1:
-                    enemyButton2.setText(enemyList.get(i).getName());
-                    enemyLabel2.setText(enemyList.get(i).getName());
-                case 2:
-                    enemyButton3.setText(enemyList.get(i).getName());
-                    enemyLabel3.setText(enemyList.get(i).getName());
-                case 3:
-                    enemyButton4.setText(enemyList.get(i).getName());
-                    enemyLabel4.setText(enemyList.get(i).getName());
-                case 4:
-                    enemyButton5.setText(enemyList.get(i).getName());
-                    enemyLabel5.setText(enemyList.get(i).getName());
-                default:
-                    enemyButton6.setText(enemyList.get(i).getName());
-                    enemyLabel6.setText(enemyList.get(i).getName());
+        MonsterImage m;
+        if(enemyList != null && enemyList.size() < 7) {
+            for (int i = 0; i < enemyList.size(); i++) {
+                if(enemyList.get(i) != null) {
+                    System.out.println(enemyList.get(i).getName());
+                    m = new MonsterImage(enemyList.get(i).getName());
+                    switch (i) {
+                        case 0:
+                            enemyButton1.setText(enemyList.get(i).getName());
+                            enemyLabel1.setText(enemyList.get(i).getName());
+                            break;
+                        case 1:
+                            enemyButton2.setText(enemyList.get(i).getName());
+                            enemyLabel2.setText(enemyList.get(i).getName());
+                            break;
+                        case 2:
+                            enemyButton3.setText(enemyList.get(i).getName());
+                            enemyLabel3.setText(enemyList.get(i).getName());
+                            break;
+                        case 3:
+                            enemyButton4.setText(enemyList.get(i).getName());
+                            enemyLabel4.setText(enemyList.get(i).getName());
+                            break;
+                        case 4:
+                            enemyButton5.setText(enemyList.get(i).getName());
+                            enemyLabel5.setText(enemyList.get(i).getName());
+                            break;
+                        default:
+                            enemyButton6.setText(enemyList.get(i).getName());
+                            enemyLabel6.setText(enemyList.get(i).getName());
+                            break;
+                    }
+                    enemyImages[i] = m.getImage();
+                }
             }
         }
         updateEnemyImages();
     }
 
+    /* Start of battle, just in case, clear all enemy names from the GUI */
     private void clearEnemyNames() {
         enemyLabel1.setText("");
         enemyLabel2.setText("");
@@ -367,19 +400,22 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         enemyLabel6.setText("");
     }
 
+    /* Clear the player images from the battle, in case they are in a different order or something. */
     private void clearPlayerImages() {
         charImage1.setImage(null);
         charImage2.setImage(null);
         charImage3.setImage(null);
     }
 
+    /* Remove all enemy images from the field. */
     private void clearEnemyImages() {
         for (int i = 0; i < enemyImages.length; i++) {
-            enemyImages[i].setImage(null);
+            enemyImages[i] = null;
         }
         updateEnemyImages();
     }
 
+    /* Same with the buttons, remove all of the text on them. */
     private void clearEnemyButtons() {
         enemyButton1.setText("");
         enemyButton2.setText("");
@@ -390,35 +426,42 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     }
 
+    /**
+     * Gets a character image to display an individual party member
+     * @param type - The character type, most likely referenced by the Constants class
+     * @return - The character image representing the class given
+     */
     private CharacterImage getCharacterImage(String type) {
         switch(type) {
             case Constants.CLASS_KNIGHT:
-                return new CharacterImage(0, 1, 1, 1, Constants.IMAGE_KNIGHT);
+                return new CharacterImage(0, 1, Constants.IMAGE_KNIGHT, Direction.LEFT);
             case Constants.CLASS_SWORDSMAN:
-                return new CharacterImage(0, 1, 1, 1, Constants.IMAGE_SWORDSMAN);
+                return new CharacterImage(0, 1, Constants.IMAGE_SWORDSMAN, Direction.LEFT);
             case Constants.CLASS_MAGE:
-                return new CharacterImage(3, 1, 1, 1, Constants.IMAGE_MAGE);
+                return new CharacterImage(3, 1, Constants.IMAGE_MAGE, Direction.LEFT);
             case Constants.CLASS_THIEF:
-                return new CharacterImage(2, 0, 1, 1, Constants.IMAGE_THIEF);
+                return new CharacterImage(2, 0, Constants.IMAGE_THIEF, Direction.LEFT);
             default:
-                return new CharacterImage(0, 1, 1, 1, Constants.IMAGE_SWORDSMAN);
+                return new CharacterImage(0, 1, Constants.IMAGE_KNIGHT, Direction.LEFT);
         }
     }
 
+    /* Update the enemy images all at once instead of individually */
     private void updateEnemyImages() {
-        enemyImage1.setImage(enemyImages[0].getImage());
-        enemyImage2.setImage(enemyImages[1].getImage());
-        enemyImage3.setImage(enemyImages[2].getImage());
-        enemyImage4.setImage(enemyImages[3].getImage());
-        enemyImage5.setImage(enemyImages[4].getImage());
-        enemyImage6.setImage(enemyImages[5].getImage());
+        enemyImage1.setImage(enemyImages[0]);
+        enemyImage2.setImage(enemyImages[1]);
+        enemyImage3.setImage(enemyImages[2]);
+        enemyImage4.setImage(enemyImages[3]);
+        enemyImage5.setImage(enemyImages[4]);
+        enemyImage6.setImage(enemyImages[5]);
     }
 
-        @Override
+    @Override
     public void setScreenParent(ScreensController screenParent) {
         this.screenController = screenParent;
     }
 
+    /* Oh god why */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         assert attackButton != null : "fx:id=\"attackButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
@@ -471,6 +514,23 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         assert playerHP != null : "fx:id=\"playerHP\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert playerNames != null : "fx:id=\"playerNames\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert runButton != null : "fx:id=\"runButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
-        assert myButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
+
+        enemyImages = new Image[6];
+        moveChar = new TranslateTransition(Duration.seconds(.25));
+        moveChar.setFromX(0);
+        moveChar.setToX(-25);
+
+        reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
+        moveChar.setFromX(0);
+        moveChar.setToX(25);
+    }
+
+    public void setAttack(int i) {
+        showEnemyButtons();
+        attack = i;
+    }
+
+    public void showEnemyButtons() {
+        chooseBox.setVisible(true);
     }
 }

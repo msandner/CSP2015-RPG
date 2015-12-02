@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.BattleScreenController">
@@ -19,27 +17,27 @@
           <children>
             <VBox prefHeight="182.0" prefWidth="191.0">
               <children>
-                <Label fx:id="enemyLabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="">
+                  <font>
+                    <Font size="18.0" fx:id="x1" />
+                  </font>
+                </Label>
+                <Label fx:id="enemyLabel2" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel3" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
               </children>
             </VBox>
             <VBox prefHeight="182.0" prefWidth="191.0">
               <children>
-                <Label fx:id="enemyLabel4" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel5" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
-                <Label fx:id="enemyLabel6" alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel4" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel5" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
+                <Label fx:id="enemyLabel6" alignment="CENTER" contentDisplay="CENTER" font="$x1" prefHeight="75.0" prefWidth="191.0" text="" />
               </children>
             </VBox>
           </children>
         </HBox>
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
           <children>
-            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-            </Button>
+            <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
             <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Magic" />
             <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Items" />
             <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />
@@ -57,19 +55,19 @@
             <VBox fx:id="playerHP" prefHeight="182.0" prefWidth="270.0">
               <children>
                 <Label fx:id="player1HPText" prefWidth="269.0" text="player1HPText" />
-                <ProgressBar fx:id="player1HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                <ProgressBar fx:id="player1HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;">
                   <VBox.margin>
                     <Insets bottom="13.0" />
                   </VBox.margin>
                 </ProgressBar>
                 <Label fx:id="player2HPText" prefWidth="269.0" text="player2HPText" />
-                <ProgressBar fx:id="player2HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0">
+                <ProgressBar fx:id="player2HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;">
                   <VBox.margin>
                     <Insets bottom="15.0" />
                   </VBox.margin>
                 </ProgressBar>
                 <Label fx:id="player3HPText" prefWidth="269.0" text="player3HPText" />
-                <ProgressBar id="player3Bar" fx:id="player3HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" />
+                <ProgressBar id="player3Bar" fx:id="player3HPBar" prefHeight="27.0" prefWidth="269.0" progress="0.0" style="-fx-accent: red;&#10;" />
               </children>
               <padding>
                 <Insets top="5.0" />
@@ -112,9 +110,9 @@
     <ImageView fx:id="enemyImage4" fitHeight="150.0" fitWidth="200.0" layoutX="366.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="enemyImage5" fitHeight="150.0" fitWidth="200.0" layoutX="478.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="enemyImage6" fitHeight="150.0" fitWidth="200.0" layoutX="578.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="charImage1" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="charImage2" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="charImage3" fitHeight="150.0" fitWidth="200.0" layoutX="987.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage1" fitHeight="56.0" fitWidth="56.0" layoutX="1031.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage2" fitHeight="56.0" fitWidth="56.0" layoutX="1031.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="charImage3" fitHeight="56.0" fitWidth="56.0" layoutX="1031.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true" />
     <HBox fx:id="chooseBox" layoutX="266.0" layoutY="14.0" prefHeight="100.0" prefWidth="735.0" visible="false">
       <children>
         <VBox prefHeight="100.0" prefWidth="418.0" visible="true">
@@ -140,6 +138,5 @@
         </VBox>
       </children>
     </HBox>
-    <Button fx:id="myButton" layoutX="450.0" layoutY="180.0" mnemonicParsing="false" onAction="#startNewBattle" text="Button" />
   </children>
 </AnchorPane>

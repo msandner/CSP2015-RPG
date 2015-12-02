@@ -18,8 +18,10 @@ import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
+import org.csproject.view.BattleScreenController;
 import org.csproject.view.ControlledScreen;
 import org.csproject.view.FieldScreen;
+import org.csproject.view.MasterController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,6 +47,8 @@ public class ScreensController {
 
     private String currentScreen;
 
+    private BattleScreenController battleController;
+
     public ScreensController() {
         super();
         screens = new HashMap<>();
@@ -66,6 +70,8 @@ public class ScreensController {
             ControlledScreen controlledScreen = loader.getController();
             controlledScreen.setScreenParent(this);
             addScreen(name, loadScreen);
+            if(name == MasterController.BATTLE_SCREEN_ID)
+                battleController = loader.<BattleScreenController>getController();
             return true;
         } catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -142,5 +148,10 @@ public class ScreensController {
 
     public PlayerActor getPlayerActor() {
         return worldService.getPlayerActor();
+    }
+
+    /* Used for controlling the battle via the FXML file and the controller class */
+    public BattleScreenController getBattleController() {
+        return battleController;
     }
 }
