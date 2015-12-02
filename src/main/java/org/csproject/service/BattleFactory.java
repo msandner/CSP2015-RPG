@@ -28,16 +28,7 @@ public class BattleFactory {
         screencontroller = new ScreensController();
         MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
 
-        Monster bat1 = new Monster("Bat", "", 1, 10, 5, 5);
-        Monster bat2 = new Monster("Bat", "", 1, 10,  5, 5);
-        Monster bat3 = new Monster("Bat", "", 1, 10,  5, 5);
-
-        List<Monster> monster = new ArrayList<>();
-        monster.add(bat1);
-        monster.add(bat2);
-        monster.add(bat3);
-
-        MonsterParty monsterparty = new MonsterParty(monster);
+        MonsterParty monsterparty = getMonsters();
 
         PlayerActor knight = new PlayerActor("Jim the Knight", Constants.CLASS_KNIGHT, 1, 2, 2, 5);
         PlayerActor thief = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 1, 2, 2, 5);
