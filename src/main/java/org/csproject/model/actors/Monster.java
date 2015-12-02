@@ -1,21 +1,27 @@
 package org.csproject.model.actors;
 
-public abstract class Monster extends BattleActor {
+public class Monster extends BattleActor {
     //creates the general monsters
 
-    int grantingXP;
+    protected int grantingXP;
+    protected int drops;
 
-    public Monster(String name, String type, int level, int xp) {
-        super(name, type, level);
+    public Monster(String name, String type, int level, int attack, int xp, int drops) {
+        super(name, type, level, attack);
         this.grantingXP = xp;
+        this.drops = drops;
     }
 
     public int getGrantingXP() {
         return (this.grantingXP * level)/2;
     }
 
+    public int getDrops() { return drops; }
 
-
+    @Override
+    public int calcHp(int level) {
+        return 100 + level;
+    }
 }
 
 
