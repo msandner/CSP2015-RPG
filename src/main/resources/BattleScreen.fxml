@@ -38,7 +38,7 @@
         <VBox fx:id="commandBox" prefHeight="182.0" prefWidth="177.0">
           <children>
             <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
-            <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Magic" />
+            <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="46.0" prefWidth="177.0" text="Magic" />
             <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Items" />
             <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />
           </children>
@@ -134,6 +134,31 @@
             <Button fx:id="playerButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
             <Button fx:id="playerButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
             <Button fx:id="playerButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+    <HBox id="chooseBox" fx:id="spellBox" layoutX="266.0" layoutY="14.0" prefHeight="100.0" prefWidth="735.0" visible="false">
+      <children>
+        <VBox prefHeight="100.0" prefWidth="418.0" visible="true">
+          <children>
+            <Button id="enemyButton1" fx:id="spellButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton2" fx:id="spellButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton3" fx:id="spellButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+        <VBox prefHeight="100.0" prefWidth="417.0">
+          <children>
+            <Button id="enemyButton4" fx:id="spellButton4" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton5" fx:id="spellButton5" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton6" fx:id="spellButton6" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+          </children>
+        </VBox>
+        <VBox prefHeight="100.0" prefWidth="417.0">
+          <children>
+            <Button id="playerButton1" fx:id="spellButton7" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="playerButton2" fx:id="spellButton8" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="playerButton3" fx:id="spellButton9" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
       </children>

@@ -28,7 +28,7 @@ public class StartMenuController implements ControlledScreen {
     }
 
     public void loadSavedGame(ActionEvent actionEvent) throws IOException {
-        String path = System.getProperty("user.home") + "\\Local Settings\\Applicaton Data\\FFC_Saves";
+        String path = System.getProperty("user.home") + "\\Local Settings\\Application Data\\FFC_Saves";
         File saveLocation = new File(path);
         String data = "";
 

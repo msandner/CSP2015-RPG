@@ -1,6 +1,5 @@
 package org.csproject.model.actors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,10 +10,10 @@ public class MonsterParty{
     protected Monster monster1, monster2, monster3, monster4, monster5, monster6;
     List<Monster> party = new ArrayList<>();
 
-
     public MonsterParty(List<Monster> monsters) {
-        this.party = monsters;
+        this.monsters = monsters;
     }
+
 
     public int getMonsterPosition(Monster monster) {
         for(int i = 0; i < party.size(); i++) {
