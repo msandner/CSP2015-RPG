@@ -220,6 +220,9 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     Image[] enemyImages;
     TranslateTransition moveChar, reverseMoveChar;
 
+    List<Monster> enemyList;
+    List<PlayerActor> players;
+
     ScreensController screenController;
 
     public BattleScreenController() {
@@ -232,12 +235,17 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     public void startNewBattle(List<PlayerActor> players, List enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
-        setEnemies(enemyActors);
-        setPlayers(players.get(0), players.get(1), players.get(2));
+        this.players = players;
+        this.enemyList = enemyActors;
+        setEnemies();
+        setPlayers();
     }
 
     /* Set all of the things related to the PlayerActors to their correct displays */
-    private void setPlayers(PlayerActor char1, PlayerActor char2, PlayerActor char3) {
+    private void setPlayers() {
+        PlayerActor char1 = players.get(0);
+        PlayerActor char2 = players.get(1);
+        PlayerActor char3 = players.get(2);
         player1Name.setText(char1.getName());
         player2Name.setText(char2.getName());
         player3Name.setText(char3.getName());
@@ -389,7 +397,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /* Set the enemies on the field, on the buttons for attacking, and in the text box. */
-    private void setEnemies(List<Monster> enemyList) {
+    private void setEnemies() {
         clearEnemyNames();
         clearEnemyImages();
         clearEnemyButtons();
@@ -589,5 +597,32 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     public void showEnemyButtons() {
         chooseBox.setVisible(true);
+    }
+
+    public void addEnemy(ActionEvent actionEvent) {
+        chooseBox.setVisible(false);
+        spellBox.setVisible(true);
+
+        if(actionEvent.getSource() == enemyButton1) {
+            System.out.println("Button 1!");
+        } else if (actionEvent.getSource() == enemyButton2) {
+
+        } else if (actionEvent.getSource() == enemyButton3) {
+
+        } else if (actionEvent.getSource() == enemyButton4) {
+
+        } else if (actionEvent.getSource() == enemyButton5) {
+
+        } else if (actionEvent.getSource() == enemyButton6) {
+
+        }
+
+        //TODO: Add the Enemy to a list
+    }
+
+    public void addSpell(ActionEvent actionEvent) {
+        spellBox.setVisible(false);
+
+        //TODO: Add the Spell to the list
     }
 }

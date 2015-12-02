@@ -117,16 +117,16 @@
       <children>
         <VBox prefHeight="100.0" prefWidth="418.0" visible="true">
           <children>
-            <Button fx:id="enemyButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="enemyButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="enemyButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton1" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton2" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton3" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
         <VBox prefHeight="100.0" prefWidth="417.0">
           <children>
-            <Button fx:id="enemyButton4" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="enemyButton5" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="enemyButton6" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton4" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton5" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="enemyButton6" mnemonicParsing="false" onAction="#addEnemy" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
         <VBox prefHeight="100.0" prefWidth="417.0">
@@ -142,23 +142,23 @@
       <children>
         <VBox prefHeight="100.0" prefWidth="418.0" visible="true">
           <children>
-            <Button id="enemyButton1" fx:id="spellButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="enemyButton2" fx:id="spellButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="enemyButton3" fx:id="spellButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton1" fx:id="spellButton1" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton2" fx:id="spellButton2" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton3" fx:id="spellButton3" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
         <VBox prefHeight="100.0" prefWidth="417.0">
           <children>
-            <Button id="enemyButton4" fx:id="spellButton4" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="enemyButton5" fx:id="spellButton5" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="enemyButton6" fx:id="spellButton6" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton4" fx:id="spellButton4" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton5" fx:id="spellButton5" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="enemyButton6" fx:id="spellButton6" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
         <VBox prefHeight="100.0" prefWidth="417.0">
           <children>
-            <Button id="playerButton1" fx:id="spellButton7" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="playerButton2" fx:id="spellButton8" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button id="playerButton3" fx:id="spellButton9" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="playerButton1" fx:id="spellButton7" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="playerButton2" fx:id="spellButton8" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button id="playerButton3" fx:id="spellButton9" mnemonicParsing="false" onAction="#addSpell" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
       </children>
