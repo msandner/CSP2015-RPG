@@ -5,7 +5,7 @@ Journal - Nicholas Paquette
 9/20, 1:00 - 2:00: Group meeting over skype, finished feasibility study. Discussed feasibility presentation.
 9/29, 8:00 - 10:00: Read about JavaFX.
 10/4, 6:00 - 9:00: Tried to set the character object to an exported image, talked to Brett about static map.
-10/6, 12:00 - 1:30: Exported more images from RPGM-VXA, continued to try to set character to exported image, realised Brett had exported images himself and committed.
+10/6, 12:00 - 2:00: Exported more images from RPGM-VXA, continued to try to set character to exported image, realised Brett had exported images himself and committed.
 10/14, 10:00 - 12:00: Worked on Sprint 1 Report.
 10/14, 3:30 - 4:30: Group call with team to discuss sprint 1 presentation.
 10/25, 2:00 - 3:00: Worked on creating currency system.
@@ -20,3 +20,12 @@ Journal - Nicholas Paquette
 11/10, 5:00 - 6:00: Gave up trying to use serializable for saving, resorted to writing saves to text files in appdata.
 11/11, 12:00 - 1:00: Couldn't commit changes. Had to redo file saving to work with updated project. (No more town field)
 11/11, 8:00 - 10:00: Worked on sprint report and uploaded it.
+11/25, 1:00 - 3:00: Worked on some stuff that another person was working on at the same time and ended up scrapped.
+11/26, 1:00 - 2:00: Looked into how to implement a drag event for the tile editor.
+11/27, 2:00 - 3:00: Began looking into how tile chunks can be implemented to the tile editor.
+11/28, 3:00 - 4:00: Began work on random chance on tiles, noticed that Brett developed a better way to handle random encounters, scrapped changes.
+12/1, 10:00 - 12:00: Implemented a class in battle factory that supplies monster parties for battles.
+12/2, 12:00 - 4:00: Finished implementing tile chunks into editor.
+12/2, 8:00 - 9:00: Worked on Sprint 3 report.
+
+Hours Worked: 40
