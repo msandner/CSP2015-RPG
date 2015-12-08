@@ -7,8 +7,8 @@ public class WeaponItem extends Item {
     protected String classRestrictions;
     protected int value;
 
-    public WeaponItem(String name, String restrictions, int v){
-        super(name, "Weapon");
+    public WeaponItem(String name, String restrictions, int v, int b){
+        super(name, "Weapon", b);
         this.classRestrictions = restrictions;
         this.value = v;
     }

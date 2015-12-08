@@ -6,10 +6,14 @@ package org.csproject.model.items;
 public abstract class Item {
     protected String itemName;
     protected String itemType;
+    protected int buyingCost;
+    protected int sellingCost;
 
-    public Item(String name, String type){
+    public Item(String name, String type, int b){
         this.itemName = name;
         this.itemType = type;
+        this.buyingCost = b;
+        this.sellingCost = b/2;
     }
 
     public String getItemName(){
@@ -18,5 +22,13 @@ public abstract class Item {
 
     public String getItemType(){
         return itemType;
+    }
+
+    public int getBuyingCost(){
+        return buyingCost;
+    }
+
+    public int getSellingCost(){
+        return sellingCost;
     }
 }
