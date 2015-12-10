@@ -51,12 +51,32 @@ public class PlayerParty {
         return party.size();
     }
 
+    public int getCurrency() { return currency; }
+
+    public void addCurrency(int i) {currency += i; }
+
+    public void subCurrency(int i){
+        currency -= i;
+        if(currency < 0){
+            currency = 0;
+        }
+    }
+
     public List<Item> getInventory(){
         return inventory;
     }
 
     public void addItem(Item i){
         inventory.add(i);
+    }
+
+    public boolean removeItem(Item i){
+        if(getInventory().contains(i)){
+            getInventory().remove(i);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Item getItem(String s){

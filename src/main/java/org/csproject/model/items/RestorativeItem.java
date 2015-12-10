@@ -10,8 +10,8 @@ public class RestorativeItem extends Item {
     protected String attributeEffected; //either "Health" or "Mana"
     protected int value;
 
-    public RestorativeItem(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v){
-        super(name, "Restorative");
+    public RestorativeItem(String name, boolean targetPlayer, boolean targetTeam, String attribute, int v, int b){
+        super(name, "Restorative", b);
         this.hasTargetPlayer = targetPlayer;
         this.hasTargetTeam = targetTeam;
         this.attributeEffected = attribute;

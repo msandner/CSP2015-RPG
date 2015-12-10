@@ -1,7 +1,10 @@
 package org.csproject.service;
 
+import com.sun.javafx.scene.control.accessible.AccessibleListItem;
+import org.csproject.model.actors.PlayerParty;
 import org.csproject.model.items.ArmorItem;
 import org.csproject.model.items.Item;
+import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.items.WeaponItem;
 
 import java.util.List;
@@ -54,6 +57,42 @@ public class shopService {
         armorStock.add(new ArmorItem("Old Mask", "Thief", "Head", 2, 4));
         armorStock.add(new ArmorItem("Shroud", "Thief", "Head", 3, 6));
         armorStock.add(new ArmorItem("Black Mask", "Thief", "Head", 4, 8));
+        armorStock.add(new ArmorItem("Clothes", "Thief", "Body", 1, 2));
+        armorStock.add(new ArmorItem("Leather Armor", "Thief", "Body", 3, 4));
+        armorStock.add(new ArmorItem("Dark Armor", "Thief", "Body", 6, 8));
+        armorStock.add(new ArmorItem("Bandage Wraps", "Thief", "Hands", 1, 2));
+        armorStock.add(new ArmorItem("Fingerless Gloves", "Thief", "Hands", 2, 4));
+        armorStock.add(new ArmorItem("Black Gloves", "Thief", "Hands", 3, 6));
+        armorStock.add(new ArmorItem("Shoes", "Thief", "Feet", 1, 2));
+        armorStock.add(new ArmorItem("Light Boots", "Thief", "Feet", 2, 4));
+        armorStock.add(new ArmorItem("Muffled Boots", "Thief", "Feet", 4, 8));
 
+        potionStock.add(new RestorativeItem("Small Health Potion", true, false, "Health", 20, 5));
+        potionStock.add(new RestorativeItem("Medium Health Potion", true, false, "Health", 50, 10));
+        potionStock.add(new RestorativeItem("Large Health Potion", true, false, "Health", 100, 20));
+        potionStock.add(new RestorativeItem("Small Mana Potion", true, false, "Mana", 20, 10));
+        potionStock.add(new RestorativeItem("Medium Mana Potion", true, false, "Mana", 50, 20));
+        potionStock.add(new RestorativeItem("Large Mana Potion", true, false, "Mana", 100, 30));
+
+        potionStock.add(new RestorativeItem("Great Health Potion", false, true, "Health", 20, 20));
+        potionStock.add(new RestorativeItem("Great Mana Potion", false, true, "Mana", 20, 40));
     }
+
+    public List<Item> getWeapons(){ return weaponStock; }
+
+    public List<Item> getArmor(){ return armorStock; }
+
+    public List<Item> getPotions(){ return potionStock; }
+
+    public boolean boughtItem(Item i, PlayerParty p){
+        if(p.getCurrency() < i.getBuyingCost()) {
+            return false;
+        } else {
+            p.subCurrency(i.getBuyingCost());
+            p.addItem(i);
+            return true;
+        }
+    }
+
+    public boolean soldItem(Item i, PlayerParty p){ return p.removeItem(i); }
 }
