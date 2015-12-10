@@ -1,16 +1,12 @@
 package org.csproject.service;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.csproject.model.Constants;
 import org.csproject.model.actors.*;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
 import org.csproject.view.BattleScreenController;
 import org.csproject.view.MasterController;
+import org.csproject.view.NewGameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,27 +17,25 @@ import java.util.Random;
  */
 public class BattleFactory {
 
-    ScreensController screencontroller;
     BattleScreenController battleController;
 
+    PlayerParty actualplayers;
+
     public void startBattle() {
-        screencontroller = new ScreensController();
         MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
 
         MonsterParty monsterparty = getMonsters();
 
-        PlayerActor knight = new PlayerActor("Jim the Knight", Constants.CLASS_KNIGHT, 1, 2, 2, 5);
-        PlayerActor thief = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 1, 2, 2, 5);
-        PlayerActor mage = new PlayerActor("Tim", Constants.CLASS_MAGE, 1 , 2 , 2, 5);
-
-        PlayerParty party = new PlayerParty(knight, thief, mage, 100);
-
-//        roundBasedBattle(party, monsterparty);
+        actualplayers = MasterController.getScreensController().getParty();
 
         battleController = MasterController.getBattleController();
-        battleController.startNewBattle(party.getParty(), monsterparty.getParty());
+        battleController.startNewBattle(actualplayers.getParty(), monsterparty.getParty());
 
         System.out.println("Battle started");
+    }
+
+    public void setPlayerPartyInstance(PlayerParty players) {
+        actualplayers = players;
     }
 
     public void roundBasedBattle(PlayerParty pparty, MonsterParty mparty) {

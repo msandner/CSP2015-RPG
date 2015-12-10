@@ -20,6 +20,8 @@ public class PlayerActor extends BattleActor {
     private double mpMultiplier;
     private double hpMultiplier;
 
+    String classtype = null;
+
     //todo more stats
 
     public PlayerActor(String name, String type, int level, int attack, double hpMultiplier, double mpMultiplier) {
@@ -86,7 +88,7 @@ public class PlayerActor extends BattleActor {
     }
 
     public int calcMp(int level) {
-        return (int) (level * mpMultiplier);
+        return (int) (100 + level * mpMultiplier);
     }
 
     @Override

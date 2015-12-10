@@ -10,6 +10,7 @@ import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.actors.PlayerParty;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -28,8 +29,8 @@ public class MasterController extends Application {
     public static final String BATTLE_SCREEN_FILE = "BattleScreen.fxml";
 
     //Switch these two statements to start the game faster/slower
-    public static final boolean fastStart = true;
-//    public static final boolean fastStart = false;
+    //public static final boolean fastStart = true;
+    public static final boolean fastStart = false;
 
     public static ScreensController screensController;
 
@@ -54,6 +55,7 @@ public class MasterController extends Application {
         if (!fastStart) {
             screensController.loadScreen(START_MENU_ID, START_MENU_FILE);
             screensController.loadScreen(NEW_GAME_ID, NEW_GAME_FILE);
+            screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
             screensController.setScreen(START_MENU_ID);
 
 
@@ -108,6 +110,16 @@ public class MasterController extends Application {
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
+
+
+            /*have to use a static playerparty for faststart*/
+
+            PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 1, 25, 1, 1);
+            PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 1, 25, 1, 1);
+            PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 1, 25, 1, 1);
+
+            PlayerParty party = new PlayerParty(char1, char2, char3, 0);
+            screensController.setParty(party);
         }
 
         primaryStage.show();
@@ -120,5 +132,9 @@ public class MasterController extends Application {
 
     public static BattleScreenController getBattleController() {
         return screensController.getBattleController();
+    }
+
+    public static ScreensController getScreensController() {
+        return screensController;
     }
 }

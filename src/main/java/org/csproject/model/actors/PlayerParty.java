@@ -29,6 +29,10 @@ public class PlayerParty {
         party.add(this.char3);
     }
 
+    public List<PlayerActor> getParty() {
+        return this.party;
+    }
+
     public int highestLevel() {
         int max = 0;
         for(BattleActor p : getParty()) {
@@ -43,9 +47,7 @@ public class PlayerParty {
         return party.get(index);
     }
 
-    public List<PlayerActor> getParty() {
-        return party;
-    }
+
 
     public int getPartySize() {
         return party.size();

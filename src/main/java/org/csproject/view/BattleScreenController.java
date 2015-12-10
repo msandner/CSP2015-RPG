@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.BattleActor;
 import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Direction;
@@ -229,13 +230,12 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     ScreensController screenController;
 
     public BattleScreenController() {
-
     }
 
     /* Start a new battle with the given array of PlayActors and List
         (MAX OF 6) enemies. Their images and names are all added to the correct places.
      */
-    public void startNewBattle(List<PlayerActor> players, List enemyActors) {
+    public void startNewBattle(List<PlayerActor> players, List<Monster> enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
         this.players = players;

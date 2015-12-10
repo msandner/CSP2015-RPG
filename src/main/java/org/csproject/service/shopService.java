@@ -1,6 +1,5 @@
 package org.csproject.service;
 
-import com.sun.javafx.scene.control.accessible.AccessibleListItem;
 import org.csproject.model.actors.PlayerParty;
 import org.csproject.model.items.ArmorItem;
 import org.csproject.model.items.Item;
