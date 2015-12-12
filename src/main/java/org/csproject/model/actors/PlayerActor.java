@@ -54,7 +54,7 @@ public class PlayerActor extends BattleActor {
                 allSpells.add(new OffensiveMagic("Ambush", "", -10, -10, 2));             //more %crit chance
                 allSpells.add(new OffensiveMagic("Mutilate", "", -10, -20, 4));           //double bladed attack
                 allSpells.add(new OffensiveMagic("Execute", "", -25, -30, 7));            //more dmg under targets %xx hp
-                allSpells.add(new OffensiveMagic("Frostbite", "", -10, -25, 11));          //low dmg on all targets
+                allSpells.add(new OffensiveMagic("Shuriken Toss", "", -10, -25, 11));          //low dmg on all targets
         }
         allSpells.add(new OffensiveMagic("Basic", "", -5, 0, 0));
     }

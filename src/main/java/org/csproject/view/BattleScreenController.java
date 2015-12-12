@@ -17,13 +17,12 @@ import org.csproject.model.actors.BattleActor;
 import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.bean.Direction;
+import org.csproject.model.magic.Magic;
 import org.csproject.service.ScreensController;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.ResourceBundle;
-
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Brett on 11/22/2015.
@@ -220,6 +219,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
     int attack, enemyAttacked;
     Image[] enemyImages;
+    Map playerSpells;
     TranslateTransition moveChar, reverseMoveChar;
     int currentChar;
     boolean attackIsMagic;
@@ -249,6 +249,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         PlayerActor char1 = players.get(0);
         PlayerActor char2 = players.get(1);
         PlayerActor char3 = players.get(2);
+        setUpSpells();
         player1Name.setText(char1.getName());
         player2Name.setText(char2.getName());
         player3Name.setText(char3.getName());
@@ -512,8 +513,6 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         switch(type) {
             case Constants.CLASS_KNIGHT:
                 return new CharacterImage(0, 1, Constants.IMAGE_KNIGHT, Direction.LEFT);
-            case Constants.CLASS_SWORDSMAN:
-                return new CharacterImage(0, 1, Constants.IMAGE_SWORDSMAN, Direction.LEFT);
             case Constants.CLASS_MAGE:
                 return new CharacterImage(3, 1, Constants.IMAGE_MAGE, Direction.LEFT);
             case Constants.CLASS_THIEF:
@@ -531,6 +530,26 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         enemyImage4.setImage(enemyImages[3]);
         enemyImage5.setImage(enemyImages[4]);
         enemyImage6.setImage(enemyImages[5]);
+    }
+
+    /**
+     * Brett Raible
+     * Adds all of the available spells for this character to the list for use in battle.
+     */
+    private void setUpSpells() {
+        playerSpells.put(1, new ArrayList<String>());
+        playerSpells.put(2, new ArrayList<String>());
+        playerSpells.put(3, new ArrayList<String>());
+        for(PlayerActor p : players) {
+            int index = 0;
+            for(Magic m : p.getSpells()) {
+                if(m.getLevelRestriction() <= p.getLevel() && m.getName() != "Basic") {
+                    ((ArrayList)playerSpells.get(currentChar)).add(index, m.getName());
+                    index++;
+                }
+            }
+            nextChar();
+        }
     }
 
     @Override
@@ -603,12 +622,13 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         assert spellButton9 != null : "fx:id=\"spellButton9\" was not injected: check your FXML file 'BattleScreen.fxml'.";
 
         enemyImages = new Image[6];
-        moveChar = new TranslateTransition(Duration.seconds(.25));
-        moveChar.setFromX(0);
-        moveChar.setToX(-55);
+        playerSpells = new HashMap<Integer, List>();
 
+        moveChar = new TranslateTransition(Duration.seconds(.25));
+        moveChar.setFromX(55);
+        moveChar.setToX(-55);
         reverseMoveChar = new TranslateTransition(Duration.seconds(.25));
-        reverseMoveChar.setFromX(0);
+        reverseMoveChar.setFromX(-55);
         reverseMoveChar.setToX(55);
 
         currentChar = 1;
@@ -644,6 +664,37 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         //TODO: Add the Enemy to a list
 
         if(attackIsMagic) {
+            resetSpellButtons();
+            for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
+                if(spellButton1.getText().equals("")) {
+                    spellButton1.setText(s);
+                    spellButton1.setDisable(false);
+                } else if (spellButton2.getText().equals("")) {
+                    spellButton2.setText(s);
+                    spellButton2.setDisable(false);
+                } else if (spellButton3.getText().equals("")) {
+                    spellButton3.setText(s);
+                    spellButton3.setDisable(false);
+                } else if (spellButton4.getText().equals("")) {
+                    spellButton4.setText(s);
+                    spellButton4.setDisable(false);
+                } else if (spellButton5.getText().equals("")) {
+                    spellButton5.setText(s);
+                    spellButton5.setDisable(false);
+                } else if (spellButton6.getText().equals("")) {
+                    spellButton6.setText(s);
+                    spellButton6.setDisable(false);
+                } else if (spellButton7.getText().equals("")) {
+                    spellButton7.setText(s);
+                    spellButton7.setDisable(false);
+                } else if (spellButton8.getText().equals("")) {
+                    spellButton8.setText(s);
+                    spellButton8.setDisable(false);
+                } else if (spellButton9.getText().equals("")) {
+                    spellButton9.setText(s);
+                    spellButton9.setDisable(false);
+                }
+            }
             spellBox.setVisible(true);
             attackIsMagic = false;
         } else {
@@ -651,6 +702,27 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             moveCharBack();
             nextChar();
         }
+    }
+
+    private void resetSpellButtons() {
+        spellButton1.setText("");
+        spellButton2.setText("");
+        spellButton3.setText("");
+        spellButton4.setText("");
+        spellButton5.setText("");
+        spellButton6.setText("");
+        spellButton7.setText("");
+        spellButton8.setText("");
+        spellButton9.setText("");
+        spellButton1.setDisable(true);
+        spellButton2.setDisable(true);
+        spellButton3.setDisable(true);
+        spellButton4.setDisable(true);
+        spellButton5.setDisable(true);
+        spellButton6.setDisable(true);
+        spellButton7.setDisable(true);
+        spellButton8.setDisable(true);
+        spellButton9.setDisable(true);
     }
 
     public void addSpell(ActionEvent actionEvent) {
