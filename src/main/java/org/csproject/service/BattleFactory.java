@@ -1,10 +1,12 @@
 package org.csproject.service;
 
 import org.csproject.model.actors.*;
+import org.csproject.model.field.StartPoint;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
 import org.csproject.view.BattleScreenController;
+import org.csproject.view.CharacterImage;
 import org.csproject.view.MasterController;
 import org.csproject.view.NewGameController;
 
@@ -17,9 +19,9 @@ import java.util.Random;
  */
 public class BattleFactory {
 
-    BattleScreenController battleController;
+    private BattleScreenController battleController;
 
-    PlayerParty actualplayers;
+    private PlayerParty actualplayers;
 
     public void startBattle() {
         MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
@@ -31,10 +33,12 @@ public class BattleFactory {
         battleController.startNewBattle(actualplayers.getParty(), monsterparty.getParty());
 
         System.out.println("Battle started");
+
+        //endBattle();
     }
 
-    public void setPlayerPartyInstance(PlayerParty players) {
-        actualplayers = players;
+    public void endBattle() {
+        MasterController.setScreen(MasterController.GAME_SCREEN);
     }
 
     public void roundBasedBattle(PlayerParty pparty, MonsterParty mparty) {

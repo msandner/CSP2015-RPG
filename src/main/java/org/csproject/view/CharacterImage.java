@@ -27,8 +27,8 @@ public class CharacterImage extends ImageView {
     private boolean walking;
     private boolean enemyEncounter;
 
-    /* set on true i you want the battle to appear*/
-    private boolean startbattle = false;
+    /* set on true ifa you want the battle to appear*/
+    private boolean startbattle = true;
 
     private BattleFactory battlefactory = new BattleFactory();
 
@@ -104,10 +104,9 @@ public class CharacterImage extends ImageView {
 
                 //test for enemyencounter every time walking a step
                 setEnemyEncounter();
-                if(getEnemyEncounter()) { //todo: need to ask if it is townmap, so you can't encounter enemys in the safe town
-                    if(startbattle) {
-                        battlefactory.startBattle();
-                    }
+
+                if(getEnemyEncounter() && startbattle) {
+                    battlefactory.startBattle();
                 }
             }
         });

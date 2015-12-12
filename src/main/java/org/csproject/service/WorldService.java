@@ -10,11 +10,6 @@ import org.csproject.model.field.Field;
  * @author Maike Keune-Staab on 12.09.2015.
  */
 public interface WorldService {
-    void setPlayerActor(PlayerActor playerActor);
-
-    PlayerActor getPlayerActor();
-
-    List<PlayerActor> getAvailableClasses();
 
     void setAvailableClasses(List<PlayerActor> playerActors) throws FileNotFoundException;
 

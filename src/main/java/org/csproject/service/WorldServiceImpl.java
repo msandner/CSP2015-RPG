@@ -31,20 +31,9 @@ public class WorldServiceImpl implements WorldService {
     @Autowired
     private Gson gson;
 
-    private PlayerActor playerActor = new PlayerActor("Test Player", Constants.CLASS_SWORDSMAN, 1, 5, 8, 5); // todo let this do the menu
     private Map<String, Field> tempFields = new HashMap<>();
     private Field worldMap;
 
-    //creates and returns the walkable Character
-    @Override
-    public void setPlayerActor(PlayerActor playerActor) {
-        this.playerActor = playerActor;
-    }
-
-    @Override
-    public PlayerActor getPlayerActor() {
-        return this.playerActor;
-    }
 
     //returns a list of available classes
     public List<PlayerActor> getAvailableClasses() {

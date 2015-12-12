@@ -30,7 +30,7 @@ import static org.csproject.model.Constants.*;
 @Component
 public class FieldScreen extends Pane {
 
-    public static final PlayerActor TEST_PLAYER = new PlayerActor("Generic Name", Constants.CLASS_SWORDSMAN, 1, 1, 1.0, 5);
+
     @Autowired
     private ScreensController screensController;
 
@@ -52,6 +52,8 @@ public class FieldScreen extends Pane {
 
     private Field field;
 
+    public PlayerActor playerActor;
+
     public FieldScreen() {
         this.moving = false;
         setUpControlls();
@@ -59,6 +61,10 @@ public class FieldScreen extends Pane {
         setScaleX(SCALE);
         setScaleY(SCALE);
     }
+    public void setStartPlayer(PlayerActor p) {
+        playerActor = p;
+    }
+
 
     public void setScene(Field field) {
         setScene(field, "characterStart");
@@ -69,8 +75,6 @@ public class FieldScreen extends Pane {
         this.field = field;
         getChildren().clear();
         getChildren().add(screenFactory.buildNode(field));
-
-        PlayerActor playerActor = screensController.getPlayerActor();
 
         NavigationPoint start1 = field.getStart(startPoint);
         final double charStartX = start1 == null ? 0 : start1.getX() * TILE_SIZE;
@@ -243,7 +247,7 @@ public class FieldScreen extends Pane {
         }
     }
 
-    private CharacterImage getAvatar() {
+    public CharacterImage getAvatar() {
         return this.avatar;
     }
 

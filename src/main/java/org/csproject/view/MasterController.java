@@ -58,15 +58,23 @@ public class MasterController extends Application {
             screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
             screensController.setScreen(START_MENU_ID);
 
-
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
+
         } else {
             /* Skip the beginning scenes and start the game right away.
              * Change the values in the ScreensController class (setUpNewGame() function)
              * to view different scenes like the static map, dungeon, forest, etc
              */
+            PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 15, 25, 1, 1);
+            PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 14, 25, 1, 1);
+            PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 13, 25, 1, 1);
+
+            PlayerParty party = new PlayerParty(char1, char2, char3, 0);
+
+            screensController.getFieldScreen().setStartPlayer(party.getPlayer(0));
+
             screensController.setUpNewGame();
             screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
             screensController.setScreen(GAME_SCREEN);
@@ -87,12 +95,9 @@ public class MasterController extends Application {
 
             /*have to use a static playerparty for faststart*/
 
-            PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 15, 25, 1, 1);
-            PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 14, 25, 1, 1);
-            PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 13, 25, 1, 1);
-
-            PlayerParty party = new PlayerParty(char1, char2, char3, 0);
             screensController.setParty(party);
+
+
         }
         primaryStage.show();
     }

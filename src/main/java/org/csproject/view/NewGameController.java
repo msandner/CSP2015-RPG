@@ -39,6 +39,7 @@ public class NewGameController implements ControlledScreen {
         party = new PlayerParty(char1, char2, char3, 0);
 
         givePlayerParty();
+        setFieldPlayer();
 
         //Don't let the player make multiple games!
         confirmButton.setDisable(true);
@@ -80,6 +81,11 @@ public class NewGameController implements ControlledScreen {
 
     private void givePlayerParty(){
         screenController.setParty(getPParty());
+
+    }
+
+    private void setFieldPlayer() {
+        screenController.getFieldScreen().setStartPlayer(getPParty().getPlayer(0));
     }
 
 }

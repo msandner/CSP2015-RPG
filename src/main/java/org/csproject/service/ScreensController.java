@@ -149,11 +149,7 @@ public class ScreensController {
         return fieldScreen;
     }
 
-    public PlayerActor getPlayerActor() {
-        return worldService.getPlayerActor();
-    }
-
-    public PlayerParty getParty() {
+    public  PlayerParty getParty() {
         return party;
     }
 
