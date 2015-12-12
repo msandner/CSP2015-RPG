@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.csproject.model.Constants;
@@ -47,10 +49,7 @@ public class ScreensController {
 
     private BattleScreenController battleController;
 
-
-
     private PlayerParty party;
-
 
     public ScreensController() {
         super();
@@ -107,6 +106,7 @@ public class ScreensController {
                 fadeScreenIn(name, opacity);
             }
             currentScreen = name;
+
             return true;
         } else {
             LOG.error("The screen hasn't been loaded!");

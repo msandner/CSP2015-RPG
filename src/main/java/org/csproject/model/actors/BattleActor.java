@@ -39,6 +39,7 @@ public abstract class BattleActor extends Actor{
     public int getAttack() {
         return this.attack;
     }
+
     public int getMaxHp() {
         return maxHp;
     }

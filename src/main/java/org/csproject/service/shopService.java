@@ -93,5 +93,11 @@ public class shopService {
         }
     }
 
-    public boolean soldItem(Item i, PlayerParty p){ return p.removeItem(i); }
+    public boolean soldItem(Item i, PlayerParty p){
+        if(p.removeItem(i)){
+            p.addCurrency(i.getSellingCost());
+            return true;
+        }
+        return false;
+    }
 }
