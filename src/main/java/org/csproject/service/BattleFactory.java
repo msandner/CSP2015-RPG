@@ -24,9 +24,8 @@ public class BattleFactory {
     public void startBattle() {
         MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
 
-        MonsterParty monsterparty = getMonsters();
-
         actualplayers = MasterController.getScreensController().getParty();
+        MonsterParty monsterparty = getMonsters(actualplayers);
 
         battleController = MasterController.getBattleController();
         battleController.startNewBattle(actualplayers.getParty(), monsterparty.getParty());
@@ -263,33 +262,30 @@ public class BattleFactory {
         }
     }
 
-    public MonsterParty getMonsters(){
+    public MonsterParty getMonsters(PlayerParty party){
         Random rand = new Random();
         int r = rand.nextInt(24) + 1;
+
         List<Monster> m = new ArrayList<Monster>();
-        MonsterParty p;
 
         switch (r){
             case 1:
                 m.add(new Monster("Bat", "dungeon", 1, 1, 2, 2));
                 m.add(new Monster("Bat", "dungeon", 1, 1, 2, 2));
                 m.add(new Monster("Bat", "dungeon", 1, 1, 2, 2));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 2:
                 m.add(new Monster("Gayzer", "dungeon", 1, 1, 2, 3));
-                p = new MonsterParty(m);
-                return p;
+                m.add(new Monster("Bat", "dungeon", 1, 1, 2, 2));
+                break;
             case 3:
                 m.add(new Monster("Imp", "field", 1, 2, 2, 2));
                 m.add(new Monster("Imp", "field", 1, 2, 2, 2));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 4:
                 m.add(new Monster("Hornet", "field", 1, 3, 2, 2));
                 m.add(new Monster("Hornet", "field", 1, 3, 2, 2));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 5:
                 m.add(new Monster("Slime", "field", 1, 1, 2, 1));
                 m.add(new Monster("Slime", "field", 1, 1, 2, 1));
@@ -297,111 +293,109 @@ public class BattleFactory {
                 m.add(new Monster("Slime", "field", 1, 1, 2, 1));
                 m.add(new Monster("Slime", "field", 1, 1, 2, 1));
                 m.add(new Monster("Slime", "field", 1, 1, 2, 1));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 6:
                 m.add(new Monster("Rat", "dungeon", 1, 2, 2, 2));
                 m.add(new Monster("Rat", "dungeon", 1, 2, 2, 2));
                 m.add(new Monster("Rat", "dungeon", 1, 2, 2, 2));
                 m.add(new Monster("Rat", "dungeon", 1, 2, 2, 2));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 7:
                 m.add(new Monster("Bandit", "field", 2, 3, 4, 3));
                 m.add(new Monster("Bandit", "field", 2, 3, 4, 3));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 8:
                 m.add(new Monster("Gargoyle", "dungeon", 2, 2, 4, 5));
                 m.add(new Monster("Gargoyle", "dungeon", 2, 2, 4, 5));
                 m.add(new Monster("Gargoyle", "dungeon", 2, 2, 4, 5));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 9:
                 m.add(new Monster("Plant", "field", 2, 3, 4, 3));
                 m.add(new Monster("Plant", "field", 2, 3, 4, 3));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 10:
                 m.add(new Monster("Skeleton", "dungeon", 2, 4, 4, 4));
                 m.add(new Monster("Skeleton", "dungeon", 2, 4, 4, 4));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 11:
                 m.add(new Monster("Zombie", "dungeon", 2, 3, 4, 4));
                 m.add(new Monster("Zombie", "dungeon", 2, 3, 4, 4));
                 m.add(new Monster("Zombie", "dungeon", 2, 3, 4, 4));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 12:
                 m.add(new Monster("Assassin", "dungeon", 3, 4, 8, 6));
                 m.add(new Monster("Assassin", "dungeon", 3, 4, 8, 6));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 13:
                 m.add(new Monster("Mimic", "dungeon", 3, 4, 8, 10));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 14:
                 m.add(new Monster("Orc", "field", 3, 3, 8, 4));
                 m.add(new Monster("Orc", "field", 3, 3, 8, 4));
                 m.add(new Monster("Orc", "field", 3, 3, 8, 4));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 15:
                 m.add(new Monster("Rogue", "field", 3, 4, 8, 7));
                 m.add(new Monster("Rogue", "field", 3, 4, 8, 7));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 16:
                 m.add(new Monster("Spider", "dungeon", 3, 4, 8, 5));
                 m.add(new Monster("Spider", "dungeon", 3, 4, 8, 5));
                 m.add(new Monster("Spider", "dungeon", 3, 4, 8, 5));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 17:
                 m.add(new Monster("Snake", "field", 2, 4, 4, 4));
                 m.add(new Monster("Snake", "field", 2, 4, 4, 4));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 18:
                 m.add(new Monster("Fanatic", "dungeon", 4, 4, 16, 8));
                 m.add(new Monster("Fanatic", "dungeon", 4, 4, 16, 8));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 19:
                 m.add(new Monster("Ghost", "dungeon", 4, 5, 16, 9));
                 m.add(new Monster("Ghost", "dungeon", 4, 5, 16, 9));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 20:
                 m.add(new Monster("Scorpion", "dungeon", 4, 3, 16, 9));
                 m.add(new Monster("Scorpion", "dungeon", 4, 3, 16, 9));
                 m.add(new Monster("Scorpion", "dungeon", 4, 3, 16, 9));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 21:
                 m.add(new Monster("Werewolf", "field", 4, 5, 16, 10));
                 m.add(new Monster("Werewolf", "field", 4, 5, 16, 10));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 22:
                 m.add(new Monster("Puppet", "dungeon", 2, 5, 4, 4));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 23:
                 m.add(new Monster("Mage", "boss", 5, 6, 32, 14));
-                p = new MonsterParty(m);
-                return p;
+                break;
             case 24:
                 m.add(new Monster("Vampire", "boss", 5, 7, 32, 16));
-                p = new MonsterParty(m);
-                return p;
+                break;
         }
 
-        m.add(new Monster("Slime", "field", 1, 1, 2, 1));
-        p = new MonsterParty(m);
+        MonsterParty p = new MonsterParty(m);
+
+        for(Monster monster : p.getParty()) {
+            monster.setLevel(party.highestLevel()+rand.nextInt(2));
+        }
+
         return p;
+    }
+
+    public void EnemyAttackAI(MonsterParty monster, PlayerParty party) {
+        Random rand = new Random();
+        for(Monster m : monster.getParty()) {
+            int chance = rand.nextInt(100);
+            if (chance < 80) {
+                m.attack(party.getPlayer(rand.nextInt(3)), 1);
+                m.setHasAttacked(false);
+            } else {
+                m.attack(party.getPlayer(rand.nextInt(3)), 2);
+                m.setHasAttacked(false);
+            }
+        }
     }
 
 

@@ -101,6 +101,14 @@ public class PlayerParty {
         return true;
     }
 
+    public boolean canPartyStillAttack() {
+        for(PlayerActor p : party) {
+            if(!p.playerHasAttacked()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

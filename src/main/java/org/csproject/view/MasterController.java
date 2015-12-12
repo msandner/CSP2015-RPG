@@ -29,8 +29,8 @@ public class MasterController extends Application {
     public static final String BATTLE_SCREEN_FILE = "BattleScreen.fxml";
 
     //Switch these two statements to start the game faster/slower
-    //public static final boolean fastStart = true;
-    public static final boolean fastStart = false;
+    public static final boolean fastStart = true;
+    //public static final boolean fastStart = false;
 
     public static ScreensController screensController;
 
@@ -81,49 +81,20 @@ public class MasterController extends Application {
              */
             screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
 
-            /*
-            screensController.setScreen(BATTLE_SCREEN_ID);
-            BattleScreenController b = screensController.getBattleController();
-            PlayerActor[] players = new PlayerActor[3];
-            players[0] = new PlayerActor("Alice", Constants.CLASS_KNIGHT, 4, 6, 6);
-            players[1] = new PlayerActor("Bob", Constants.CLASS_MAGE, 4, 6, 6);
-            players[2] = new PlayerActor("Charlie", Constants.CLASS_THIEF, 4, 6, 6);
-            List enemyList = new ArrayList<>();
-            Monster m = new Monster("Bat", "What do you mean TYPE?!", 1, 24) {
-               @Override
-                public int calcHp(int level) {
-                    return level + 42;
-                }
-            };
-            enemyList.add(m);
-
-           m = new Monster("Imp", "IDK what type it is.", 1, 25) {
-                @Override
-               public int calcHp(int level) {
-                   return level * 12;
-               }
-           };
-            enemyList.add(m);
-            b.startNewBattle(players, enemyList);
-           b.setPlayerHealth(0, 42);*/
-
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
 
-
             /*have to use a static playerparty for faststart*/
 
-            PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 1, 25, 1, 1);
-            PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 1, 25, 1, 1);
-            PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 1, 25, 1, 1);
+            PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 15, 25, 1, 1);
+            PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 14, 25, 1, 1);
+            PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 13, 25, 1, 1);
 
             PlayerParty party = new PlayerParty(char1, char2, char3, 0);
             screensController.setParty(party);
         }
-
         primaryStage.show();
-
     }
 
     public static void setScreen(String screenName) {

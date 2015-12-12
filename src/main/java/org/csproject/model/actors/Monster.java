@@ -23,6 +23,9 @@ public class Monster extends BattleActor {
         return 100 + level;
     }
 
+    public void attack(PlayerActor p, int factor) {
+        p.setCurrentHp((int) (getCurrentHp()-(getLevel() + 50 * factor)));
+    }
 
 }
 

@@ -92,9 +92,7 @@ public class FieldScreen extends Pane {
 
     private String updateCharacterImage(String type) {
         String avatarImage;
-        if (type.equals(Constants.CLASS_SWORDSMAN))
-            avatarImage = Constants.IMAGE_SWORDSMAN;
-        else if (type.equals(Constants.CLASS_KNIGHT))
+        if (type.equals(Constants.CLASS_KNIGHT))
             avatarImage = Constants.IMAGE_KNIGHT;
         else if (type.equals(Constants.CLASS_THIEF))
             avatarImage = Constants.IMAGE_THIEF;

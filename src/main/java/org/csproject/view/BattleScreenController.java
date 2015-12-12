@@ -348,11 +348,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         } else if (character == 3) {
             moveCharForward(3);
         }
-
         //TODO stack an attack animation over an enemy image
-
-
-
         reverseMoveChar.playFromStart();
     }
 
