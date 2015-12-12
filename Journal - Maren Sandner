@@ -47,5 +47,6 @@ _unfinished_
 10.12.2015 19:00 - 23:00 MESZ: including the playerpartys in the battle logic (finally) -> 4:00 hours
 12.12.2015 16:00 - 19:00 MESZ: creating some more methods for the battle logic and creating maps with the editor -> 3:00 hours
 12.12.2015 20:00 - 20:30 MESZ: skyping about the plan for the last days of the project -> 0:30 hours
+12.12.2015 21:30 - 23:30 MESZ: creating a endbattle method, setting the fieldplayer right, trying to stop animation when battlescreen loads -> 2 hours
 --------------------------------------------------------------------------------------------------------------------------
-total: 99:40 hours
+total: 101:40 hours
