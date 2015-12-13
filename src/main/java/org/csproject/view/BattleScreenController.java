@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.BattleActor;
@@ -21,6 +23,7 @@ import org.csproject.model.magic.Magic;
 import org.csproject.service.ScreensController;
 
 import javax.swing.*;
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 
@@ -229,15 +232,6 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     List playerCommands;
 
     ScreensController screenController;
-
-    /**
-     * Brett Raible
-     *
-     * Make the object I suppose
-     */
-    public BattleScreenController() {
-    }
-
     /**
      * Brett Raible
      *
@@ -779,6 +773,18 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /**
      * Brett Raible
      *
+     * Begins new round, emptying command list.
+     */
+    public void newRound() {
+        turnDone = false;
+        playerCommands.clear();
+        currentChar = 0;
+        nextChar();
+    }
+
+    /**
+     * Brett Raible
+     *
      * Tells the caller if the player is done with the turn
      * @return
      */
@@ -885,7 +891,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         currentChar = 1;
         attackIsMagic = false;
         turnDone = false; //TODO: More with Turn Done
-
+        
         moveCharForward(currentChar);
     }
 }
