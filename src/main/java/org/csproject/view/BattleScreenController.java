@@ -217,23 +217,34 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
-    int attack, enemyAttacked;
+    int enemyAttacked;
     Image[] enemyImages;
     Map playerSpells;
     TranslateTransition moveChar, reverseMoveChar;
     int currentChar;
-    boolean attackIsMagic;
+    boolean attackIsMagic, turnDone;
 
     List<Monster> enemyList;
     List<PlayerActor> players;
+    List playerCommands;
 
     ScreensController screenController;
 
+    /**
+     * Brett Raible
+     *
+     * Make the object I suppose
+     */
     public BattleScreenController() {
     }
 
-    /* Start a new battle with the given array of PlayActors and List
-        (MAX OF 6) enemies. Their images and names are all added to the correct places.
+    /**
+     * Brett Raible
+     *
+     * Start a new battle with the given array of PlayActors and List
+     * (MAX OF 6) enemies. Their images and names are all added to the correct places.
+     * @param players - The PlayerActor's with which to start the new battle
+     * @param enemyActors - The PlayerActor's that will act as the enemies.
      */
     public void startNewBattle(List<PlayerActor> players, List<Monster> enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
@@ -244,7 +255,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         setPlayers();
     }
 
-    /* Set all of the things related to the PlayerActors to their correct displays */
+    /**
+     * Brett Raible
+     *
+     * Set all of the things related to the PlayerActors to their correct displays
+     */
     private void setPlayers() {
         PlayerActor char1 = players.get(0);
         PlayerActor char2 = players.get(1);
@@ -312,6 +327,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Bett Raible
      * Select a friendly character (0, 1, 2) and set their health (up or down)
      * @param character - The character whose health needs to be altered.
      * @param health - The health of the character after the application of healing or damage.
@@ -336,6 +352,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Brett Raible
+     *
      * Choose a character and an enemy and display the animation of that
      * character attacking
      * @param character - The character that is attacking (0, 1, 2)
@@ -354,6 +372,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Brett Raible
+     *
      * Moves the character forward, so as to show whose turn it is.
      * @param character - which character to move forward, 1, 2, 3
      */
@@ -373,11 +393,18 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
+    /**
+     * Brett Raible
+     *
+     * Plays the transition to move the character back.
+     */
     private void moveCharBack() {
         reverseMoveChar.playFromStart();
     }
 
     /**
+     * Brett Raible
+     *
      * If an enemy is killed, tell the GUI to eliminate it from the battle
      * @param enemy - Which enemy to be removed (0, 1, 2, 3, 4, 5)
      */
@@ -414,7 +441,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
-    /* Set the enemies on the field, on the buttons for attacking, and in the text box. */
+    /**
+     * Brett Raible
+     *
+     * Set the enemies on the field, on the buttons for attacking, and in the text box.
+     */
     private void setEnemies() {
         clearEnemyNames();
         clearEnemyImages();
@@ -463,7 +494,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         updateEnemyImages();
     }
 
-    /* Start of battle, just in case, clear all enemy names from the GUI */
+    /**
+     * Brett Raible
+     *
+     * Set all enemy names to blank text.
+     */
     private void clearEnemyNames() {
         enemyLabel1.setText("");
         enemyLabel2.setText("");
@@ -473,14 +508,22 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         enemyLabel6.setText("");
     }
 
-    /* Clear the player images from the battle, in case they are in a different order or something. */
+    /**
+     * Brett Raible
+     *
+     * Sets each player image to null.
+     */
     private void clearPlayerImages() {
         charImage1.setImage(null);
         charImage2.setImage(null);
         charImage3.setImage(null);
     }
 
-    /* Remove all enemy images from the field. */
+    /**
+     * Brett Raible
+     *
+     * Sets all images in the array to null.
+     */
     private void clearEnemyImages() {
         for (int i = 0; i < enemyImages.length; i++) {
             enemyImages[i] = null;
@@ -488,7 +531,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         updateEnemyImages();
     }
 
-    /* Same with the buttons, remove all of the text on them. */
+    /**
+     * Brett Raible
+     *
+     * Sets enemy buttons to blank text.
+     */
     private void clearEnemyButtons() {
         enemyButton1.setText("");
         enemyButton1.setDisable(true);
@@ -522,7 +569,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
-    /* Update the enemy images all at once instead of individually */
+    /**
+     * Brett Raible
+     *
+     * Update GUI images based on array (for easier implementation).
+     */
     private void updateEnemyImages() {
         enemyImage1.setImage(enemyImages[0]);
         enemyImage2.setImage(enemyImages[1]);
@@ -552,12 +603,211 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
+    /**
+     * Brett Raible
+     *
+     * Sets the HBox for actor buttons to visible and let's the game know if the attack is magic.
+     * @param actionEvent - Magic or Attack button
+     */
+    public void showEnemyButtons(ActionEvent actionEvent) {
+        spellBox.setVisible(false);
+        chooseBox.setVisible(true);
+        if(actionEvent.getSource() == magicButton) {
+            attackIsMagic = true;
+        } else {
+            attackIsMagic = false;
+        }
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Makes the enemy button box invisible, sets which enemy is getting attacked and either
+     * gives the spell buttons their text, or calls getMagic("Basic")
+     * @param actionEvent - One of the enemy buttons
+     */
+    public void addEnemy(ActionEvent actionEvent) {
+        chooseBox.setVisible(false);
+        setEnemyAttacked(actionEvent);
+        if(attackIsMagic) {
+            resetSpellButtons();
+            for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
+                if(spellButton1.getText().equals("")) {
+                    spellButton1.setText(s);
+                    spellButton1.setDisable(false);
+                } else if (spellButton2.getText().equals("")) {
+                    spellButton2.setText(s);
+                    spellButton2.setDisable(false);
+                } else if (spellButton3.getText().equals("")) {
+                    spellButton3.setText(s);
+                    spellButton3.setDisable(false);
+                } else if (spellButton4.getText().equals("")) {
+                    spellButton4.setText(s);
+                    spellButton4.setDisable(false);
+                } else if (spellButton5.getText().equals("")) {
+                    spellButton5.setText(s);
+                    spellButton5.setDisable(false);
+                } else if (spellButton6.getText().equals("")) {
+                    spellButton6.setText(s);
+                    spellButton6.setDisable(false);
+                } else if (spellButton7.getText().equals("")) {
+                    spellButton7.setText(s);
+                    spellButton7.setDisable(false);
+                } else if (spellButton8.getText().equals("")) {
+                    spellButton8.setText(s);
+                    spellButton8.setDisable(false);
+                } else if (spellButton9.getText().equals("")) {
+                    spellButton9.setText(s);
+                    spellButton9.setDisable(false);
+                }
+            }
+            spellBox.setVisible(true);
+            attackIsMagic = false;
+        } else {
+            //Attack is basic attack
+            getMagic("Basic");
+            moveCharBack();
+            nextChar();
+        }
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Calls addCommands once it finds the magic specified in the
+     * current character's available spell list.
+     * @param magicName
+     */
+    private void getMagic(String magicName) {
+        PlayerActor p = players.get(currentChar-1);
+        for(Magic m : p.getSpells()) {
+            if(m.getName().equals(magicName)) {
+                addCommands(m);
+            }
+        }
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Sets all of the spell button's text to nothing and disables them.
+     */
+    private void resetSpellButtons() {
+        spellButton1.setText("");
+        spellButton2.setText("");
+        spellButton3.setText("");
+        spellButton4.setText("");
+        spellButton5.setText("");
+        spellButton6.setText("");
+        spellButton7.setText("");
+        spellButton8.setText("");
+        spellButton9.setText("");
+        spellButton1.setDisable(true);
+        spellButton2.setDisable(true);
+        spellButton3.setDisable(true);
+        spellButton4.setDisable(true);
+        spellButton5.setDisable(true);
+        spellButton6.setDisable(true);
+        spellButton7.setDisable(true);
+        spellButton8.setDisable(true);
+        spellButton9.setDisable(true);
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Sets the enemyAttacked integer to one for reference in the list of enemies
+     * @param actionEvent - The enemy being attacked
+     */
+    private void setEnemyAttacked(ActionEvent actionEvent) {
+        if(actionEvent.getSource() == enemyButton1) {
+            enemyAttacked = 0;
+        } else if (actionEvent.getSource() == enemyButton2) {
+            enemyAttacked = 1;
+        } else if (actionEvent.getSource() == enemyButton3) {
+            enemyAttacked = 2;
+        } else if (actionEvent.getSource() == enemyButton4) {
+            enemyAttacked = 3;
+        } else if (actionEvent.getSource() == enemyButton5) {
+            enemyAttacked = 4;
+        } else if (actionEvent.getSource() == enemyButton6) {
+            enemyAttacked = 5;
+        }
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Adds the commands current character, the enemy attacked, and the magic used
+     * to the list of commands.
+     * @param m - The magic used to attack.
+     */
+    private void addCommands(Magic m) {
+        playerCommands.add(players.get(currentChar-1));
+        playerCommands.add(enemyList.get(enemyAttacked));
+        playerCommands.add(m);
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Adds a spell that is not "Basic" to the command list. Moves the character backwards.
+     * @param actionEvent - The spell to be added.
+     */
+    public void addSpell(ActionEvent actionEvent) {
+        spellBox.setVisible(false);
+        getMagic(((Button)actionEvent.getSource()).getText());
+        moveCharBack();
+        nextChar();
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Increments the current character, determining who is attacking and all that.
+     */
+    private void nextChar() {
+        if (currentChar != 3) {
+            currentChar++;
+        } else {
+            currentChar = 1;
+            turnDone = true;
+        }
+        moveCharForward(currentChar);
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Tells the caller if the player is done with the turn
+     * @return
+     */
+    public boolean isTurnDone() {
+        return turnDone;
+    }
+
+    /**
+     * Brett Raible
+     *
+     * Gives the player the list of commands for the turn.
+     * @return - The player's commands; in the format of Player, Monster, Magic
+     */
+    public List getPlayerCommands() {
+        return playerCommands;
+    }
+
     @Override
     public void setScreenParent(ScreensController screenParent) {
         this.screenController = screenParent;
     }
 
-    /* Oh god why */
+    /**
+     * Brett Raible
+     *
+     * Initialize all global variables.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         assert attackButton != null : "fx:id=\"attackButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
@@ -623,6 +873,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
         enemyImages = new Image[6];
         playerSpells = new HashMap<Integer, List>();
+        playerCommands = new ArrayList();
 
         moveChar = new TranslateTransition(Duration.seconds(.25));
         moveChar.setFromX(55);
@@ -633,113 +884,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
         currentChar = 1;
         attackIsMagic = false;
+        turnDone = false; //TODO: More with Turn Done
 
-        moveCharForward(currentChar);
-    }
-
-    public void showEnemyButtons(ActionEvent actionEvent) {
-        chooseBox.setVisible(true);
-        if(actionEvent.getSource() == magicButton) {
-            attackIsMagic = true;
-        }
-    }
-
-    public void addEnemy(ActionEvent actionEvent) {
-        chooseBox.setVisible(false);
-
-        if(actionEvent.getSource() == enemyButton1) {
-            System.out.println("Button 1!");
-        } else if (actionEvent.getSource() == enemyButton2) {
-
-        } else if (actionEvent.getSource() == enemyButton3) {
-
-        } else if (actionEvent.getSource() == enemyButton4) {
-
-        } else if (actionEvent.getSource() == enemyButton5) {
-
-        } else if (actionEvent.getSource() == enemyButton6) {
-
-        }
-
-        //TODO: Add the Enemy to a list
-
-        if(attackIsMagic) {
-            resetSpellButtons();
-            for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
-                if(spellButton1.getText().equals("")) {
-                    spellButton1.setText(s);
-                    spellButton1.setDisable(false);
-                } else if (spellButton2.getText().equals("")) {
-                    spellButton2.setText(s);
-                    spellButton2.setDisable(false);
-                } else if (spellButton3.getText().equals("")) {
-                    spellButton3.setText(s);
-                    spellButton3.setDisable(false);
-                } else if (spellButton4.getText().equals("")) {
-                    spellButton4.setText(s);
-                    spellButton4.setDisable(false);
-                } else if (spellButton5.getText().equals("")) {
-                    spellButton5.setText(s);
-                    spellButton5.setDisable(false);
-                } else if (spellButton6.getText().equals("")) {
-                    spellButton6.setText(s);
-                    spellButton6.setDisable(false);
-                } else if (spellButton7.getText().equals("")) {
-                    spellButton7.setText(s);
-                    spellButton7.setDisable(false);
-                } else if (spellButton8.getText().equals("")) {
-                    spellButton8.setText(s);
-                    spellButton8.setDisable(false);
-                } else if (spellButton9.getText().equals("")) {
-                    spellButton9.setText(s);
-                    spellButton9.setDisable(false);
-                }
-            }
-            spellBox.setVisible(true);
-            attackIsMagic = false;
-        } else {
-            //TODO add the "attack" to the list
-            moveCharBack();
-            nextChar();
-        }
-    }
-
-    private void resetSpellButtons() {
-        spellButton1.setText("");
-        spellButton2.setText("");
-        spellButton3.setText("");
-        spellButton4.setText("");
-        spellButton5.setText("");
-        spellButton6.setText("");
-        spellButton7.setText("");
-        spellButton8.setText("");
-        spellButton9.setText("");
-        spellButton1.setDisable(true);
-        spellButton2.setDisable(true);
-        spellButton3.setDisable(true);
-        spellButton4.setDisable(true);
-        spellButton5.setDisable(true);
-        spellButton6.setDisable(true);
-        spellButton7.setDisable(true);
-        spellButton8.setDisable(true);
-        spellButton9.setDisable(true);
-    }
-
-    public void addSpell(ActionEvent actionEvent) {
-        spellBox.setVisible(false);
-
-        //TODO: Add the Spell to the list
-
-        moveCharBack();
-        nextChar();
-    }
-
-    private void nextChar() {
-        if (currentChar != 3) {
-            currentChar++;
-        } else {
-            currentChar = 1;
-        }
         moveCharForward(currentChar);
     }
 }
