@@ -21,11 +21,13 @@ public class DungeonDetails {
     private String sourceMap;
     private String sourcePoint;
 
+    private final List<TileInfoFilter> filterOrder;
+
     private Map<TileInfoFilter, List<Field>> tileMapping;
 
     public DungeonDetails(int height, int width, int floors, int blockMinRows, int blockMinCols, int pathWidth,
                           String defaultGroundImage, String defaultDecoImage, String targetMap, String targetPoint,
-                          String sourceMap, String sourcePoint, Map<TileInfoFilter, List<Field>> tileMapping) {
+                          String sourceMap, String sourcePoint, Map<TileInfoFilter, List<Field>> tileMapping, List<TileInfoFilter> filterOrder) {
         this.height = height;
         this.width = width;
         this.floors = floors;
@@ -39,6 +41,7 @@ public class DungeonDetails {
         this.sourceMap = sourceMap;
         this.sourcePoint = sourcePoint;
         this.tileMapping = tileMapping;
+        this.filterOrder = filterOrder;
     }
 
     public String getDefaultGroundImage() {
@@ -103,5 +106,10 @@ public class DungeonDetails {
 
     public void setPathWidth(int pathWidth) {
         this.pathWidth = pathWidth;
+    }
+
+    public List<TileInfoFilter> getFilterOrder()
+    {
+        return filterOrder;
     }
 }

@@ -53,6 +53,7 @@ public class CharacterImage extends ImageView {
     public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
         super();
 
+        //Maike's part start
         walking = false;
 
         setX(posX);
@@ -78,8 +79,6 @@ public class CharacterImage extends ImageView {
                             setAnimationPhase(0);
                             Thread.sleep((long) (Constants.WALK_TIME_PER_TILE * 1000 / 2));
                             setAnimationPhase(2);
-
-
                         }
                         Thread.sleep((long) (Constants.WALK_TIME_PER_TILE * 1000 / 2));
                     } catch (InterruptedException e) {
@@ -90,8 +89,13 @@ public class CharacterImage extends ImageView {
         });
         animationThread.setDaemon(true);
         animationThread.start();
+        //Maike's part end
     }
 
+    /**
+     * Maike Keune-Staab
+     * updates the animation face of the players avatar.
+     */
     public void updateAnimation() {
         Platform.runLater(new Runnable() {
             @Override
@@ -101,28 +105,44 @@ public class CharacterImage extends ImageView {
                         actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
                         Constants.TILE_SIZE,
                         Constants.TILE_SIZE));
-
+                //Maren's part start
                 //test for enemyencounter every time walking a step
                 setEnemyEncounter();
 
                 if(getEnemyEncounter() && startbattle) {
                     battlefactory.startBattle();
                 }
+                //Maren's part end
             }
         });
     }
 
+    /**
+     * Maike Keune-Staab
+     * lets the avatar face the given direction
+     * @param direction
+     */
     public void face(Direction direction)
     {
         faceDirection = direction;
         updateAnimation();
     }
 
+    /**
+     * Maike Keune-Staab
+     * sets the animationPhase (0=left step, 1=stand still, 2=right step)
+     * @param animationPhase
+     */
     public void setAnimationPhase(int animationPhase) {
         this.animPhase = animationPhase;
         updateAnimation();
     }
 
+    /**
+     * Maike Keune-Staab
+     * signalises the animation thread to alterate animation phases or not.
+     * @param walking
+     */
     public void setWalking(boolean walking) {
         this.walking = walking;
         if(!walking) {

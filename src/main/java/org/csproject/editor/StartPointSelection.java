@@ -14,6 +14,12 @@ public class StartPointSelection implements NavPointSelection {
 
     private TextField nameField;
 
+    /**
+     * Maike Keune-Staab
+     * returns a panel to define a startPoint's parameter
+     *
+     * @return
+     */
     @Override
     public Pane getPreferencesPanel() {
         VBox vBox = new VBox();
@@ -25,11 +31,23 @@ public class StartPointSelection implements NavPointSelection {
         return vBox;
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns a new startPoint as defined by the getPreferencesPanel-method-
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public NavigationPoint getNavigationPoint(int x, int y) {
         return new StartPoint(x, y, nameField.getText());
     }
 
+    /**
+     * Maike Keune-Staab
+     * @return
+     */
     @Override
     public String toString() {
         return "Start point";

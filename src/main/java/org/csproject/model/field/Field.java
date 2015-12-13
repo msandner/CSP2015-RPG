@@ -1,9 +1,6 @@
 package org.csproject.model.field;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.csproject.model.bean.NavigationPoint;
 
@@ -33,44 +30,65 @@ public class Field {
         this.decoTiles = decoTiles;
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns the startPoint with the given nameor if no startPoint has the given name,
+     * a default startPoint is returned
+     *
+     * @param startName
+     * @return
+     */
     public StartPoint getStart(String startName) {
         Map<String, StartPoint> startPointMap = new HashMap<>();
         StartPoint defaultStartPoint = null;
 
         for (StartPoint startPoint : startPoints) {
             {
-                if(defaultStartPoint == null){
+                if (defaultStartPoint == null) {
                     defaultStartPoint = startPoint;
                 }
                 startPointMap.put(startPoint.getName(), startPoint);
             }
         }
 
-        if(startPointMap.get(startName) != null) {
+        if (startPointMap.get(startName) != null) {
             return startPointMap.get(startName);
         }
 
         return defaultStartPoint;
     }
 
-    public TeleportPoint getTeleporter(String teleportName) {
-        Map<String, TeleportPoint> startPointMap = new HashMap<>();
+    /**
+     * Maike Keune-Staab
+     * returns a collection of all teleportPoints that have the given name or a singletonList with a default
+     * teleporter is returned, if no teleporter matches the given name.
+     *
+     * @param teleportName
+     * @return
+     */
+    public Collection<TeleportPoint> getTeleporter(String teleportName) {
+        Map<String, Collection<TeleportPoint>> teleportPointMap = new HashMap<>();
         TeleportPoint defaultTeleportPoint = null;
 
         for (TeleportPoint teleportPoint : teleportPoints) {
             {
-                if(defaultTeleportPoint == null){
+                if (defaultTeleportPoint == null) {
                     defaultTeleportPoint = teleportPoint;
                 }
-                startPointMap.put(teleportPoint.getName(), teleportPoint);
+                Collection<TeleportPoint> teleportPoints = teleportPointMap.get(teleportPoint.getName());
+                if (teleportPoints == null) {
+                    teleportPoints = new ArrayList<>();
+                    teleportPointMap.put(teleportPoint.getName(), teleportPoints);
+                }
+                teleportPoints.add(teleportPoint);
             }
         }
 
-        if(startPointMap.get(teleportName) != null) {
-            return startPointMap.get(teleportName);
+        if (teleportPointMap.get(teleportName) != null) {
+            return teleportPointMap.get(teleportName);
         }
 
-        return defaultTeleportPoint;
+        return Collections.singletonList(defaultTeleportPoint);
     }
 
     public void setGroundTiles(Tile[][] tiles) {
@@ -105,27 +123,35 @@ public class Field {
         return decoTiles;
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns the number of tiles in one row
+     *
+     * @return
+     */
     public double getWidth() {
-        if(groundTiles != null && decoTiles != null) {
+        if (groundTiles != null && decoTiles != null) {
             return Math.max(groundTiles[0].length, decoTiles[0].length);
-        }
-        else if(groundTiles != null) {
+        } else if (groundTiles != null) {
             return groundTiles[0].length;
-        }
-        else if(decoTiles != null) {
+        } else if (decoTiles != null) {
             return decoTiles[0].length;
         }
         return 0;
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns the number of rows
+     *
+     * @return
+     */
     public double getHeight() {
-        if(groundTiles != null && decoTiles != null) {
+        if (groundTiles != null && decoTiles != null) {
             return Math.max(groundTiles.length, decoTiles.length);
-        }
-        else if(groundTiles != null) {
+        } else if (groundTiles != null) {
             return groundTiles.length;
-        }
-        else if(decoTiles != null) {
+        } else if (decoTiles != null) {
             return decoTiles.length;
         }
         return 0;

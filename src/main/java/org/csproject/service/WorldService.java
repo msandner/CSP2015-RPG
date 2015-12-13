@@ -15,8 +15,6 @@ public interface WorldService {
 
     Field getWorldMap();
 
-    void setWorldMap(Field worldMap) throws FileNotFoundException;
-
     void saveField(Field field, String name) throws FileNotFoundException;
 
     Field getField(String fieldName);

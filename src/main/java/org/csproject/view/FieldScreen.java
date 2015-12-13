@@ -29,11 +29,6 @@ import static org.csproject.model.Constants.*;
  */
 @Component
 public class FieldScreen extends Pane {
-
-
-    @Autowired
-    private ScreensController screensController;
-
     @Autowired
     private KeyController keyController;
 
@@ -61,15 +56,22 @@ public class FieldScreen extends Pane {
         setScaleX(SCALE);
         setScaleY(SCALE);
     }
+
     public void setStartPlayer(PlayerActor p) {
         playerActor = p;
     }
-
 
     public void setScene(Field field) {
         setScene(field, "characterStart");
     }
 
+    /**
+     * Maike Keune-Staab
+     * sets the current field and lets the avatar start at a startPoint with the given name.
+     *
+     * @param field
+     * @param startPoint
+     */
     public void setScene(Field field, String startPoint) {
 
         this.field = field;
@@ -105,6 +107,10 @@ public class FieldScreen extends Pane {
         return avatarImage;
     }
 
+    /**
+     * Maike Keune-Staab
+     * requests the focus and adds a key press handler
+     */
     private void setUpControlls() {
         setFocusTraversable(true);
         requestFocus();
@@ -123,7 +129,9 @@ public class FieldScreen extends Pane {
     }
 
     /**
-     * Moves the avatar.
+     * Maike Keune-Staab
+     * creates a transition to move the character one tile into the given direction. After the transition "finished"
+     * will be executed.
      *
      * @param direction The direction
      * @param finished  Callback function what to do after moving one field
@@ -206,6 +214,15 @@ public class FieldScreen extends Pane {
         }
     }
 
+    /**
+     * Maike Keune-Staab
+     * moves the screen from a given start position to a given move position over the given duration.
+     * @param startX
+     * @param startY
+     * @param moveX
+     * @param moveY
+     * @param duration
+     */
     private void moveScreen(double startX, double startY, double moveX, double moveY, double duration) {
         if (screenTransition == null) {
             screenTransition = new TranslateTransition(Duration.seconds(duration), this);
@@ -215,26 +232,37 @@ public class FieldScreen extends Pane {
         double currentTransX = (startX * -1) + SCREEN_WIDTH / 2;
         double currentTransY = (startY * -1) + SCREEN_HEIGHT / 2;
 
-        double transToX = currentTransX - moveX * SCALE;
-        screenTransition.setFromX(getTranslateX());
-        screenTransition.setToX(getTranslateX());
-        if (transToX > 0) {
-            screenTransition.setToX(0);
-        } else if (transToX <= SCREEN_WIDTH - field.getWidth() * Constants.TILE_SIZE) {
-            screenTransition.setToX(SCREEN_WIDTH - field.getWidth() * Constants.TILE_SIZE);
+        double tilesOnScreenWidth = SCREEN_WIDTH / TILE_SIZE;
+        double tilesOnScreenHeight = SCREEN_HEIGHT / TILE_SIZE;
+
+        if (field.getWidth() < tilesOnScreenWidth) {
+            screenTransition.setToX(((tilesOnScreenWidth - field.getWidth()) / 2) * TILE_SIZE);
         } else {
-            screenTransition.setToX(transToX);
+            double transToX = currentTransX - moveX * SCALE;
+            screenTransition.setFromX(getTranslateX());
+            screenTransition.setToX(getTranslateX());
+            if (transToX > 0) {
+                screenTransition.setToX(0);
+            } else if (transToX <= SCREEN_WIDTH - field.getWidth() * Constants.TILE_SIZE) {
+                screenTransition.setToX(SCREEN_WIDTH - field.getWidth() * Constants.TILE_SIZE);
+            } else {
+                screenTransition.setToX(transToX);
+            }
         }
 
-        screenTransition.setFromY(getTranslateY());
-        screenTransition.setToY(getTranslateY());
-        double transToY = currentTransY - moveY * SCALE;
-        if (transToY > 0) {
-            screenTransition.setToY(0);
-        } else if (transToY <= SCREEN_HEIGHT - field.getHeight() * Constants.TILE_SIZE) {
-            screenTransition.setToY(SCREEN_HEIGHT - field.getHeight() * Constants.TILE_SIZE);
+        if (field.getHeight() < tilesOnScreenHeight) {
+            screenTransition.setToY(((tilesOnScreenHeight - field.getHeight()) / 2) * TILE_SIZE);
         } else {
-            screenTransition.setToY(transToY);
+            double transToY = currentTransY - moveY * SCALE;
+            screenTransition.setFromY(getTranslateY());
+            screenTransition.setToY(getTranslateY());
+            if (transToY > 0) {
+                screenTransition.setToY(0);
+            } else if (transToY <= SCREEN_HEIGHT - field.getHeight() * Constants.TILE_SIZE) {
+                screenTransition.setToY(SCREEN_HEIGHT - field.getHeight() * Constants.TILE_SIZE);
+            } else {
+                screenTransition.setToY(transToY);
+            }
         }
 
         screenTransition.setInterpolator(Interpolator.LINEAR);
@@ -255,6 +283,13 @@ public class FieldScreen extends Pane {
         getAvatar().setWalking(false);
     }
 
+    /**
+     * Maike Keune-Staab
+     * is always called after the avatar moved one tile. This method checks all points of interest on the current tile.
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean handleNavigationPoints(int x, int y) {
 
         for (TeleportPoint teleportPoint : field.getTeleportPoints()) {

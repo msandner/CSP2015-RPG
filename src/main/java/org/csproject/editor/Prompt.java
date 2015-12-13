@@ -15,6 +15,15 @@ import javafx.stage.Stage;
  * @author Maike Keune-Staab on 26.11.2015.
  */
 public class Prompt {
+
+    /**
+     * Maike Keune-Staab
+     * this method creates a prompt window with given title and message.
+     * Depending on the selected button the given callbacks on "yes" or "no" will be executed
+     * @param title
+     * @param message
+     * @param callback
+     */
     public static void getPrompt(String title, String message, final Callback callback) {
         final Stage promptStage = new Stage();
 
