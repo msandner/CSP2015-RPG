@@ -37,5 +37,6 @@ CIS 467
 12/02: Skype meeting and linking battles: 1:00 to  3:00 - 2 hours 00 mins
 12/12: Skype meeting about Final:         2:00 to  2:30 - 0 hours 30 mins
 12/12: Worked on GUI a bit:               3:30 to  5:30 - 2 hours 00 mins
+12/13: GUI work:                          9:45 to 11:45 - 2 hours 00 mins
 ----------------------------------------------------------------------------
-Total:                                                   58 hours 52 mins
+Total:                                                   60 hours 52 mins
