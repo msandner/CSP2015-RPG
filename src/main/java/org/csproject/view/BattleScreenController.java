@@ -15,11 +15,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import org.csproject.model.Constants;
-import org.csproject.model.actors.BattleActor;
-import org.csproject.model.actors.Monster;
-import org.csproject.model.actors.PlayerActor;
+import org.csproject.model.actors.*;
 import org.csproject.model.bean.Direction;
 import org.csproject.model.magic.Magic;
+import org.csproject.model.magic.OffensiveMagic;
+import org.csproject.model.magic.RestorativeMagic;
+import org.csproject.service.BattleFactory;
 import org.csproject.service.ScreensController;
 
 import javax.swing.*;
@@ -230,6 +231,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     List<Monster> enemyList;
     List<PlayerActor> players;
     List playerCommands;
+    BattleFactory factory;
 
     ScreensController screenController;
     /**
@@ -280,9 +282,9 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         player2HPText.setText(Integer.toString(char2HP) + "/" + Integer.toString(char2MaxHP));
         player3HPText.setText(Integer.toString(char3HP) + "/" + Integer.toString(char3MaxHP));
 
-        player1HPBar.setProgress(char1HP / char1MaxHP);
-        player2HPBar.setProgress(char2HP / char2MaxHP);
-        player3HPBar.setProgress(char3HP/char3MaxHP);
+        player1HPBar.setProgress((double)char1HP / (double)char1MaxHP);
+        player2HPBar.setProgress((double)char2HP / (double)char2MaxHP);
+        player3HPBar.setProgress((double)char3HP/(double)char3MaxHP);
 
         /* Mana */
 
@@ -765,6 +767,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             currentChar++;
         } else {
             currentChar = 1;
+            doTheBattle();
             turnDone = true;
         }
         moveCharForward(currentChar);
@@ -790,6 +793,125 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      */
     public boolean isTurnDone() {
         return turnDone;
+    }
+
+    /**
+     * Brett Raible
+     *
+     * I don't know
+     * huehuehue
+     */
+    public int doTheBattle() {
+        int index = 0;
+        PlayerParty playerParty = new PlayerParty(players.get(0), players.get(1), players.get(2), 0);
+        MonsterParty monsterParty = new MonsterParty(enemyList);
+        PlayerActor attacker;
+        BattleActor monster, nextMonster;
+        Magic m;
+
+        while(!playerCommands.isEmpty()) {
+            attacker = (PlayerActor) playerParty.getParty().get(index);
+            index++;
+            playerCommands.remove(0);
+            monster = (BattleActor) playerCommands.get(0);
+            int monsterPos = monsterParty.getMonsterPosition((Monster) monster);
+            if (monsterPos == monsterParty.getPartySize() - 1 && monsterParty.getParty().size() > 1) {
+                nextMonster = monsterParty.getMonster(monsterParty.getPartySize()-2);
+            } else if(monsterParty.getParty().size() > 1){
+                nextMonster = monsterParty.getMonster(monsterPos + 1);
+            } else {
+                nextMonster = monster;
+            }
+            playerCommands.remove(0);
+            m = (Magic) playerCommands.get(0);
+            playerCommands.remove(0);
+            System.out.println(monster.getCurrentHp());
+
+            switch(m.getName()) {
+                case "Basic":
+                    factory.basicAttack(attacker, monster);
+                    break;
+                case "Shield Bash":
+                    factory.shieldBash(attacker, monster);
+                    break;
+                case "Whirlwind":
+                    factory.whirlwind(attacker, monster, nextMonster);
+                    break;
+                case "Berserk":
+                    factory.berserk(attacker, monster);
+                    break;
+                case "Massive Sword Slash":
+                    factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
+                    break;
+                case "Fireball":
+                    factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
+                    break;
+                case "Chain Lightning":
+                    factory.chainLightning(attacker, monster, monsterParty);
+                    break;
+                case "Heal":
+                    factory.healCharactersWithMagic(attacker, monster, playerParty, (RestorativeMagic)m);
+                    break;
+                case "Frostbite":
+                    factory.frostbite(attacker, monster);
+                    break;
+                case "Ambush":
+                    factory.ambush(attacker, monster);
+                    break;
+                case "Mutilate":
+                    factory.mutilate(attacker, monster);
+                    break;
+                case "Execute":
+                    factory.execute(attacker, monster);
+                    break;
+                case "Shuriken Toss":
+                    factory.shurikenToss(attacker, monsterParty);
+                    break;
+                default:
+                    //DO NOTHING??? HOW DID THEY DO THAT
+            }
+            System.out.println(monster.getCurrentHp());
+            if (monster.is_dead()) {
+                //TODO: Disable him
+            }
+            if(monsterParty.isEveryEnemyDead()) {
+                for(PlayerActor p : playerParty.getParty()) {
+                    p.addXP(monsterParty.getXP() / 3);
+                    System.out.println(p.getXP());
+                }
+                playerCommands.clear();
+                factory.endBattle();
+                return 1;
+            }
+            if (!playerParty.canPartyStillAttack()) {
+                for(Monster thisMonster : monsterParty.getParty()) {
+                    factory.enemyAttackAI(thisMonster, playerParty, new OffensiveMagic("Basic2", "There is none", -15, 20, 0));
+                }
+            }
+
+            for(PlayerActor p : playerParty.getParty()) {
+                if(p.is_dead()) {
+                    //TODO: disable them
+                }
+            }
+
+            if(playerParty.isEveryPlayerDead()) {
+                //gameover
+                //TODO: DO SOMETHING
+                factory.endBattle();
+                return 0;
+            }
+            //Call GUI methods
+
+        }
+        for(PlayerActor p : playerParty.getParty()) {
+            p.setHasAttacked(false);
+        }
+        for (BattleActor mon : monsterParty.getParty()) {
+            mon.setHasAttacked(false);
+        }
+        newRound();
+        return 0;
     }
 
     /**
@@ -891,7 +1013,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         currentChar = 1;
         attackIsMagic = false;
         turnDone = false; //TODO: More with Turn Done
-        
+        factory = new BattleFactory();
+
         moveCharForward(currentChar);
     }
 }

@@ -22,6 +22,10 @@ public class PlayerActor extends BattleActor {
     private List<Magic> allSpells = new ArrayList<>();
     private List<Magic> availableSpells = new ArrayList<>();
 
+    public int getXP() {
+        return currentXp;
+    }
+
     public PlayerActor(String name, String type, int attack) {
         super(name, type, 1, attack);
 
@@ -63,7 +67,7 @@ public class PlayerActor extends BattleActor {
     }
 
     public Magic getSpell(int i) {
-        return availableSpells.get(i);
+        return allSpells.get(i);
     }
 
     public int getCurrentMp() {
@@ -83,12 +87,12 @@ public class PlayerActor extends BattleActor {
     }
 
     public int calcMp(int level) {
-        return (int) (currentMp*(10*Math.sqrt(level)));
+        return (int) (currentMp+(10*Math.sqrt(level)));
     }
 
     @Override
     public int calcHp(int level) {
-        return (int) (currentHp*(10*Math.sqrt(level)));
+        return (int) (currentHp+(10*Math.sqrt(level)));
     }
 
     public int calcMaxXp(int level) {
@@ -110,12 +114,13 @@ public class PlayerActor extends BattleActor {
         level += 1;
 
         //calculating new Mp
-        currentMp = calcMp(level);
         maxMp = calcMp(level);
+        currentMp = maxMp;
+
 
         //calculating new Hp
-        currentHp = calcHp(level);
         maxHp = calcHp(level);
+        currentHp = maxHp;
 
         //calculating new MaxXp
         maxXp = calcMaxXp(level);

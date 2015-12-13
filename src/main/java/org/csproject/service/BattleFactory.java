@@ -31,7 +31,6 @@ public class BattleFactory {
         battleController.startNewBattle(actualplayers.getParty(), monsterparty.getParty());
 
         System.out.println("Battle started");
-
         //endBattle();
     }
 
@@ -100,7 +99,7 @@ public class BattleFactory {
     thief: ambush, mutilate, execute, shuriken toss
     */
 
-    public void basicAttack(PlayerActor attacker, PlayerActor victim) {
+    public void basicAttack(PlayerActor attacker, BattleActor victim) {
         attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(4), 1);
     }
     //spells for the knight
@@ -257,15 +256,15 @@ public class BattleFactory {
             //the enemy has stronger attacks depending on the character with the highest level
             if (chance < 20) {
                 //attacking less than planned
-                victim.calcCurrentHp(magic.getValue() * ((party.highestLevel() / 10) / 2));
+                victim.calcCurrentHp(magic.getValue()/2);// * ((party.highestLevel() / 10) / 2));
                 System.out.println("Attacked character with half attack");
             } else if (chance > 20 && chance < 90) {
                 //general attack
-                victim.calcCurrentHp(magic.getValue() * (party.highestLevel() / 10));
+                victim.calcCurrentHp(magic.getValue());// * (party.highestLevel() / 10));
                 System.out.println("Attacked character");
             } else {
                 //critical hit
-                victim.calcCurrentHp(magic.getValue() * ((party.highestLevel() / 10) * 2));
+                victim.calcCurrentHp(magic.getValue()*2);// * ((party.highestLevel() / 10) * 2));
                 System.out.println("Attacked character with critical hit");
             }
             attacker.setHasAttacked(true);

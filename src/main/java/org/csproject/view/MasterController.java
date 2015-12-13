@@ -29,8 +29,8 @@ public class MasterController extends Application {
     public static final String BATTLE_SCREEN_FILE = "BattleScreen.fxml";
 
     //Switch these two statements to start the game faster/slower
-    public static final boolean fastStart = true;
-    //public static final boolean fastStart = false;
+//    public static final boolean fastStart = true;
+    public static final boolean fastStart = false;
 
     public static ScreensController screensController;
 
@@ -70,6 +70,14 @@ public class MasterController extends Application {
             PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 25);
             PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 25);
             PlayerActor char3 = new PlayerActor("Knightrider", Constants.CLASS_KNIGHT, 25);
+            int x = 1;
+            while(x < 13) {
+                char1.levelUp();
+                char2.levelUp();
+                char3.levelUp();
+                x++;
+            }
+            char1.setCurrentHp(300);
 
             PlayerParty party = new PlayerParty(char1, char2, char3, 0);
 
