@@ -1,14 +1,11 @@
 package org.csproject.service;
 
 import org.csproject.model.actors.*;
-import org.csproject.model.field.StartPoint;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
 import org.csproject.view.BattleScreenController;
-import org.csproject.view.CharacterImage;
 import org.csproject.view.MasterController;
-import org.csproject.view.NewGameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +20,7 @@ public class BattleFactory {
 
     private PlayerParty actualplayers;
 
+    //sets the players and monsters and starts the battle with these
     public void startBattle() {
         MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
 
@@ -37,6 +35,7 @@ public class BattleFactory {
         //endBattle();
     }
 
+    //changes the battle screen back to the game screen
     public void endBattle() {
         MasterController.setScreen(MasterController.GAME_SCREEN);
     }
@@ -78,9 +77,9 @@ public class BattleFactory {
 
     }
 
+    //method for attacking a specific victim
     public void attackCharacterWithMagic(PlayerActor attacker, BattleActor victim, OffensiveMagic magic, double extra) {
-        //extra is for creating more dmg on the victim (normal = 1, double dmg = 2 etc) )
-
+        //double extra is for creating more dmg on the victim (normal = 1, double dmg = 2 etc) )
 
         if(!attacker.playerHasAttacked()) {
             victim.calcCurrentHp((int)(magic.getValue()*extra));
@@ -89,11 +88,17 @@ public class BattleFactory {
             if (victim.is_dead()) {
                 victim = null; //todo
             }
-            //at end decreasing mana and setting the hasAttacked boolean true, so the character can't attack in this round anymore
+            //decreasing mana and setting the hasAttacked boolean true, so the character can't attack in this round anymore
             attacker.calcCurrentMp(magic.getMp());
             attacker.setHasAttacked(true);
         }
     }
+
+    /* following methods are for the specific spells of the characters
+    knight: sword attack (doesn't need a own method, only attackCharacterWithMagic()), shield bash, whirlwind, berserk
+    mage: fireball (doesn't need a own method, only attackCharacterWithMagic()), chain lightning, frostbite, heal (is healCharacterWithMagic())
+    thief: ambush, mutilate, execute, shuriken toss
+    */
 
     public void basicAttack(PlayerActor attacker, PlayerActor victim) {
         attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(4), 1);
@@ -137,9 +142,8 @@ public class BattleFactory {
         int pos = party.getMonsterPosition((Monster) victim);
         int partysize = party.getPartySize()-1;
         attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(2), 2);
-        if(attacker.getLevel() < 6) {
 
-        } else if(attacker.getLevel() > 6 && attacker.getLevel() < 9) {
+        if(attacker.getLevel() > 6 && attacker.getLevel() < 9) {
             attackNextEnemy(attacker,party, 2, pos, 1);
         } else if(attacker.getLevel() > 9 && attacker.getLevel() < 13){
             attackNextEnemy(attacker,party, 3, pos, 1);
@@ -198,9 +202,10 @@ public class BattleFactory {
         attacker.setHasAttacked(true);
     }
 
-    public void attackNextEnemy(PlayerActor attacker, MonsterParty party, int i, int pos, int spellnumber) {
-        for (int j = 0; j < i; i++) {
-            if (pos + i < party.getPartySize()) {
+    //for attacking the character next to the victim
+    public void attackNextEnemy(PlayerActor attacker, MonsterParty party, int amount, int pos, int spellnumber) {
+        for (int j = 0; j < amount; j++) {
+            if (pos + amount < party.getPartySize()) {
                 attackCharacterWithMagic(attacker, party.getMonster(pos + j), (OffensiveMagic) attacker.getSpell(spellnumber), 1);
             } else {
                 attackCharacterWithMagic(attacker, party.getMonster(pos - j), (OffensiveMagic) attacker.getSpell(spellnumber), 1);
@@ -208,6 +213,7 @@ public class BattleFactory {
         }
     }
 
+    //for healing a victim or the whole party
     public void healCharactersWithMagic(PlayerActor attacker, BattleActor victim, PlayerParty party, RestorativeMagic magic) {
         if (!attacker.playerHasAttacked()) {
             if (magic.getTarget().equals("Player")) {
@@ -388,19 +394,6 @@ public class BattleFactory {
         return p;
     }
 
-    public void EnemyAttackAI(MonsterParty monster, PlayerParty party) {
-        Random rand = new Random();
-        for(Monster m : monster.getParty()) {
-            int chance = rand.nextInt(100);
-            if (chance < 80) {
-                m.attack(party.getPlayer(rand.nextInt(3)), 1);
-                m.setHasAttacked(false);
-            } else {
-                m.attack(party.getPlayer(rand.nextInt(3)), 2);
-                m.setHasAttacked(false);
-            }
-        }
-    }
 
 
 

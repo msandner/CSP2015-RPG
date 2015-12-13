@@ -32,9 +32,9 @@ public class NewGameController implements ControlledScreen {
         if(char1Class.getValue() != null && char2Class.getValue() != null && char3Class.getValue() != null
                 && !char1Name.getText().isEmpty() && !char2Name.getText().isEmpty() && !char3Name.getText().isEmpty()) {
 
-        PlayerActor char1 = new PlayerActor(char1Name.getText(), typeToConstant((String) char1Class.getValue()), 1, 25, 1, 1);
-        PlayerActor char2 = new PlayerActor(char2Name.getText(), typeToConstant((String) char2Class.getValue()), 1, 25, 1, 1);
-        PlayerActor char3 = new PlayerActor(char3Name.getText(), typeToConstant((String) char3Class.getValue()), 1, 25, 1, 1);
+        PlayerActor char1 = new PlayerActor(char1Name.getText(), typeToConstant((String) char1Class.getValue()), 25);
+        PlayerActor char2 = new PlayerActor(char2Name.getText(), typeToConstant((String) char2Class.getValue()), 25);
+        PlayerActor char3 = new PlayerActor(char3Name.getText(), typeToConstant((String) char3Class.getValue()), 25);
 
         party = new PlayerParty(char1, char2, char3, 0);
 

@@ -63,6 +63,5 @@ public class Constants {
     public static final String FACE_IMAGE_MAGE = "images/faces/Actor2.png";     //At 3, 1
     public static final String FACE_IMAGE_THIEF = "images/faces/Actor3.png";    //At 2, 0
 
-    public static final int LEVEL_POINTS_CALCULATE = 80;
 
 }

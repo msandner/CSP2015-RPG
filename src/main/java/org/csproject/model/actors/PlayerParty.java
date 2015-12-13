@@ -47,8 +47,6 @@ public class PlayerParty {
         return party.get(index);
     }
 
-
-
     public int getPartySize() {
         return party.size();
     }

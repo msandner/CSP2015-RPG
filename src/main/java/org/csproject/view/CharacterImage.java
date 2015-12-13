@@ -28,7 +28,7 @@ public class CharacterImage extends ImageView {
     private boolean enemyEncounter;
 
     /* set on true ifa you want the battle to appear*/
-    private boolean startbattle = true;
+    private boolean startbattle = false;
 
     private BattleFactory battlefactory = new BattleFactory();
 

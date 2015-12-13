@@ -22,6 +22,11 @@ public class RestorativeMagic extends Magic{
         else { return "No Target"; }
     }
 
+    public void setTarget(boolean player, boolean party) {
+        hasTargetPlayer =  player;
+        hasTargetTeam = party;
+    }
+
     public String getAttribute(){
         return attributeEffected;
     }

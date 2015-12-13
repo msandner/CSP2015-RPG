@@ -310,7 +310,7 @@ public class FieldFactory {
 
         // load six world map chunks of which each must have the size 20*20
         List<String> mapChunkNames = new ArrayList<>(Arrays.asList(
-                WORLD_MAP + "1", WORLD_MAP + "2", WORLD_MAP + "3", WORLD_MAP + "4", WORLD_MAP + "5", WORLD_MAP + "6"));
+                "forest_with_camp", "forest_with_lake", "desert_camp", "iceland_and_graveyard", "icy_land", "stone_road"));
 
         Collection<StartPoint> startPoints = new ArrayList<>();
         Collection<TeleportPoint> teleportPoints = new ArrayList<>();

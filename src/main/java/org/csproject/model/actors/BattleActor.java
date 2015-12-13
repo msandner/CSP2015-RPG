@@ -14,10 +14,10 @@ public abstract class BattleActor extends Actor{
 
     protected int level;
     protected int maxHp;
-    protected int currentHp;
+    protected int currentHp = 100;
     protected int attack;
 
-    protected List<Magic> allSpells = new ArrayList<>();
+
     //a boolean to check if the character already used one attack and is no longer allowed to attack
     private boolean hasAttacked;
 
