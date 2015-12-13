@@ -53,5 +53,7 @@
  02.12.2015 20:34 - 22:00 MESZ: working on Sprint 3 report, finishing editor tutorial part 2.
 11.12.2015 18:00 - 21:00 MESZ: working on editor usability
 12.12.2015 20:00 - 20:30 MESZ: skype meeting
-13.12.2015 20:40 - 23:00 MESZ:working on usability,starting to implement a new dungeon type 
-Total time yet: 93 hours 01 minutes
+12.12.2015 20:40 - 23:00 MESZ: working on usability,starting to implement a new dungeon type 
+13.12.2015 17:30 - 22:31 MESZ: working on dungeon type, clean up for old generated maps, overhauled dungeon generator to be more generic,
+                               commented code, refactored.
+Total time yet: 98 hours 02 minutes
