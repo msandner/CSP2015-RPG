@@ -137,11 +137,6 @@ public class ScreensController {
     }
 
     public void setUpNewGame() {
-        /*starts a overworld*/
-//        fieldScreen.setScene(worldService.getField(Constants.WORLD_MAP_1));
-        /*starts a dungeon*/
-//        fieldScreen.setScene(worldService.generateDungeon(DungeonHelper.Type.TEST, 70, 70, 2, Constants.WORLD_MAP_1,
-//                "dungeon_1_2", Constants.WORLD_MAP_1, "dungeon_1_1"));
         fieldScreen.setScene(worldService.getWorldMap(), Constants.TOWN_1);
     }
 

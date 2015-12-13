@@ -95,6 +95,13 @@ public class TileEditor
         launch(args);
     }
 
+    /**
+     * Maike Keune-Staab
+     * initiates the editor windows
+     *
+     * @param editorStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage editorStage)
             throws Exception {
@@ -121,10 +128,21 @@ public class TileEditor
         setup();
     }
 
+    /**
+     * Maike Keune-Staab
+     *
+     * @return
+     */
     private Tile getEmptyTile() {
         return new Tile(0, 0, true, Constants.EDITOR_EMPTY_TILE);
     }
 
+    /**
+     * Maike Keune-Staab
+     * initiates javaFX scene for the tileSelection window
+     *
+     * @return
+     */
     private Scene getTileSelectionScene() {
         complexSelectionScroller = new ScrollPane();
         complexSelectionScroller.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -189,6 +207,7 @@ public class TileEditor
         });
         normalCSSelection.getSelectionModel().selectFirst();
 
+        //Nicholas part start
         Label chunkCSSelectionLabel = new Label("Chunks: ");
         Button trees = new Button("4x4 Trees");
         Button hole = new Button("2x2 Hole");
@@ -215,6 +234,7 @@ public class TileEditor
                 hasChunkSelected = true;
             }
         });
+        //nicholas part end
 
         vBox.getChildren().add(deleteButton);
         vBox.getChildren().add(navPointSelectionPanel);
@@ -229,17 +249,25 @@ public class TileEditor
         vBox.getChildren().add(normalCSSelection);
         vBox.getChildren().add(normalSelectionScroller);
 
+        //nicholas part start
         vBox.getChildren().add(chunkCSSelectionLabel);
         vBox.getChildren().add(trees);
         vBox.getChildren().add(hole);
         vBox.getChildren().add(waterHole);
+        //Nicholas part end
 
         return new Scene(vBox);
     }
 
+    /**
+     * Maike Keune-Staab
+     * initiates main scene of the editor
+     *
+     * @return
+     */
     private Scene getEditorScene() {
         BorderPane borderPane = new BorderPane();
-        borderPane.setTop(getToolScene());
+        borderPane.setTop(getToolPane());
 
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -250,7 +278,13 @@ public class TileEditor
         return new Scene(borderPane);
     }
 
-    private Pane getToolScene() {
+    /**
+     * Maike Keune-Staab
+     * initiates a panel for tools such as new, load, save,...
+     *
+     * @return
+     */
+    private Pane getToolPane() {
         HBox hBox = new HBox();
 
         CheckBox showDecoLayerCB = new CheckBox("Show deco layer");
@@ -258,8 +292,7 @@ public class TileEditor
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean value, Boolean newValue) {
                 showDecoLayer = newValue;
-                if(blockingTileCB != null)
-                {
+                if (blockingTileCB != null) {
                     blockingTileCB.setSelected(showDecoLayer);
                 }
                 setup();
@@ -271,8 +304,8 @@ public class TileEditor
         blockingTileCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean value, Boolean newValue) {
-                if(selectedTile != null) {
-                  selectedTile.setWalkable(!newValue);
+                if (selectedTile != null) {
+                    selectedTile.setWalkable(!newValue);
                 }
             }
         });
@@ -350,6 +383,10 @@ public class TileEditor
                 okButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                        groundTiles = null;
+                        decoTiles = null;
+                        startPoints = new ArrayList<>();
+                        teleportPoints = new ArrayList<>();
                         rowNum = Integer.parseInt(rowsTextField.getText());
                         colNum = Integer.parseInt(colsTextField.getText());
                         setup();
@@ -376,6 +413,11 @@ public class TileEditor
         return hBox;
     }
 
+    /**
+     * Maike Keune-Staab
+     * creates the result field, made with the editor (all the .json files)
+     * @return
+     */
     private Field createField() {
         Field field = new Field();
         field.setGroundImage(complexCS);
@@ -390,6 +432,10 @@ public class TileEditor
         return field;
     }
 
+    /**
+     * Maike Keune-Staab
+     * is always called when layers are changed, fields are loaded etc. (rendering)
+     */
     private void setup() {
         if (complexCS == null || complexCS.isEmpty() || normalCS == null || normalCS.isEmpty()) {
             return;
@@ -398,6 +444,10 @@ public class TileEditor
         setupEditorPanel();
     }
 
+    /**
+     * Maike Keune-Staab
+     * renders the field in the editor main window
+     */
     private void setupEditorPanel() {
         final String groundImageUrl = CS_DIR + complexCS + CS_POST_FIX;
         final String decoImageUrl = CS_DIR + normalCS + CS_POST_FIX;
@@ -412,7 +462,7 @@ public class TileEditor
         ScreenFactory.TileClickCallback tileClickCallback = new ScreenFactory.TileClickCallback() {
             @Override
             public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
-                if(controlDown) {
+                if (controlDown) {
                     setSelectedTile(tile);
                     hasChunkSelected = false;
                 } else if (shiftDown) {
@@ -432,20 +482,19 @@ public class TileEditor
                         setup();
                     }
                 } else {
-                    if(selectedTile != null && !hasChunkSelected)
-                    {
-                      tile.setX(selectedTile.getX());
-                      tile.setY(selectedTile.getY());
-                      tile.setWalkable(selectedTile.isWalkable());
-                      tile.setTileImage(selectedTile.getTileImage());
-                      tile.setComplex(selectedTile.isComplex());
-                    }
-                    else if(selectedTile != null && hasChunkSelected)
-                    {
+                    if (selectedTile != null && !hasChunkSelected) {
+                        tile.setX(selectedTile.getX());
+                        tile.setY(selectedTile.getY());
+                        tile.setWalkable(selectedTile.isWalkable());
+                        tile.setTileImage(selectedTile.getTileImage());
+                        tile.setComplex(selectedTile.isComplex());
+
+                        //nicholas part start
+                    } else if (selectedTile != null && hasChunkSelected) {
                         Tile[][] allTiles = showDecoLayer ? decoTiles : groundTiles;
                         int x = row;
                         int y = col;
-                        if(selectedTile.getTileImage() == "Outside3"){
+                        if (selectedTile.getTileImage() == "Outside3") {
                             allTiles[x][y].setX(0);
                             allTiles[x][y].setY(14);
                             allTiles[x][y].setWalkable(false);
@@ -549,8 +598,8 @@ public class TileEditor
                             allTiles[x + 3][y + 3].setComplex(false);
 
                             setup();
-                        } else if(selectedTile.getTileImage() == "Outside"){
-                            if(selectedTile.getX() == 10 && selectedTile.getY() == 7){
+                        } else if (selectedTile.getTileImage() == "Outside") {
+                            if (selectedTile.getX() == 10 && selectedTile.getY() == 7) {
                                 allTiles[x][y].setX(10);
                                 allTiles[x][y].setY(7);
                                 allTiles[x][y].setWalkable(false);
@@ -576,7 +625,7 @@ public class TileEditor
                                 allTiles[x + 1][y + 1].setComplex(false);
 
                                 setup();
-                            } else if(selectedTile.getX() == 14 && selectedTile.getY() == 9){
+                            } else if (selectedTile.getX() == 14 && selectedTile.getY() == 9) {
                                 allTiles[x][y].setX(14);
                                 allTiles[x][y].setY(10);
                                 allTiles[x][y].setWalkable(false);
@@ -607,18 +656,13 @@ public class TileEditor
                             }
                         } else {
 
-                        }
-                    }
-                    else
-                    {
+                        }//nicholas part end
+                    } else {
                         NavigationPoint navigationPoint = navPointSelection.getSelectionModel().getSelectedItem().getNavigationPoint(col, row);
-                        if(navigationPoint instanceof StartPoint)
-                        {
-                          startPoints.add((StartPoint) navigationPoint);
-                        }
-                        else if(navigationPoint instanceof TeleportPoint)
-                        {
-                          teleportPoints.add((TeleportPoint) navigationPoint);
+                        if (navigationPoint instanceof StartPoint) {
+                            startPoints.add((StartPoint) navigationPoint);
+                        } else if (navigationPoint instanceof TeleportPoint) {
+                            teleportPoints.add((TeleportPoint) navigationPoint);
                         }
                         setup();
                     }
@@ -634,15 +678,15 @@ public class TileEditor
         if (showDecoLayer) {
             all.getChildren().add(decoGroup);
         }
-        if(showPointsOfInterest) {
-            if(images.get(EDITOR_START_TILE) == null) {
+        if (showPointsOfInterest) {
+            if (images.get(EDITOR_START_TILE) == null) {
                 images.put(EDITOR_START_TILE, new Image(CS_DIR + EDITOR_START_TILE + CS_POST_FIX));
             }
-            if(images.get(EDITOR_TELEPORT_TILE) == null) {
-              images.put(EDITOR_TELEPORT_TILE, new Image(CS_DIR + EDITOR_TELEPORT_TILE + CS_POST_FIX));
+            if (images.get(EDITOR_TELEPORT_TILE) == null) {
+                images.put(EDITOR_TELEPORT_TILE, new Image(CS_DIR + EDITOR_TELEPORT_TILE + CS_POST_FIX));
             }
             Group pointsOfInterestIcons = new Group();
-            for(final StartPoint startPoint : startPoints)
+            for (final StartPoint startPoint : startPoints)
             //noinspection Duplicates
             {
                 ImageView startIconView = new ImageView(images.get(EDITOR_START_TILE));
@@ -650,24 +694,20 @@ public class TileEditor
                 startIconView.setTranslateY(startPoint.getY() * TILE_SIZE);
                 pointsOfInterestIcons.getChildren().add(startIconView);
 
-                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>()
-                {
-                  @Override
-                  public void handle(MouseEvent mouseEvent)
-                  {
-                    Prompt.getPrompt("Delete Start Point", "Are you sure, you want to delete this start point?", new Prompt.Callback()
-                    {
-                      @Override
-                      public void onYes()
-                      {
-                        startPoints.remove(startPoint);
-                        setup();
-                      }
-                    });
-                  }
+                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        Prompt.getPrompt("Delete Start Point", "Are you sure, you want to delete this start point?", new Prompt.Callback() {
+                            @Override
+                            public void onYes() {
+                                startPoints.remove(startPoint);
+                                setup();
+                            }
+                        });
+                    }
                 });
             }
-            for(final TeleportPoint teleportPoint : teleportPoints)
+            for (final TeleportPoint teleportPoint : teleportPoints)
             //noinspection Duplicates
             {
                 final ImageView teleportIconView = new ImageView(images.get(EDITOR_TELEPORT_TILE));
@@ -675,22 +715,18 @@ public class TileEditor
                 teleportIconView.setTranslateY(teleportPoint.getY() * TILE_SIZE);
                 pointsOfInterestIcons.getChildren().add(teleportIconView);
 
-              pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>()
-              {
-                @Override
-                public void handle(MouseEvent mouseEvent)
-                {
-                  Prompt.getPrompt("Delete Teleporter", "Are you sure, you want to delete this teleporter?", new Prompt.Callback()
-                  {
+                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
-                    public void onYes()
-                    {
-                      teleportPoints.remove(teleportPoint);
-                      setup();
+                    public void handle(MouseEvent mouseEvent) {
+                        Prompt.getPrompt("Delete Teleporter", "Are you sure, you want to delete this teleporter?", new Prompt.Callback() {
+                            @Override
+                            public void onYes() {
+                                teleportPoints.remove(teleportPoint);
+                                setup();
+                            }
+                        });
                     }
-                  });
-                }
-              });
+                });
             }
             all.getChildren().add(pointsOfInterestIcons);
         }
@@ -698,6 +734,13 @@ public class TileEditor
         scrollPane.setContent(all);
     }
 
+    /**
+     * Maike Keune-Staab
+     * sets up the windows for normal tiles and complex tiles
+     * @param csImage
+     * @param selectionScroller
+     * @param complex
+     */
     private void setupTileSelectionPanel(String csImage, ScrollPane selectionScroller, boolean complex) {
         String imageUrl = CS_DIR + csImage + CS_POST_FIX;
 
@@ -714,7 +757,7 @@ public class TileEditor
         final Pane selection = screenFactory.convert(tilesSelection, imageUrl, Color.BLACK, new ScreenFactory.TileClickCallback() {
             @Override
             public void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row) {
-              setSelectedTile(tile);
+                setSelectedTile(tile);
                 // todo 1: add a little icon or something here to show the selection (imageView.someFancyMethodThatWillMarkIt())
                 hasChunkSelected = false;
             }
@@ -722,20 +765,35 @@ public class TileEditor
         selectionScroller.setContent(selection);
     }
 
-  private void setSelectedTile(Tile tile)
-  {
-    selectedTile = new Tile(tile.getX(), tile.getY(), !blockingTileCB.isSelected(), tile.getTileImage()); // select the clicked tile
-    selectedTile.setComplex(tile.isComplex());
-  }
+    /**
+     * Maike Keune-Staab
+     * creates a copy of a clicked tile as the new selected tile
+     * @param tile
+     */
+    private void setSelectedTile(Tile tile) {
+        selectedTile = new Tile(tile.getX(), tile.getY(), !blockingTileCB.isSelected(), tile.getTileImage()); // select the clicked tile
+        selectedTile.setComplex(tile.isComplex());
+    }
 
-  private Tile[][] newTileMatrix(int defaultX, int defaultY, int rowNum, int colNum, String tileImage,
+    /**
+     * Maike Keune-Staab
+     * method for creating a matrix filled with tiles according to the given paramters
+     * @param defaultX
+     * @param defaultY
+     * @param rowNum
+     * @param colNum
+     * @param tileImage
+     * @param complex
+     * @return
+     */
+    private Tile[][] newTileMatrix(int defaultX, int defaultY, int rowNum, int colNum, String tileImage,
                                    boolean complex) {
         Tile[][] tiles = new Tile
                 [complex ? (int) (rowNum / TILE_BLOCK_HEIGHT) : rowNum]
                 [complex ? (int) (colNum / TILE_BLOCK_WIDTH) : colNum];
 
         for (int row = 0; row < (complex ? rowNum / TILE_BLOCK_HEIGHT : rowNum); row++) {
-            for (int col = 0; col < (complex ? colNum / TILE_BLOCK_WIDTH : colNum) ; col++) {
+            for (int col = 0; col < (complex ? colNum / TILE_BLOCK_WIDTH : colNum); col++) {
                 int x = defaultX >= 0 ? defaultX : col;
                 int y = defaultY >= 0 ? defaultY : row;
                 Tile tile = new Tile(x, y, true);

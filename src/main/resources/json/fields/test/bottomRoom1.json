@@ -19,89 +19,31 @@
       },
       {
         "townTile": false,
-        "x": 0,
-        "y": 0,
+        "x": 2,
+        "y": 3,
         "walkable": true,
-        "tileImage": "emptyTile"
+        "tileImage": "Inside"
       },
       {
         "townTile": false,
-        "x": 0,
-        "y": 0,
+        "x": 2,
+        "y": 3,
         "walkable": true,
-        "tileImage": "emptyTile"
+        "tileImage": "Inside"
       },
       {
         "townTile": false,
-        "x": 0,
-        "y": 0,
+        "x": 2,
+        "y": 3,
         "walkable": true,
-        "tileImage": "emptyTile"
+        "tileImage": "Inside"
       },
       {
         "townTile": false,
-        "x": 0,
-        "y": 0,
+        "x": 2,
+        "y": 3,
         "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      }
-    ],
-    [
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
+        "tileImage": "Inside"
       },
       {
         "townTile": false,
@@ -135,11 +77,48 @@
       },
       {
         "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
         "x": 0,
         "y": 0,
         "walkable": true,
         "tileImage": "emptyTile"
       },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
       {
         "townTile": false,
         "x": 0,
@@ -156,10 +135,31 @@
       },
       {
         "townTile": false,
-        "x": 0,
-        "y": 0,
+        "x": 2,
+        "y": 3,
         "walkable": true,
-        "tileImage": "emptyTile"
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
+      },
+      {
+        "townTile": false,
+        "x": 2,
+        "y": 3,
+        "walkable": true,
+        "tileImage": "Inside"
       },
       {
         "townTile": false,
@@ -541,31 +541,31 @@
       },
       {
         "townTile": false,
-        "x": 2,
-        "y": 3,
+        "x": 0,
+        "y": 0,
         "walkable": true,
-        "tileImage": "Inside"
+        "tileImage": "emptyTile"
       },
       {
         "townTile": false,
-        "x": 2,
-        "y": 3,
+        "x": 0,
+        "y": 0,
         "walkable": true,
-        "tileImage": "Inside"
+        "tileImage": "emptyTile"
       },
       {
         "townTile": false,
-        "x": 2,
-        "y": 3,
+        "x": 0,
+        "y": 0,
         "walkable": true,
-        "tileImage": "Inside"
+        "tileImage": "emptyTile"
       },
       {
         "townTile": false,
-        "x": 2,
-        "y": 3,
+        "x": 0,
+        "y": 0,
         "walkable": true,
-        "tileImage": "Inside"
+        "tileImage": "emptyTile"
       },
       {
         "townTile": false,
@@ -603,7 +603,7 @@
         "townTile": false,
         "x": 0,
         "y": 0,
-        "walkable": false,
+        "walkable": true,
         "tileImage": "emptyTile"
       },
       {
@@ -617,14 +617,14 @@
         "townTile": false,
         "x": 0,
         "y": 0,
-        "walkable": false,
+        "walkable": true,
         "tileImage": "emptyTile"
       },
       {
         "townTile": false,
         "x": 0,
         "y": 0,
-        "walkable": false,
+        "walkable": true,
         "tileImage": "emptyTile"
       },
       {
@@ -649,41 +649,6 @@
         "y": 0,
         "walkable": false,
         "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 6,
-        "y": 2,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 7,
-        "y": 2,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 6,
-        "y": 2,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 7,
-        "y": 2,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 6,
-        "y": 2,
-        "walkable": false,
-        "tileImage": "HouseTiles"
       },
       {
         "townTile": false,
@@ -696,6 +661,41 @@
         "townTile": false,
         "x": 0,
         "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 6,
+        "y": 2,
+        "walkable": false,
+        "tileImage": "HouseTiles"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
         "walkable": false,
         "tileImage": "emptyTile"
       }
@@ -706,6 +706,41 @@
         "x": 0,
         "y": 0,
         "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 7,
+        "y": 3,
+        "walkable": false,
+        "tileImage": "HouseTiles"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
         "tileImage": "emptyTile"
       },
       {
@@ -717,157 +752,6 @@
       },
       {
         "townTile": false,
-        "x": 7,
-        "y": 3,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 6,
-        "y": 3,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 7,
-        "y": 3,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 6,
-        "y": 3,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 7,
-        "y": 3,
-        "walkable": false,
-        "tileImage": "HouseTiles"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": false,
-        "tileImage": "emptyTile"
-      }
-    ],
-    [
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": false,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      }
-    ],
-    [
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": false,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
-        "x": 0,
-        "y": 0,
-        "walkable": true,
-        "tileImage": "emptyTile"
-      },
-      {
-        "townTile": false,
         "x": 0,
         "y": 0,
         "walkable": false,
@@ -1118,6 +1002,57 @@
         "townTile": false,
         "x": 0,
         "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
         "walkable": false,
         "tileImage": "emptyTile"
       },
@@ -1147,6 +1082,71 @@
         "x": 0,
         "y": 0,
         "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": true,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
+        "tileImage": "emptyTile"
+      },
+      {
+        "townTile": false,
+        "x": 0,
+        "y": 0,
+        "walkable": false,
         "tileImage": "emptyTile"
       },
       {

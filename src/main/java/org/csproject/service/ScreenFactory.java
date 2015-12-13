@@ -33,6 +33,13 @@ public class ScreenFactory {
         void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row);
     }
 
+    /**
+     * Maike Keune-Staab
+     * converts the given field into a javaFX scene graph
+     *
+     * @param field
+     * @return
+     */
     public Node buildNode(Field field) {
         Tile[][] groundMatrix = field.getGroundTiles();
         Tile[][] decoTiles = field.getDecoTiles();
@@ -48,6 +55,16 @@ public class ScreenFactory {
         return ground;
     }
 
+    /**
+     * Maike Keune-Staab
+     * converts a tile matrix into a javaFX scene graph
+     *
+     * @param matrix
+     * @param defaultImage
+     * @param backGroundColor
+     * @param tileClickCallback
+     * @return
+     */
     public Pane convert(final Tile[][] matrix, final String defaultImage, Color backGroundColor,
                         final TileClickCallback tileClickCallback) {
         Pane root = new Pane();
@@ -111,6 +128,16 @@ public class ScreenFactory {
         return root;
     }
 
+    /**
+     * Maike Keune-Staab
+     * creates a javaFX node group for the given tile. If the tile is comnplex its eight neighbours will be needed.
+     *
+     * @param currentTile
+     * @param neighbours
+     * @param tileGroupMap
+     * @param images
+     * @param defaultImage
+     */
     private void render(Tile currentTile, Tile[][] neighbours, Map<Tile, Group> tileGroupMap, Map<String, Image> images, String defaultImage) {
 
         Image currentImage;
@@ -158,12 +185,23 @@ public class ScreenFactory {
                 imageView.setViewport(viewPort);
             }
 
-            if(images.get(EDITOR_BLOCKIG_TILE) != null && !currentTile.isWalkable()) {
+            if (images.get(EDITOR_BLOCKIG_TILE) != null && !currentTile.isWalkable()) {
                 group.getChildren().add(new ImageView(images.get(EDITOR_BLOCKIG_TILE)));
             }
         }
     }
 
+    /**
+     * Maike Keune-Staab
+     * renders the downright quarter of a complex tile
+     *
+     * @param currentImage
+     * @param currentTile
+     * @param downRight
+     * @param down
+     * @param right
+     * @return
+     */
     private Node getDownRightPart(Image currentImage, Tile currentTile, Tile downRight, Tile down, Tile right) {
         ImageView imageView = new ImageView(currentImage);
 
@@ -203,6 +241,17 @@ public class ScreenFactory {
         return imageView;
     }
 
+    /**
+     * Maike Keune-Staab
+     * renders the down left part of a complex tile.
+     *
+     * @param currentImage
+     * @param currentTile
+     * @param downLeft
+     * @param down
+     * @param left
+     * @return
+     */
     private Node getDownLeftPart(Image currentImage, Tile currentTile, Tile downLeft, Tile down, Tile left) {
         ImageView imageView = new ImageView(currentImage);
 
@@ -240,6 +289,17 @@ public class ScreenFactory {
         return imageView;
     }
 
+    /**
+     * Maike Keune-Staab
+     * renders the up right part of a complex tile.
+     *
+     * @param currentImage
+     * @param currentTile
+     * @param upRight
+     * @param up
+     * @param right
+     * @return
+     */
     private Node getUpRightPart(Image currentImage, Tile currentTile, Tile upRight, Tile up, Tile right) {
         ImageView imageView = new ImageView(currentImage);
 
@@ -277,6 +337,17 @@ public class ScreenFactory {
         return imageView;
     }
 
+    /**
+     * Maike Keune-Staab
+     * renders the up left part of a complex tile.
+     *
+     * @param currentImage
+     * @param currentTile
+     * @param upLeft
+     * @param up
+     * @param left
+     * @return
+     */
     private ImageView getUpLeftPart(Image currentImage, Tile currentTile, Tile upLeft, Tile up, Tile left) {
         ImageView imageView = new ImageView(currentImage);
 
@@ -313,6 +384,14 @@ public class ScreenFactory {
         return imageView;
     }
 
+    /**
+     * Maike Keune-Staab
+     * equalises two tiles
+     *
+     * @param tile1
+     * @param tile2
+     * @return
+     */
     private boolean equals(Tile tile1, Tile tile2) {
         if (tile1 == null && tile2 == null) {
             return true;
@@ -333,6 +412,15 @@ public class ScreenFactory {
 
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns a tile matrix with the eight neighbours of the tile at the given position in the given matrix.
+     *
+     * @param matrix
+     * @param x
+     * @param y
+     * @return
+     */
     private Tile[][] getNeighbours(Tile[][] matrix, int x, int y) {
         Tile[][] neighbours = new Tile[3][3];
 

@@ -4,8 +4,9 @@ import org.csproject.service.ActorFactory;
 
 /**
  * @author Maike Keune-Staab on 12.09.2015.
+ *
+ * Npc is just a random actor, with random sentences. For example an arms dealer
  */
-/**Npc is just a random actor, with random sentences. For example an arms dealer*/
 public class Npc extends Actor {
 
     private String message;

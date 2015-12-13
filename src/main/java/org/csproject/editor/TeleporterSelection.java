@@ -33,6 +33,11 @@ public class TeleporterSelection implements NavPointSelection {
     private NumberTextField widthTF;
     private NumberTextField floorsTF;
 
+    /**
+     * Maike Keune-Staab
+     * returns a panel to define a teleportPoint's parameter
+     * @return
+     */
     @Override
     public Pane getPreferencesPanel() {
         VBox vBox = new VBox();
@@ -51,11 +56,9 @@ public class TeleporterSelection implements NavPointSelection {
         floorsTF = new NumberTextField();
 
         ToggleGroup tg = new ToggleGroup();
-        tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>()
-        {
-          @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle oldValue, Toggle value)
-            {
+        tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle oldValue, Toggle value) {
                 randomDungeonTarget = yes.equals(value);
                 sourceFieldNameTF.setDisable(!randomDungeonTarget);
                 sourceTeleporterNameTF.setDisable(!randomDungeonTarget);
@@ -72,38 +75,46 @@ public class TeleporterSelection implements NavPointSelection {
         typeComboBox.getItems().addAll(DungeonHelper.Type.values());
 
         Label description = new Label("please add a town name or dungeon name into the 'target-field-name' and " +
-                                      "(optional) the name of the target start point into 'target-point-name'.");
+                "(optional) the name of the target start point into 'target-point-name'.");
 
         VBox vbox = new VBox();
         vbox.setSpacing(5);
         vBox.getChildren().addAll(
-            new Label("Link to random map before target: "),
-            yes, no,
-            new Separator(),
-            description,
-            new Separator(),
-            new Label("Name: "),
-            nameTF,
-            new Label("Target-field-name: "),
-            targetFieldNameTF,
-            new Label("Target-point-name: "),
-            targetTeleporterNameTF,
-            new Label("Source-field-name: "),
-            sourceFieldNameTF,
-            new Label("Source-point-name: "),
-            sourceTeleporterNameTF,
-            new Label("Radon dungeon type: "),
-            typeComboBox,
-            new Label("Random dungeon height: "),
-            heightTF,
-            new Label("Random dungeon width: "),
-            widthTF,
-            new Label("Random dungeon floors: "),
-            floorsTF);
+                new Label("Link to random map before target: "),
+                yes, no,
+                new Separator(),
+                description,
+                new Separator(),
+                new Label("Name: "),
+                nameTF,
+                new Label("Target-field-name: "),
+                targetFieldNameTF,
+                new Label("Target-point-name: "),
+                targetTeleporterNameTF,
+                new Label("Source-field-name: "),
+                sourceFieldNameTF,
+                new Label("Source-point-name: "),
+                sourceTeleporterNameTF,
+                new Label("Radon dungeon type: "),
+                typeComboBox,
+                new Label("Random dungeon height: "),
+                heightTF,
+                new Label("Random dungeon width: "),
+                widthTF,
+                new Label("Random dungeon floors: "),
+                floorsTF);
 
         return vBox;
     }
 
+    /**
+     * Maike Keune-Staab
+     * returns a new teleportPoint as defined by the getPreferencesPanel-method-
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public NavigationPoint getNavigationPoint(int x, int y) {
         return new TeleportPoint(randomDungeonTarget, x, y, nameTF.getText(), targetFieldNameTF.getText(),
