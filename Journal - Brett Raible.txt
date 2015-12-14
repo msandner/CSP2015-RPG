@@ -39,5 +39,6 @@ CIS 467
 12/12: Worked on GUI a bit:               3:30 to  5:30 - 2 hours 00 mins
 12/13: GUI work:                          9:45 to 11:45 - 2 hours 00 mins
 12/13: Merging battle GUI and logic:      2:00 to  5:00 - 3 hours 00 mins
+12/14: GUI updates and bug fixes:         3:00 to  6:20 - 3 hours 20 mins
 ----------------------------------------------------------------------------
-Total:                                                   63 hours 52 mins
+Total:                                                   67 hours 12 mins
