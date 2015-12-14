@@ -1,6 +1,8 @@
 package org.csproject.model.actors;
 
 import org.csproject.model.Constants;
+import org.csproject.model.items.ArmorItem;
+import org.csproject.model.items.WeaponItem;
 import org.csproject.model.magic.Magic;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
@@ -22,6 +24,12 @@ public class PlayerActor extends BattleActor {
     private List<Magic> allSpells = new ArrayList<>();
     private List<Magic> availableSpells = new ArrayList<>();
 
+    protected WeaponItem weapon;
+    protected ArmorItem headArmor;
+    protected ArmorItem bodyArmor;
+    protected ArmorItem handArmor;
+    protected ArmorItem footArmor;
+
     public int getXP() {
         return currentXp;
     }
@@ -32,6 +40,12 @@ public class PlayerActor extends BattleActor {
         int mp = calcMp(level);
         this.currentMp = mp;
         this.maxMp = mp;
+
+        weapon = new WeaponItem("", "", 0, 0);
+        headArmor = new ArmorItem("", "", "", 0, 0);
+        bodyArmor = new ArmorItem("", "", "", 0, 0);
+        handArmor = new ArmorItem("", "", "", 0, 0);
+        footArmor = new ArmorItem("", "", "", 0, 0);
 
         currentXp = 0;
 
@@ -140,6 +154,53 @@ public class PlayerActor extends BattleActor {
                  m.setValue((int)(m.getValue()*(4*Math.sqrt(level))));
                  m.setMp((int)(m.getMp()*(4*Math.sqrt(level))));
              }
+        }
+    }
+
+    /**
+     * Equips a weapon item to the character
+     * @param w the weapon to be equipped
+     * @return returns the old weapon that was equipped before if the equipping was successful, returns the weapon that
+     *         was to be equipped if equipping was not successful
+     */
+    public WeaponItem addWeapon(WeaponItem w){
+        if(w.getRestrictions() == type){
+            WeaponItem r = weapon;
+            weapon = w;
+            return r;
+        } else {
+            return w;
+        }
+    }
+
+    /**
+     * Equips an armor item to the character
+     * @param a the armor to be equipped
+     * @return returns the old armor that was equipped before if the equipping was successful, returns the armor that
+     *         was to be equipped if equipping was not successful
+     */
+    public ArmorItem addArmor(ArmorItem a){
+        if(a.getRestrictions() == type){
+            ArmorItem r;
+            if(a.getPiece() == "Head"){
+                r = headArmor;
+                headArmor = a;
+                return r;
+            } else if(a.getPiece() == "Body"){
+                r = bodyArmor;
+                bodyArmor = a;
+                return r;
+            } else if(a.getPiece() == "Hands"){
+                r = handArmor;
+                handArmor = a;
+                return r;
+            } else {
+                r = footArmor;
+                footArmor = a;
+                return r;
+            }
+        } else {
+            return a;
         }
     }
 

@@ -2,6 +2,9 @@ package org.csproject.model.magic;
 
 /**
  * Created by Nick on 10/31/2015.
+ * Restorative magic class.
+ * Restorative magic are skills used by characters to support the party in combat.
+ * Restorative magic can restore health or mana, and can target a single character or the entire team.
  */
 public class RestorativeMagic extends Magic{
     protected boolean hasTargetPlayer;

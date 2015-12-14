@@ -2,6 +2,9 @@ package org.csproject.model.items;
 
 /**
  * Created by Nick on 10/31/2015.
+ * The Restorative Item class.
+ * Restorative items are used to restore health and mana to player characters.
+ * Most items only target one character, some can target the entire team.
  */
 public class RestorativeItem extends Item {
     protected boolean hasTargetPlayer;

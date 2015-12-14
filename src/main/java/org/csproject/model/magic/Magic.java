@@ -2,6 +2,9 @@ package org.csproject.model.magic;
 
 /**
  * Created by Nick on 10/31/2015.
+ * Abstract Magic class.
+ * Magic abilities are skills characters can use in battle.
+ * Magic is classified as either offensive or restorative.
  */
 public abstract class Magic {
     protected String magicName;

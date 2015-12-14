@@ -2,6 +2,8 @@ package org.csproject.model.items;
 
 /**
  * Created by Nick on 10/29/2015.
+ * The abstract item class.
+ * Contains the item's name and type, as well as that items value for buying and selling
  */
 public abstract class Item {
     protected String itemName;

@@ -10,12 +10,19 @@ import java.util.List;
 
 /**
  * Created by Nick on 12/7/2015.
+ * The shop service class.
+ * This class contains methods that may be called to simulate a shop.
+ * The shop has three different stocks containing weapons, armor and potions.
+ * Players may buy items using currency, or sell items to gain currency.
  */
 public class shopService {
     protected List<Item> weaponStock;
     protected List<Item> armorStock;
     protected List<Item> potionStock;
 
+    /**
+     * Adds all items to the shops three stocks.
+     */
     public void setupShop(){
         weaponStock.add(new WeaponItem("Dull Sword", "Knight", 3, 5));
         weaponStock.add(new WeaponItem("Iron Sword", "Knight", 6, 10));
@@ -83,6 +90,12 @@ public class shopService {
 
     public List<Item> getPotions(){ return potionStock; }
 
+    /**
+     *
+     * @param i the item to be bought
+     * @param p the player party
+     * @return true if the purchase was accepted, false if not
+     */
     public boolean boughtItem(Item i, PlayerParty p){
         if(p.getCurrency() < i.getBuyingCost()) {
             return false;
@@ -93,6 +106,12 @@ public class shopService {
         }
     }
 
+    /**
+     *
+     * @param i the item to be sold
+     * @param p the player party
+     * @return true if the item was sold, false if not
+     */
     public boolean soldItem(Item i, PlayerParty p){
         if(p.removeItem(i)){
             p.addCurrency(i.getSellingCost());
