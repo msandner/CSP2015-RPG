@@ -17,7 +17,7 @@ public class CharacterImage extends ImageView {
     private static final int BLOCK_SIZE_X = (int) Constants.TILE_SIZE * 3;
     private static final int BLOCK_SIZE_Y = (int) Constants.TILE_SIZE * 4;
 
-    private static final int ENEMY_ENCOUNTER_PERCENTAGE = 5;
+    private static final int ENEMY_ENCOUNTER_PERCENTAGE = 2;
 
     private int actorImageBlockX, actorImageBlockY;
     private Image actorImage;
@@ -153,7 +153,7 @@ public class CharacterImage extends ImageView {
     private void setEnemyEncounter() {
         this.enemyEncounter = false;
         Random rand = new Random();
-        int chance = rand.nextInt(100);
+        int chance = rand.nextInt(300);
         if(chance < ENEMY_ENCOUNTER_PERCENTAGE) {
             this.enemyEncounter = true;
         }
