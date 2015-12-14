@@ -81,7 +81,7 @@ public class BattleFactory {
         //double extra is for creating more dmg on the victim (normal = 1, double dmg = 2 etc) )
 
         if(!attacker.playerHasAttacked()) {
-            victim.calcCurrentHp((int)(magic.getValue()*extra));
+            victim.addToCurrentHp((int) (magic.getValue() * extra));
             System.out.println("Attacked character");
 
             if (victim.is_dead()) {
@@ -139,8 +139,7 @@ public class BattleFactory {
     //spells for the mage
     public void chainLightning(PlayerActor attacker, BattleActor victim, MonsterParty party) {
         int pos = party.getMonsterPosition((Monster) victim);
-        int partysize = party.getPartySize()-1;
-        attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(2), 2);
+        attackCharacterWithMagic(attacker, victim, (OffensiveMagic) attacker.getSpell(1), 2);
 
         if(attacker.getLevel() > 6 && attacker.getLevel() < 9) {
             attackNextEnemy(attacker,party, 2, pos, 1);
@@ -216,12 +215,12 @@ public class BattleFactory {
     public void healCharactersWithMagic(PlayerActor attacker, BattleActor victim, PlayerParty party, RestorativeMagic magic) {
         if (!attacker.playerHasAttacked()) {
             if (magic.getTarget().equals("Player")) {
-                victim.calcCurrentHp(magic.getValue());
+                victim.addToCurrentHp(magic.getValue());
                 System.out.println("Healed character");
             } else if (magic.getTarget().equals("Team")) {
                 //restoring health from every teammember
                 for (PlayerActor p : party.getParty()) {
-                    p.calcCurrentHp(magic.getValue());
+                    p.addToCurrentHp(magic.getValue());
                     System.out.println("Healed party");
                 }
             }
@@ -233,7 +232,7 @@ public class BattleFactory {
     public void healCharacterWithPotion(PlayerActor attacker, PlayerActor victim, RestorativeItem potion) {
         if(!attacker.playerHasAttacked()) {
             if (potion.getAttribute().equals("Health")) {
-                victim.calcCurrentHp(potion.getValue());
+                victim.addToCurrentHp(potion.getValue());
                 System.out.println("Inreased health");
             } else if (potion.getAttribute().equals("Mana")) {
                 victim.setCurrentMp(potion.getValue());
@@ -256,15 +255,15 @@ public class BattleFactory {
             //the enemy has stronger attacks depending on the character with the highest level
             if (chance < 20) {
                 //attacking less than planned
-                victim.calcCurrentHp(magic.getValue()/2);// * ((party.highestLevel() / 10) / 2));
+                victim.addToCurrentHp(magic.getValue() / 2);// * ((party.highestLevel() / 10) / 2));
                 System.out.println("Attacked character with half attack");
             } else if (chance > 20 && chance < 90) {
                 //general attack
-                victim.calcCurrentHp(magic.getValue());// * (party.highestLevel() / 10));
+                victim.addToCurrentHp(magic.getValue());// * (party.highestLevel() / 10));
                 System.out.println("Attacked character");
             } else {
                 //critical hit
-                victim.calcCurrentHp(magic.getValue()*2);// * ((party.highestLevel() / 10) * 2));
+                victim.addToCurrentHp(magic.getValue() * 2);// * ((party.highestLevel() / 10) * 2));
                 System.out.println("Attacked character with critical hit");
             }
             attacker.setHasAttacked(true);
@@ -387,7 +386,10 @@ public class BattleFactory {
         MonsterParty p = new MonsterParty(m);
 
         for(Monster monster : p.getParty()) {
-            monster.setLevel(party.highestLevel()+rand.nextInt(2));
+            int chance = rand.nextInt(2);
+            for(int i = 0; i < party.highestLevel() + chance; i++) {
+                monster.levelUpMonster();
+            }
         }
 
         return p;

@@ -825,7 +825,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             playerCommands.remove(0);
             m = (Magic) playerCommands.get(0);
             playerCommands.remove(0);
-            System.out.println(monster.getCurrentHp());
+            System.out.println("Monster HP : " + monster.getCurrentHp());
 
             switch(m.getName()) {
                 case "Basic":

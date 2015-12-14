@@ -6,7 +6,9 @@ import org.csproject.model.bean.NavigationPoint;
  * @author Maike Keune-Staab on 12.09.2015.
  */
 public abstract class Actor {
-    //creating general actor
+    /**
+     * creating the abstract actor
+     */
 
     protected NavigationPoint position;
     protected String name;

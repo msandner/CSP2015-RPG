@@ -14,12 +14,11 @@ import java.util.List;
  * @author Maike Keune-Staab on 12.09.2015.
  */
 public class PlayerActor extends BattleActor {
-    //sets the actor as a general player
-    protected int currentMp = 75; //value in the first level
+    protected int currentMp = 75;
     protected int maxMp;
 
     protected int currentXp;
-    protected int maxXp = 50; //value in the first level
+    protected int maxXp = 50;
 
     private List<Magic> allSpells = new ArrayList<>();
     private List<Magic> availableSpells = new ArrayList<>();
@@ -150,9 +149,9 @@ public class PlayerActor extends BattleActor {
             availableSpells.add(allSpells.get(3));
         } else { //if not a new spell, then altering the available spells
              for(Magic m : availableSpells) {
-                 //decreasing the attack and mana
-                 m.setValue((int)(m.getValue()*(4*Math.sqrt(level))));
-                 m.setMp((int)(m.getMp()*(4*Math.sqrt(level))));
+                 //increasing the attack and mana
+                 m.setValue((int)(m.getValue()-(4*Math.sqrt(level))));
+                 m.setMp((int)(m.getMp()+(4*Math.sqrt(level))));
              }
         }
     }

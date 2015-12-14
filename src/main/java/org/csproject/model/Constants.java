@@ -49,12 +49,10 @@ public class Constants {
     public static final String CS_WORLD_2 = "World2";
     public static final String CS_WORLD_3 = "World3";
 
-    public static final String CLASS_SWORDSMAN = "swordsman";
     public static final String CLASS_KNIGHT = "knight";
     public static final String CLASS_MAGE = "mage";
     public static final String CLASS_THIEF = "thief";
 
-    public static final String IMAGE_SWORDSMAN = "images/actors/Evil.png";       //At 0, 1
     public static final String IMAGE_KNIGHT = "images/actors/Actor1.png";       //At 0, 1
     public static final String IMAGE_MAGE = "images/actors/Actor2.png";         //At 3, 1
     public static final String IMAGE_THIEF = "images/actors/Actor3.png";        //At 2, 0
