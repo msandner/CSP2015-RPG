@@ -4245,9 +4245,9 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 7,
+        "y": 10,
+        "tileImage": "Outside3"
       },
       {
         "walkable": false,
@@ -5687,10 +5687,25 @@
   ],
   "startPoints": [
     {
-      "x": 19,
-      "y": 15,
-      "name": "start"
+      "x": 17,
+      "y": 10,
+      "name": "woodLake"
     }
   ],
-  "teleportPoints": []
+  "teleportPoints": [
+    {
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 60,
+      "randomFloors": 2,
+      "targetField": "worldMap",
+      "targetPoint": "woodCamp",
+      "sourceField": "worldMap",
+      "sourcePoint": "woodLake",
+      "randomType": "WOOD",
+      "x": 17,
+      "y": 9,
+      "name": "woodLake"
+    }
+  ]
 }

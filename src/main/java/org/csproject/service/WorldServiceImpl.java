@@ -113,7 +113,7 @@ public class WorldServiceImpl implements WorldService {
     public Field generateDungeon(DungeonHelper.Type type, int height, int width, int floors, String targetMap,
                                  String targetPoint, String sourceMap, String sourcePoint) {
         // clear old random maps, except for the worldMap field
-        Set<String> tempFieldNames = tempFields.keySet();
+        Set<String> tempFieldNames = new HashSet<>(tempFields.keySet());
         for (String fieldKey : tempFieldNames) {
             if (!WORLD_MAP.equals(fieldKey)) {
                 tempFields.remove(fieldKey);

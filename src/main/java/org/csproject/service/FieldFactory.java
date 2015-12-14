@@ -7,13 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.csproject.model.field.DungeonDetails;
-import org.csproject.model.field.Field;
-import org.csproject.model.field.StartPoint;
-import org.csproject.model.field.TeleportPoint;
-import org.csproject.model.field.Tile;
-import org.csproject.model.field.TileInfo;
-import org.csproject.model.field.TileInfoFilter;
+import org.csproject.model.field.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +28,7 @@ public class FieldFactory {
     /**
      * Maike Keune-Staab
      * generates a random dungeon according to the given DungeonDetails and returns the first floor.
+     *
      * @param dungeonDetails
      * @return
      */
@@ -47,10 +42,10 @@ public class FieldFactory {
         for (int i = 0; i < dungeonDetails.getFloors(); i++) {
             TileInfo[][] bsp = getEmptyBsp(dungeonDetails.getHeight(), dungeonDetails.getWidth());
             createRandomBsp(bsp, true, true, true, dungeonDetails);
-            Field currentField = createField(bsp, dungeonDetails);
+            String tempFieldName = UUID.randomUUID().toString();
+            Field currentField = createField(bsp, dungeonDetails, tempFieldName);
             currentField.setGroundImage(dungeonDetails.getDefaultGroundImage());
             currentField.setDecoImage(dungeonDetails.getDefaultDecoImage());
-            String tempFieldName = UUID.randomUUID().toString();
             worldService.setTempField(currentField, tempFieldName);
             floorNames.add(tempFieldName);
             if (i == 0) {
@@ -89,8 +84,8 @@ public class FieldFactory {
         return entryField;
     }
 
-    private Field createField(TileInfo[][] bsp, DungeonDetails dungeonDetails) {
-        Map<TileInfoFilter, List<Field>> tileMapping = dungeonDetails.getTileMapping();
+    private Field createField(TileInfo[][] bsp, DungeonDetails dungeonDetails, String fieldName) {
+        Map<TileInfoFilter, FieldSelection> tileMapping = dungeonDetails.getTileMapping();
         List<TileInfoFilter> filterOrder = dungeonDetails.getFilterOrder();
         if (filterOrder == null) {
             filterOrder = new ArrayList<>(tileMapping.keySet());
@@ -110,9 +105,18 @@ public class FieldFactory {
         for (TileInfoFilter filter : filterOrder) {
             for (int row = 0; row < bsp.length; row++) {
                 for (int col = 0; col < bsp[row].length; col++) {
-                    List<Field> fields = tileMapping.get(filter);
+                    FieldSelection fieldSelection = tileMapping.get(filter);
                     if (filter.matches(bsp, col, row)) {
-                        Field field = fields.get((int) ((Math.random() * (fields.size()))));
+                        boolean singletonField = fieldSelection.getSingletonFields().size() > 0 && Math.random() < 0.2;
+                        List<Field> fields = singletonField ?
+                                fieldSelection.getSingletonFields()
+                                : fieldSelection.getFields();
+
+                        int randomPosition = (int) ((Math.random() * (fields.size())));
+                        Field field = fields.get(randomPosition);
+                        if (singletonField) {
+                            fields.remove(randomPosition);
+                        }
 
                         boolean takeOverGround = filter.overwriteGround(ground, row, col);
                         boolean takeOverDeco = filter.overwriteDeco(deco, row, col);
@@ -123,12 +127,23 @@ public class FieldFactory {
                         if (takeOverDeco) {
                             setTiles(deco, row, col, field.getDecoTiles());
                         }
-                        if(takeOverGround && takeOverDeco) {
+                        if (takeOverGround && takeOverDeco) {
                             for (StartPoint startPoint : field.getStartPoints()) {
                                 startPoints.add(new StartPoint(col + startPoint.getX(), row + startPoint.getY(),
                                         startPoint.getName()));
                             }
                             for (TeleportPoint teleportPoint : field.getTeleportPoints()) {
+
+                                if (!DungeonHelper.RANDOM_END.equals(teleportPoint.getName())
+                                        && !DungeonHelper.RANDOM_START.equals(teleportPoint.getName())) {
+                                    worldService.setTempField(worldService.getField(teleportPoint.getTargetField()),
+                                            teleportPoint.getTargetField());
+
+                                    for (TeleportPoint entryTeleporter : worldService.getField(teleportPoint.getTargetField()).getTeleporter("entry")) {
+                                        entryTeleporter.setTargetField(fieldName);
+                                    }
+                                }
+
                                 teleportPoints.add(new TeleportPoint(false, col + teleportPoint.getX(),
                                         row + teleportPoint.getY(), teleportPoint.getName(), teleportPoint.getTargetField(),
                                         teleportPoint.getTargetPoint(), teleportPoint.getSourceField(),
@@ -151,6 +166,7 @@ public class FieldFactory {
     /**
      * Maike Keune-Staab
      * iterates over a collection of TeleportPoints and and sets their target
+     *
      * @param startTeleporter
      * @param targetMap
      * @param targetPoint
@@ -167,6 +183,7 @@ public class FieldFactory {
     /**
      * Maike Keune-Staab
      * puts the source matrix into the target matrix at the location given by rowStart and colStart.
+     *
      * @param targetMatrix
      * @param rowStart
      * @param colStart
@@ -181,7 +198,9 @@ public class FieldFactory {
 
         for (int row = rowStart; row < rowStart + sourceMatrix.length; row++) {
             for (int col = colStart; col < colStart + sourceMatrix[0].length; col++) {
-                targetMatrix[row][col] = sourceMatrix[row - rowStart][col - colStart];
+                if (targetMatrix.length > row && targetMatrix[row].length > col) {
+                    targetMatrix[row][col] = sourceMatrix[row - rowStart][col - colStart];
+                }
             }
         }
         return false;
@@ -190,6 +209,7 @@ public class FieldFactory {
     /**
      * Maike Keune-Staab
      * creates an empty bsp where all points are blocking
+     *
      * @param rowNum
      * @param colNum
      * @return
@@ -211,6 +231,7 @@ public class FieldFactory {
      * vertical splits. This is the preparation for the paths which will connect each split block pair.
      * If the given bsp block is too small to be split any further, depending on the parameters isStart or isEnd, a room
      * tile info will be set into the middle.
+     *
      * @param bsp
      * @param splitHorizontally
      * @param isStart
@@ -332,6 +353,7 @@ public class FieldFactory {
 
     /**
      * Maike Keune-Staab
+     *
      * @param tileInfo
      * @return
      */
@@ -343,6 +365,7 @@ public class FieldFactory {
     /**
      * Maike Keune-Staab
      * creates a 3x2 grid of worldmap fields (.json files) randomly, that will be used as the games worldmap.
+     *
      * @return
      */
     public Field generateWorldMap() {

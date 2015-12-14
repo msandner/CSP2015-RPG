@@ -595,42 +595,42 @@
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
       {
         "walkable": true,
         "complex": true,
-        "x": 0,
+        "x": 2,
         "y": 3,
         "tileImage": "Outside"
       },
@@ -3328,11 +3328,11 @@
         "tileImage": "emptyTile"
       },
       {
-        "walkable": true,
-        "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "walkable": false,
+        "complex": true,
+        "x": 6,
+        "y": 3,
+        "tileImage": "Outside"
       },
       {
         "walkable": true,
@@ -3437,9 +3437,9 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 12,
+        "y": 11,
+        "tileImage": "Outside3"
       },
       {
         "walkable": true,
@@ -3612,11 +3612,11 @@
         "tileImage": "emptyTile"
       },
       {
-        "walkable": true,
-        "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "walkable": false,
+        "complex": true,
+        "x": 6,
+        "y": 3,
+        "tileImage": "Outside"
       },
       {
         "walkable": true,
@@ -3754,11 +3754,11 @@
         "tileImage": "emptyTile"
       },
       {
-        "walkable": true,
-        "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "walkable": false,
+        "complex": true,
+        "x": 6,
+        "y": 3,
+        "tileImage": "Outside"
       },
       {
         "walkable": true,
@@ -5690,9 +5690,24 @@
       "x": 9,
       "y": 17,
       "name": "entry"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "name": "iceDungeon"
     }
   ],
   "teleportPoints": [
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "icyTown",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 10,
+      "y": 18,
+      "name": "entry"
+    },
     {
       "random": false,
       "targetField": "worldMap",
@@ -5704,14 +5719,18 @@
       "name": "entry"
     },
     {
-      "random": false,
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
       "targetField": "worldMap",
-      "targetPoint": "icyTown",
-      "sourceField": "",
-      "sourcePoint": "",
-      "x": 10,
-      "y": 18,
-      "name": "entry"
+      "targetPoint": "iceGraveyard",
+      "sourceField": "icyTown",
+      "sourcePoint": "iceDungeon",
+      "randomType": "TEST",
+      "x": 3,
+      "y": 4,
+      "name": "iceDungeon"
     }
   ]
 }
