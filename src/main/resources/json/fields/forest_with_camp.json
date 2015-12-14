@@ -2855,8 +2855,8 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 14,
-        "y": 11,
+        "x": 7,
+        "y": 10,
         "tileImage": "Outside3"
       },
       {
@@ -5690,18 +5690,27 @@
       "x": 16,
       "y": 19,
       "name": ""
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "name": "woodCamp"
     }
   ],
   "teleportPoints": [
     {
-      "random": false,
-      "targetField": "dungeon",
-      "targetPoint": "",
-      "sourceField": "",
-      "sourcePoint": "",
+      "random": true,
+      "randomHeight": 40,
+      "randomWidth": 50,
+      "randomFloors": 2,
+      "targetField": "worldMap",
+      "targetPoint": "woodLake",
+      "sourceField": "worldMap",
+      "sourcePoint": "woodCamp",
+      "randomType": "WOOD",
       "x": 1,
       "y": 0,
-      "name": "dungeontile"
+      "name": "woodCamp"
     }
   ]
 }

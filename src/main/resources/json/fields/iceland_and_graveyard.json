@@ -5687,21 +5687,25 @@
   ],
   "startPoints": [
     {
-      "x": 19,
-      "y": 8,
-      "name": "starttile"
+      "x": 13,
+      "y": 16,
+      "name": "iceGraveyard"
     }
   ],
   "teleportPoints": [
     {
-      "random": false,
-      "targetField": "dungeon",
-      "targetPoint": "",
-      "sourceField": "",
-      "sourcePoint": "",
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "icyTown",
+      "targetPoint": "iceDungeon",
+      "sourceField": "worldMap",
+      "sourcePoint": "iceGraveyard",
+      "randomType": "TEST",
       "x": 13,
       "y": 17,
-      "name": "dungeontile"
+      "name": "iceGraveyard"
     }
   ]
 }
