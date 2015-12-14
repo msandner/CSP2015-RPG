@@ -101,7 +101,7 @@ public class PlayerParty {
 
     public boolean canPartyStillAttack() {
         for(PlayerActor p : party) {
-            if(!p.playerHasAttacked()) {
+            if(!p.playerHasAttacked() && !p.is_dead()) {
                 return true;
             }
         }

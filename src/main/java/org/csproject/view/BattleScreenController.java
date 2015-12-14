@@ -221,12 +221,12 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     int char1HP, char1MaxHP, char2HP, char2MaxHP, char3HP, char3MaxHP;
     int char1MP, char1MaxMP, char2MP, char2MaxMP, char3MP, char3MaxMP;
-    int enemyAttacked;
+    int enemyAttacked, friendTargeted;
     Image[] enemyImages;
     Map playerSpells;
     TranslateTransition moveChar, reverseMoveChar;
     int currentChar;
-    boolean attackIsMagic, turnDone;
+    boolean attackIsMagic, isFriendAttacked, turnDone;
 
     List<Monster> enemyList;
     List<PlayerActor> players;
@@ -278,13 +278,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         char3HP = char3.getCurrentHp();
         char3MaxHP = char3.getMaxHp();
 
-        player1HPText.setText(Integer.toString(char1HP) + "/" + Integer.toString(char1MaxHP));
-        player2HPText.setText(Integer.toString(char2HP) + "/" + Integer.toString(char2MaxHP));
-        player3HPText.setText(Integer.toString(char3HP) + "/" + Integer.toString(char3MaxHP));
-
-        player1HPBar.setProgress((double)char1HP / (double)char1MaxHP);
-        player2HPBar.setProgress((double)char2HP / (double)char2MaxHP);
-        player3HPBar.setProgress((double)char3HP/(double)char3MaxHP);
+        setPlayerStats(players);
 
         /* Mana */
 
@@ -325,25 +319,47 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /**
      * Bett Raible
      * Select a friendly character (0, 1, 2) and set their health (up or down)
-     * @param character - The character whose health needs to be altered.
-     * @param health - The health of the character after the application of healing or damage.
+     * @param thisParty - The list of the players that you want to update the stats with
      */
-    public void setPlayerHealth(int character, int health) {
-        switch(character) {
-            case 0:
-                player1HPText.setText(Integer.toString(health) + "/" + Integer.toString(char1MaxHP));
-                player1HPBar.setProgress((double)health / (double)char1MaxHP);
-                break;
-            case 1:
-                player2HPText.setText(Integer.toString(health) + "/" + Integer.toString(char2MaxHP));
-                player2HPBar.setProgress((double)health / (double)char2MaxHP);
-                break;
-            case 2:
-                player3HPText.setText(Integer.toString(health) + "/" + Integer.toString(char3MaxHP));
-                player3HPBar.setProgress((double)health / (double)char3MaxHP);
-                break;
-            default:
-                //???
+    public void setPlayerStats(List<PlayerActor> thisParty) {
+        boolean dead = false;
+
+        PlayerActor player1 = thisParty.get(0);
+        PlayerActor player2 = thisParty.get(1);
+        PlayerActor player3 = thisParty.get(2);
+
+        player1HPText.setText(Integer.toString(player1.getCurrentHp()) + "/" + Integer.toString(player1.getMaxHp()));
+        player2HPText.setText(Integer.toString(player2.getCurrentHp()) + "/" + Integer.toString(player2.getMaxHp()));
+        player3HPText.setText(Integer.toString(player3.getCurrentHp()) + "/" + Integer.toString(player3.getMaxHp()));
+
+        player1HPBar.setProgress((double)player1.getCurrentHp()/(double)char1MaxHP);
+        player2HPBar.setProgress((double)player2.getCurrentHp()/(double)char2MaxHP);
+        player3HPBar.setProgress((double)player3.getCurrentHp()/(double)char3MaxHP);
+
+        player1MPText.setText(Integer.toString(player1.getCurrentMp()) + "/" + Integer.toString(player1.getMaxMp()));
+        player2MPText.setText(Integer.toString(player2.getCurrentMp()) + "/" + Integer.toString(player2.getMaxMp()));
+        player3MPText.setText(Integer.toString(player3.getCurrentMp()) + "/" + Integer.toString(player3.getMaxMp()));
+
+        player1MPBar.setProgress(player1.getCurrentMp() / player1.getMaxMp());
+        player2MPBar.setProgress(player1.getCurrentMp() / player2.getMaxMp());
+        player3MPBar.setProgress(player1.getCurrentMp() / player3.getMaxMp());
+
+        if (player1.getCurrentHp() <= 0) {
+            charImage1.setVisible(false);
+        } else {
+            charImage1.setVisible(true);
+        }
+
+        if (player2.getCurrentHp() <= 0) {
+            charImage2.setVisible(false);
+        } else {
+            charImage2.setVisible(true);
+        }
+
+        if (player3.getCurrentHp() <= 0) {
+            charImage3.setVisible(false);
+        } else {
+            charImage3.setVisible(true);
         }
     }
 
@@ -356,6 +372,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      * @param enemy - The enemy to be attacked (0, 1, 2, 3, 4, 5)
      */
     public void attackEnemy(int character, int enemy) {
+        //Do we need these?
         if(character == 1) {
             moveCharForward(1);
         } else if (character == 2) {
@@ -413,26 +430,32 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             case 0:
                 enemyButton1.setText("");
                 enemyButton1.setDisable(true);
+                enemyLabel1.setText("");
                 break;
             case 1:
                 enemyButton2.setText("");
                 enemyButton2.setDisable(true);
+                enemyLabel2.setText("");
                 break;
             case 2:
                 enemyButton3.setText("");
                 enemyButton3.setDisable(true);
+                enemyLabel3.setText("");
                 break;
             case 3:
                 enemyButton4.setText("");
                 enemyButton4.setDisable(true);
+                enemyLabel4.setText("");
                 break;
             case 4:
                 enemyButton5.setText("");
                 enemyButton5.setDisable(true);
+                enemyLabel5.setText("");
                 break;
             default:
                 enemyButton6.setText("");
                 enemyButton6.setDisable(true);
+                enemyLabel6.setText("");
                 break;
         }
     }
@@ -587,15 +610,14 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         playerSpells.put(1, new ArrayList<String>());
         playerSpells.put(2, new ArrayList<String>());
         playerSpells.put(3, new ArrayList<String>());
+        int index = 1;
         for(PlayerActor p : players) {
-            int index = 0;
             for(Magic m : p.getSpells()) {
                 if(m.getLevelRestriction() <= p.getLevel() && m.getName() != "Basic") {
-                    ((ArrayList)playerSpells.get(currentChar)).add(index, m.getName());
-                    index++;
+                    ((ArrayList)playerSpells.get(index)).add(m.getName());
                 }
             }
-            nextChar();
+            index++;
         }
     }
 
@@ -625,6 +647,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     public void addEnemy(ActionEvent actionEvent) {
         chooseBox.setVisible(false);
         setEnemyAttacked(actionEvent);
+        isFriendAttacked = false;
         if(attackIsMagic) {
             resetSpellButtons();
             for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
@@ -731,6 +754,59 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
+    public void setFriendTargeted(ActionEvent actionEvent){
+        chooseBox.setVisible(false);
+        isFriendAttacked = true;
+        if (actionEvent.getSource() == playerButton1) {
+            friendTargeted = 0;
+        } else if (actionEvent.getSource() == playerButton2) {
+            friendTargeted = 1;
+        } else {
+            friendTargeted = 2;
+        }
+
+        if(attackIsMagic) {
+            resetSpellButtons();
+            for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
+                if(spellButton1.getText().equals("")) {
+                    spellButton1.setText(s);
+                    spellButton1.setDisable(false);
+                } else if (spellButton2.getText().equals("")) {
+                    spellButton2.setText(s);
+                    spellButton2.setDisable(false);
+                } else if (spellButton3.getText().equals("")) {
+                    spellButton3.setText(s);
+                    spellButton3.setDisable(false);
+                } else if (spellButton4.getText().equals("")) {
+                    spellButton4.setText(s);
+                    spellButton4.setDisable(false);
+                } else if (spellButton5.getText().equals("")) {
+                    spellButton5.setText(s);
+                    spellButton5.setDisable(false);
+                } else if (spellButton6.getText().equals("")) {
+                    spellButton6.setText(s);
+                    spellButton6.setDisable(false);
+                } else if (spellButton7.getText().equals("")) {
+                    spellButton7.setText(s);
+                    spellButton7.setDisable(false);
+                } else if (spellButton8.getText().equals("")) {
+                    spellButton8.setText(s);
+                    spellButton8.setDisable(false);
+                } else if (spellButton9.getText().equals("")) {
+                    spellButton9.setText(s);
+                    spellButton9.setDisable(false);
+                }
+            }
+            spellBox.setVisible(true);
+            attackIsMagic = false;
+        } else {
+            //Attack is basic attack
+            getMagic("Basic");
+            moveCharBack();
+            nextChar();
+        }
+    }
+
     /**
      * Brett Raible
      *
@@ -740,7 +816,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      */
     private void addCommands(Magic m) {
         playerCommands.add(players.get(currentChar-1));
-        playerCommands.add(enemyList.get(enemyAttacked));
+        if(!isFriendAttacked) {
+            playerCommands.add(enemyList.get(enemyAttacked));
+        } else {
+            playerCommands.add(players.get(friendTargeted));
+        }
         playerCommands.add(m);
     }
 
@@ -765,12 +845,16 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     private void nextChar() {
         if (currentChar != 3) {
             currentChar++;
+            if(players.get(currentChar-1).getCurrentHp() <= 0) {
+                nextChar();
+            } else {
+                moveCharForward(currentChar);
+            }
         } else {
             currentChar = 1;
             doTheBattle();
             turnDone = true;
         }
-        moveCharForward(currentChar);
     }
 
     /**
@@ -805,27 +889,38 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         int index = 0;
         PlayerParty playerParty = new PlayerParty(players.get(0), players.get(1), players.get(2), 0);
         MonsterParty monsterParty = new MonsterParty(enemyList);
-        PlayerActor attacker;
-        BattleActor monster, nextMonster;
+        PlayerActor attacker = null;
+        BattleActor monster;
+        Monster nextMonster;
+        int monsterPos = 0, nextMonsterPos = 0;
         Magic m;
 
         while(!playerCommands.isEmpty()) {
-            attacker = (PlayerActor) playerParty.getParty().get(index);
+            for (PlayerActor p : playerParty.getParty()) {
+                if (p.getName() == ((PlayerActor)playerCommands.get(0)).getName()) {
+                    attacker = p;
+                }
+            }
             index++;
             playerCommands.remove(0);
             monster = (BattleActor) playerCommands.get(0);
-            int monsterPos = monsterParty.getMonsterPosition((Monster) monster);
-            if (monsterPos == monsterParty.getPartySize() - 1 && monsterParty.getParty().size() > 1) {
-                nextMonster = monsterParty.getMonster(monsterParty.getPartySize()-2);
-            } else if(monsterParty.getParty().size() > 1){
-                nextMonster = monsterParty.getMonster(monsterPos + 1);
+            if(monster.getClass() == Monster.class) {
+                monsterPos = monsterParty.getMonsterPosition((Monster) monster);
+                if (monsterPos == monsterParty.getPartySize() - 1 && monsterParty.getParty().size() > 1) {
+                    nextMonster = monsterParty.getMonster(monsterParty.getPartySize() - 2);
+                } else if (monsterParty.getParty().size() > 1) {
+                    nextMonster = monsterParty.getMonster(monsterPos + 1);
+                } else {
+                    nextMonster = (Monster)monster;
+                }
+                nextMonsterPos = monsterParty.getMonsterPosition((Monster) nextMonster);
             } else {
-                nextMonster = monster;
+                nextMonster = new Monster("Null Monster", "Bat", 420000, 0, 300000000, 0);
             }
             playerCommands.remove(0);
             m = (Magic) playerCommands.get(0);
             playerCommands.remove(0);
-            System.out.println("Monster HP : " + monster.getCurrentHp());
+            System.out.println(monster.getName() + " HP : " + monster.getCurrentHp());
 
             switch(m.getName()) {
                 case "Basic":
@@ -850,7 +945,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                     factory.chainLightning(attacker, monster, monsterParty);
                     break;
                 case "Heal":
-                    factory.healCharactersWithMagic(attacker, monster, playerParty, (RestorativeMagic)m);
+                    factory.healCharactersWithMagic(attacker, monster, playerParty, (RestorativeMagic) m);
                     break;
                 case "Frostbite":
                     factory.frostbite(attacker, monster);
@@ -870,9 +965,12 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                 default:
                     //DO NOTHING??? HOW DID THEY DO THAT
             }
-            System.out.println(monster.getCurrentHp());
+            System.out.println(monster.getName() + " HP: " + monster.getCurrentHp());
             if (monster.is_dead()) {
-                //TODO: Disable him
+                removeEnemy(monsterPos);
+            }
+            if(nextMonster.getClass() == Monster.class && nextMonster.is_dead()) {
+                removeEnemy(nextMonsterPos);
             }
             if(monsterParty.isEveryEnemyDead()) {
                 for(PlayerActor p : playerParty.getParty()) {
@@ -885,9 +983,16 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             }
             if (!playerParty.canPartyStillAttack()) {
                 for(Monster thisMonster : monsterParty.getParty()) {
-                    factory.enemyAttackAI(thisMonster, playerParty, new OffensiveMagic("Basic2", "There is none", -15, 20, 0));
+                   if(!thisMonster.is_dead())
+                       factory.enemyAttackAI(thisMonster, playerParty, new OffensiveMagic("Basic2", "There is none", -15, 20, 0));
                 }
             }
+
+            for (int i = 0; i < playerParty.getParty().size(); i++) {
+                PlayerActor thisActor = playerParty.getParty().get(i);
+                players.set(i, thisActor);
+            }
+            setPlayerStats(playerParty.getParty());
 
             for(PlayerActor p : playerParty.getParty()) {
                 if(p.is_dead()) {
@@ -911,6 +1016,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             mon.setHasAttacked(false);
         }
         newRound();
+        System.out.println("New Round");
         return 0;
     }
 
@@ -1012,6 +1118,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
         currentChar = 1;
         attackIsMagic = false;
+        isFriendAttacked = false;
         turnDone = false; //TODO: More with Turn Done
         factory = new BattleFactory();
 
