@@ -107,7 +107,7 @@ public class CharacterImage extends ImageView {
                         Constants.TILE_SIZE));
                 //Maren's part start
                 //test for enemyencounter every time walking a step
-                setEnemyEncounter();
+//                setEnemyEncounter();
 
                 if(getEnemyEncounter() && startbattle) {
                     battlefactory.startBattle();

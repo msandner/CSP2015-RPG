@@ -5700,8 +5700,8 @@
   "teleportPoints": [
     {
       "random": true,
-      "randomHeight": 40,
-      "randomWidth": 50,
+      "randomHeight": 60,
+      "randomWidth": 60,
       "randomFloors": 2,
       "targetField": "worldMap",
       "targetPoint": "woodLake",
