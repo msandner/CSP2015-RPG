@@ -5689,37 +5689,28 @@
     {
       "x": 13,
       "y": 5,
-      "name": "icyTown"
+      "name": "castelstart"
+    },
+    {
+      "x": 11,
+      "y": 19,
+      "name": "icebeginning"
     }
   ],
   "teleportPoints": [
     {
-      "random": false,
-      "randomHeight": 60,
+      "random": true,
+      "randomHeight": 70,
       "randomWidth": 50,
-      "randomFloors": 1,
-      "targetField": "icyTown",
-      "targetPoint": "entry",
+      "randomFloors": 2,
+      "targetField": "dungeon_room",
+      "targetPoint": "startroom",
       "sourceField": "worldMap",
-      "sourcePoint": "iceGraveyard",
+      "sourcePoint": "castelstart",
       "randomType": "TEST",
       "x": 13,
       "y": 4,
-      "name": "icyTown"
-    },
-    {
-      "random": false,
-      "randomHeight": 60,
-      "randomWidth": 50,
-      "randomFloors": 1,
-      "targetField": "icyTown",
-      "targetPoint": "entry",
-      "sourceField": "worldMap",
-      "sourcePoint": "iceGraveyard",
-      "randomType": "TEST",
-      "x": 14,
-      "y": 4,
-      "name": "icyTown"
+      "name": "icedungeonstart"
     }
   ]
 }

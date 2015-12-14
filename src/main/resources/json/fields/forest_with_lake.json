@@ -1,6 +1,6 @@
 {
   "groundImage": "Outside",
-  "decoImage": "Outside3",
+  "decoImage": "World",
   "groundTiles": [
     [
       {
@@ -4245,8 +4245,8 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 7,
-        "y": 10,
+        "x": 12,
+        "y": 11,
         "tileImage": "Outside3"
       },
       {
@@ -5232,16 +5232,16 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 11,
+        "y": 8,
+        "tileImage": "World"
       },
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 12,
+        "y": 8,
+        "tileImage": "World"
       },
       {
         "walkable": true,
@@ -5690,6 +5690,16 @@
       "x": 17,
       "y": 10,
       "name": "woodLake"
+    },
+    {
+      "x": 16,
+      "y": 17,
+      "name": "laketown"
+    },
+    {
+      "x": 7,
+      "y": 9,
+      "name": "lakebeginning"
     }
   ],
   "teleportPoints": [
@@ -5706,6 +5716,16 @@
       "x": 17,
       "y": 9,
       "name": "woodLake"
+    },
+    {
+      "random": false,
+      "targetField": "town_with_shop",
+      "targetPoint": "townbeginning",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 16,
+      "y": 16,
+      "name": "laketown"
     }
   ]
 }

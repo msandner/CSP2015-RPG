@@ -1,0 +1,1471 @@
+{
+  "groundImage": "Inside",
+  "decoImage": "Other2",
+  "groundTiles": [
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 7,
+        "tileImage": "Outside2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 1,
+        "y": 7,
+        "tileImage": "Outside2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 1,
+        "y": 7,
+        "tileImage": "Outside2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 2,
+        "y": 7,
+        "tileImage": "Outside2"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 3,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 2,
+        "y": 2,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 3,
+        "tileImage": "Inside"
+      }
+    ]
+  ],
+  "decoTiles": [
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 12,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 11,
+        "y": 12,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 13,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 11,
+        "y": 13,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 2,
+        "y": 14,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "Chest"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "Chest"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 15,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 9,
+        "y": 12,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 12,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 9,
+        "y": 13,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 13,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ]
+  ],
+  "startPoints": [
+    {
+      "x": 5,
+      "y": 1,
+      "name": "startroom"
+    }
+  ],
+  "teleportPoints": [
+    {
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "worldMap",
+      "targetPoint": "startdesertdungeon",
+      "sourceField": "",
+      "sourcePoint": "",
+      "randomType": "TEST",
+      "x": 5,
+      "y": 0,
+      "name": "dungeon"
+    }
+  ]
+}

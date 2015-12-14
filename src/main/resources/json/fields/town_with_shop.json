@@ -5689,19 +5689,69 @@
     {
       "x": 11,
       "y": 10,
-      "name": "start"
+      "name": "starttown"
+    },
+    {
+      "x": 15,
+      "y": 9,
+      "name": "townshop"
+    },
+    {
+      "x": 10,
+      "y": 0,
+      "name": "townbeginning"
+    },
+    {
+      "x": 0,
+      "y": 10,
+      "name": "towndesert"
+    },
+    {
+      "x": 10,
+      "y": 19,
+      "name": "startroad"
     }
   ],
   "teleportPoints": [
     {
       "random": false,
-      "targetField": "shop",
+      "targetField": "",
       "targetPoint": "",
       "sourceField": "",
       "sourcePoint": "",
       "x": 15,
       "y": 8,
-      "name": "shoptile"
+      "name": "shopteleport"
+    },
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "startdeserttown",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 0,
+      "y": 9,
+      "name": "desertstart"
+    },
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "laketown",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 9,
+      "y": 0,
+      "name": "laketeleport"
+    },
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "roadtownstart",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 9,
+      "y": 19,
+      "name": "stoneteleporr"
     }
   ]
 }

@@ -2855,8 +2855,8 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 7,
-        "y": 10,
+        "x": 13,
+        "y": 11,
         "tileImage": "Outside3"
       },
       {
@@ -5695,6 +5695,11 @@
       "x": 1,
       "y": 1,
       "name": "woodCamp"
+    },
+    {
+      "x": 1,
+      "y": 15,
+      "name": "startforestcamp"
     }
   ],
   "teleportPoints": [

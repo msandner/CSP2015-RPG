@@ -1,6 +1,6 @@
 {
   "groundImage": "Outside",
-  "decoImage": "Outside3",
+  "decoImage": "World",
   "groundTiles": [
     [
       {
@@ -4948,9 +4948,9 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 15,
+        "y": 6,
+        "tileImage": "World"
       },
       {
         "walkable": true,
@@ -5690,18 +5690,42 @@
       "x": 0,
       "y": 9,
       "name": "start"
+    },
+    {
+      "x": 16,
+      "y": 3,
+      "name": "roaddungeon"
+    },
+    {
+      "x": 16,
+      "y": 15,
+      "name": "roadtownstart"
     }
   ],
   "teleportPoints": [
     {
+      "random": true,
+      "randomHeight": 20,
+      "randomWidth": 60,
+      "randomFloors": 1,
+      "targetField": "dungeon_room",
+      "targetPoint": "startroom",
+      "sourceField": "worldMap",
+      "sourcePoint": "roaddungeon",
+      "randomType": "TEST",
+      "x": 16,
+      "y": 2,
+      "name": "roaddungeon"
+    },
+    {
       "random": false,
-      "targetField": "dungeon",
-      "targetPoint": "",
+      "targetField": "town_with_shop",
+      "targetPoint": "startroad",
       "sourceField": "",
       "sourcePoint": "",
       "x": 16,
-      "y": 2,
-      "name": "dungeon"
+      "y": 14,
+      "name": "roadtown"
     }
   ]
 }

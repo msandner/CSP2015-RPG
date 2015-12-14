@@ -4983,10 +4983,10 @@
         "tileImage": "emptyTile"
       },
       {
-        "walkable": false,
+        "walkable": true,
         "complex": false,
-        "x": 7,
-        "y": 9,
+        "x": 6,
+        "y": 7,
         "tileImage": "World"
       },
       {
@@ -5689,29 +5689,44 @@
     {
       "x": 18,
       "y": 14,
-      "name": "start"
+      "name": "startdesert"
+    },
+    {
+      "x": 17,
+      "y": 1,
+      "name": "startdesertdungeon"
+    },
+    {
+      "x": 1,
+      "y": 16,
+      "name": "startdeserttown"
     }
   ],
   "teleportPoints": [
     {
-      "random": false,
-      "targetField": "town",
-      "targetPoint": "",
-      "sourceField": "",
-      "sourcePoint": "",
-      "x": 1,
-      "y": 15,
-      "name": "townteleport"
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "dungeon_room",
+      "targetPoint": "startroom",
+      "sourceField": "worldMap",
+      "sourcePoint": "startdesertdungeon",
+      "randomType": "TEST",
+      "x": 17,
+      "y": 0,
+      "name": "dungeon"
     },
     {
       "random": false,
-      "targetField": "dungeon",
-      "targetPoint": "",
+      "targetField": "town_with_shop",
+      "targetPoint": "towndesert",
       "sourceField": "",
       "sourcePoint": "",
-      "x": 17,
-      "y": 0,
-      "name": "dungeonteleport"
+      "randomType": "TEST",
+      "x": 1,
+      "y": 15,
+      "name": "town"
     }
   ]
 }

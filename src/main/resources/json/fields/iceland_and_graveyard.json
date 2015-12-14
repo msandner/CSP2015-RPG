@@ -5690,6 +5690,11 @@
       "x": 13,
       "y": 16,
       "name": "iceGraveyard"
+    },
+    {
+      "x": 0,
+      "y": 9,
+      "name": "icelandbeginnig"
     }
   ],
   "teleportPoints": [
