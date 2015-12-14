@@ -131,9 +131,9 @@
         </VBox>
         <VBox prefHeight="100.0" prefWidth="417.0">
           <children>
-            <Button fx:id="playerButton1" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="playerButton2" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
-            <Button fx:id="playerButton3" mnemonicParsing="false" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="playerButton1" mnemonicParsing="false" onAction="#setFriendTargeted" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="playerButton2" mnemonicParsing="false" onAction="#setFriendTargeted" prefHeight="39.0" prefWidth="245.0" text="" />
+            <Button fx:id="playerButton3" mnemonicParsing="false" onAction="#setFriendTargeted" prefHeight="39.0" prefWidth="245.0" text="" />
           </children>
         </VBox>
       </children>

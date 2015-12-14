@@ -27,7 +27,7 @@ public class CharacterImage extends ImageView {
     private boolean walking;
     private boolean enemyEncounter;
 
-    /* set on true ifa you want the battlwadasde to appear*/
+    /* set on true ifa you want the battle to appear*/
     private boolean startbattle = true;
 
     private BattleFactory battlefactory = new BattleFactory();
@@ -107,7 +107,7 @@ public class CharacterImage extends ImageView {
                         Constants.TILE_SIZE));
                 //Maren's part start
                 //test for enemyencounter every time walking a step
-                setEnemyEncounter();
+//                setEnemyEncounter();
 
                 if(getEnemyEncounter() && startbattle) {
                     battlefactory.startBattle();

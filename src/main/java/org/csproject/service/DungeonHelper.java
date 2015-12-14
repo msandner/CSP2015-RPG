@@ -2,13 +2,7 @@ package org.csproject.service;
 
 import java.util.*;
 
-import org.csproject.model.field.DungeonDetails;
-import org.csproject.model.field.Field;
-import org.csproject.model.field.StartPoint;
-import org.csproject.model.field.TeleportPoint;
-import org.csproject.model.field.Tile;
-import org.csproject.model.field.TileInfo;
-import org.csproject.model.field.TileInfoFilter;
+import org.csproject.model.field.*;
 
 import static org.csproject.model.Constants.*;
 
@@ -68,7 +62,7 @@ public class DungeonHelper {
     private static DungeonDetails getTestDungeonDetails(int height, int width, int floors, String targetMap,
                                                         String targetPoint, String sourceMap, String sourcePoint,
                                                         WorldService worldService) {
-        Map<TileInfoFilter, List<Field>> tileMapping = new HashMap<>();
+        Map<TileInfoFilter, FieldSelection> tileMapping = new HashMap<>();
         List<TileInfoFilter> filterOrder = new ArrayList<>();
 
         Field leftRoom = worldService.getField("test/leftRoom1");
@@ -134,20 +128,20 @@ public class DungeonHelper {
         TileInfoFilter topEndFilter = getTopFilter(TileInfo.END_POS, 4, topRoom.getWidth(), topRoom.getHeight());
         TileInfoFilter bottomEndFilter = getBottomFilter(TileInfo.END_POS, 4, bottomRoom.getWidth(), bottomRoom.getHeight());
 
-        tileMapping.put(leftRoomFilter, Collections.singletonList(leftRoom));
-        tileMapping.put(rightRoomFilter, Collections.singletonList(rightRoom));
-        tileMapping.put(topRoomFilter, Collections.singletonList(topRoom));
-        tileMapping.put(bottomRoomFilter, Collections.singletonList(bottomRoom));
+        tileMapping.put(leftRoomFilter, new FieldSelection(Collections.singletonList(leftRoom)));
+        tileMapping.put(rightRoomFilter, new FieldSelection(Collections.singletonList(rightRoom)));
+        tileMapping.put(topRoomFilter, new FieldSelection(Collections.singletonList(topRoom)));
+        tileMapping.put(bottomRoomFilter, new FieldSelection(Collections.singletonList(bottomRoom)));
 
-        tileMapping.put(leftStartFilterInfo, Collections.singletonList(leftStart));
-        tileMapping.put(rightStartFilterInfo, Collections.singletonList(rightStart));
-        tileMapping.put(topStartFilter, Collections.singletonList(topStart));
-        tileMapping.put(bottomStartFilter, Collections.singletonList(bottomStart));
+        tileMapping.put(leftStartFilterInfo, new FieldSelection(Collections.singletonList(leftStart)));
+        tileMapping.put(rightStartFilterInfo, new FieldSelection(Collections.singletonList(rightStart)));
+        tileMapping.put(topStartFilter, new FieldSelection(Collections.singletonList(topStart)));
+        tileMapping.put(bottomStartFilter, new FieldSelection(Collections.singletonList(bottomStart)));
 
-        tileMapping.put(leftEndFilterInfo, Collections.singletonList(leftEnd));
-        tileMapping.put(rightEndFilterInfo, Collections.singletonList(rightEnd));
-        tileMapping.put(topEndFilter, Collections.singletonList(topEnd));
-        tileMapping.put(bottomEndFilter, Collections.singletonList(bottomEnd));
+        tileMapping.put(leftEndFilterInfo, new FieldSelection(Collections.singletonList(leftEnd)));
+        tileMapping.put(rightEndFilterInfo,new FieldSelection( Collections.singletonList(rightEnd)));
+        tileMapping.put(topEndFilter, new FieldSelection(Collections.singletonList(topEnd)));
+        tileMapping.put(bottomEndFilter, new FieldSelection(Collections.singletonList(bottomEnd)));
 
         TileInfo[][] wideWallFilter = new TileInfo[][]{
                 {TileInfo.BLOCKING, TileInfo.BLOCKING},
@@ -173,14 +167,14 @@ public class DungeonHelper {
         TileInfoFilter wallFilterInfo = new TileInfoFilter(wallFilter, 0, -1);
         TileInfoFilter wall2FilterInfo = new TileInfoFilter(wallFilter2, 0, -1);
 
-        tileMapping.put(wideWallFilterInfo,
-                Collections.singletonList(new Field(null, wideWall)));
-        tileMapping.put(wallFilterInfo, Collections.singletonList(new Field(null, wall)));
-        tileMapping.put(wall2FilterInfo, Collections.singletonList(new Field(null, wall)));
+        tileMapping.put(wideWallFilterInfo,new FieldSelection(
+                Collections.singletonList(new Field(null, wideWall))));
+        tileMapping.put(wallFilterInfo, new FieldSelection(Collections.singletonList(new Field(null, wall))));
+        tileMapping.put(wall2FilterInfo, new FieldSelection(Collections.singletonList(new Field(null, wall))));
 
         Tile[][] ground = {{new Tile(2, 3, true, CS_INSIDE_1)}};
         TileInfoFilter singleWalkable = new TileInfoFilter(new TileInfo[][]{{TileInfo.WALKABLE}}, 0, 0);
-        tileMapping.put(singleWalkable,Collections.singletonList(new Field(ground, null)));
+        tileMapping.put(singleWalkable, new FieldSelection(Collections.singletonList(new Field(ground, null))));
 
 
         filterOrder.add(leftRoomFilter);
@@ -202,8 +196,8 @@ public class DungeonHelper {
 
         filterOrder.add(singleWalkable);
 
-        return new DungeonDetails(height, width, floors, 12, 12, 4, CS_INSIDE_1, CS_INSIDE_1, targetMap, targetPoint, sourceMap,
-                sourcePoint, tileMapping, filterOrder);
+        return new DungeonDetails(height, width, floors, 12, 12, 4, CS_INSIDE_1, CS_INSIDE_1, targetMap, targetPoint,
+                sourceMap, sourcePoint, tileMapping, filterOrder);
     }
 
     /**
@@ -225,8 +219,10 @@ public class DungeonHelper {
         int pathWidth = 6;
 
         List<TileInfoFilter> filterOrder = new ArrayList<>();
-        Map<TileInfoFilter, List<Field>> tileMapping = new HashMap<>();
+        Map<TileInfoFilter, FieldSelection> tileMapping = new HashMap<>();
 
+
+        //startPoints and endPoints
         Field topStartField = worldService.getField("wood/upperEntrance");
         Field bottomStartField = worldService.getField("wood/downerEntrance");
         Field topEndField = worldService.getField("wood/upperEntrance");
@@ -250,17 +246,27 @@ public class DungeonHelper {
         TileInfoFilter rightEnd = getRightFilter(TileInfo.END_POS, pathWidth, roomWidth, roomHeight);
         TileInfoFilter leftEnd = getLeftFilter(TileInfo.END_POS, pathWidth, roomWidth, roomHeight);
 
-        tileMapping.put(topStart, Collections.singletonList(topStartField));
-        tileMapping.put(bottomStart, Collections.singletonList(bottomStartField));
-        tileMapping.put(rightStart, Collections.singletonList(topStartField));
-        tileMapping.put(leftStart, Collections.singletonList(topStartField));
-        tileMapping.put(topEnd, Collections.singletonList(topEndField));
-        tileMapping.put(bottomEnd, Collections.singletonList(bottomEndField));
-        tileMapping.put(rightEnd, Collections.singletonList(topEndField));
-        tileMapping.put(leftEnd, Collections.singletonList(topEndField));
+        tileMapping.put(topStart, new FieldSelection(Collections.singletonList(topStartField)));
+        tileMapping.put(bottomStart, new FieldSelection(Collections.singletonList(bottomStartField)));
+        tileMapping.put(rightStart, new FieldSelection(Collections.singletonList(topStartField)));
+        tileMapping.put(leftStart, new FieldSelection(Collections.singletonList(topStartField)));
+        tileMapping.put(topEnd, new FieldSelection(Collections.singletonList(topEndField)));
+        tileMapping.put(bottomEnd, new FieldSelection(Collections.singletonList(bottomEndField)));
+        tileMapping.put(rightEnd, new FieldSelection(Collections.singletonList(topEndField)));
+        tileMapping.put(leftEnd, new FieldSelection(Collections.singletonList(topEndField)));
 
         filterOrder.addAll(Arrays.asList(topStart, bottomStart, rightStart, leftStart, topEnd, bottomEnd, rightEnd,
                 leftEnd));
+
+        //midRooms
+        TileInfoFilter randomRoomFilter = new TileInfoFilter(new TileInfo[][]{{TileInfo.ROOM_POS}},0,0);
+        filterOrder.add(randomRoomFilter);
+        FieldSelection roomFields = new FieldSelection();
+        roomFields.getFields().add(worldService.getField("wood/woodOasis"));
+        roomFields.getSingletonFields().add(worldService.getField("wood/woodMine"));
+
+        tileMapping.put(randomRoomFilter, roomFields);
+
 
         // common tiles
         Tile grass = new Tile(0, 0, true, true, CS_OUTSIDE_1);
@@ -278,15 +284,15 @@ public class DungeonHelper {
                 {grass, grass}
         };
         Tile[][] fourTrees = new Tile[][]{
-                {null, new Tile(0, 14, true, false, CS_OUTSIDE_3), new Tile(1, 14, true, false, CS_OUTSIDE_3), null},
-                {new Tile(0, 14, true, false, CS_OUTSIDE_3), new Tile(2, 14, true, false, CS_OUTSIDE_3),
-                        new Tile(3, 14, true, false, CS_OUTSIDE_3), new Tile(1, 14, true, false, CS_OUTSIDE_3)},
-                {new Tile(0, 15, true, false, CS_OUTSIDE_3), new Tile(2, 15, true, false, CS_OUTSIDE_3),
-                        new Tile(3, 15, true, false, CS_OUTSIDE_3), new Tile(1, 15, true, false, CS_OUTSIDE_3)},
-                {null, new Tile(0, 15, true, false, CS_OUTSIDE_3), new Tile(1, 15, true, false, CS_OUTSIDE_3), null}
+                {null, new Tile(0, 14, false, false, CS_OUTSIDE_3), new Tile(1, 14, false, false, CS_OUTSIDE_3), null},
+                {new Tile(0, 14, false, false, CS_OUTSIDE_3), new Tile(2, 14, false, false, CS_OUTSIDE_3),
+                        new Tile(3, 14, false, false, CS_OUTSIDE_3), new Tile(1, 14, false, false, CS_OUTSIDE_3)},
+                {new Tile(0, 15, false, false, CS_OUTSIDE_3), new Tile(2, 15, false, false, CS_OUTSIDE_3),
+                        new Tile(3, 15, false, false, CS_OUTSIDE_3), new Tile(1, 15, false, false, CS_OUTSIDE_3)},
+                {null, new Tile(0, 15, false, false, CS_OUTSIDE_3), new Tile(1, 15, false, false, CS_OUTSIDE_3), null}
         };
         List<Field> fourTreesField = Collections.singletonList(new Field(fourTreeGround, fourTrees));
-        tileMapping.put(blocking4x4Filter, fourTreesField);
+        tileMapping.put(blocking4x4Filter, new FieldSelection(fourTreesField));
         filterOrder.add(blocking4x4Filter);
 
         // 2x2 filter
@@ -295,8 +301,8 @@ public class DungeonHelper {
                 {grass, grass}
         };
         Tile[][] singleTree = new Tile[][]{
-                {new Tile(0, 14, true, false, CS_OUTSIDE_3), new Tile(1, 14, false, false, CS_OUTSIDE_3)},
-                {new Tile(0, 15, true, false, CS_OUTSIDE_3), new Tile(1, 15, false, false, CS_OUTSIDE_3)}
+                {new Tile(0, 14, false, false, CS_OUTSIDE_3), new Tile(1, 14, false, false, CS_OUTSIDE_3)},
+                {new Tile(0, 15, false, false, CS_OUTSIDE_3), new Tile(1, 15, false, false, CS_OUTSIDE_3)}
         };
 
         List<Field> single2x2TreeField = Collections.singletonList(new Field(treeGround, singleTree));
@@ -304,7 +310,7 @@ public class DungeonHelper {
                 {TileInfo.BLOCKING, TileInfo.BLOCKING},
                 {TileInfo.BLOCKING, TileInfo.BLOCKING},
         }, 0, 0);
-        tileMapping.put(blocking2x2Filter, single2x2TreeField);
+        tileMapping.put(blocking2x2Filter, new FieldSelection(single2x2TreeField));
         filterOrder.add(blocking2x2Filter);
 
         Field singleGrassGround = new Field(new Tile[][]{{new Tile(0, 0, true, false, CS_OUTSIDE_1)}}, null);
@@ -314,13 +320,13 @@ public class DungeonHelper {
         TileInfoFilter singleWalkableField = new TileInfoFilter(new TileInfo[][]{{TileInfo.WALKABLE}}, 0, 0);
         TileInfoFilter singleBlockingField = new TileInfoFilter(new TileInfo[][]{{TileInfo.BLOCKING}}, 0, 0);
 
-        tileMapping.put(singleWalkableField, groundFields);
+        tileMapping.put(singleWalkableField, new FieldSelection(groundFields));
         filterOrder.add(singleWalkableField);
-        tileMapping.put(singleBlockingField, groundFields);
+        tileMapping.put(singleBlockingField, new FieldSelection(groundFields));
         filterOrder.add(singleBlockingField);
 
-        return new DungeonDetails(height, width, floors, 12, 12, pathWidth, CS_INSIDE_1, CS_INSIDE_1, targetMap, targetPoint, sourceMap, sourcePoint, tileMapping,
-                filterOrder);
+        return new DungeonDetails(height, width, floors, 12, 12, pathWidth, CS_INSIDE_1, CS_INSIDE_1, targetMap,
+                targetPoint, sourceMap, sourcePoint, tileMapping, filterOrder);
     }
 
     /**

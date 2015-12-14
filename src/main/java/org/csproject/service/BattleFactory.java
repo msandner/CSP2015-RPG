@@ -214,13 +214,16 @@ public class BattleFactory {
     //for healing a victim or the whole party
     public void healCharactersWithMagic(PlayerActor attacker, BattleActor victim, PlayerParty party, RestorativeMagic magic) {
         if (!attacker.playerHasAttacked()) {
-            if (magic.getTarget().equals("Player")) {
+            if (magic.getTarget().equals("Player") && victim.getCurrentHp() > 0) {
+                System.out.println("Value" + magic.getValue());
                 victim.addToCurrentHp(magic.getValue());
                 System.out.println("Healed character");
             } else if (magic.getTarget().equals("Team")) {
                 //restoring health from every teammember
                 for (PlayerActor p : party.getParty()) {
-                    p.addToCurrentHp(magic.getValue());
+                    if (p.getCurrentHp() > 0) {
+                        p.addToCurrentHp(magic.getValue());
+                    }
                     System.out.println("Healed party");
                 }
             }

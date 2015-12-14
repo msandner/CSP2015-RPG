@@ -1,0 +1,2091 @@
+{
+  "groundImage": "Dungeon",
+  "decoImage": "Outside3",
+  "groundTiles": [
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": false,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 4,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 0,
+        "y": 1,
+        "tileImage": "Dungeon"
+      }
+    ]
+  ],
+  "decoTiles": [
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 15,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 15,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 3,
+        "y": 9,
+        "tileImage": "Outside3"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": true,
+        "x": 7,
+        "y": 0,
+        "tileImage": "Dungeon"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": false,
+        "complex": false,
+        "x": 10,
+        "y": 15,
+        "tileImage": "Other2"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 13,
+        "y": 12,
+        "tileImage": "Outside3"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ],
+    [
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 13,
+        "y": 13,
+        "tileImage": "Outside3"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      },
+      {
+        "walkable": true,
+        "complex": false,
+        "x": 0,
+        "y": 0,
+        "tileImage": "emptyTile"
+      }
+    ]
+  ],
+  "startPoints": [
+    {
+      "x": 5,
+      "y": 9,
+      "name": "entry"
+    }
+  ],
+  "teleportPoints": [
+    {
+      "random": false,
+      "targetField": "",
+      "targetPoint": "MineEntry",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 5,
+      "y": 10,
+      "name": "entry"
+    }
+  ]
+}
