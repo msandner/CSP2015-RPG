@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import org.csproject.model.actors.PlayerParty;
 import org.csproject.model.items.Item;
 import org.csproject.service.ScreensController;
-import org.csproject.service.shopService;
+import org.csproject.service.ShopService;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -125,7 +125,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     private String currentType;
 
-    private shopService shopService;
+    private ShopService shopService;
 
     /**
      * Sets up the shop screen; recognizes the player party and sets up item stocks
@@ -507,6 +507,6 @@ public class ShopScreenController implements ControlledScreen, Initializable {
         assert sellingDownButton != null : "fx:id=\"sellingDownButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert sellingBackButton != null : "fx:id=\"sellingBackButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
 
-        shopService = new shopService();
+        shopService = new ShopService();
     }
 }
