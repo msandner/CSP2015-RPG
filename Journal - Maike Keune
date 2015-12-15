@@ -57,8 +57,9 @@
 13.12.2015 17:30 - 22:31 MESZ: working on dungeon type, clean up for old generated maps, overhauled dungeon generator to be more generic,
                                commented code, refactored.
 14.12.2015 14:47 - 16:59 MESZ: working on final report.
-14.12.2015 18:30 - 21:06 MESZ: working on final report.
+14.12.2015 18:30 - 21:06 MESZ: working on final report added randomized dungeon and overworld part, added editor part, added some reflections on principles.
 14.12.2015 21:47 - 00:10 MESZ: added hidden room to wood type dungeon, added possibility to link a teleporter within a random dungeon to a static field 
                                fixed teleportPoints in "forest_with_camp.json", "forest_with_lake.json", "icy_land.json", iceland_and_graveyard.json", linked "icyTown" to "icy_land"
                                added dungeons to the overworld
-Total time yet: 105 hours 13 minutes
+15.12.2015 12:25 - 13:13 MESZ: working on final report, added Spring part, edited randomized overworld and dungeon part.
+Total time yet: 106 hours 01 minutes
