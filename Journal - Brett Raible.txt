@@ -43,5 +43,6 @@ CIS 467
 12/15: Worked on Final Report:           10:15 to 11:45 - 1 hour  30 mins
 12/15: Added music to the battle:         1:30 to  2:30 - 1 hour  00 mins
 12/15: GUI updates:                       3:00 to  3:30 - 0 hours 30 mins
+12/15 Skype meeting and small fixes:      4:45 to  6:45 - 2 hours 10 mins  
 ----------------------------------------------------------------------------
-Total:                                                   70 hours 12 mins
+Total:                                                   72 hours 22 mins
