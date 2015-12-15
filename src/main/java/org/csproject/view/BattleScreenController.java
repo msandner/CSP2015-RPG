@@ -23,9 +23,8 @@ import org.csproject.model.magic.RestorativeMagic;
 import org.csproject.service.BattleFactory;
 import org.csproject.service.ScreensController;
 
-import javax.swing.*;
-import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -122,6 +121,9 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
     @FXML
     private Button itemsButton;
+
+    @FXML
+    private Label expLabel;
 
     @FXML
     private Button magicButton;
@@ -232,6 +234,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     List<PlayerActor> players;
     List playerCommands;
     BattleFactory factory;
+    MediaPlayer songPlayer;
 
     ScreensController screenController;
     /**
@@ -249,6 +252,10 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         this.enemyList = enemyActors;
         setEnemies();
         setPlayers();
+
+        Media song = new Media(Paths.get("src/main/resources/sounds/BGM/battle/GameBattleMusicv3.mp3").toUri().toString());
+        songPlayer = new MediaPlayer(song);
+        songPlayer.play();
     }
 
     /**
@@ -973,10 +980,22 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             if(monsterParty.isEveryEnemyDead()) {
                 for(PlayerActor p : playerParty.getParty()) {
                     p.addXP(monsterParty.getXP() / 3);
-                    System.out.println(p.getXP());
                 }
                 playerCommands.clear();
-                factory.endBattle();
+
+                expLabel.setText("Each player got " + monsterParty.getXP()/3 + " EXP!");
+                Thread fadeOut = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        expLabel.setVisible(true);
+                        while(songPlayer.getVolume() >= .000001) {
+                            songPlayer.setVolume(songPlayer.getVolume()-.000001);
+                        }
+                        expLabel.setVisible(false);
+                        factory.endBattle();
+                    }
+                });
+                fadeOut.start();
                 return 1;
             }
             if (!playerParty.canPartyStillAttack()) {
@@ -1002,6 +1021,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                 //gameover
                 //TODO: DO SOMETHING
                 factory.endBattle();
+                songPlayer.stop();
                 return 0;
             }
             //Call GUI methods
@@ -1016,6 +1036,24 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         newRound();
         System.out.println("New Round");
         return 0;
+    }
+
+    private void fadeMusic() {
+
+
+        Thread fadeOut = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                expLabel.setVisible(true);
+                while(songPlayer.getVolume() >= .000001) {
+                    songPlayer.setVolume(songPlayer.getVolume()-.000001);
+                }
+                expLabel.setVisible(false);
+            }
+        });
+//        fadeOut.setDaemon(true);
+        fadeOut.start();
+
     }
 
     /**
@@ -1093,6 +1131,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         assert playerNames != null : "fx:id=\"playerNames\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert runButton != null : "fx:id=\"runButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert spellBox != null : "fx:id=\"spellBox\" was not injected: check your FXML file 'BattleScreen.fxml'.";
+        assert expLabel != null : "fx:id=\"expLabel\" was not injected: check your FXML file 'BattleScreen.fxml'.";
         assert spellButton1 != null : "fx:id=\"spellButton1\" was not injected: check your FXML file 'BattleScreen.fxml'.";
         assert spellButton2 != null : "fx:id=\"spellButton2\" was not injected: check your FXML file 'BattleScreen.fxml'.";
         assert spellButton3 != null : "fx:id=\"spellButton3\" was not injected: check your FXML file 'BattleScreen.fxml'.";
