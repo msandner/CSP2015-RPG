@@ -50,6 +50,13 @@ public class ScreensController {
         root = new StackPane();
     }
 
+    /**
+     * Brett Raible
+     *
+     * Add a screen to the map
+     * @param name - Key of the map, name of the screen for future use
+     * @param screen - the node to put as a screen that can be loaded
+     */
     public void addScreen(String name, Node screen) {
         screens.put(name, screen);
     }
@@ -58,6 +65,14 @@ public class ScreensController {
         return screens.get(name);
     }
 
+    /**
+     * Brett Raible
+     *
+     * Load a screen (fxml file) into the map for future use.
+     * @param name - Key of the map, name of the screen
+     * @param fxmlFile - fxml file to be used as the screen
+     * @return
+     */
     public boolean loadScreen(String name, String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlFile));
@@ -76,6 +91,13 @@ public class ScreensController {
         }
     }
 
+    /**
+     * Brett Raible
+     *
+     * Sets the screen specified to be shown.
+     * @param name - name of the screen you want to be displayed
+     * @return - true if the screen is loaded and is shown, false otherwise
+     */
     public boolean setScreen(final String name) {
 
         if (screens.get(name) != null) { //screen loaded
@@ -109,6 +131,13 @@ public class ScreensController {
         }
     }
 
+    /**
+     * Brett Raible
+     *
+     * Fades the screen into view
+     * @param name
+     * @param opacity
+     */
     private void fadeScreenIn(String name, DoubleProperty opacity) {
         Node element = screens.get(name);
         root.getChildren().add(0, element);
@@ -118,6 +147,13 @@ public class ScreensController {
         fadeIn.play();
     }
 
+    /**
+     * Brett Raible
+     *
+     * Removes the screen from the map
+     * @param name - name of the screen desired to be unloaded.
+     * @return - true if the screen was unloaded, false otherwise
+     */
     public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
             LOG.warn("Screen did not exist!");

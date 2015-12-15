@@ -4,6 +4,7 @@ import org.csproject.model.actors.Actor;
 
 /**
  * Created by Brett on 11/9/2015.
+ * Unimplemented as of 12/16/2015
  */
 public class ChatPair {
     String actorType;

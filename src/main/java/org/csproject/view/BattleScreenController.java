@@ -29,6 +29,8 @@ import java.util.*;
 
 /**
  * Created by Brett on 11/22/2015.
+ *
+ * Controls the battle screen's FXML file as well as some of the logic of the battle
  */
 public class BattleScreenController implements ControlledScreen, Initializable {
 
@@ -582,6 +584,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Brett Raible
+     *
      * Gets a character image to display an individual party member
      * @param type - The character type, most likely referenced by the Constants class
      * @return - The character image representing the class given
@@ -765,6 +769,10 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         }
     }
 
+    /**
+     * Same thing as if you were targeting an enemy, but with an ally instead.
+     * @param actionEvent
+     */
     public void setFriendTargeted(ActionEvent actionEvent){
         chooseBox.setVisible(false);
         isFriendAttacked = true;
@@ -1018,19 +1026,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             }
             setPlayerStats(playerParty.getParty());
 
-            for(PlayerActor p : playerParty.getParty()) {
-                if(p.is_dead()) {
-                    //TODO: disable them
-                }
-            }
-
             if(playerParty.isEveryPlayerDead()) {
                 factory.gameOver();
                 songPlayer.stop();
                 return 0;
             }
-            //Call GUI methods
-
         }
         for(PlayerActor p : playerParty.getParty()) {
             p.setHasAttacked(false);
@@ -1039,26 +1039,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             mon.setHasAttacked(false);
         }
         newRound();
-        System.out.println("New Round");
         return 0;
-    }
-
-    private void fadeMusic() {
-
-
-        Thread fadeOut = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                expLabel.setVisible(true);
-                while(songPlayer.getVolume() >= .000001) {
-                    songPlayer.setVolume(songPlayer.getVolume()-.000001);
-                }
-                expLabel.setVisible(false);
-            }
-        });
-//        fadeOut.setDaemon(true);
-        fadeOut.start();
-
     }
 
     /**
@@ -1079,7 +1060,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /**
      * Brett Raible
      *
-     * Initialize all global variables.
+     * Initialize all global & FXML variables.
      * @param url
      * @param resourceBundle
      */
