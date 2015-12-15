@@ -8,14 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
-import org.csproject.model.actors.Monster;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.actors.PlayerParty;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MasterController extends Application {
 
@@ -30,9 +26,11 @@ public class MasterController extends Application {
     public static final String SHOP_SCREEN_ID = "shopScreen";
     public static final String SHOP_SCREEN_FILE = "ShopScreen.fxml";
 
-    //Switch these two statements to start the game faster/slower
-    public static final boolean fastStart = true;
-//    public static final boolean fastStart = false;
+    /**
+     * Switch these two statements to start the game faster/slower
+     */
+//  public static final boolean fastStart = true;
+    public static final boolean fastStart = false;
 
     public static ScreensController screensController;
 
@@ -47,8 +45,6 @@ public class MasterController extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-
         primaryStage.setWidth(Constants.SCREEN_WIDTH);
         primaryStage.setHeight(Constants.SCREEN_HEIGHT);
 
@@ -66,9 +62,15 @@ public class MasterController extends Application {
             primaryStage.setScene(new Scene(root));
 
         } else {
-            /* Skip the beginning scenes and start the game right away.
+            /** Skip the beginning scenes and start the game right away.
              * Change the values in the ScreensController class (setUpNewGame() function)
              * to view different scenes like the static map, dungeon, forest, etc
+             */
+
+            /**
+             * creating a static player party when using faststar, because you can't set a player party in the
+             * new game menu
+             * leveled them up to 13 for testing purposes
              */
             PlayerActor char1 = new PlayerActor("Bladerunner", Constants.CLASS_THIEF, 25);
             PlayerActor char2 = new PlayerActor("Tim", Constants.CLASS_MAGE, 25);
@@ -81,8 +83,8 @@ public class MasterController extends Application {
                 x++;
             }
 
-            char1.setCurrentHp(50);
-            char3.setCurrentHp(50);
+            //char1.setCurrentHp(50);
+            //char3.setCurrentHp(50);
 
             PlayerParty party = new PlayerParty(char1, char2, char3, 0);
 
@@ -91,26 +93,13 @@ public class MasterController extends Application {
             screensController.setUpNewGame();
             screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
             screensController.setScreen(GAME_SCREEN);
-
-            /*
-                Example for creating a new battle. Comment out the three lines above and uncomment
-                everything underneath this block comment. You have to call getBattleController from
-                a screensController object to be able to operate any methods to alter the gui.
-                In this example, all of the enemy images are still null, but I am able to start a new
-                battle, put all of the player characters in it, and damage one of them. Note that no
-                Monsters have been created at the time of this implementation.
-             */
             screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
 
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
             primaryStage.setScene(new Scene(root));
 
-            /*have to use a static playerparty for faststart*/
-
             screensController.setParty(party);
-
-
         }
         primaryStage.show();
     }

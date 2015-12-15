@@ -59,10 +59,23 @@ public class NewGameController implements ControlledScreen {
         screenController.setScreen(MasterController.START_MENU_ID);
     }
 
+
+    /**
+     * Maren Sandner
+     * to get the player party that gets set in the new game menu
+     * @return player party
+     */
     public PlayerParty getPParty() {
         return party;
     }
 
+
+    /**
+     * Maren Sandner
+     * creates the Constant type to the string, because the combobox would only give a string back
+     * @param type: type from cobobox (Mage, Thief, Knight)
+     * @return the mathcing Constant
+     */
     public String typeToConstant(String type) {
         String classtype = "no type";
         switch(type) {
@@ -79,11 +92,20 @@ public class NewGameController implements ControlledScreen {
         return classtype;
     }
 
+    /**
+     * Maren Sandner
+     * method gives the screencontroller the player party, so they can be used after the new game controller gets
+     * deleted when the actual game starts
+     */
     private void givePlayerParty(){
         screenController.setParty(getPParty());
 
     }
 
+    /**
+     * Maren Sandner
+     * method to set the field player to one of the players from the real player party
+     */
     private void setFieldPlayer() {
         screenController.getFieldScreen().setStartPlayer(getPParty().getPlayer(0));
     }

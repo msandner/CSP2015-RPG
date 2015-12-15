@@ -16,9 +16,9 @@
             <Image url="@images/titlescreens/Book.png" preserveRatio="true" smooth="true" />
           </image>
         </ImageView>
-        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="843.0" layoutY="46.0" prefHeight="46.0" prefWidth="357.0" styleClass="titleText" text="Final Fantasy Clone" textAlignment="CENTER" underline="false">
+        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="60.0" prefHeight="46.0" prefWidth="357.0" styleClass="titleText" text="World Of Zennestria" textAlignment="CENTER" underline="false">
           <font>
-            <Font size="24.0" />
+            <Font name="Book Antiqua" size="35.0" />
           </font>
           <stylesheets>
             <URL value="@Style.css" />
