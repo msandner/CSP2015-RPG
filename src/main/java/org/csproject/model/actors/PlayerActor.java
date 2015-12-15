@@ -164,6 +164,7 @@ public class PlayerActor extends BattleActor {
      * adds spells or increases the spell values depending on the level that is reached
      */
     public void levelUp() {
+        System.out.println("Level Up!");
         level += 1;
 
         maxMp = calcMp(level);
@@ -184,12 +185,19 @@ public class PlayerActor extends BattleActor {
             availableSpells.add(allSpells.get(3));
         } else {
              for(Magic m : availableSpells) {
+                 //setting the attack value
                  if(m.getName().equals("Heal")) {
                      m.setValue((int)(m.getValue() + (4 * Math.sqrt(level))));
+                 } else if(m.getName().equals("Basic")){
+                     m.setValue((int) (m.getValue() - (2 * Math.sqrt(level))));
                  } else {
-                     m.setValue((int) (m.getValue() - (4 * Math.sqrt(level))));
+                     m.setValue((int) (m.getValue() - (2 * Math.sqrt(level))));
                  }
-                 m.setMp((int)(m.getMp() - (4 * Math.sqrt(level))));
+
+                 //setting the mana
+                 if(!m.getName().equals("Basic")) {
+                     m.setMp((int) (m.getMp() - (4 * Math.sqrt(level))));
+                 }
              }
         }
     }

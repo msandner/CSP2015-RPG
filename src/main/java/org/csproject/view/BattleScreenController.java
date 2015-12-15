@@ -1025,9 +1025,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             }
 
             if(playerParty.isEveryPlayerDead()) {
-                //gameover
-                //TODO: DO SOMETHING
-                factory.endBattle();
+                factory.gameOver();
                 songPlayer.stop();
                 return 0;
             }

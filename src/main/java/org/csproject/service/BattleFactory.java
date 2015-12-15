@@ -1,7 +1,6 @@
 package org.csproject.service;
 
 import org.csproject.model.actors.*;
-import org.csproject.model.field.Field;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
@@ -50,6 +49,10 @@ public class BattleFactory {
      */
     public void endBattle() {
         MasterController.setScreen(MasterController.GAME_SCREEN);
+    }
+
+    public void gameOver() {
+        MasterController.setScreen(MasterController.START_MENU_ID);
     }
 
     /**
