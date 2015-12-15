@@ -15,7 +15,7 @@ import java.util.List;
  * The shop has three different stocks containing weapons, armor and potions.
  * Players may buy items using currency, or sell items to gain currency.
  */
-public class shopService {
+public class ShopService {
     protected List<Item> weaponStock;
     protected List<Item> armorStock;
     protected List<Item> potionStock;

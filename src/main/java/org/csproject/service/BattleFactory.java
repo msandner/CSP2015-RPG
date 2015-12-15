@@ -36,7 +36,7 @@ public class BattleFactory {
             MonsterParty monsterparty = getMonsters(actualplayers);
 
             battleController = MasterController.getBattleController();
-            battleController.startNewBattle(actualplayers.getParty(), monsterparty.getParty());
+            battleController.startNewBattle(actualplayers, monsterparty.getParty());
 
             System.out.println("Battle started");
 
@@ -275,6 +275,38 @@ public class BattleFactory {
                 System.out.println("Healed party");
             }
             attacker.addToCurrentMp(magic.getMp());
+            attacker.setHasAttacked(true);
+        }
+    }
+
+    /**
+     * Maren Sandner
+     * healing actors or the whole party
+     * @param attacker: the actor that uses the spell
+     * @param victim: the actor that should get healed
+     * @param party: player party
+     * @param item: the item for the healing
+     */
+    public void healCharactersWithItem(PlayerActor attacker, PlayerActor victim, PlayerParty party, RestorativeItem item) {
+        if (!attacker.playerHasAttacked()) {
+            if (item.getTarget().equals("Player") && victim.getCurrentHp() > 0) {
+                if(item.getAttribute().equals("Health")) {
+                    victim.addToCurrentHp(item.getValue());
+                    System.out.println("Healed character");
+                } else if(item.getAttribute().equals("Mana")) {
+                    victim.addToCurrentMp(item.getValue());
+                    System.out.println("Restored Mana");
+                }
+
+            } else if (item.getTarget().equals("Team")) {
+
+                for (PlayerActor p : party.getParty()) {
+                    if (p.getCurrentHp() > 0) {
+                        p.addToCurrentHp(item.getValue());
+                    }
+                }
+                System.out.println("Healed party");
+            }
             attacker.setHasAttacked(true);
         }
     }

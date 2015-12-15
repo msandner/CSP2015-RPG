@@ -194,7 +194,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the first item box, sends a request
-     * to shopService to check if the item can be bought.
+     * to ShopService to check if the item can be bought.
      */
     public void setItem1(){
         String s = item1.getText();
@@ -221,7 +221,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the second item box, sends a request
-     * to shopService to check if the item can be bought.
+     * to ShopService to check if the item can be bought.
      */
     public void setItem2(){
         String s = item2.getText();
@@ -248,7 +248,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the third item box, sends a request
-     * to shopService to check if the item can be bought.
+     * to ShopService to check if the item can be bought.
      */
     public void setItem3(){
         String s = item3.getText();
@@ -275,7 +275,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the fourth item box, sends a request
-     * to shopService to check if the item can be bought.
+     * to ShopService to check if the item can be bought.
      */
     public void setItem4(){
         String s = item4.getText();
@@ -384,7 +384,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the first box, calls
-     * shopService to sell the item
+     * ShopService to sell the item
      */
     public void setSellingItem1(){
         if(sellingItem1.getText() != ""){
@@ -398,7 +398,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the second box, calls
-     * shopService to sell the item
+     * ShopService to sell the item
      */
     public void setSellingItem2(){
         if(sellingItem2.getText() != ""){
@@ -412,7 +412,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the third box, calls
-     * shopService to sell the item
+     * ShopService to sell the item
      */
     public void setSellingItem3(){
         if(sellingItem3.getText() != ""){
@@ -426,7 +426,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the fourth box, calls
-     * shopService to sell the item
+     * ShopService to sell the item
      */
     public void setSellingItem4(){
         if(sellingItem1.getText() != ""){
@@ -465,10 +465,10 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
-     * Calls shopService to return the player to the field
+     * Calls ShopService to return the player to the field
      */
     /*public void leaveShop(){
-        shopService.leaveShop();
+        ShopService.leaveShop();
     }*/
 
     @Override

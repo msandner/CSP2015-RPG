@@ -17,6 +17,8 @@ import javafx.util.Duration;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.*;
 import org.csproject.model.bean.Direction;
+import org.csproject.model.items.Item;
+import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.magic.Magic;
 import org.csproject.model.magic.OffensiveMagic;
 import org.csproject.model.magic.RestorativeMagic;
@@ -230,10 +232,11 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     Map playerSpells;
     TranslateTransition moveChar, reverseMoveChar;
     int currentChar;
-    boolean attackIsMagic, isFriendAttacked, turnDone;
+    boolean attackIsMagic, isFriendAttacked, attackIsItem, turnDone;
 
     List<Monster> enemyList;
     List<PlayerActor> players;
+    List<Item> partyItems;
     List playerCommands;
     BattleFactory factory;
     MediaPlayer songPlayer;
@@ -247,10 +250,13 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      * @param players - The PlayerActor's with which to start the new battle
      * @param enemyActors - The PlayerActor's that will act as the enemies.
      */
-    public void startNewBattle(List<PlayerActor> players, List<Monster> enemyActors) {
+    public void startNewBattle(PlayerParty players, List<Monster> enemyActors) {
         battleScreenBGBottom.setImage(new Image("images/battleimages/Grassland.png"));
         battleScreenBGTop.setImage(new Image("images/battleimages/GrasslandTop.png"));
-        this.players = players;
+        this.players = players.getParty();
+        for(Item item : players.getInventory()) {
+            partyItems.add(item);
+        }
         this.enemyList = enemyActors;
         setEnemies();
         setPlayers();
@@ -697,6 +703,39 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             }
             spellBox.setVisible(true);
             attackIsMagic = false;
+        } else if(attackIsItem) {
+            resetSpellButtons();
+            for (Item i : partyItems) {
+                if (spellButton1.getText().equals("")) {
+                    spellButton1.setText(i.getItemName());
+                    spellButton1.setDisable(false);
+                } else if (spellButton2.getText().equals("")) {
+                    spellButton2.setText(i.getItemName());
+                    spellButton2.setDisable(false);
+                } else if (spellButton3.getText().equals("")) {
+                    spellButton3.setText(i.getItemName());
+                    spellButton3.setDisable(false);
+                } else if (spellButton4.getText().equals("")) {
+                    spellButton4.setText(i.getItemName());
+                    spellButton4.setDisable(false);
+                } else if (spellButton5.getText().equals("")) {
+                    spellButton5.setText(i.getItemName());
+                    spellButton5.setDisable(false);
+                } else if (spellButton6.getText().equals("")) {
+                    spellButton6.setText(i.getItemName());
+                    spellButton6.setDisable(false);
+                } else if (spellButton7.getText().equals("")) {
+                    spellButton7.setText(i.getItemName());
+                    spellButton7.setDisable(false);
+                } else if (spellButton8.getText().equals("")) {
+                    spellButton8.setText(i.getItemName());
+                    spellButton8.setDisable(false);
+                } else if (spellButton9.getText().equals("")) {
+                    spellButton9.setText(i.getItemName());
+                    spellButton9.setDisable(false);
+                }
+            }
+            spellBox.setVisible(true);
         } else {
             //Attack is basic attack
             getMagic("Basic");
@@ -714,6 +753,12 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      */
     private void getMagic(String magicName) {
         PlayerActor p = players.get(currentChar-1);
+        if(attackIsItem) {
+            for(Item i : partyItems) {
+                addCommands(i);
+            }
+            attackIsItem = false;
+        }
         for(Magic m : p.getSpells()) {
             if(m.getName().equals(magicName)) {
                 addCommands(m);
@@ -786,8 +831,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
         if(attackIsMagic) {
             resetSpellButtons();
-            for (String s : ((ArrayList<String>)playerSpells.get(currentChar))) {
-                if(spellButton1.getText().equals("")) {
+            for (String s : ((ArrayList<String>) playerSpells.get(currentChar))) {
+                if (spellButton1.getText().equals("")) {
                     spellButton1.setText(s);
                     spellButton1.setDisable(false);
                 } else if (spellButton2.getText().equals("")) {
@@ -818,6 +863,41 @@ public class BattleScreenController implements ControlledScreen, Initializable {
             }
             spellBox.setVisible(true);
             attackIsMagic = false;
+        } else if(attackIsItem) {
+            resetSpellButtons();
+            if (!partyItems.isEmpty()) {
+                for (Item i : partyItems) {
+                    if (spellButton1.getText().equals("")) {
+                        spellButton1.setText(i.getItemName());
+                        spellButton1.setDisable(false);
+                    } else if (spellButton2.getText().equals("")) {
+                        spellButton2.setText(i.getItemName());
+                        spellButton2.setDisable(false);
+                    } else if (spellButton3.getText().equals("")) {
+                        spellButton3.setText(i.getItemName());
+                        spellButton3.setDisable(false);
+                    } else if (spellButton4.getText().equals("")) {
+                        spellButton4.setText(i.getItemName());
+                        spellButton4.setDisable(false);
+                    } else if (spellButton5.getText().equals("")) {
+                        spellButton5.setText(i.getItemName());
+                        spellButton5.setDisable(false);
+                    } else if (spellButton6.getText().equals("")) {
+                        spellButton6.setText(i.getItemName());
+                        spellButton6.setDisable(false);
+                    } else if (spellButton7.getText().equals("")) {
+                        spellButton7.setText(i.getItemName());
+                        spellButton7.setDisable(false);
+                    } else if (spellButton8.getText().equals("")) {
+                        spellButton8.setText(i.getItemName());
+                        spellButton8.setDisable(false);
+                    } else if (spellButton9.getText().equals("")) {
+                        spellButton9.setText(i.getItemName());
+                        spellButton9.setDisable(false);
+                    }
+                }
+            }
+            spellBox.setVisible(true);
         } else {
             //Attack is basic attack
             getMagic("Basic");
@@ -833,7 +913,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      * to the list of commands.
      * @param m - The magic used to attack.
      */
-    private void addCommands(Magic m) {
+    private void addCommands(Object m) {
         playerCommands.add(players.get(currentChar-1));
         if(!isFriendAttacked) {
             playerCommands.add(enemyList.get(enemyAttacked));
@@ -914,6 +994,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         Monster nextMonster;
         int monsterPos = 0, nextMonsterPos = 0;
         Magic m;
+        RestorativeItem item;
 
         while(!playerCommands.isEmpty()) {
             for (PlayerActor p : playerParty.getParty()) {
@@ -938,60 +1019,71 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                 nextMonster = new Monster("Null Monster", "Bat", 420000, 0, 300000000, 0);
             }
             playerCommands.remove(0);
-            m = (Magic) playerCommands.get(0);
-            playerCommands.remove(0);
-            System.out.println(monster.getName() + " HP : " + monster.getCurrentHp());
+            if(playerCommands.get(0).getClass() == RestorativeItem.class && monster.getClass() != Monster.class) {
+                item = (RestorativeItem) playerCommands.get(0);
+                factory.healCharactersWithItem(attacker, (PlayerActor)monster, playerParty, item);
+                for(Item thisItem : partyItems) {
+                    if (thisItem.getItemName() == item.getItemName()) {
+                        partyItems.remove(thisItem);
+                        break;
+                    }
+                }
+            } else if(playerCommands.get(0).getClass() == OffensiveMagic.class || playerCommands.get(0).getClass() == RestorativeMagic.class){
+                m = (Magic) playerCommands.get(0);
+                System.out.println(monster.getName() + " HP : " + monster.getCurrentHp());
 
-            switch(m.getName()) {
-                case "Basic":
-                    factory.basicAttack(attacker, monster);
-                    break;
-                case "Shield Bash":
-                    factory.shieldBash(attacker, monster);
-                    break;
-                case "Whirlwind":
-                    factory.whirlwind(attacker, monster, nextMonster);
-                    break;
-                case "Berserk":
-                    factory.berserk(attacker, monster);
-                    break;
-                case "Massive Sword Slash":
-                    factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
-                    break;
-                case "Fireball":
-                    factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
-                    break;
-                case "Chain Lightning":
-                    factory.chainLightning(attacker, monster, monsterParty);
-                    break;
-                case "Heal":
-                    factory.healCharactersWithMagic(attacker, monster, playerParty, (RestorativeMagic) m);
-                    break;
-                case "Frostbite":
-                    factory.frostbite(attacker, monster);
-                    break;
-                case "Ambush":
-                    factory.ambush(attacker, monster);
-                    break;
-                case "Mutilate":
-                    factory.mutilate(attacker, monster);
-                    break;
-                case "Execute":
-                    factory.execute(attacker, monster);
-                    break;
-                case "Shuriken Toss":
-                    factory.shurikenToss(attacker, monsterParty);
-                    break;
-                default:
-                    break;
+                switch (m.getName()) {
+                    case "Basic":
+                        factory.basicAttack(attacker, monster);
+                        break;
+                    case "Shield Bash":
+                        factory.shieldBash(attacker, monster);
+                        break;
+                    case "Whirlwind":
+                        factory.whirlwind(attacker, monster, nextMonster);
+                        break;
+                    case "Berserk":
+                        factory.berserk(attacker, monster);
+                        break;
+                    case "Massive Sword Slash":
+                        factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
+                        break;
+                    case "Fireball":
+                        factory.attackCharacterWithMagic(attacker, monster, (OffensiveMagic) m, 1);
+                        break;
+                    case "Chain Lightning":
+                        factory.chainLightning(attacker, monster, monsterParty);
+                        break;
+                    case "Heal":
+                        factory.healCharactersWithMagic(attacker, monster, playerParty, (RestorativeMagic) m);
+                        break;
+                    case "Frostbite":
+                        factory.frostbite(attacker, monster);
+                        break;
+                    case "Ambush":
+                        factory.ambush(attacker, monster);
+                        break;
+                    case "Mutilate":
+                        factory.mutilate(attacker, monster);
+                        break;
+                    case "Execute":
+                        factory.execute(attacker, monster);
+                        break;
+                    case "Shuriken Toss":
+                        factory.shurikenToss(attacker, monsterParty);
+                        break;
+                    default:
+                        break;
+                }
+                System.out.println(monster.getName() + " HP: " + monster.getCurrentHp());
+                if (monster.is_dead()) {
+                    removeEnemy(monsterPos);
+                }
+                if(nextMonster.getClass() == Monster.class && nextMonster.is_dead()) {
+                    removeEnemy(nextMonsterPos);
+                }
             }
-            System.out.println(monster.getName() + " HP: " + monster.getCurrentHp());
-            if (monster.is_dead()) {
-                removeEnemy(monsterPos);
-            }
-            if(nextMonster.getClass() == Monster.class && nextMonster.is_dead()) {
-                removeEnemy(nextMonsterPos);
-            }
+            playerCommands.remove(0);
             if(monsterParty.isEveryEnemyDead()) {
                 for(PlayerActor p : playerParty.getParty()) {
                     p.addXP(monsterParty.getXP() / 3);
@@ -1131,6 +1223,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         enemyImages = new Image[6];
         playerSpells = new HashMap<Integer, List>();
         playerCommands = new ArrayList();
+        partyItems = new ArrayList<Item>();
 
         moveChar = new TranslateTransition(Duration.seconds(.25));
         moveChar.setFromX(55);
@@ -1141,10 +1234,16 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
         currentChar = 1;
         attackIsMagic = false;
+        attackIsItem = false;
         isFriendAttacked = false;
         turnDone = false; //TODO: More with Turn Done
         factory = new BattleFactory();
 
         moveCharForward(currentChar);
+    }
+
+    public void useItem(ActionEvent actionEvent) {
+        chooseBox.setVisible(true);
+        attackIsItem = true;
     }
 }

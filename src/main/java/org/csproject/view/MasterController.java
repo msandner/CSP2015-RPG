@@ -10,6 +10,7 @@ import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.actors.PlayerParty;
+import org.csproject.model.items.RestorativeItem;
 import org.csproject.service.ScreensController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -29,8 +30,8 @@ public class MasterController extends Application {
     /**
      * Switch these two statements to start the game faster/slower
      */
-//  public static final boolean fastStart = true;
-    public static final boolean fastStart = false;
+  public static final boolean fastStart = true;
+//    public static final boolean fastStart = false;
 
     public static ScreensController screensController;
 
@@ -87,6 +88,8 @@ public class MasterController extends Application {
             //char3.setCurrentHp(50);
 
             PlayerParty party = new PlayerParty(char1, char2, char3, 0);
+
+            party.getInventory().add(new RestorativeItem("Potion", true, false, "Health", 500, 50));
 
             screensController.getFieldScreen().setStartPlayer(party.getPlayer(0));
 
