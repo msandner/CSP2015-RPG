@@ -11,7 +11,7 @@ public class Constants {
 
     public static final double SCALE = 1.0;
     public static final double SCREEN_WIDTH = 1280;
-    public static final double SCREEN_HEIGHT = 720;
+    public static final double SCREEN_HEIGHT = 760;
 
     public static final String EDITOR_DECO_TILE = "editorDecoTile";
     public static final String EDITOR_EMPTY_TILE = "emptyTile";

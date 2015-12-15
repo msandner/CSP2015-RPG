@@ -256,6 +256,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         Media song = new Media(Paths.get("src/main/resources/sounds/BGM/battle/GameBattleMusicv3.mp3").toUri().toString());
         songPlayer = new MediaPlayer(song);
         songPlayer.play();
+        songPlayer.setCycleCount(40000);
     }
 
     /**
@@ -286,23 +287,6 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         char3MaxHP = char3.getMaxHp();
 
         setPlayerStats(players);
-
-        /* Mana */
-
-        char1MP = char1.getCurrentMp();
-        char1MaxMP = char1.getMaxMp();
-        char2MP = char2.getCurrentMp();
-        char2MaxMP = char2.getMaxMp();
-        char3MP = char3.getCurrentMp();
-        char3MaxMP = char3.getMaxMp();
-
-        player1MPText.setText(Integer.toString(char1MP) + "/" + Integer.toString(char1MaxMP));
-        player2MPText.setText(Integer.toString(char2MP) + "/" + Integer.toString(char2MaxMP));
-        player3MPText.setText(Integer.toString(char3MP) + "/" + Integer.toString(char3MaxMP));
-
-        player1MPBar.setProgress(char1MP / char1MaxMP);
-        player2MPBar.setProgress(char2MP / char2MaxMP);
-        player3MPBar.setProgress(char3MP / char3MaxMP);
 
         /* Images */
 
@@ -335,21 +319,41 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         PlayerActor player2 = thisParty.get(1);
         PlayerActor player3 = thisParty.get(2);
 
+        if(player1.getCurrentHp() < 0) {
+            player1.setCurrentHp(0);
+        }
+        if(player2.getCurrentHp() < 0) {
+            player2.setCurrentHp(0);
+        }
+        if(player3.getCurrentHp() < 0) {
+            player3.setCurrentHp(0);
+        }
+
+        if(player1.getCurrentMp() < 0) {
+            player1.setCurrentMp(0);
+        }
+        if(player2.getCurrentMp() < 0) {
+            player2.setCurrentMp(0);
+        }
+        if(player3.getCurrentMp() < 0) {
+            player3.setCurrentMp(0);
+        }
+
         player1HPText.setText(Integer.toString(player1.getCurrentHp()) + "/" + Integer.toString(player1.getMaxHp()));
         player2HPText.setText(Integer.toString(player2.getCurrentHp()) + "/" + Integer.toString(player2.getMaxHp()));
         player3HPText.setText(Integer.toString(player3.getCurrentHp()) + "/" + Integer.toString(player3.getMaxHp()));
 
-        player1HPBar.setProgress((double)player1.getCurrentHp()/(double)char1MaxHP);
-        player2HPBar.setProgress((double)player2.getCurrentHp()/(double)char2MaxHP);
-        player3HPBar.setProgress((double)player3.getCurrentHp()/(double)char3MaxHP);
+        player1HPBar.setProgress((double)player1.getCurrentHp()/(double)player1.getMaxHp());
+        player2HPBar.setProgress((double)player2.getCurrentHp()/(double)player2.getMaxHp());
+        player3HPBar.setProgress((double)player3.getCurrentHp()/(double)player3.getMaxHp());
 
         player1MPText.setText(Integer.toString(player1.getCurrentMp()) + "/" + Integer.toString(player1.getMaxMp()));
         player2MPText.setText(Integer.toString(player2.getCurrentMp()) + "/" + Integer.toString(player2.getMaxMp()));
         player3MPText.setText(Integer.toString(player3.getCurrentMp()) + "/" + Integer.toString(player3.getMaxMp()));
 
-        player1MPBar.setProgress(player1.getCurrentMp() / player1.getMaxMp());
-        player2MPBar.setProgress(player1.getCurrentMp() / player2.getMaxMp());
-        player3MPBar.setProgress(player1.getCurrentMp() / player3.getMaxMp());
+        player1MPBar.setProgress((double)player1.getCurrentMp() / player1.getMaxMp());
+        player2MPBar.setProgress((double)player1.getCurrentMp() / player2.getMaxMp());
+        player3MPBar.setProgress((double)player1.getCurrentMp() / player3.getMaxMp());
 
         if (player1.getCurrentHp() <= 0) {
             charImage1.setVisible(false);
@@ -872,6 +876,9 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     public void newRound() {
         turnDone = false;
         playerCommands.clear();
+        for (int i = 0; i < players.size() ; i++) {
+            players.get(i).setHasAttacked(false);
+        }
         currentChar = 0;
         nextChar();
     }
@@ -982,7 +989,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                     p.addXP(monsterParty.getXP() / 3);
                 }
                 playerCommands.clear();
-
+                newRound();
                 expLabel.setText("Each player got " + monsterParty.getXP()/3 + " EXP!");
                 Thread fadeOut = new Thread(new Runnable() {
                     @Override
