@@ -880,10 +880,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     }
 
     /**
-     * Brett Raible
-     *
-     * I don't know
-     * huehuehue
+     * Brett Raible & Maren Sandner
+     * procedure of the round based battle
      */
     public int doTheBattle() {
         int index = 0;
@@ -963,7 +961,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                     factory.shurikenToss(attacker, monsterParty);
                     break;
                 default:
-                    //DO NOTHING??? HOW DID THEY DO THAT
+                    break;
             }
             System.out.println(monster.getName() + " HP: " + monster.getCurrentHp());
             if (monster.is_dead()) {

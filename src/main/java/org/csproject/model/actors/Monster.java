@@ -1,11 +1,11 @@
 package org.csproject.model.actors;
 
 public class Monster extends BattleActor {
-
     protected int grantingXP;
     protected int drops;
 
     /**
+     * Maren Sandner & Nicholas Paquette
      * creates the monsters for the battle
      * @param name: name of the monster
      * @param type: type of the monster (e.g. "Bat", "Gayzer", "Assassin")
@@ -20,27 +20,46 @@ public class Monster extends BattleActor {
         this.drops = drops;
     }
 
-    public int getGrantingXP() {
-        return (this.grantingXP * level);
+    /**
+     * Nicholas Paquette & Maren Sandner
+     * calculates the experience points a monster gives the actor that kills it
+     */
+    public int calcXp() {
+        return (this.grantingXP += (int) (3 * Math.sqrt(level)));
     }
 
-    public int getDrops() { return drops; }
-
+    /**
+     * Maren Sandner
+     * calculates the health points of the monster
+     * @param level: level of the monster
+     * @return calculated health points
+     */
     @Override
     public int calcHp(int level) {
-        currentHp = currentHp + (int) (11*Math.sqrt(level));
+        currentHp += (int) (11*Math.sqrt(level));
         return currentHp;
     }
 
+    /**
+     * Maren Sandner
+     * calaculated the attack value of the monster depending on the level
+     */
     public void calcAttack() {
-        attack = attack + (int)(3*Math.sqrt(level));
+        attack += (int)(3*Math.sqrt(level));
     }
 
+    /**
+     * Maren Sandner
+     * levels up the monster -> calculates health points and attack value new
+     */
     public void levelUpMonster() {
         level += 1;
         calcHp(level);
         calcAttack();
     }
+
+    public int getDrops() { return drops; }
+
 
 }
 

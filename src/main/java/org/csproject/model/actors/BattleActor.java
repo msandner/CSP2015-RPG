@@ -6,9 +6,6 @@ package org.csproject.model.actors;
 public abstract class BattleActor extends Actor {
     protected int level;
     protected int maxHp;
-    /**
-     * currentHP is set to 100 because that is the start health point value
-     */
     protected int currentHp = 100;
     protected int attack;
     /**
@@ -17,7 +14,7 @@ public abstract class BattleActor extends Actor {
     private boolean hasAttacked;
 
     /**
-     *
+     * Maike Keune-Staab & Maren Sandner
      * @param name: name of the battle actor
      * @param type: type of the battle actor (Constants.CLASS_KNGHT, Constants.CLASS_MAGE, Constants.CLASS_THIEF
      *              for PlayerActors, e.g. "Bat", "Puppet", "Gayzer" for Monsters)
@@ -62,6 +59,7 @@ public abstract class BattleActor extends Actor {
     }
 
     /**
+     * Maike Keune-Staab
      * calculates maxHp of battleActor with given level
      */
     public abstract int calcHp(int level);
@@ -93,6 +91,10 @@ public abstract class BattleActor extends Actor {
     public void setHasAttacked(boolean attacked) {
         this.hasAttacked = attacked;
     }
+
+    /**
+     * getter and setter generated from IntelliJ IDEA
+     */
 
     public int getAttack() { return attack; }
 

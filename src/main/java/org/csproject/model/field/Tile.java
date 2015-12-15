@@ -8,7 +8,9 @@ public class Tile {
     private boolean walkable;
     private boolean complex;
 
-    //x and y describe the position in the spritesheet
+    /**
+     * x and y describe the position in the spritesheet
+     */
     private int x;
     private int y;
 

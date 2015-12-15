@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  */
+
 public class PlayerActor extends BattleActor {
     protected int currentMp = 75;
     protected int maxMp;
@@ -20,7 +21,13 @@ public class PlayerActor extends BattleActor {
     protected int currentXp;
     protected int maxXp = 50;
 
+    /**
+     * list of all spells
+     */
     private List<Magic> allSpells = new ArrayList<>();
+    /**
+     * list of all avaialable spells for the character because of the leveling up system
+     */
     private List<Magic> availableSpells = new ArrayList<>();
 
     protected WeaponItem weapon;
@@ -29,10 +36,14 @@ public class PlayerActor extends BattleActor {
     protected ArmorItem handArmor;
     protected ArmorItem footArmor;
 
-    public int getXP() {
-        return currentXp;
-    }
-
+    /**
+     * Maike Keune-Staab & Maren Sandner & Nicholas Paquette
+     * creates the player actor, which is the actor that the game player is able to use
+     * actor gets sets to level 1, adding spells and items
+     * @param name: name of the actor
+     * @param type: class type of the actor (CLASS_KNIGHT, CLASS_MAGE, CLASS_THIEF)
+     * @param attack: attack value of the actor
+     */
     public PlayerActor(String name, String type, int attack) {
         super(name, type, 1, attack);
 
@@ -52,6 +63,11 @@ public class PlayerActor extends BattleActor {
         availableSpells.add(allSpells.get(4)); //everyone has basic attack in the first level
      }
 
+    /**
+     * Maren Sandner
+     * creates the spells for the classes and adds them depending on the actors class to the allSpells list
+     * @param type: type of the actor
+     */
     private void addSpells(String type) {
         switch(type) {
             case Constants.CLASS_KNIGHT:
@@ -75,47 +91,65 @@ public class PlayerActor extends BattleActor {
         allSpells.add(new OffensiveMagic("Basic", "", -10, 0, 0));
     }
 
-    public List<Magic> getSpells() {
-        return availableSpells;
-    }
-
+    /**
+     * Maren Sandner
+     * searches the list for a spell on a specific index
+     * @param i: index of the spell
+     * @return the spell on the index position
+     */
     public Magic getSpell(int i) {
         return allSpells.get(i);
     }
 
-    public int getCurrentMp() {
-        return currentMp;
-    }
-
-    public void setCurrentMp(int mp) {
-        this.currentMp = mp;
-    }
-
-    public void calcCurrentMp(int mp) {
-        if((this.currentMp+mp) > this.maxMp) {
-            this.currentMp = this.maxMp;
+    /**
+     * Maren Sandner
+     * adds a value to the current mana points
+     * @param mp: mana points that should get added
+     */
+    public void addToCurrentMp(int mp) {
+        if((currentMp+mp) > maxMp) {
+            currentMp = maxMp;
         } else {
-            this.currentMp += mp;
+            currentMp += mp;
         }
     }
 
+    /**
+     * Maren Sandner
+     * calculates the mana points depending on level for the actor
+     * @param level: level of the actor
+     * @return the calculated mana points
+     */
     public int calcMp(int level) {
         return (int) (currentMp+(10*Math.sqrt(level)));
     }
 
+    /**
+     * Maren Sandner
+     * calculates the health points depending on the level for the actor
+     * @param level: level of the actor
+     * @return the calculated health points
+     */
     @Override
     public int calcHp(int level) {
         return (int) (currentHp+(10*Math.sqrt(level)));
     }
 
+    /**
+     * Maren Sandner
+     * calculates the maximum amount of experience points the actor can have
+     * @param level: level of the actor
+     * @return the calculated maximum experience points
+     */
     public int calcMaxXp(int level) {
         return (25*(level-1)*(1+(level-1)));
     }
 
-    public int getMaxMp() {
-        return maxMp;
-    }
-
+    /**
+     * Maren Sandner
+     * adds experience points to the current experience points
+     * @param value: experience points that should be added
+     */
     public void addXP(int value) {
         this.currentXp += value;
         if(this.currentXp > maxXp) {
@@ -123,22 +157,23 @@ public class PlayerActor extends BattleActor {
         }
     }
 
+    /**
+     * Maren Sandner
+     * levels up the actor
+     * calculates new mana, health and maximum experience points
+     * adds spells or increases the spell values depending on the level that is reached
+     */
     public void levelUp() {
         level += 1;
 
-        //calculating new Mp
         maxMp = calcMp(level);
         currentMp = maxMp;
 
-
-        //calculating new Hp
         maxHp = calcHp(level);
         currentHp = maxHp;
 
-        //calculating new MaxXp
         maxXp = calcMaxXp(level);
 
-        //first checking if the new level is a level where you get a new spell
         if (level == 2) {
             availableSpells.add(allSpells.get(0));
         } else if (level == 4) {
@@ -147,16 +182,20 @@ public class PlayerActor extends BattleActor {
             availableSpells.add(allSpells.get(2));
         } else if (level == 11) {
             availableSpells.add(allSpells.get(3));
-        } else { //if not a new spell, then altering the available spells
+        } else {
              for(Magic m : availableSpells) {
-                 //increasing the attack and mana
-                 m.setValue((int)(m.getValue()-(4*Math.sqrt(level))));
-                 m.setMp((int)(m.getMp()+(4*Math.sqrt(level))));
+                 if(m.getName().equals("Heal")) {
+                     m.setValue((int)(m.getValue() + (4 * Math.sqrt(level))));
+                 } else {
+                     m.setValue((int) (m.getValue() - (4 * Math.sqrt(level))));
+                 }
+                 m.setMp((int)(m.getMp() - (4 * Math.sqrt(level))));
              }
         }
     }
 
     /**
+     * Nicholas Paquette
      * Equips a weapon item to the character
      * @param w the weapon to be equipped
      * @return returns the old weapon that was equipped before if the equipping was successful, returns the weapon that
@@ -173,6 +212,7 @@ public class PlayerActor extends BattleActor {
     }
 
     /**
+     * Nicholas Paquette
      * Equips an armor item to the character
      * @param a the armor to be equipped
      * @return returns the old armor that was equipped before if the equipping was successful, returns the armor that
@@ -203,10 +243,38 @@ public class PlayerActor extends BattleActor {
         }
     }
 
+    /**
+     * Maike Keune-Staab
+     * prints out the attributes of the actor in a formated string
+     * @return string with name, type, current Hp, maximum Hp, current Mp and maximum Mp
+     */
     @Override
     public String toString() {
         return name + (type) + "|HP: " + currentHp + "/" + maxHp + "|MP: " + currentMp + "/" + maxMp;
     }
 
+    /**
+     *getter and setter generated from IntelliJ IDEA
+     */
+
+    public int getCurrentMp() {
+        return currentMp;
+    }
+
+    public void setCurrentMp(int mp) {
+        currentMp = mp;
+    }
+
+    public List<Magic> getSpells() {
+        return availableSpells;
+    }
+
+    public int getMaxMp() {
+        return maxMp;
+    }
+
+    public int getXP() {
+        return currentXp;
+    }
 
 }

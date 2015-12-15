@@ -87,7 +87,7 @@ public class MonsterParty{
     public int getXP(){
         int xp = 0;
         for(Monster m : party){
-            xp += m.getGrantingXP();
+            xp += m.calcXp();
         }
         return xp;
     }

@@ -313,4 +313,8 @@ public class FieldScreen extends Pane {
         }
         return true;
     }
+
+    public Field getField() {
+        return field;
+    }
 }

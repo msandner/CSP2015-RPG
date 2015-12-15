@@ -9,7 +9,7 @@ public class ChatPair {
     String actorType;
     String chat;
 
-    /*
+    /**
     * A ChatPair is used for the display of a character image next to its
     * text when you are talking to an NPC or some object that issues a chat
     * For reference: something like this image:

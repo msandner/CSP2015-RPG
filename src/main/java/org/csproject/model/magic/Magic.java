@@ -9,11 +9,16 @@ package org.csproject.model.magic;
 public abstract class Magic {
     protected String magicName;
     protected String magicType;
+
+    /**
+     * except for healing the value and the mp have to be negative
+     */
     protected int value;
     protected int mp;
+
     protected int levelRestriction;
 
-    //mp has to be negative!
+
     public Magic(String name, String type, int value, int mp, int levelRes){
         this.magicName = name;
         this.magicType = type;

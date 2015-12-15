@@ -9,7 +9,11 @@ import org.csproject.model.field.Tile;
  */
 public class TileChunks {
 
-    //creating 4x4x tile matrix, which should look like a bunch of trees out of outside3.png
+    /**
+     * Maren Sandner
+     * creating 4x4x tile matrix, which should look like a bunch of trees out of outside3.png
+     * @return the tile matrix
+     */
     public Tile[][] Trees4x4() {
 
         String strimage = "images/tiles/Outside3.png";
@@ -57,7 +61,14 @@ public class TileChunks {
         return treetiles;
         }
 
-    //creating the trees randomly in the existing array of the field
+    /**
+     * Maren Sandner
+     * creating the trees randomly in the existing array of the field
+     * @param matrix: tile matrix
+     * @param boundx: column amount
+     * @param boundy: row amount
+     * @return
+     */
     public Tile[][] setTree4x4Random(Tile[][] matrix, int boundx, int boundy) {
         Random rn = new Random();
         int i = rn.nextInt(boundx-3); //'-3' because I have to add +3 when calculating the position
@@ -94,6 +105,11 @@ public class TileChunks {
         return matrix;
     }
 
+    /**
+     * Maren Sandner
+     * creating a 2x2 matrix of a picture of a hole
+     * @return the tile matrix
+     */
     public Tile[][] Hole2x2() {
 
         String strimage = "images/tiles/Outside.png";
@@ -114,6 +130,11 @@ public class TileChunks {
 
     }
 
+    /**
+     * Maren Sandner
+     * creates a 2x2 tile matrix of an image of a waterhole
+     * @return the tile matrix
+     */
     public Tile[][] waterhole2x2() {
 
         String strimage = "images/tiles/Outside.png";

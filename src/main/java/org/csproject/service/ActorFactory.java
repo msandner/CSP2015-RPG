@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActorFactory {
 
-    // constants for the actors
+    /**
+     * constants for the actors
+    */
     public static final String NPC = "npc";
     public static final String KNIGHT = "knight";
     public static final String MAGE = "mage";

@@ -3,7 +3,6 @@ package org.csproject.service;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -14,12 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.csproject.model.Constants;
-import org.csproject.model.actors.PlayerActor;
 import org.csproject.model.actors.PlayerParty;
 import org.csproject.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by Brett on 9/21/2015.
- * <p>
+ *
  * Holds the screens to be displayed
  */
 @Component
@@ -42,15 +38,10 @@ public class ScreensController {
     private FieldScreen fieldScreen;
 
     private HashMap<String, Node> screens;
-
     private StackPane root;
-
     private String currentScreen;
-
     private BattleScreenController battleController;
-
     private ShopScreenController shopController;
-
     private PlayerParty party;
 
     public ScreensController() {
@@ -90,7 +81,7 @@ public class ScreensController {
         if (screens.get(name) != null) { //screen loaded
             final DoubleProperty opacity = root.opacityProperty();
 
-            //Is there is more than one screen
+            //If there is more than one screen
             if (!root.getChildren().isEmpty()) {
                 Timeline fade = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
@@ -156,7 +147,9 @@ public class ScreensController {
         this.party = party;
     }
 
-    /* Used for controlling the battle via the FXML file and the controller class */
+    /**
+     * Used for controlling the battle via the FXML file and the controller class
+    */
     public BattleScreenController getBattleController() {
         return battleController;
     }

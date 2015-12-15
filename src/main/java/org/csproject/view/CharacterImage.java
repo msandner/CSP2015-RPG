@@ -17,7 +17,7 @@ public class CharacterImage extends ImageView {
     private static final int BLOCK_SIZE_X = (int) Constants.TILE_SIZE * 3;
     private static final int BLOCK_SIZE_Y = (int) Constants.TILE_SIZE * 4;
 
-    private static final int ENEMY_ENCOUNTER_PERCENTAGE = 2;
+    private static final int ENEMY_ENCOUNTER_PERCENTAGE = 5;
 
     private int actorImageBlockX, actorImageBlockY;
     private Image actorImage;
@@ -27,7 +27,9 @@ public class CharacterImage extends ImageView {
     private boolean walking;
     private boolean enemyEncounter;
 
-    /* set on true ifa you want the battle to appear*/
+    /**
+     *  set on true if you want the battle to appear
+    */
     private boolean startbattle = true;
 
     private BattleFactory battlefactory = new BattleFactory();
@@ -93,7 +95,7 @@ public class CharacterImage extends ImageView {
     }
 
     /**
-     * Maike Keune-Staab
+     * Maike Keune-Staab & Maren Sandner
      * updates the animation face of the players avatar.
      */
     public void updateAnimation() {
@@ -105,12 +107,14 @@ public class CharacterImage extends ImageView {
                         actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
                         Constants.TILE_SIZE,
                         Constants.TILE_SIZE));
+
                 //Maren's part start
-                //test for enemyencounter every time walking a step
-//                setEnemyEncounter();
+                calcEnemyEncounter();
 
                 if(getEnemyEncounter() && startbattle) {
+                    startbattle = false;
                     battlefactory.startBattle();
+                    startbattle = true;
                 }
                 //Maren's part end
             }
@@ -150,15 +154,23 @@ public class CharacterImage extends ImageView {
         }
     }
 
-    private void setEnemyEncounter() {
+    /**
+     * Maren Sandner
+     * calculates the enemy encounter chance when moving the character
+     */
+    private void calcEnemyEncounter() {
         this.enemyEncounter = false;
         Random rand = new Random();
-        int chance = rand.nextInt(300);
+        int chance = rand.nextInt(100);
         if(chance < ENEMY_ENCOUNTER_PERCENTAGE) {
             this.enemyEncounter = true;
         }
     }
 
+    /**
+     * Maren Sandner
+     * @return if a battle will be encountered
+     */
     public boolean getEnemyEncounter() {
         return this.enemyEncounter;
     }
