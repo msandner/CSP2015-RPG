@@ -41,5 +41,6 @@ CIS 467
 12/13: Merging battle GUI and logic:      2:00 to  5:00 - 3 hours 00 mins
 12/14: GUI updates and bug fixes:         3:00 to  6:20 - 3 hours 20 mins
 12/15: Worked on Final Report:           10:15 to 11:45 - 1 hour  30 mins
+12/15: Added music to the battle:         1:30 to  2:30 - 1 hour  00 mins
 ----------------------------------------------------------------------------
-Total:                                                   68 hours 42 mins
+Total:                                                   69 hours 42 mins
