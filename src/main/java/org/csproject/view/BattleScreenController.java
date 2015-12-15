@@ -1092,18 +1092,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
                 playerCommands.clear();
                 newRound();
                 expLabel.setText("Each player got " + monsterParty.getXP()/3 + " EXP!");
-                Thread fadeOut = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        expLabel.setVisible(true);
-                        while(songPlayer.getVolume() >= .000001) {
-                            songPlayer.setVolume(songPlayer.getVolume()-.000001);
-                        }
-                        expLabel.setVisible(false);
-                        factory.endBattle();
-                    }
-                });
-                fadeOut.start();
+                endBattle();
                 return 1;
             }
             if (!playerParty.canPartyStillAttack()) {
@@ -1135,6 +1124,21 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         return 0;
     }
 
+    private void endBattle() {
+        Thread fadeOut = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                expLabel.setVisible(true);
+                while(songPlayer.getVolume() >= .000001) {
+                    songPlayer.setVolume(songPlayer.getVolume()-.000001);
+                }
+                expLabel.setVisible(false);
+                factory.endBattle();
+            }
+        });
+        fadeOut.start();
+    }
+
     /**
      * Brett Raible
      *
@@ -1163,7 +1167,8 @@ public class BattleScreenController implements ControlledScreen, Initializable {
 
 
     public void runAway(ActionEvent actionEvent) {
-        factory.endBattle();
+        expLabel.setText("No exp gain!");
+        endBattle();
     }
 
     /**

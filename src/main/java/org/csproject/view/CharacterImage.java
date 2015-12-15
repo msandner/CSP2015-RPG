@@ -30,7 +30,7 @@ public class CharacterImage extends ImageView {
     /**
      *  set on true if you want the battle to appear
     */
-    private boolean startbattle = false;
+    private boolean startbattle = true;
 
     private BattleFactory battlefactory = new BattleFactory();
 
