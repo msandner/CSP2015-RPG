@@ -650,6 +650,7 @@ public class BattleScreenController implements ControlledScreen, Initializable {
      */
     public void showEnemyButtons(ActionEvent actionEvent) {
         spellBox.setVisible(false);
+        attackIsItem = false;
         chooseBox.setVisible(true);
         if(actionEvent.getSource() == magicButton) {
             attackIsMagic = true;
@@ -1152,6 +1153,22 @@ public class BattleScreenController implements ControlledScreen, Initializable {
     /**
      * Brett Raible
      *
+     * Called when using an item
+     * @param actionEvent
+     */
+    public void useItem(ActionEvent actionEvent) {
+        chooseBox.setVisible(true);
+        attackIsItem = true;
+    }
+
+
+    public void runAway(ActionEvent actionEvent) {
+        factory.endBattle();
+    }
+
+    /**
+     * Brett Raible
+     *
      * Initialize all global & FXML variables.
      * @param url
      * @param resourceBundle
@@ -1240,10 +1257,5 @@ public class BattleScreenController implements ControlledScreen, Initializable {
         factory = new BattleFactory();
 
         moveCharForward(currentChar);
-    }
-
-    public void useItem(ActionEvent actionEvent) {
-        chooseBox.setVisible(true);
-        attackIsItem = true;
     }
 }

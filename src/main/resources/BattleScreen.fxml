@@ -40,7 +40,7 @@
             <Button fx:id="attackButton" blendMode="SRC_OVER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="47.0" prefWidth="177.0" text="Attack" visible="true" />
             <Button fx:id="magicButton" font="$x1" mnemonicParsing="false" onAction="#showEnemyButtons" prefHeight="46.0" prefWidth="177.0" text="Magic" />
             <Button fx:id="itemsButton" font="$x1" mnemonicParsing="false" onAction="#useItem" prefHeight="46.0" prefWidth="177.0" text="Items" />
-            <Button fx:id="runButton" font="$x1" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Run" />
+            <Button fx:id="runButton" font="$x1" mnemonicParsing="false" onAction="#runAway" prefHeight="46.0" prefWidth="177.0" text="Run" />
           </children>
         </VBox>
         <HBox prefHeight="182.0" prefWidth="714.0">
