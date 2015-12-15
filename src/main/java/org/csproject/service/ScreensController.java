@@ -49,6 +49,8 @@ public class ScreensController {
 
     private BattleScreenController battleController;
 
+    private ShopScreenController shopController;
+
     private PlayerParty party;
 
     public ScreensController() {
@@ -74,6 +76,8 @@ public class ScreensController {
             addScreen(name, loadScreen);
             if(name == MasterController.BATTLE_SCREEN_ID)
                 battleController = loader.<BattleScreenController>getController();
+            if(name == MasterController.SHOP_SCREEN_ID)
+                shopController = loader.<ShopScreenController>getController();
             return true;
         } catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -157,6 +161,6 @@ public class ScreensController {
         return battleController;
     }
 
-
+    public ShopScreenController getShopController() { return shopController; }
 
 }

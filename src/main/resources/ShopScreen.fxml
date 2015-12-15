@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="org.csproject.view.ShopScreenController">
+    <children>
+        <ImageView id="shopScreenBGTop" fx:id="shopScreenBGBottom" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+        <ImageView fx:id="shopScreenBGTop" fitHeight="537.9998779296875" fitWidth="1280.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" />
+        <VBox fx:id="mainBox" prefHeight="228.0" prefWidth="177.0">
+            <children>
+                <Button fx:id="weaponsButton" mnemonicParsing="false" onAction="#showWeaponItems" prefHeight="46.0" prefWidth="177.0" text="Weapons" />
+                <Button fx:id="armorsButton" mnemonicParsing="false" onAction="#showArmorItems" prefHeight="46.0" prefWidth="177.0" text="Armor" />
+                <Button fx:id="potionsButton" mnemonicParsing="false" onAction="#showPotionItems" prefHeight="46.0" prefWidth="177.0" text="Potions" />
+                <Button fx:id="sellButton" mnemonicParsing="false" onAction="#showPartyItems" prefHeight="46.0" prefWidth="177.0" text="Sell" />
+                <Button fx:id="exitButton" mnemonicParsing="false" onAction="#leaveShop" prefHeight="46.0" prefWidth="177.0" />
+            </children>
+        </VBox>
+        <HBox fx:id="ItemSelectionBox" prefHeight="228.0" prefWidth="254.0">
+            <children>
+                <VBox fx:id="itemsBox" prefHeight="182.0" prefWidth="177.0">
+                    <children>
+                        <Button fx:id="item1" mnemonicParsing="false" onAction="#setItem1" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="item2" mnemonicParsing="false" onAction="#setItem2" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="item3" mnemonicParsing="false" onAction="#setItem3" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="item4" mnemonicParsing="false" onAction="#setItem4" prefHeight="46.0" prefWidth="177.0" />
+                    </children>
+                </VBox>
+                <VBox fx:id="optionsBox" prefHeight="182.0" prefWidth="177.0">
+                    <children>
+                        <Button fx:id="upButton" mnemonicParsing="false" onAction="#setUpButton" prefHeight="46.0" prefWidth="177.0" text="Up" />
+                        <Button fx:id="downButton" mnemonicParsing="false" onAction="#setDownButton" prefHeight="46.0" prefWidth="177.0" text="Down" />
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#showMainOptions" prefHeight="46.0" prefWidth="177.0" text="Back" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox fx:id="sellingItemSelectionBox" prefHeight="228.0" prefWidth="254.0">
+            <children>
+                <VBox fx:id="sellingItemsBox" prefHeight="182.0" prefWidth="177.0">
+                    <children>
+                        <Button fx:id="sellingItem1" mnemonicParsing="false" onAction="#setSellingItem1" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="sellingItem2" mnemonicParsing="false" onAction="#setSellingItem2" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="sellingItem3" mnemonicParsing="false" onAction="#setSellingItem3" prefHeight="46.0" prefWidth="177.0" />
+                        <Button fx:id="sellingItem4" mnemonicParsing="false" onAction="#setSellingItem4" prefHeight="46.0" prefWidth="177.0" />
+                    </children>
+                </VBox>
+                <VBox fx:id="sellingOptionsBox" prefHeight="182.0" prefWidth="177.0">
+                    <children>
+                        <Button fx:id="sellingUpButton" mnemonicParsing="false" onAction="#setSellingUpButton" prefHeight="46.0" prefWidth="177.0" text="Up" />
+                        <Button fx:id="sellingDownButton" mnemonicParsing="false" onAction="#setSellingDownButton" prefHeight="46.0" prefWidth="177.0" text="Down" />
+                        <Button fx:id="sellingBackButton" mnemonicParsing="false" onAction="#showMainOptions" prefHeight="46.0" prefWidth="177.0" text="Back" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

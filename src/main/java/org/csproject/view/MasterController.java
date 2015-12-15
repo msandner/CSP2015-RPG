@@ -27,6 +27,8 @@ public class MasterController extends Application {
     public static final String TOWN_SCREEN = "townScreen";
     public static final String BATTLE_SCREEN_ID = "battleScreen";
     public static final String BATTLE_SCREEN_FILE = "BattleScreen.fxml";
+    public static final String SHOP_SCREEN_ID = "shopScreen";
+    public static final String SHOP_SCREEN_FILE = "ShopScreen.fxml";
 
     //Switch these two statements to start the game faster/slower
     public static final boolean fastStart = true;
@@ -56,6 +58,7 @@ public class MasterController extends Application {
             screensController.loadScreen(START_MENU_ID, START_MENU_FILE);
             screensController.loadScreen(NEW_GAME_ID, NEW_GAME_FILE);
             screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+            screensController.loadScreen(SHOP_SCREEN_ID, SHOP_SCREEN_FILE);
             screensController.setScreen(START_MENU_ID);
 
             Group root = new Group();
@@ -118,6 +121,10 @@ public class MasterController extends Application {
 
     public static BattleScreenController getBattleController() {
         return screensController.getBattleController();
+    }
+
+    public static ShopScreenController getShopController() {
+        return screensController.getShopController();
     }
 
     public static ScreensController getScreensController() {
