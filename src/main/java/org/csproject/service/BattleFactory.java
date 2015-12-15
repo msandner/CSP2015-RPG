@@ -22,7 +22,6 @@ public class BattleFactory {
 
     private PlayerParty actualplayers;
 
-    private WorldService worldservice;
 
     /**
      * Maren Sandner
@@ -32,7 +31,6 @@ public class BattleFactory {
 
             //TODO check if field isn't town
 
-            MasterController.getScreensController().getFieldScreen().stopAvatarAnimation();
             MasterController.setScreen(MasterController.BATTLE_SCREEN_ID);
 
             actualplayers = MasterController.getScreensController().getParty();
@@ -65,7 +63,7 @@ public class BattleFactory {
     public void attackCharacterWithMagic(PlayerActor attacker, BattleActor victim, OffensiveMagic magic, double extra) {
         if(!attacker.playerHasAttacked()) {
             victim.addToCurrentHp((int) (magic.getValue() * extra));
-            System.out.println("Attacked character with " + magic.toString());
+            System.out.println("Attacked character with " + magic.getName());
             attacker.addToCurrentMp(magic.getMp());
             attacker.setHasAttacked(true);
         }
