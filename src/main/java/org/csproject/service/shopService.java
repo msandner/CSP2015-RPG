@@ -8,6 +8,7 @@ import org.csproject.model.items.WeaponItem;
 import org.csproject.view.MasterController;
 import org.csproject.view.ShopScreenController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +19,9 @@ import java.util.List;
  * Players may buy items using currency, or sell items to gain currency.
  */
 public class shopService {
-    protected List<Item> weaponStock;
-    protected List<Item> armorStock;
-    protected List<Item> potionStock;
+    protected List<Item> weaponStock = new ArrayList<Item>();
+    protected List<Item> armorStock = new ArrayList<Item>();
+    protected List<Item> potionStock = new ArrayList<Item>();
 
     private ShopScreenController shopController;
 

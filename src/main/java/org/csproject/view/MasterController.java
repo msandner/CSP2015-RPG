@@ -97,6 +97,7 @@ public class MasterController extends Application {
             screensController.addScreen(GAME_SCREEN, screensController.getFieldScreen());
             screensController.setScreen(GAME_SCREEN);
             screensController.loadScreen(BATTLE_SCREEN_ID, BATTLE_SCREEN_FILE);
+            screensController.loadScreen(SHOP_SCREEN_ID, SHOP_SCREEN_FILE);
 
             Group root = new Group();
             root.getChildren().addAll(screensController.getRoot());
