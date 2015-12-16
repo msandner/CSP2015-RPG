@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import org.csproject.model.actors.PlayerParty;
 import org.csproject.model.items.Item;
 import org.csproject.service.ScreensController;
-import org.csproject.service.ShopService;
+import org.csproject.service.shopService;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -125,7 +125,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     private String currentType;
 
-    private ShopService shopService;
+    private shopService shopService;
 
     /**
      * Sets up the shop screen; recognizes the player party and sets up item stocks
@@ -194,7 +194,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the first item box, sends a request
-     * to ShopService to check if the item can be bought.
+     * to shopService to check if the item can be bought.
      */
     public void setItem1(){
         String s = item1.getText();
@@ -221,7 +221,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the second item box, sends a request
-     * to ShopService to check if the item can be bought.
+     * to shopService to check if the item can be bought.
      */
     public void setItem2(){
         String s = item2.getText();
@@ -248,7 +248,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the third item box, sends a request
-     * to ShopService to check if the item can be bought.
+     * to shopService to check if the item can be bought.
      */
     public void setItem3(){
         String s = item3.getText();
@@ -275,7 +275,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player has chosen the item in the fourth item box, sends a request
-     * to ShopService to check if the item can be bought.
+     * to shopService to check if the item can be bought.
      */
     public void setItem4(){
         String s = item4.getText();
@@ -384,7 +384,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the first box, calls
-     * ShopService to sell the item
+     * shopService to sell the item
      */
     public void setSellingItem1(){
         if(sellingItem1.getText() != ""){
@@ -398,7 +398,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the second box, calls
-     * ShopService to sell the item
+     * shopService to sell the item
      */
     public void setSellingItem2(){
         if(sellingItem2.getText() != ""){
@@ -412,7 +412,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the third box, calls
-     * ShopService to sell the item
+     * shopService to sell the item
      */
     public void setSellingItem3(){
         if(sellingItem3.getText() != ""){
@@ -426,7 +426,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
 
     /**
      * The player chose to sell the item in the fourth box, calls
-     * ShopService to sell the item
+     * shopService to sell the item
      */
     public void setSellingItem4(){
         if(sellingItem1.getText() != ""){
@@ -465,11 +465,11 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
-     * Calls ShopService to return the player to the field
+     * Calls shopService to return the player to the field
      */
-    /*public void leaveShop(){
-        ShopService.leaveShop();
-    }*/
+    public void leaveShop(){
+        shopService.leaveShop();
+    }
 
     @Override
     public void setScreenParent(ScreensController screenParent) {
@@ -507,6 +507,6 @@ public class ShopScreenController implements ControlledScreen, Initializable {
         assert sellingDownButton != null : "fx:id=\"sellingDownButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
         assert sellingBackButton != null : "fx:id=\"sellingBackButton\" was not injected: check your FXML file 'BattleScreenController.fxml'.";
 
-        shopService = new ShopService();
+        shopService = new shopService();
     }
 }

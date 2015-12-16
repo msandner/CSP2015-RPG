@@ -5,6 +5,8 @@ import org.csproject.model.items.ArmorItem;
 import org.csproject.model.items.Item;
 import org.csproject.model.items.RestorativeItem;
 import org.csproject.model.items.WeaponItem;
+import org.csproject.view.MasterController;
+import org.csproject.view.ShopScreenController;
 
 import java.util.List;
 
@@ -15,15 +17,20 @@ import java.util.List;
  * The shop has three different stocks containing weapons, armor and potions.
  * Players may buy items using currency, or sell items to gain currency.
  */
-public class ShopService {
+public class shopService {
     protected List<Item> weaponStock;
     protected List<Item> armorStock;
     protected List<Item> potionStock;
 
+    private ShopScreenController shopController;
+
     /**
      * Adds all items to the shops three stocks.
      */
-    public void setupShop(){
+    public void setupShop(PlayerParty party){
+        MasterController.setScreen(MasterController.SHOP_SCREEN_ID);
+        shopController = MasterController.getShopController();
+
         weaponStock.add(new WeaponItem("Dull Sword", "Knight", 3, 5));
         weaponStock.add(new WeaponItem("Iron Sword", "Knight", 6, 10));
         weaponStock.add(new WeaponItem("Steel Sword", "Knight", 9, 20));
@@ -82,6 +89,8 @@ public class ShopService {
 
         potionStock.add(new RestorativeItem("Great Health Potion", false, true, "Health", 20, 20));
         potionStock.add(new RestorativeItem("Great Mana Potion", false, true, "Mana", 20, 40));
+
+        shopController.setupShopScreen(party);
     }
 
     public List<Item> getWeapons(){ return weaponStock; }
@@ -91,7 +100,7 @@ public class ShopService {
     public List<Item> getPotions(){ return potionStock; }
 
     /**
-     *
+     * Method to allow players to buy items, they must have enough currency to do so
      * @param i the item to be bought
      * @param p the player party
      * @return true if the purchase was accepted, false if not
@@ -107,7 +116,7 @@ public class ShopService {
     }
 
     /**
-     *
+     * Method to allow players to sell items, they must have the item to be able to sell it
      * @param i the item to be sold
      * @param p the player party
      * @return true if the item was sold, false if not
@@ -119,4 +128,10 @@ public class ShopService {
         }
         return false;
     }
+
+    /**
+     * Returns the player to the field
+     */
+    public void leaveShop(){ MasterController.setScreen(MasterController.GAME_SCREEN); }
 }
+

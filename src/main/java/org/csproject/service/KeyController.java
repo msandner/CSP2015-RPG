@@ -7,7 +7,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.log4j.Logger;
 import org.csproject.model.bean.Direction;
+import org.csproject.model.field.StartPoint;
+import org.csproject.model.field.TeleportPoint;
 import org.csproject.view.FieldScreen;
+import org.csproject.view.MasterController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +30,8 @@ public class KeyController {
 
     final Set<KeyCode> pressedMovementKeys = new HashSet<>();
 
+    private shopService shopService = new shopService();
+
     @Autowired
     private FieldScreen fieldScreen;
 
@@ -38,6 +43,10 @@ public class KeyController {
                 LOG.debug("test-pressed: " + event.getCode());
                 pressedMovementKeys.add(event.getCode());
                 move(screen);
+            }
+        } else if(event.getCode() == KeyCode.B){
+            if(fieldScreen.getField().getStart("shopstart").getName().equals("shopstart")){
+                shopService.setupShop(MasterController.getScreensController().getParty());
             }
         } else {
             // todo other key events here
