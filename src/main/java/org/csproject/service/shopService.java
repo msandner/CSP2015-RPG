@@ -8,6 +8,7 @@ import org.csproject.model.items.WeaponItem;
 import org.csproject.view.MasterController;
 import org.csproject.view.ShopScreenController;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,6 @@ import java.util.List;
  * Players may buy items using currency, or sell items to gain currency.
  */
 public class shopService {
-    protected List<Item> weaponStock = new ArrayList<Item>();
-    protected List<Item> armorStock = new ArrayList<Item>();
-    protected List<Item> potionStock = new ArrayList<Item>();
-
     private ShopScreenController shopController;
 
     /**
@@ -31,6 +28,11 @@ public class shopService {
     public void setupShop(PlayerParty party){
         MasterController.setScreen(MasterController.SHOP_SCREEN_ID);
         shopController = MasterController.getShopController();
+        shopController.setupShopScreen(party);
+    }
+
+    public List<Item> getWeapons(){
+        ArrayList<Item> weaponStock = new ArrayList<Item>();
 
         weaponStock.add(new WeaponItem("Dull Sword", "Knight", 3, 5));
         weaponStock.add(new WeaponItem("Iron Sword", "Knight", 6, 10));
@@ -41,6 +43,12 @@ public class shopService {
         weaponStock.add(new WeaponItem("Knife", "Thief", 2, 4));
         weaponStock.add(new WeaponItem("Dagger", "Thief", 4, 8));
         weaponStock.add(new WeaponItem("Dark Daggers", "Thief", 6, 16));
+
+        return weaponStock;
+    }
+
+    public List<Item> getArmor(){
+        ArrayList<Item> armorStock = new ArrayList<Item>();
 
         armorStock.add(new ArmorItem("Worn Helm", "Knight", "Head", 2, 4));
         armorStock.add(new ArmorItem("Iron Helm", "Knight", "Head", 4, 6));
@@ -81,6 +89,12 @@ public class shopService {
         armorStock.add(new ArmorItem("Light Boots", "Thief", "Feet", 2, 4));
         armorStock.add(new ArmorItem("Muffled Boots", "Thief", "Feet", 4, 8));
 
+        return armorStock;
+    }
+
+    public List<Item> getPotions(){
+        ArrayList<Item> potionStock = new ArrayList<Item>();
+
         potionStock.add(new RestorativeItem("Small Health Potion", true, false, "Health", 20, 5));
         potionStock.add(new RestorativeItem("Medium Health Potion", true, false, "Health", 50, 10));
         potionStock.add(new RestorativeItem("Large Health Potion", true, false, "Health", 100, 20));
@@ -91,14 +105,8 @@ public class shopService {
         potionStock.add(new RestorativeItem("Great Health Potion", false, true, "Health", 20, 20));
         potionStock.add(new RestorativeItem("Great Mana Potion", false, true, "Mana", 20, 40));
 
-        shopController.setupShopScreen(party);
+        return potionStock;
     }
-
-    public List<Item> getWeapons(){ return weaponStock; }
-
-    public List<Item> getArmor(){ return armorStock; }
-
-    public List<Item> getPotions(){ return potionStock; }
 
     /**
      * Method to allow players to buy items, they must have enough currency to do so

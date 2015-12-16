@@ -148,6 +148,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
      */
     public void showMainOptions(){
         itemSelectionBox.setVisible(false);
+        sellingItemSelectionBox.setVisible(false);
         mainBox.setVisible(true);
         currentItemsBase = 0;
         currentType = "";
