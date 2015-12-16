@@ -5715,8 +5715,8 @@
   "teleportPoints": [
     {
       "random": false,
-      "targetField": "shop1",
-      "targetPoint": "shopstart",
+      "targetField": "",
+      "targetPoint": "",
       "sourceField": "",
       "sourcePoint": "",
       "x": 15,

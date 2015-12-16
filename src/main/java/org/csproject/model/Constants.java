@@ -53,9 +53,21 @@ public class Constants {
     public static final String CLASS_MAGE = "mage";
     public static final String CLASS_THIEF = "thief";
 
+    public static final String ACTORS = "images/actors/";
+    public static final String ACTORS_POST_FIX = ".png";
+
     public static final String IMAGE_KNIGHT = "images/actors/Actor1.png";       //At 0, 1
     public static final String IMAGE_MAGE = "images/actors/Actor2.png";         //At 3, 1
     public static final String IMAGE_THIEF = "images/actors/Actor3.png";        //At 2, 0
+    public static final String IMAGE_PEOPLE_1 = "People1";
+    public static final String IMAGE_PEOPLE_2 = "People2";
+    public static final String IMAGE_PEOPLE_3 = "People3";
+    public static final String IMAGE_PEOPLE_4 = "People4";
+    public static final String IMAGE_PEOPLE_5 = "People5";
+    public static final String IMAGE_PEOPLE_6 = "People6";
+    public static final String IMAGE_PEOPLE_7 = "People7";
+    public static final String IMAGE_PEOPLE_8 = "People8";
+    public static final String IMAGE_ACTOR_1 = "Actor1";
 
     public static final String FACE_IMAGE_KNIGHT = "images/faces/Actor1.png";   //At 0, 1
     public static final String FACE_IMAGE_MAGE = "images/faces/Actor2.png";     //At 3, 1

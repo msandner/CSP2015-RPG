@@ -14,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -33,7 +34,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.csproject.configuration.SpringConfiguration;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.actors.Npc;
+import org.csproject.model.general.NavigationPoint;
 import org.csproject.model.field.Field;
 import org.csproject.model.field.StartPoint;
 import org.csproject.model.field.TeleportPoint;
@@ -48,7 +50,7 @@ import static org.csproject.model.Constants.*;
 /**
  * @author Maike Keune-Staab on 09.11.2015.
  */
-public class TileEditor
+public class FieldEditor
         extends Application {
     // todo example tiles for deco and ground layer. add more!
     private static final String[] CS_COMPLEX_SELECTION = {CS_OUTSIDE_1, CS_INSIDE_1, CS_DUNGEON_1, CS_WORLD_2,
@@ -85,6 +87,7 @@ public class TileEditor
 
     private Collection<StartPoint> startPoints;
     private Collection<TeleportPoint> teleportPoints;
+    private Collection<Npc> npcs;
 
     private Map<String, Image> images;
 
@@ -111,6 +114,7 @@ public class TileEditor
         this.showPointsOfInterest = true;
         this.startPoints = new ArrayList<>();
         this.teleportPoints = new ArrayList<>();
+        this.npcs = new ArrayList<>();
         this.images = new HashMap<>();
 
         editorStage.setTitle("Field editor");
@@ -161,6 +165,7 @@ public class TileEditor
         navPointSelection = new ChoiceBox<>();
         navPointSelection.getItems().add(new StartPointSelection());
         navPointSelection.getItems().add(new TeleporterSelection());
+        navPointSelection.getItems().add(new NpcSelection());
         navPointSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<NavPointSelection>() {
             @Override
             public void changed(ObservableValue<? extends NavPointSelection> observable, NavPointSelection oldValue, NavPointSelection newValue) {
@@ -353,6 +358,7 @@ public class TileEditor
                 decoTiles = field.getDecoTiles();
                 startPoints = field.getStartPoints();
                 teleportPoints = field.getTeleportPoints();
+                npcs = field.getNpcs();
                 colNum = (int) field.getWidth();
                 rowNum = (int) field.getHeight();
 
@@ -387,6 +393,7 @@ public class TileEditor
                         decoTiles = null;
                         startPoints = new ArrayList<>();
                         teleportPoints = new ArrayList<>();
+                        npcs = new ArrayList<>();
                         rowNum = Integer.parseInt(rowsTextField.getText());
                         colNum = Integer.parseInt(colsTextField.getText());
                         setup();
@@ -426,6 +433,7 @@ public class TileEditor
         field.setDecoTiles(decoTiles);
         field.getStartPoints().addAll(startPoints);
         field.getTeleportPoints().addAll(teleportPoints);
+        field.getNpcs().addAll(npcs);
 
         // todo other actors...
 
@@ -663,6 +671,8 @@ public class TileEditor
                             startPoints.add((StartPoint) navigationPoint);
                         } else if (navigationPoint instanceof TeleportPoint) {
                             teleportPoints.add((TeleportPoint) navigationPoint);
+                        }else if (navigationPoint instanceof Npc){
+                            npcs.add((Npc) navigationPoint);
                         }
                         setup();
                     }
@@ -673,6 +683,21 @@ public class TileEditor
 
         Pane groundGroup = screenFactory.convert(groundTiles, groundImageUrl, Color.BLACK, tileClickCallback);
         Pane decoGroup = screenFactory.convert(decoTiles, decoImageUrl, null, showDecoLayer ? tileClickCallback : null);
+        Node actorLayer = screenFactory.getActorLayer(npcs, new ScreenFactory.NavPointClickCallback() {
+            @Override
+            public void onClick(final NavigationPoint point, boolean controlDown, boolean shiftDown) {
+                Prompt.getPrompt("delete npc?", "Are you sure you want to delete the npc?", new Prompt.Callback() {
+                    @Override
+                    public void onYes() {
+                        if (point instanceof Npc){
+                            npcs.remove(point);
+                        }
+                        setup();
+                    }
+                });
+            }
+        });
+        decoGroup.getChildren().add(actorLayer);
 
         all.getChildren().add(groundGroup);
         if (showDecoLayer) {
@@ -694,7 +719,7 @@ public class TileEditor
                 startIconView.setTranslateY(startPoint.getY() * TILE_SIZE);
                 pointsOfInterestIcons.getChildren().add(startIconView);
 
-                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                startIconView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         Prompt.getPrompt("Delete Start Point", "Are you sure, you want to delete this start point?", new Prompt.Callback() {
@@ -715,7 +740,7 @@ public class TileEditor
                 teleportIconView.setTranslateY(teleportPoint.getY() * TILE_SIZE);
                 pointsOfInterestIcons.getChildren().add(teleportIconView);
 
-                pointsOfInterestIcons.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                teleportIconView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         Prompt.getPrompt("Delete Teleporter", "Are you sure, you want to delete this teleporter?", new Prompt.Callback() {

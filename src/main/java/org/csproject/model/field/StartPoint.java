@@ -1,6 +1,6 @@
 package org.csproject.model.field;
 
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.general.NavigationPoint;
 
 /**
  * @author Maike Keune-Staab on 09.11.2015.

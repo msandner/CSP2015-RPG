@@ -1,7 +1,5 @@
 package org.csproject.model.actors;
 
-import org.csproject.service.ActorFactory;
-
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  *
@@ -10,19 +8,32 @@ import org.csproject.service.ActorFactory;
 public class Npc extends Actor {
 
     private String message;
+    private String image;
+    private int blockX;
+    private int blockY;
 
-    public Npc(String name) {
-        super(name, ActorFactory.NPC);
-
-        this.message = "Hi, I'm " + name + "."; // todo standard message or message generator
+    public Npc(String name, String image, int blockX, int blockY, String message, int x, int y) {
+        super(name, "npc", x, y);
+        this.image = image;
+        this.blockX = blockX;
+        this.blockY = blockY;
+        this.message = message;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getImage() {
+        return image;
+    }
+
+    public int getBlockX() {
+        return blockX;
+    }
+
+    public int getBlockY() {
+        return blockY;
     }
 }
 

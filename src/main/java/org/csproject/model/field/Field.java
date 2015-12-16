@@ -2,7 +2,8 @@ package org.csproject.model.field;
 
 import java.util.*;
 
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.actors.Npc;
+import org.csproject.model.general.NavigationPoint;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015 - 13.10.2015
@@ -17,6 +18,7 @@ public class Field {
 
     private Collection<StartPoint> startPoints;
     private Collection<TeleportPoint> teleportPoints;
+    private Collection<Npc> npcs;
 
     public Field() {
         this(null, null);
@@ -25,6 +27,7 @@ public class Field {
     public Field(Tile[][] groundTiles, Tile[][] decoTiles) {
         this.startPoints = new ArrayList<>();
         this.teleportPoints = new ArrayList<>();
+        this.npcs = new ArrayList<>();
 
         this.groundTiles = groundTiles;
         this.decoTiles = decoTiles;
@@ -89,6 +92,15 @@ public class Field {
         }
 
         return Collections.singletonList(defaultTeleportPoint);
+    }
+
+    public Npc getNpc (int x, int y){
+        for (Npc npc : npcs) {
+            if(npc.getX() == x && npc.getY()== y){
+                return npc;
+            }
+        }
+        return null;
     }
 
     public void setGroundTiles(Tile[][] tiles) {
@@ -163,5 +175,9 @@ public class Field {
 
     public Collection<TeleportPoint> getTeleportPoints() {
         return teleportPoints;
+    }
+
+    public Collection<Npc> getNpcs() {
+        return npcs;
     }
 }

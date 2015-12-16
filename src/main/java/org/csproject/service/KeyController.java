@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.log4j.Logger;
-import org.csproject.model.bean.Direction;
+import org.csproject.model.general.Direction;
 import org.csproject.model.field.StartPoint;
 import org.csproject.model.field.TeleportPoint;
 import org.csproject.view.FieldScreen;
@@ -37,6 +37,12 @@ public class KeyController {
 
     String screenToMove;
 
+    /**
+     * Maike Keune-Staab, Nicholas Paquette
+     *
+     * @param event
+     * @param screen
+     */
     public void onKeyPressed(KeyEvent event, String screen) {
         if (Arrays.asList(MOVEMENT_KEYS).contains(event.getCode())) {
             if (!pressedMovementKeys.contains(event.getCode())) {
@@ -48,11 +54,17 @@ public class KeyController {
             if(fieldScreen.getField().getStart("shopstart").getName().equals("shopstart")){
                 shopService.setupShop(MasterController.getScreensController().getParty());
             }
+        } else if (KeyCode.ENTER.equals(event.getCode())){
+            fieldScreen.playerUse();
         } else {
             // todo other key events here
         }
     }
 
+    /**
+     * Maike Keune-Staab
+     * @param event
+     */
     public void onKeyReleased(KeyEvent event) {
 
         if (pressedMovementKeys.contains(event.getCode())) {
@@ -66,6 +78,10 @@ public class KeyController {
         }
     }
 
+    /**
+     * Maike Keune-Staab
+     * @param screen
+     */
     private void move(String screen) {
         Direction direction = null;
         screenToMove = screen;

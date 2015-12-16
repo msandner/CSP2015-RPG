@@ -1,4 +1,4 @@
-package org.csproject.model.bean;
+package org.csproject.model.general;
 
 import org.csproject.model.actors.Actor;
 

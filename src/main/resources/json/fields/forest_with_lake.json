@@ -5694,7 +5694,7 @@
     {
       "x": 16,
       "y": 17,
-      "name": "laketown"
+      "name": "entry"
     },
     {
       "x": 7,
@@ -5720,12 +5720,22 @@
     {
       "random": false,
       "targetField": "town_with_shop",
-      "targetPoint": "townbeginning",
+      "targetPoint": "entry",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 17,
+      "y": 16,
+      "name": "town_with_shop"
+    },
+    {
+      "random": false,
+      "targetField": "town_with_shop",
+      "targetPoint": "entry",
       "sourceField": "",
       "sourcePoint": "",
       "x": 16,
       "y": 16,
-      "name": "laketown"
+      "name": "town_with_shop"
     }
   ]
 }

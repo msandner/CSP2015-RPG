@@ -22,7 +22,7 @@ public abstract class BattleActor extends Actor {
      * @param attack: initial attack value of the character
      */
     public BattleActor(String name, String type, int level, int attack) {
-        super(name, type);
+        super(name, type, 0, 0);
 
         this.level = level;
         int hp = calcHp(level);

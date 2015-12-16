@@ -1,4 +1,4 @@
-package org.csproject.model.bean;
+package org.csproject.model.general;
 
 /**
  * @author Maike Keune-Staab on 04.10.2015.

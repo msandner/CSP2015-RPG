@@ -1,5 +1,6 @@
 package org.csproject.service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -18,8 +19,12 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.Npc;
 import org.csproject.model.field.Field;
 import org.csproject.model.field.Tile;
+import org.csproject.model.general.Direction;
+import org.csproject.model.general.NavigationPoint;
+import org.csproject.view.CharacterImage;
 import org.springframework.stereotype.Component;
 
 import static org.csproject.model.Constants.*;
@@ -31,6 +36,9 @@ import static org.csproject.model.Constants.*;
 public class ScreenFactory {
     public interface TileClickCallback {
         void onClick(Tile tile, boolean controlDown, boolean shiftDown, int col, int row);
+    }
+    public interface NavPointClickCallback {
+        void onClick(NavigationPoint point, boolean controlDown, boolean shiftDown);
     }
 
     /**
@@ -51,8 +59,33 @@ public class ScreenFactory {
         Pane deco = convert(decoTiles, CS_DIR + decoImage + CS_POST_FIX, null, null);
 
         ground.getChildren().add(deco);
+        Node actorLayer = getActorLayer(field.getNpcs(), null);
+        deco.getChildren().add(actorLayer);
 
         return ground;
+    }
+
+    public Node getActorLayer(Collection<Npc> npcs, final NavPointClickCallback callback) {
+        Group group = new Group();
+        for (final Npc npc : npcs) {
+            ImageView npcPortrait = new ImageView(Constants.ACTORS + npc.getImage() + Constants.ACTORS_POST_FIX);
+
+            npcPortrait.setViewport(CharacterImage.getCharacterViewport(npc.getBlockX(), npc.getBlockY(),
+                    Direction.DOWN, 1));
+            npcPortrait.setTranslateX(npc.getX() * TILE_SIZE);
+            npcPortrait.setTranslateY(npc.getY() * TILE_SIZE);
+            group.getChildren().add(npcPortrait);
+
+            if(callback !=  null){
+                npcPortrait.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        callback.onClick(npc,event.isControlDown(), event.isShiftDown());
+                    }
+                });
+            }
+        }
+        return group;
     }
 
     /**

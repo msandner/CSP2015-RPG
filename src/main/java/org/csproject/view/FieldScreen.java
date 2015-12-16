@@ -8,16 +8,17 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import org.csproject.editor.Prompt;
 import org.csproject.model.Constants;
+import org.csproject.model.actors.Npc;
 import org.csproject.model.actors.PlayerActor;
-import org.csproject.model.bean.Direction;
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.general.Direction;
+import org.csproject.model.general.NavigationPoint;
 import org.csproject.model.field.Field;
 import org.csproject.model.field.TeleportPoint;
 import org.csproject.model.field.Tile;
 import org.csproject.service.KeyController;
 import org.csproject.service.ScreenFactory;
-import org.csproject.service.ScreensController;
 import org.csproject.service.WorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -177,7 +178,8 @@ public class FieldScreen extends Pane {
                 // arrayoutofbounds
             }
             //System.out.println("Tile groundTile: x=" + column + " y=" + row + " | walkable: " + groundTile.isWalkable());
-            if (groundTile != null && groundTile.isWalkable() && (decoTile == null || decoTile.isWalkable())) // if walkable
+            if (groundTile != null && groundTile.isWalkable() && (decoTile == null || decoTile.isWalkable())
+                    && field.getNpc(column, row) == null) // if walkable
             {
                 if (transition == null) {
                     transition = new TranslateTransition(Duration.seconds(Constants.WALK_TIME_PER_TILE), getAvatar());
@@ -316,5 +318,41 @@ public class FieldScreen extends Pane {
 
     public Field getField() {
         return field;
+    }
+
+    public void playerUse() {
+        int x = -1;
+        int y = -1;
+        switch (getAvatar().getFaceDirection()) {
+            case DOWN: {
+                x = (int) (getAvatar().getX() / TILE_SIZE);
+                y = ((int) (getAvatar().getY() / TILE_SIZE)) + 1;
+                break;
+            }
+            case LEFT: {
+                x = ((int) (getAvatar().getX() / TILE_SIZE)) -1;
+                y = (int) (getAvatar().getY() / TILE_SIZE);
+                break;
+            }
+            case RIGHT: {
+                x = ((int) (getAvatar().getX() / TILE_SIZE)) + 1;
+                y = (int) (getAvatar().getY() / TILE_SIZE);
+                break;
+            }
+            case UP: {
+                x = (int) (getAvatar().getX() / TILE_SIZE);
+                y = ((int) (getAvatar().getY() / TILE_SIZE)) - 1;
+                break;
+            }
+        }
+        Npc npc = field.getNpc(x, y);
+        if (npc != null) {
+            Prompt.getPrompt(npc.getName(), npc.getMessage(), new Prompt.Callback() {
+                @Override
+                public void onYes() {
+
+                }
+            });
+        }
     }
 }

@@ -1,43 +1,23 @@
 package org.csproject.model.actors;
 
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.general.NavigationPoint;
 
 /**
  * @author Maike Keune-Staab on 12.09.2015.
  */
-public abstract class Actor {
+public abstract class Actor extends NavigationPoint{
     /**
      * creating the abstract actor
      */
-
-    protected NavigationPoint position;
-    protected String name;
     protected String type; //mage, knight or thief
 
-    public Actor(String name, String type) {
-        this.name = name;
+    public Actor(String name, String type, int x, int y) {
+        super(x, y,name);
         this.type = type;
-        this.position = new NavigationPoint(0,0,"actor");
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getType() {
         return type;
-    }
-
-    public NavigationPoint getPosition() {
-        return position;
-    }
-
-    public void setPosition(NavigationPoint position) {
-        this.position = position;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setType(String type) {

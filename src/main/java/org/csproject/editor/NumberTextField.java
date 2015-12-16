@@ -33,4 +33,11 @@ class NumberTextField
             super.replaceSelection(text);
         }
     }
+
+    public int getNumber(){
+        if(getText() == null || getText().isEmpty()){
+            return 0;
+        }
+        return Integer.parseInt(getText());
+    }
 }

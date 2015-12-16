@@ -258,7 +258,7 @@ public class PlayerActor extends BattleActor {
      */
     @Override
     public String toString() {
-        return name + (type) + "|HP: " + currentHp + "/" + maxHp + "|MP: " + currentMp + "/" + maxMp;
+        return getName() + (type) + "|HP: " + currentHp + "/" + maxHp + "|MP: " + currentMp + "/" + maxMp;
     }
 
     /**

@@ -2087,5 +2087,17 @@
       "y": 10,
       "name": "entry"
     }
+  ],
+  "npcs": [
+    {
+      "message": "Hello, I\u0027m a ghost nun *huuhuuu*",
+      "image": "images/actors/People2.png",
+      "blockX": 1,
+      "blockY": 0,
+      "type": "npc",
+      "x": 5,
+      "y": 4,
+      "name": "nun"
+    }
   ]
 }

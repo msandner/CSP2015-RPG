@@ -11,7 +11,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.csproject.model.bean.NavigationPoint;
+import org.csproject.model.general.NavigationPoint;
 import org.csproject.model.field.TeleportPoint;
 import org.csproject.service.DungeonHelper;
 

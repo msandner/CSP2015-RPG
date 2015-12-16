@@ -5,7 +5,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.csproject.model.Constants;
-import org.csproject.model.bean.Direction;
+import org.csproject.model.general.Direction;
 import org.csproject.service.BattleFactory;
 
 import java.util.Random;
@@ -45,11 +45,25 @@ public class CharacterImage extends ImageView {
         actorImage = new Image(imageURL);
         setImage(actorImage);
 
-        setViewport(new Rectangle2D(
+        setViewport(getCharacterViewport(actorImageBlockX, actorImageBlockY, faceDirection, animPhase));
+    }
+
+    /**
+     * Maike Keune-Staab
+     * returns the viewport of a character image to display a character portrait matching the given parameters.
+     * @param actorImageBlockX
+     * @param actorImageBlockY
+     * @param faceDirection
+     * @param animPhase: 0= left foot, 1 = stand still, 2 = right foot
+     * @return
+     */
+    public static Rectangle2D getCharacterViewport(int actorImageBlockX, int actorImageBlockY, Direction faceDirection,
+                                                   int animPhase) {
+        return new Rectangle2D(
                 actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
                 actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE,
-                Constants.TILE_SIZE));
+                Constants.TILE_SIZE);
     }
 
     public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
@@ -102,14 +116,10 @@ public class CharacterImage extends ImageView {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                setViewport(new Rectangle2D(
-                        actorImageBlockX * BLOCK_SIZE_X + animPhase * Constants.TILE_SIZE,
-                        actorImageBlockY * BLOCK_SIZE_Y + faceDirection.ordinal() * Constants.TILE_SIZE,
-                        Constants.TILE_SIZE,
-                        Constants.TILE_SIZE));
+                setViewport(getCharacterViewport(actorImageBlockX, actorImageBlockY, faceDirection, animPhase));
 
                 //Maren's part start
-                calcEnemyEncounter();
+//                calcEnemyEncounter();
 
                 if (getEnemyEncounter() && startbattle) {
                     startbattle = false;
@@ -175,4 +185,7 @@ public class CharacterImage extends ImageView {
         return this.enemyEncounter;
     }
 
+    public Direction getFaceDirection() {
+        return faceDirection;
     }
+}
