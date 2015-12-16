@@ -116,10 +116,18 @@ public class shopService {
      */
     public boolean boughtItem(Item i, PlayerParty p){
         if(p.getCurrency() < i.getBuyingCost()) {
+            System.out.println("COULDN'T BUY");
             return false;
         } else {
             p.subCurrency(i.getBuyingCost());
             p.addItem(i);
+
+            System.out.println(p.getCurrency());
+            for(Item item: p.getInventory()){
+                System.out.println(item.getItemName());
+            }
+            System.out.println();
+
             return true;
         }
     }
@@ -133,8 +141,16 @@ public class shopService {
     public boolean soldItem(Item i, PlayerParty p){
         if(p.removeItem(i)){
             p.addCurrency(i.getSellingCost());
+
+            System.out.println(p.getCurrency());
+            for(Item item: p.getInventory()){
+                System.out.println(item.getItemName());
+            }
+            System.out.println();
+
             return true;
         }
+        System.out.println("COULDN'T SELL");
         return false;
     }
 

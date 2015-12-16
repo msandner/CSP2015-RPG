@@ -163,7 +163,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
         item2.setText(weapons.get(currentItemsBase + 1).getItemName());
         item3.setText(weapons.get(currentItemsBase + 2).getItemName());
         item4.setText(weapons.get(currentItemsBase + 3).getItemName());
-        itemsBox.setVisible(true);
+        itemSelectionBox.setVisible(true);
         currentType = "Weapon";
     }
 
@@ -176,7 +176,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
         item2.setText(armor.get(currentItemsBase + 1).getItemName());
         item3.setText(armor.get(currentItemsBase + 2).getItemName());
         item4.setText(armor.get(currentItemsBase + 3).getItemName());
-        itemsBox.setVisible(true);
+        itemSelectionBox.setVisible(true);
         currentType = "Armor";
     }
 
@@ -189,7 +189,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
         item2.setText(potions.get(currentItemsBase + 1).getItemName());
         item3.setText(potions.get(currentItemsBase + 2).getItemName());
         item4.setText(potions.get(currentItemsBase + 3).getItemName());
-        itemsBox.setVisible(true);
+        itemSelectionBox.setVisible(true);
         currentType = "Potion";
     }
 
@@ -330,17 +330,17 @@ public class ShopScreenController implements ControlledScreen, Initializable {
      */
     public void setDownButton(){
         if(currentType == "Weapon"){
-            if(!(currentItemsBase + 4 > weapons.size())){
+            if(!(currentItemsBase + 4 >= weapons.size())){
                 currentItemsBase++;
                 showWeaponItems();
             }
         } else if(currentType == "Armor"){
-            if(!(currentItemsBase + 4 > armor.size())){
+            if(!(currentItemsBase + 4 >= armor.size())){
                 currentItemsBase++;
                 showArmorItems();
             }
         } else {
-            if(!(currentItemsBase + 4 > potions.size())){
+            if(!(currentItemsBase + 4 >= potions.size())){
                 currentItemsBase++;
                 showPotionItems();
             }
@@ -354,19 +354,19 @@ public class ShopScreenController implements ControlledScreen, Initializable {
      */
     public void showPartyItems(){
         mainBox.setVisible(false);
-        if(playerParty.getInventory().size() <= 4){
+        if(playerParty.getInventory().size() >= 4){
             sellingItem1.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem3.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem4.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
+            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase + 1).getItemName());
+            sellingItem3.setText(playerParty.getInventory().get(currentItemsBase + 2).getItemName());
+            sellingItem4.setText(playerParty.getInventory().get(currentItemsBase + 3).getItemName());
         } else if(playerParty.getInventory().size() == 3){
             sellingItem1.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem3.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
+            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase + 1).getItemName());
+            sellingItem3.setText(playerParty.getInventory().get(currentItemsBase + 2).getItemName());
             sellingItem4.setText("");
         } else if(playerParty.getInventory().size() == 2){
             sellingItem1.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
-            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase).getItemName());
+            sellingItem2.setText(playerParty.getInventory().get(currentItemsBase + 1).getItemName());
             sellingItem3.setText("");
             sellingItem4.setText("");
         } else if(playerParty.getInventory().size() == 1){
@@ -395,6 +395,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
                 }
             }
         }
+        showPartyItems();
     }
 
     /**
@@ -409,6 +410,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
                 }
             }
         }
+        showPartyItems();
     }
 
     /**
@@ -423,6 +425,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
                 }
             }
         }
+        showPartyItems();
     }
 
     /**
@@ -437,6 +440,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
                 }
             }
         }
+        showPartyItems();
     }
 
     /**
@@ -458,7 +462,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
      */
     public void setSellingDownButton(){
         if(!(playerParty.getInventory().size() < 4)){
-            if(!(currentItemsBase + 4 > playerParty.getInventory().size())){
+            if(!(currentItemsBase + 4 >= playerParty.getInventory().size())){
                 currentItemsBase++;
                 showPartyItems();
             }

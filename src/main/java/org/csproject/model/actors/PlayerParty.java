@@ -28,7 +28,7 @@ public class PlayerParty {
         this.char3 = char3;
         setParty();
 
-        this.currency = currency;
+        this.currency = 100 + currency;
         inventory = new ArrayList<>();
     }
 
