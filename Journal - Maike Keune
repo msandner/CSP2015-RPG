@@ -62,4 +62,7 @@
                                fixed teleportPoints in "forest_with_camp.json", "forest_with_lake.json", "icy_land.json", iceland_and_graveyard.json", linked "icyTown" to "icy_land"
                                added dungeons to the overworld
 15.12.2015 12:25 - 13:13 MESZ: working on final report, added Spring part, edited randomized overworld and dungeon part.
-Total time yet: 106 hours 01 minutes
+16.12.2015 01:25 - 06:27 MESZ: working on final report, commented code, refactored, added functionality so we can now add npcs to the game via editor and give them
+                               specific messages. worked on usability of editor (is finished for now) so the delete function is improved, edited 
+                               icyTown.json, icy_land.json so teleporters working
+Total time yet: 111 hours 03 minutes
