@@ -17,7 +17,7 @@ public class CharacterImage extends ImageView {
     private static final int BLOCK_SIZE_X = (int) Constants.TILE_SIZE * 3;
     private static final int BLOCK_SIZE_Y = (int) Constants.TILE_SIZE * 4;
 
-    private static final int ENEMY_ENCOUNTER_PERCENTAGE = 2;
+
 
     private int actorImageBlockX, actorImageBlockY;
     private Image actorImage;
@@ -69,7 +69,6 @@ public class CharacterImage extends ImageView {
     public CharacterImage(int blockX, int blockY, double posX, double posY, String imageUrl) {
         super();
 
-        //Maike's part start
         walking = false;
 
         setX(posX);
@@ -105,11 +104,10 @@ public class CharacterImage extends ImageView {
         });
         animationThread.setDaemon(true);
         animationThread.start();
-        //Maike's part end
     }
 
     /**
-     * Maike Keune-Staab & Maren Sandner
+     * Maike Keune-Staab
      * updates the animation face of the players avatar.
      */
     public void updateAnimation() {
@@ -117,18 +115,26 @@ public class CharacterImage extends ImageView {
             @Override
             public void run() {
                 setViewport(getCharacterViewport(actorImageBlockX, actorImageBlockY, faceDirection, animPhase));
-
-                //Maren's part start
-//                calcEnemyEncounter();
-
-                if (getEnemyEncounter() && startbattle) {
-                    startbattle = false;
-                    battlefactory.startBattle();
-                    startbattle = true;
-                }
-                //Maren's part end
             }
         });
+    }
+
+    /**
+     * Maren Sandner
+     * calculating and then checking if the battle occured
+     * @return if a battle start on the tile
+     */
+    public boolean didBattleStart() {
+        calcEnemyEncounter();
+        if (getEnemyEncounter() && startbattle) {
+            startbattle = false;
+            battlefactory.startBattle();
+            setWalking(false);
+            startbattle = true;
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -169,11 +175,11 @@ public class CharacterImage extends ImageView {
      * calculates the enemy encounter chance when moving the character
      */
     private void calcEnemyEncounter() {
-        this.enemyEncounter = false;
+        enemyEncounter = false;
         Random rand = new Random();
-        int chance = rand.nextInt(300);
-        if(chance < ENEMY_ENCOUNTER_PERCENTAGE) {
-            this.enemyEncounter = true;
+        int chance = rand.nextInt(50);
+        if(chance < Constants.ENEMY_ENCOUNTER_PERCENTAGE) {
+            enemyEncounter = true;
         }
     }
 
@@ -182,7 +188,7 @@ public class CharacterImage extends ImageView {
      * @return if a battle will be encountered
      */
     public boolean getEnemyEncounter() {
-        return this.enemyEncounter;
+        return enemyEncounter;
     }
 
     public Direction getFaceDirection() {

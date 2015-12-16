@@ -300,7 +300,6 @@ public class FieldScreen extends Pane {
      * @return
      */
     public boolean handleNavigationPoints(int x, int y) {
-
         for (TeleportPoint teleportPoint : field.getTeleportPoints()) {
             if (teleportPoint.getX() == x && teleportPoint.getY() == y) {
 
@@ -320,8 +319,16 @@ public class FieldScreen extends Pane {
                 return false;
             }
         }
+
+        //Maren's part start
+        if(avatar.didBattleStart()) {
+            return false;
+        }
+        //maren's part end
+
         return true;
     }
+
 
     public Field getField() {
         return field;
