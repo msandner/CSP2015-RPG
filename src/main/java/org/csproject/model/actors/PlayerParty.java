@@ -69,7 +69,7 @@ public class PlayerParty {
 
     /**
      * Nicholas Paquette
-     * subtracting a value fro the current currency
+     * subtracting a value from the current currency
      * @param i: amount of gold that should be subtracted
      */
     public void subCurrency(int i){

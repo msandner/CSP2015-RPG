@@ -128,6 +128,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     private shopService shopService;
 
     /**
+     * Nicholas Paquette
      * Sets up the shop screen; recognizes the player party and sets up item stocks
      * @param party
      */
@@ -144,6 +145,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Shows the main options: show weapons, show armor, show potions, sell party items and leave the shop
      */
     public void showMainOptions(){
@@ -155,6 +157,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Shows four items from the weapons stock based on currentItemsBase
      */
     public void showWeaponItems(){
@@ -168,6 +171,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Shows four items from the armor stock based on currentItemsBase
      */
     public void showArmorItems(){
@@ -181,6 +185,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Shows four items from the potions stock based on currentItemsBase
      */
     public void showPotionItems(){
@@ -194,6 +199,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player has chosen the item in the first item box, sends a request
      * to shopService to check if the item can be bought.
      */
@@ -221,6 +227,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player has chosen the item in the second item box, sends a request
      * to shopService to check if the item can be bought.
      */
@@ -248,6 +255,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player has chosen the item in the third item box, sends a request
      * to shopService to check if the item can be bought.
      */
@@ -275,6 +283,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player has chosen the item in the fourth item box, sends a request
      * to shopService to check if the item can be bought.
      */
@@ -302,6 +311,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Adjusts currentItemsBase by -1 if possible then calls
      * the appropriate show item method to adjust boxes
      */
@@ -325,6 +335,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Adjusts currentItemsBase by +1 if possible then calls
      * the appropriate show item method to adjust boxes
      */
@@ -348,6 +359,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Shows the party inventory to allow players to sell items
      * If the party inventory is less than four items some boxes
      * will be blank
@@ -384,6 +396,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player chose to sell the item in the first box, calls
      * shopService to sell the item
      */
@@ -399,6 +412,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player chose to sell the item in the second box, calls
      * shopService to sell the item
      */
@@ -414,6 +428,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player chose to sell the item in the third box, calls
      * shopService to sell the item
      */
@@ -429,6 +444,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * The player chose to sell the item in the fourth box, calls
      * shopService to sell the item
      */
@@ -444,6 +460,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Adjusts currentItemsBase by -1 if possible then calls
      * the show party inventory method to adjust boxes
      */
@@ -457,6 +474,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Adjusts currentItemsBase by +1 if possible then calls
      * the show party inventory method to adjust boxes
      */
@@ -470,6 +488,7 @@ public class ShopScreenController implements ControlledScreen, Initializable {
     }
 
     /**
+     * Nicholas Paquette
      * Calls shopService to return the player to the field
      */
     public void leaveShop(){

@@ -23,7 +23,8 @@ public class shopService {
     private ShopScreenController shopController;
 
     /**
-     * Adds all items to the shops three stocks.
+     * Nicholas Paquette
+     * Sets up the shop screen
      */
     public void setupShop(PlayerParty party){
         MasterController.setScreen(MasterController.SHOP_SCREEN_ID);
@@ -31,6 +32,11 @@ public class shopService {
         shopController.setupShopScreen(party);
     }
 
+    /**
+     * Nicholas Paquette
+     * Creates the weapons inventory
+     * @return
+     */
     public List<Item> getWeapons(){
         ArrayList<Item> weaponStock = new ArrayList<Item>();
 
@@ -47,6 +53,11 @@ public class shopService {
         return weaponStock;
     }
 
+    /**
+     * Nicholas Paquette
+     * Sets up the armor inventory
+     * @return
+     */
     public List<Item> getArmor(){
         ArrayList<Item> armorStock = new ArrayList<Item>();
 
@@ -92,6 +103,11 @@ public class shopService {
         return armorStock;
     }
 
+    /**
+     * Nicholas Paquette
+     * Sets up the potion inventory
+     * @return
+     */
     public List<Item> getPotions(){
         ArrayList<Item> potionStock = new ArrayList<Item>();
 
@@ -109,6 +125,7 @@ public class shopService {
     }
 
     /**
+     * Nicholas Paquette
      * Method to allow players to buy items, they must have enough currency to do so
      * @param i the item to be bought
      * @param p the player party
@@ -133,6 +150,7 @@ public class shopService {
     }
 
     /**
+     * Nicholas Paquette
      * Method to allow players to sell items, they must have the item to be able to sell it
      * @param i the item to be sold
      * @param p the player party
@@ -155,6 +173,7 @@ public class shopService {
     }
 
     /**
+     * Nicholas Paquette
      * Returns the player to the field
      */
     public void leaveShop(){ MasterController.setScreen(MasterController.GAME_SCREEN); }
