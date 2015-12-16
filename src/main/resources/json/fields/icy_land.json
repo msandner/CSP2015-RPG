@@ -1,6 +1,6 @@
 {
   "groundImage": "Outside",
-  "decoImage": "Outside3",
+  "decoImage": "World",
   "groundTiles": [
     [
       {
@@ -4580,9 +4580,9 @@
       {
         "walkable": true,
         "complex": false,
-        "x": 0,
-        "y": 0,
-        "tileImage": "emptyTile"
+        "x": 7,
+        "y": 10,
+        "tileImage": "World"
       },
       {
         "walkable": true,
@@ -5692,9 +5692,9 @@
       "name": "castelstart"
     },
     {
-      "x": 11,
-      "y": 19,
-      "name": "icebeginning"
+      "x": 4,
+      "y": 13,
+      "name": "icyTown"
     }
   ],
   "teleportPoints": [
@@ -5711,6 +5711,31 @@
       "x": 13,
       "y": 4,
       "name": "icedungeonstart"
+    },
+    {
+      "random": true,
+      "randomHeight": 70,
+      "randomWidth": 50,
+      "randomFloors": 2,
+      "targetField": "dungeon_room",
+      "targetPoint": "startroom",
+      "sourceField": "worldMap",
+      "sourcePoint": "castelstart",
+      "randomType": "TEST",
+      "x": 14,
+      "y": 4,
+      "name": "icedungeonstart"
+    },
+    {
+      "random": false,
+      "targetField": "icyTown",
+      "targetPoint": "entry",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 4,
+      "y": 12,
+      "name": "icyTown"
     }
-  ]
+  ],
+  "npcs": []
 }

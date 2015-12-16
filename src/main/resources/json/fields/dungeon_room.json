@@ -1459,13 +1459,56 @@
       "randomWidth": 50,
       "randomFloors": 1,
       "targetField": "worldMap",
-      "targetPoint": "startdesertdungeon",
-      "sourceField": "",
-      "sourcePoint": "",
+      "targetPoint": "castelstart",
+      "sourceField": "dungeon_room",
+      "sourcePoint": "startroom",
+      "randomType": "TEST",
+      "x": 3,
+      "y": 0,
+      "name": "dungeon"
+    },
+    {
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "worldMap",
+      "targetPoint": "castelstart",
+      "sourceField": "dungeon_room",
+      "sourcePoint": "startroom",
+      "randomType": "TEST",
+      "x": 4,
+      "y": 0,
+      "name": "dungeon"
+    },
+    {
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "worldMap",
+      "targetPoint": "castelstart",
+      "sourceField": "dungeon_room",
+      "sourcePoint": "startroom",
       "randomType": "TEST",
       "x": 5,
       "y": 0,
       "name": "dungeon"
+    },
+    {
+      "random": true,
+      "randomHeight": 60,
+      "randomWidth": 50,
+      "randomFloors": 1,
+      "targetField": "worldMap",
+      "targetPoint": "castelstart",
+      "sourceField": "dungeon_room",
+      "sourcePoint": "startroom",
+      "randomType": "TEST",
+      "x": 6,
+      "y": 0,
+      "name": "dungeon"
     }
-  ]
+  ],
+  "npcs": []
 }

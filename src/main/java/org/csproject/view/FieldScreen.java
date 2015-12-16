@@ -5,10 +5,14 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.csproject.editor.Prompt;
 import org.csproject.model.Constants;
 import org.csproject.model.actors.Npc;
 import org.csproject.model.actors.PlayerActor;
@@ -40,6 +44,7 @@ public class FieldScreen extends Pane {
     private WorldService worldService;
 
     private boolean moving;
+    private boolean showTextBox;
 
     private CharacterImage avatar;
 
@@ -49,9 +54,11 @@ public class FieldScreen extends Pane {
     private Field field;
 
     public PlayerActor playerActor;
+    private Group textBox;
 
     public FieldScreen() {
         this.moving = false;
+        this.showTextBox = false;
         setUpControlls();
 
         setScaleX(SCALE);
@@ -320,7 +327,20 @@ public class FieldScreen extends Pane {
         return field;
     }
 
+    /**
+     * Maike Keune-Staab
+     * depending on the characters facing direction, if a npc stands in the facing direction, npc's message is displayed
+     */
     public void playerUse() {
+        if(showTextBox) {
+            showTextBox = false;
+            Node textBox = getTextBox(null);
+            if (textBox != null) {
+                getChildren().remove(textBox);
+            }
+            return;
+        }
+
         int x = -1;
         int y = -1;
         switch (getAvatar().getFaceDirection()) {
@@ -347,12 +367,34 @@ public class FieldScreen extends Pane {
         }
         Npc npc = field.getNpc(x, y);
         if (npc != null) {
-            Prompt.getPrompt(npc.getName(), npc.getMessage(), new Prompt.Callback() {
-                @Override
-                public void onYes() {
-
-                }
-            });
+            getChildren().add(getTextBox(npc.getMessage()));
+            showTextBox = true;
         }
+    }
+
+    public Node getTextBox(String message) {
+        if (textBox == null) {
+            textBox = new Group();
+            final Label label = new Label();
+            label.setTextFill(Color.WHITE);
+            label.setStyle("font-weight: bold");
+            label.setMaxWidth(600);
+            Rectangle box = new Rectangle();
+            box.setFill(Color.DARKSLATEBLUE);
+            box.setStroke(Color.BLACK);
+            box.setStrokeWidth(5);
+            box.setHeight(120);
+            box.setWidth(640);
+            box.setTranslateX((SCREEN_WIDTH / 2) - 320 - getTranslateX());
+            box.setTranslateY(SCREEN_HEIGHT - 180 - getTranslateY());
+            label.setTranslateX((SCREEN_WIDTH / 2) - 300 - getTranslateX());
+            label.setTranslateY(SCREEN_HEIGHT - 160 - getTranslateY());
+            textBox.getChildren().add(box);
+            textBox.getChildren().add(label);
+        }
+
+        ((Label)textBox.getChildren().get(1)).setText(message);
+
+        return textBox;
     }
 }

@@ -2091,7 +2091,7 @@
   "npcs": [
     {
       "message": "Hello, I\u0027m a ghost nun *huuhuuu*",
-      "image": "images/actors/People2.png",
+      "image": "People2",
       "blockX": 1,
       "blockY": 0,
       "type": "npc",

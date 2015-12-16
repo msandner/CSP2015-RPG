@@ -5699,26 +5699,6 @@
   ],
   "teleportPoints": [
     {
-      "random": false,
-      "targetField": "worldMap",
-      "targetPoint": "icyTown",
-      "sourceField": "",
-      "sourcePoint": "",
-      "x": 10,
-      "y": 18,
-      "name": "entry"
-    },
-    {
-      "random": false,
-      "targetField": "worldMap",
-      "targetPoint": "icyTown",
-      "sourceField": "",
-      "sourcePoint": "",
-      "x": 9,
-      "y": 18,
-      "name": "entry"
-    },
-    {
       "random": true,
       "randomHeight": 60,
       "randomWidth": 50,
@@ -5731,6 +5711,58 @@
       "x": 3,
       "y": 4,
       "name": "iceDungeon"
+    },
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "icyTown",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 9,
+      "y": 18,
+      "name": "entry"
+    },
+    {
+      "random": false,
+      "targetField": "worldMap",
+      "targetPoint": "icyTown",
+      "sourceField": "",
+      "sourcePoint": "",
+      "x": 10,
+      "y": 18,
+      "name": "entry"
+    }
+  ],
+  "npcs": [
+    {
+      "message": "HoHoHo",
+      "image": "People8",
+      "blockX": 0,
+      "blockY": 1,
+      "type": "npc",
+      "x": 4,
+      "y": 12,
+      "name": "Santa"
+    },
+    {
+      "message": "I\u0027m freezing *snort*",
+      "image": "People8",
+      "blockX": 3,
+      "blockY": 1,
+      "type": "npc",
+      "x": 3,
+      "y": 12,
+      "name": "Santas little helper"
+    },
+    {
+      "message": "Hey it\u0027s me Rudolph!",
+      "image": "People8",
+      "blockX": 2,
+      "blockY": 1,
+      "type": "npc",
+      "x": 13,
+      "y": 7,
+      "name": "reindeer"
     }
   ]
 }
